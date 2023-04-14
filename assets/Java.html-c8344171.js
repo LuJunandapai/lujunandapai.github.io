@@ -1,0 +1,1 @@
+import{_ as a,p as t,q as r,s as e,R as n}from"./framework-e1bed10d.js";const s={},c=e("h2",{id:"_1-angular-是什么",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#_1-angular-是什么","aria-hidden":"true"},"#"),n(" 1. Angular 是什么")],-1),_=[c];function o(d,l){return t(),r("div",null,_)}const h=a(s,[["render",o],["__file","Java.html.vue"]]);export{h as default};

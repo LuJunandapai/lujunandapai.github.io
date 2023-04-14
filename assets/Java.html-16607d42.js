@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-57a7f9c4","path":"/docs/apai-docs/Java.html","title":"Java 基础","lang":"zh-CN","frontmatter":{"title":"Java 基础","date":"2023/02/15"},"headers":[{"level":2,"title":"1. Angular 是什么","slug":"_1-angular-是什么","link":"#_1-angular-是什么","children":[]}],"git":{},"filePathRelative":"docs/apai-docs/Java.md"}');export{a as data};

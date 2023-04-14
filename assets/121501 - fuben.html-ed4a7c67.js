@@ -1,0 +1,1 @@
+import{_ as e,p as _,q as s,s as t}from"./framework-e1bed10d.js";const n={},c=t("p",null,"###sadsd",-1),o=[c];function a(r,l){return _(),s("div",null,o)}const f=e(n,[["render",a],["__file","121501 - fuben.html.vue"]]);export{f as default};
