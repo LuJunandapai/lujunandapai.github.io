@@ -1,9 +1,8 @@
 ---
 title: Linux 基础
 date: 2023/02/15
+
 ---
-
-
 
 # Linux 
 
@@ -38,7 +37,7 @@ date: 2023/02/15
 
 > /etc/sysconfig/network-scripts
 
-![image-20220715140917720](https://gitee.com/LuisApai/Apai_image_MD/raw/master/image-20220715140917720.png)
+![image-20220715140917720](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220715140917720.png)
 
 修改为: 
 
@@ -270,7 +269,6 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 ### cp (复制文件或目录)
 
 > cp 即拷贝文件和目录。
->
 
 语法:
 
@@ -593,7 +591,6 @@ tail [-n number] 文件
 ### find  文件搜索命令
 
 > 功能描述：文件或者文件夹搜索
->
 
 **语法：find [搜索范围 - 目录路径] [匹配条件]**
 
@@ -633,7 +630,6 @@ find / -name mengni -exec rm -rf { } \
 ### grep 文件内容搜索命令
 
 > 在文件中搜寻字串匹配的行并输出
->
 
 语法：grep  [指定字串] [文件]  
 
@@ -692,7 +688,6 @@ grep -v ^# /etc/inittab
 ### ping 测试网络连通性
 
 > 测试网络连通性
->
 
 **语法：ping 选项 IP地址**
 
@@ -805,7 +800,7 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 语法：w
 
-![image-20220621223236948](https://gitee.com/LuisApai/Apai_image_MD/raw/master/image-20220621223236948.png)
+![image-20220621223236948](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220621223236948.png)
 
 - up表示linux连续运行的时间 
 - load average 系统的负载情况
@@ -1087,7 +1082,6 @@ kill -9  PID
 # vim -- 文本编辑器
 
 > Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。vim 的官方网站 (https://www.vim.org/) 
->
 
 ## vi/vim 的使用
 
@@ -1140,7 +1134,7 @@ kill -9  PID
 
 按ESC键可随时退出底线命令模式。
 
-![image-20220622153611874](https://gitee.com/LuisApai/Apai_image_MD/raw/master/image-20220622153611874.png)
+![image-20220622153611874](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220622153611874.png)
 
 
 
@@ -2720,7 +2714,6 @@ make &&  make install
 > 缺点：所以安装的时候要先编译,然后再安装，这个过程要长些
 >
 > 源码包：一般来说，包里面会有一个src目录，该目录里面放源码
->
 
 **源码包的安装**
 
@@ -2800,7 +2793,6 @@ make &&  make install
 ## rpm包（二进制包)
 
 > 二进制包也叫rpm(redhat  package  manager), 包名一般来说以.rpm结尾
->
 
 ~~~
 httpd-2.4.6-88.el7.centos.x86_64.rpm 
@@ -2815,7 +2807,6 @@ httpd-2.4.6-88.el7.centos.x86_64.rpm  整个包全名
 ~~~
 
 > rpm包安装起来是最复杂的，因为他的依赖太多。
->
 
 * 检查一下当前系统是否已经装过这个软件包
 
@@ -2847,7 +2838,6 @@ rpm -Uvh  包全名
 ## yum安装
 
 > 当我们用yum去安装一个软件或者是一个命令，那么在我们的linux系统中有一个yum源文件，这个文件就是保存了yum的中央仓库地址，这个文件在/etc/yum.repos.d/目录下，你看到了很多文件，其中有一个yum中央仓库文件，叫CentOS-Base.repo，当然这里还有其他的文件，可以用来配置本地yum源
->
 
 * 查询
 
@@ -2991,7 +2981,7 @@ yum  -y remove 包名
 
 9.Navicat Premium 12 进行连接
 
-![image-20220622203106853](https://gitee.com/LuisApai/Apai_image_MD/raw/master/image-20220622203106853.png)
+![image-20220622203106853](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220622203106853.png)
 
 
 
@@ -3243,7 +3233,7 @@ docker run -id --name=Apai_redis -p 6380:6379 --restart=always redis:5.0 /bin/ba
 
 在java配置连接 消息队列  设置虚拟主机为: 
 
-![image-20220807205534423](C:\阿派_文件夹\Gitee_Apai\Apai_Image_MD\MaYun_md\image-20220807205534423.png)
+
 
 1.拉去rabbitMq镜像
 

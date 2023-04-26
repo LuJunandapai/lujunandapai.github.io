@@ -201,7 +201,7 @@ public void posttow(@RequestBody User user) {
 
 **图解**
 
-![image-20220613150408809](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220613150408809.png)
+![image-20220613150408809](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220613150408809.png)
 
 
 
@@ -489,7 +489,6 @@ vue: -- 指令  可以在内部做一些简单的运算
 ### v-html  带标签的内容
 
 > 跟 v-text  作用差不多 但是能够渲染 带标签的数据
->
 
 ```html
 <p v-html="data里的数据名">带html标签数据也能将被渲染到这里</p>
@@ -566,7 +565,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 >
 > Vue: 提供了事件修饰符的概念，来辅助程序员更方便的对事件的触发进行控制
 
-![image-20220604201323338](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220604201323338.png)
+![image-20220604201323338](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220604201323338.png)
 
 ```html
 // 语法
@@ -603,9 +602,9 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 **v-model  修饰符**
 
-![image-20220604214527207](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220604214527207.png)
+![image-20220604214527207](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220604214527207.png)
 
-![image-20220606171339170](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220606171339170.png)
+![image-20220606171339170](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220606171339170.png)
 
 #### data 数据
 
@@ -713,7 +712,7 @@ data: {
 
 **key  注意事项**
 
-![image-20220605172025770](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220605172025770.png)
+![image-20220605172025770](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220605172025770.png)
 
 ```html
 // 语法: v-for="单个数据名 in 数组名"  获取元素进行遍历 
@@ -750,15 +749,11 @@ data: {
 
 
 
-
-
 # Vue -- 方法
 
 ## computed -- 计算属性
 
-![image-20220607230805297](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220607230805297.png)
-
-
+![image-20220607230805297](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220607230805297.png)
 
 ## 调用多个数据
 
@@ -767,29 +762,25 @@ data: {
 插值表达式: {{ `${aa}, ${bb}` }}
 ```
 
-
-
 ## 获取 Vue -- data 数据
 
-> 方式一: 使用创建的   vue实例对象名.data里的数据名   可获取到对应的数据
->
-> 方式二: vue实例对象名.$data.数据名
->
-> 方式二: 在 vue 里 this . data里的数据名可获取到对应的数据   methods函数里 this 就相当于 vue实例对象名
-
-
+```java
+方式一: 使用创建的   vue实例对象名.data里的数据名   可获取到对应的数据
+方式二: vue实例对象名.$data.数据名
+方式二: 在 vue 里 this . data里的数据名可获取到对应的数据   methods函数里 this 就相当于 vue实例对象名
+```
 
 ## 执行 Vue -- methods 函数
 
-> 方式一: 使用创建的   vue实例对象名.methods里的函数名(  )   可执行对应的函数
-
-
+```java
+方式一: 使用创建的   vue实例对象名.methods里的函数名(  )   可执行对应的函数
+```
 
 ## Js 获取触发事件的元素
 
+```html
 vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件对象  形参 可设置为 e
 
-```html
 // 当触发事件 js函数不进行传参时 可在js函数里设置形参 e  调用 e.targer 获取触发事件的元素
 <button type="button" @click="methods里的函数名">触发事件的按钮</button>
 
@@ -800,14 +791,14 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 }
 ```
 
-
-
 ## ref  获取  元素  DOM
 
+```java
 - 解决的问题: 在vue中操作DOM元素
 - 使用步骤:
   1. 给DOM元素设置ref属性的值
   2. 在Vue中的mounted选项下通过this.$refs.属性 获取到要操作的DOM
+```
 
 ```html
 <div id="app">
@@ -868,14 +859,14 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 
 ### 全局注册
 
+```java
 1. 在创建 Vue 实例之前定义全局过滤器Vue.filter()
 2. Vue.filter('该过滤器的名字',(要过滤的数据)=>{return 对数据的处理结果});
 3. 在视图中通过{{数据 | 过滤器的名字}}或者v-bind使用过滤器
-
-> 注意: 全局注册的过滤器, 不同的vm对象都可以使用
-
-> 1. 过滤器是可以串联使用的, 比如 {{msg | upper1 | upper2}}
-> 2. 过滤器是可以传参数的,比如{{msg | upper1(自己传的参数)}}
+// > 注意: 全局注册的过滤器, 不同的vm对象都可以使用
+1. 过滤器是可以串联使用的, 比如 {{msg | upper1 | upper2}}
+2. 过滤器是可以传参数的,比如{{msg | upper1(自己传的参数)}}
+```
 
 ```html
 <div id="app">
@@ -909,17 +900,14 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 
 ## watch: 侦听器
 
-> 能够侦听到data数据的变化 且获取对应的 新值 和 旧值
->
-> 注意:  侦听 对应的数据  则  方法名为 数据名
->
-> immediate:  true   -->  打开页面则立刻触发侦听器调用方法 默认为 false  写在方法名(){  }, immediate:  true
->
-> 如果侦听是一个对象则不会因为对象里的属性发生改变而进行侦听 需开启深度侦听
->
-> deep: true  -->  开启深度侦听 默认false  写在方法后 
->
-> 如果侦听一个对象的属性:  ' 对象名 . 属性 ' () {         }
+```java
+能够听到data数据的变化 且获取对应的 新值 和 旧值
+注意:  侦听 对应的数据  则  方法名为 数据名
+immediate:  true   -->  打开页面则立刻触发侦听器调用方法 默认为 false  写在方法名(){  }, immediate:  true
+如果侦听是一个对象则不会因为对象里的属性发生改变而进行侦听 需开启深度侦听
+deep: true  -->  开启深度侦听 默认false  写在方法后 
+如果侦听一个对象的属性:  ' 对象名 . 属性 ' () {         }
+```
 
 ```js
 // 侦听器 能够侦听到data数据的变化 且获取对应的 新值 和 旧值
@@ -930,7 +918,7 @@ watch: {
 },
 ```
 
-![image-20220606225650460](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220606225650460.png)
+![image-20220606225650460](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220606225650460.png)
 
 
 
@@ -1275,7 +1263,7 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
 >
 > 特别注意:  html标签里 名字 会被自动转换全小写 
 >
->  如果js里名字为大写驼峰 则 标签里的名字必须中间加 **横杆 -**  
+> 如果js里名字为大写驼峰 则 标签里的名字必须中间加 **横杆 -**  
 >
 > 建议还是全部用全小写  防止名字报错
 
@@ -1646,7 +1634,6 @@ var userlist = {   template: '#adduser',  }
 > 实现根据不同的请求地址 而显示不同的组件
 
 > ###### 步骤
->
 
 导入vue和vue-router 的js文件
 
@@ -1936,7 +1923,6 @@ return pageInfo;
 ## 删除
 
 > 前端发生删除请求  后台删除成功 利用data数组删除一行
->
 
 ```js
 // 删除用户
@@ -1983,7 +1969,6 @@ public Object deleteUser(Long proid) {
 ## 添加
 
 > 组件跳转  --> 添加组件
->
 
 ```js
 // 利用 路由器 的请求跳转至对应的组件
@@ -2093,6 +2078,8 @@ public Object updateUser(@RequestBody Product product) {
 <hr>
 
 
+
+
 # vue-cli4  脚手架 项目基本配置
 
 云端仓库第一次启动: npm i
@@ -2107,7 +2094,7 @@ public Object updateUser(@RequestBody Product product) {
 >
 > **注意:  项目的位置取决于cmd的启动位置  在创建时 项目名不能以大写 'V' 开头**  具体的创建详情见: 开发工具
 
-![image-20220615143024322](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220615143024322.png)
+![image-20220615143024322](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220615143024322.png)
 
 **VS code 调试启动:**
 
@@ -2142,11 +2129,11 @@ import router from './router' // 引入路由
 import './plugins/element.js' // 引入element-ui
 ```
 
-![image-20220615170516739](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220615170516739.png)
+![image-20220615170516739](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220615170516739.png)
 
 注意: 修改  报错重启
 
-![image-20220630195802966](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220630195802966.png)
+![image-20220630195802966](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220630195802966.png)
 
 ```js
 import Vue from 'vue'
@@ -2172,7 +2159,7 @@ import router from './router' // 引入路由
 import './plugins/element.js' // 引入element-ui
 ```
 
-![image-20220615171520521](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220615171520521.png)
+![image-20220615171520521](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220615171520521.png)
 
 
 
@@ -2804,7 +2791,7 @@ this.saletable = this.$route.query.saletable;
 >
 > scope.row  一行数据  为 对象
 >
-> ![image-20220617201430656](https://gitee.com/LuisApai/Apai_image_MD/raw/master/md_image/image-20220617201430656.png)
+> ![image-20220617201430656](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220617201430656.png)
 
 ## 双向绑定会失效
 
@@ -3338,118 +3325,6 @@ public class TeacherController {
 }
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

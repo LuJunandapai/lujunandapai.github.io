@@ -36,7 +36,7 @@ export default defineUserConfig({
       {
         text: "文档组",
         children: [
-          { text: "Web-开发", link: "/docs/Web-develop/Vue" },
+          { text: "Web-开发", link: "/docs/Web-develop/Vue-basics" },
           { text: "Java-开发", link: "/docs/Java-develop/Java-basics" },
           { text: "Linux-系统", link: "/docs/Linux-develop/Linux" },
           { text: "其他", link: "/docs/Rests-docs/vue" },
@@ -48,26 +48,6 @@ export default defineUserConfig({
 
     // 文档组 的系列栏
     series: {
-      // Web-开发
-      "/docs/Web-develop/": [
-        // 分栏一
-        {
-          // 分栏名称
-          text: "Vue 框架",
-          // 栏目组 文档
-          children: [
-            "Vue",
-          ],
-        },
-        {
-          // 分栏名称
-          text: "前端组件",
-          // 栏目组 文档
-          children: [
-            "Vue",
-          ],
-        },
-      ],
       // Java-开发
       "/docs/Java-develop/": [
         // 分栏一
@@ -84,7 +64,26 @@ export default defineUserConfig({
           text: "MySql 数据库",
           // 栏目组 文档
           children: [
-            "Java-basics",
+              "MySql",
+          ],
+        },
+      ],
+      // Web-开发
+      "/docs/Web-develop/": [
+        {
+          // 分栏名称
+          text: "Vue 框架",
+          // 栏目组 文档
+          children: [
+            "Vue-basics",
+          ],
+        },
+        {
+          // 分栏名称
+          text: "前端 组件",
+          // 栏目组 文档
+          children: [
+            "Vue-basics",
           ],
         },
       ],
@@ -109,7 +108,7 @@ export default defineUserConfig({
         },
       ],
 
-      // 其他组 设置
+      // --- 其他组 设置
       "/docs/Rests-docs/": [
         // 分栏一
         {
