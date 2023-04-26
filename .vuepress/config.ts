@@ -36,8 +36,10 @@ export default defineUserConfig({
       {
         text: "文档组",
         children: [
-          { text: "文档总览", link: "/docs/theme-reco/theme" },
-          { text: "学习笔记", link: "/docs/apai-docs/vue" },
+          { text: "Web-开发", link: "/docs/Web-develop/Vue" },
+          { text: "Java-开发", link: "/docs/Java-develop/Java-basics" },
+          { text: "Linux-系统", link: "/docs/Linux-develop/Linux" },
+          { text: "其他", link: "/docs/Rests-docs/vue" },
           { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
         ],
       },
@@ -46,35 +48,89 @@ export default defineUserConfig({
 
     // 文档组 的系列栏
     series: {
-      "/docs/theme-reco/": [
+      // Web-开发
+      "/docs/Web-develop/": [
+        // 分栏一
         {
-          text: "前端",
-          children: [ "theme"],
+          // 分栏名称
+          text: "Vue 框架",
+          // 栏目组 文档
+          children: [
+            "Vue",
+          ],
         },
         {
-          text: "系列1",
-          children: [ "theme"],
-        },
-        {
-          text: "系列2",
-          children: ["api", "plugin"],
+          // 分栏名称
+          text: "前端组件",
+          // 栏目组 文档
+          children: [
+            "Vue",
+          ],
         },
       ],
-      "/docs/apai-docs/": [
+      // Java-开发
+      "/docs/Java-develop/": [
+        // 分栏一
         {
-          text: "前端",
+          // 分栏名称
+          text: "Java 基础",
+          // 栏目组 文档
           children: [
-              "Vue2",
-              "Vue",
+            "Java-basics",
+          ],
+        },
+        {
+          // 分栏名称
+          text: "MySql 数据库",
+          // 栏目组 文档
+          children: [
+            "Java-basics",
+          ],
+        },
+      ],
+      // Linux-系统
+      "/docs/Linux-develop/": [
+        // 分栏一
+        {
+          // 分栏名称
+          text: "Linux 基础",
+          // 栏目组 文档
+          children: [
+            "Linux",
+          ],
+        },
+        {
+          // 分栏名称
+          text: "Linux 安装",
+          // 栏目组 文档
+          children: [
+            "Linux",
+          ],
+        },
+      ],
+
+      // 其他组 设置
+      "/docs/Rests-docs/": [
+        // 分栏一
+        {
+          // 分栏名称
+          text: "前端",
+          // 栏目组 文档
+          children: [
+              "Vue2","Vue",
           ],
         },
         {
           text: "后端",
-          children: ["java", "MySql"],
+          children: [
+              "java", "MySql"
+          ],
         },
         {
           text: "Linux",
-          children: ["Linux"],
+          children: [
+              "Linux"
+          ],
         },
       ],
     },
