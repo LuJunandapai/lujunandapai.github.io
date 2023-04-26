@@ -70,7 +70,7 @@ export default defineUserConfig({
         },
         {
           text: "后端",
-          children: ["java"],
+          children: ["java", "MySql"],
         },
         {
           text: "Linux",
