@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-117b0414","path":"/docs/apai-docs/Vue2.html","title":"Vue_前端框架","lang":"zh-CN","frontmatter":{"title":"Vue_前端框架","description":"页面的描述士大夫撒大","date":"2023/02/15"},"headers":[],"git":{},"filePathRelative":"docs/apai-docs/Vue2.md"}');export{e as data};
