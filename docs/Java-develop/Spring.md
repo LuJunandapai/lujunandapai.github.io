@@ -3,11 +3,11 @@ title: Spring_框架
 date: 2023/04/26
 ---
 
-#  Spring  框架
+##  Spring  框架
 
 
 
-## Spring 介绍
+### Spring 介绍
 
 > Spring是一个基于IOC反转控制(DI依赖注入）和**==AOP面向切面编程==** 容器框架（IOC主要是对对象进行解耦，AOP主要是对功能也就是对象里面的方法进行解耦）
 >
@@ -15,7 +15,7 @@ date: 2023/04/26
 >
 > 本机启动地址: http://localhost:8080
 
-### Spring具体描述
+#### Spring具体描述
 
 > 1. **轻量级**：并不是说Spring的jar包有多大，而是说Spring是非侵入性的（即当用Spring时，不需要去实现Spring给提供的任何接口，不需要去继承它的任何     父类，可以享用它的功能）基于Spring开发的应用中的对象可以不依赖于Spring的API，侵入性举例就是在使用J2EE的编程时候，需要继承HttpServlet类。
 > 2. **依赖注入** （DI---dependency  injection、IOC）
@@ -24,26 +24,26 @@ date: 2023/04/26
 > 5. **框架**：Spring实现了使用简单的组件配置组合成一个复杂的应用。在Spring中可以使用XML和Java注解组合这些对象。
 > 6. **一站式**：在IOC和AOP的基础上可以整合各种企业应用的开源框架（如Struts2、Hibernate、Mybatis）和优秀的第三方类库（实际上Spring自身也提供了展现层的Spring MVC和持久层的Spring JDBC），对按业务划分的三层架构(展现层、业务层、持久层)都有组件支持
 
-### IOC 容器 概述
+#### IOC 容器 概述
 
 1. BeanFactory和ApplicationContext 都是容器接口，ApplicationContext 是BeanFactory的子接口
 2. BeanFactory是Spring容器祖先，它是面向Spring框架。ApplicationContext 它是面向业务程序员的，它的子类功能更强大一点。
 3. **BeanFactory读取配置，一开始不初始化对象，直到调用的时候初始化；ApplicationContext它是读取配置文件的时候，就把图纸上的所有对象全部创建，包括依赖关系**
 
-### IOC 控制反转
+#### IOC 控制反转
 
 > IOC 控制反转: 使用对象时，由主动new产生对象转换为由外部提供对象，此过程中对象创建控制权由程序转移到外部，此思想称为控制反转
 
-### IOC 容器
+#### IOC 容器
 
 > Spring提供了一个容器，称为IoC容器，用来充当IoC思想中的(外部
 > IoC容器负责对象的创建、初始化等一系列工作，被创建或被管理的对象在IoC容器中统称为Bean
 
 
 
-## 搭建Spring环境
+### 搭建Spring环境
 
-### 1.引入spring核心依赖
+#### 1.引入spring核心依赖
 
 **新建Maven项目，修改pom.xml文件，引入spring核心依赖** 
 
@@ -57,7 +57,7 @@ date: 2023/04/26
 </dependencies>
 ```
 
-### 2.修改业务层Spring调用方式
+#### 2.修改业务层Spring调用方式
 
 业务层代码调整一下，不生产持久层对象了，弄一个set方法传入持久层对象。
 
@@ -76,7 +76,7 @@ public class UserServiceImpl implements IUserService {
 }
 ```
 
-### 3.spring配置文件 - xml
+#### 3.spring配置文件 - xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -99,7 +99,7 @@ public class UserServiceImpl implements IUserService {
 </beans>
 ```
 
-### **4.测试调用**
+#### **4.测试调用**
 
 ```java
 // 模拟表现层
@@ -117,9 +117,9 @@ public static void main(String[] args) {
 
 
 
-## spring - 依赖注入
+### spring - 依赖注入
 
-### bean 标签
+#### bean 标签
 
 ```xml
 <bean id=" ID名 " class=" 类全名 "></bean>
@@ -138,7 +138,7 @@ public static void main(String[] args) {
     -->
 ```
 
-### property 标签 set注入
+#### property 标签 set注入
 
 原理: 是通过set方法进行注入赋值
 
@@ -161,7 +161,7 @@ property标签属性:  原理是通过set方法进行赋值
     -->
 ```
 
-### constructor-arg 标签 构造 注入
+#### constructor-arg 标签 构造 注入
 
 原理: 是通过构造方法进行注入赋值 必须写入有参构造方法
 
@@ -178,7 +178,7 @@ constructor-arg 标签 为 bean 标签的内部标签
 </bean>
 ```
 
-### bean 内部标签属性
+#### bean 内部标签属性
 
 ```xml
 <!-- 
@@ -194,7 +194,7 @@ constructor-arg 标签 为 bean 标签的内部标签
 -->
 ```
 
-### 获取bean和对象
+#### 获取bean和对象
 
 ```java
 public static void main(String[] args) {
@@ -210,7 +210,7 @@ AnnotationConfigApplicationContext annotationConfigApplicationContext = new Anno
 Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 ```
 
-### 使用 p 名称空间注入
+#### 使用 p 名称空间注入
 
 此种方式是通过在 xml中导入 p名称空间，使用 p:propertyName 来注入数据，它的本质仍然是调用类中的 set 方法实现注入功能。
 
@@ -232,7 +232,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 </beans>
 ```
 
-### 集合注入
+#### 集合注入
 
 注意:
 
@@ -244,7 +244,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 3. string类型的集合 在赋值时可直接使用 <value> 值 </value> 赋值
 ```
 
-#### 1. List 集合 实体类注入
+##### 1. List 集合 实体类注入
 
 ```xml
 <bean id="user3" class="com.woniu.entity.User">
@@ -268,7 +268,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 </bean>
 ```
 
-#### 2.Set 集合 实体类注入
+##### 2.Set 集合 实体类注入
 
 ```xml
 <!-- 对 userSet 的注入-->
@@ -288,7 +288,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 </property>
 ```
 
-#### 3.Map 注入
+##### 3.Map 注入
 
 ```xml
 <!-- 对 userMap 的注入-->
@@ -305,7 +305,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 </property>
 ```
 
-#### 4.Properties的注入
+##### 4.Properties的注入
 
 ```xml
 <!-- 对 props 的注入-->
@@ -321,9 +321,9 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 
 
 
-## 实例化Bean的三种方式
+### 实例化Bean的三种方式
 
-#### 一：使用默认的无参构造函数
+##### 一：使用默认的无参构造函数
 
 ```xml
 <bean id="userDaoImpl" class="www.woniu.dao.UserDaoImpl"></bean>
@@ -333,7 +333,7 @@ Object getbbb = annotationConfigApplicationContext.getBean("方法的bean名");
 </bean>
 ```
 
-#### 二：Spring静态工厂
+##### 二：Spring静态工厂
 
  - 使用静态工厂的方法创建对象
 
@@ -363,7 +363,7 @@ IUserService userService2 = (IUserService) applicationContext.getBean("userServi
 System.out.println(userService2);
 ```
 
-#### 三：Spring实例工厂 
+##### 三：Spring实例工厂 
 
 - 使用实例工厂的方法创建对象
 
@@ -395,7 +395,7 @@ IUserService userService3 = (IUserService) applicationContext.getBean("userServi
 System.out.println(userService3);
 ```
 
-### FactoryBean 【了解】
+#### FactoryBean 【了解】
 
 BeanFactory 与 FactoryBean 的区别？
 
@@ -440,7 +440,7 @@ System.out.println(userService4);
 
 
 
-## 自动装配
+### 自动装配
 
 在Spring框架中，在配置文件中声明bean的依赖关系是一个很好的做法，因为Spring容器能够自动装配协作bean之间的关系。这称为spring自动装配。
 
@@ -451,7 +451,7 @@ System.out.println(userService4);
 * XML配置中的默认自动装配模式为no
 * Java配置中的默认自动装配模式是byType
 
-### **自动装配模式**
+#### **自动装配模式**
 
 ```java
 * no
@@ -469,7 +469,7 @@ System.out.println(userService4);
 
 详细介绍: https://blog.csdn.net/weixin_44205087/article/details/123108269
 
-### 案例介绍
+#### 案例介绍
 
 实体类 有两个实体类的字段属性
 
@@ -499,9 +499,9 @@ public class Test implements TestImp {
 
 
 
-## 基于注解的 IOC 配置
+### 基于注解的 IOC 配置
 
-### **配置注解开启和注解Bean的扫描** 
+#### **配置注解开启和注解Bean的扫描** 
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -527,14 +527,14 @@ public class Test implements TestImp {
 
 
 
-### @Component 用于创建对象
+#### @Component 用于创建对象
 
 ```java
 @Component 相当于：<bean id="类名的全小写" class="类全名"> 作用于类
 默认的id名未 类名的全小写 也可在自定义id名 @Component("id名")
 ```
 
-### @Component 衍生子注解
+#### @Component 衍生子注解
 
 ```java
 作用及属性都是一模一样的, 他们只不过是提供了更加明确的语义化。
@@ -544,29 +544,29 @@ public class Test implements TestImp {
 细节：如果注解中有且只有一个自定义bean的ID名属性要赋值时，且名称是 value ，value 在赋值是可以不写。
 ```
 
-### 用于注入数据的注解
+#### 用于注入数据的注解
 
 ```java
 能够直接通过注解给类赋值 , 相当于：<property name="字段名" ref="值"> 作用于属性字段上
     
-#### @Autowired
+##### @Autowired
 
 作用：自动按照类型注入。当使用注解注入属性时，set方法可以省略。
 
 1. 当在spring容器里面找不到对象时，就报错
 2. **当有多个对象匹配时，按属性名到spring容器中配对，如果找到就注入，找不到就报错**
 
-#### @Value
+##### @Value
 
 作用： 注入基本数据类型和String 类型数据的
 
-#### @Qualifier
+##### @Qualifier
 
 作用：在自动按照类型注入的基础之上，再按照 Bean 的 id 注入。它在给字段注入时不能独立使用，必须和@Autowire 一起使用；但是给方法参数注入时，可以独立使用。
 
 属性: value：指定 bean 的 id。
 
-#### @Resource
+##### @Resource
 
  JSR-250标准（基于jdk），单独使用@Resource注解，表示先按照名称注入，会到spring容器中查找userDao的名称，对应<bean id="">，id的属性值，如果找到，可以匹配。
 
@@ -575,9 +575,9 @@ public class Test implements TestImp {
 
 
 
-## spring --> mybatis
+### spring --> mybatis
 
-### 第一步：pom文件
+#### 第一步：pom文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -699,7 +699,7 @@ public class Test implements TestImp {
 
 ```
 
-### 第二步：实体类注解
+#### 第二步：实体类注解
 
 ```java
 // 需要在pom.xml添加依赖
@@ -716,7 +716,7 @@ public class Test implements TestImp {
 @AllArgsConstructor // 全参构构造方法
 ```
 
-### 第三步：数据访问层 映射文件
+#### 第三步：数据访问层 映射文件
 
 数据库sql语句注解
 
@@ -734,7 +734,7 @@ public class Test implements TestImp {
     @Select("")
 ```
 
-### 第四步： 创建 Service 
+#### 第四步： 创建 Service 
 
 1.表现层 根据业务层接口的class创建实例调用方法  而Service是 实现接口重写方法
 
@@ -764,7 +764,7 @@ public class UserServiceImpl implements IUserService {
 
 ```
 
-### 第五步：配置spring文件
+#### 第五步：配置spring文件
 
 进行Spring 和 Mybatis 的整合配置 applicationContext.xml
 
@@ -834,7 +834,7 @@ public class UserServiceImpl implements IUserService {
 </beans>
 ```
 
-### 第六步：表现层调用
+#### 第六步：表现层调用
 
 ```java
 public class MainTest {
@@ -853,13 +853,13 @@ public class MainTest {
 
 
 
-## AOP 概述
+### AOP 概述
 
-### 什么是AOP
+#### 什么是AOP
 
 AOP：全称是 Aspect Oriented Programming 即：面向切面编程。
 
-### AOP 的作用及优势
+#### AOP 的作用及优势
 
 作用：在程序运行期间，不修改源码对已有方法进行增强。
 
@@ -871,15 +871,15 @@ AOP：全称是 Aspect Oriented Programming 即：面向切面编程。
 
 * 维护方便
 
-### AOP 的实现方式
+#### AOP 的实现方式
 
 使用动态代理技术
 
-## XML 的 AOP 配置通知
+### XML 的 AOP 配置通知
 
-### 环境搭建
+#### 环境搭建
 
-#### **第一步：拷贝必备的 jar 包到工程的 lib 目录**
+##### **第一步：拷贝必备的 jar 包到工程的 lib 目录**
 
 maven工程的依赖导入，在上一章项目基础上继续添加
 
@@ -898,7 +898,7 @@ maven工程的依赖导入，在上一章项目基础上继续添加
 </dependency>
 ```
 
-#### **第二步：创建 spring 的配置文件并导入约束**
+##### **第二步：创建 spring 的配置文件并导入约束**
 
 此处要导入 aop 的约束
 
@@ -922,9 +922,9 @@ maven工程的依赖导入，在上一章项目基础上继续添加
 </beans>
 ```
 
-### 通知配置步骤
+#### 通知配置步骤
 
-#### aop:config 声明 配置
+##### aop:config 声明 配置
 
 ```xml
     <!--配置切面-->
@@ -952,7 +952,7 @@ maven工程的依赖导入，在上一章项目基础上继续添加
     </aop:config>
 ```
 
-#### 环绕通知:
+##### 环绕通知:
 
 aop:around：用于配置环绕通知
 
@@ -981,9 +981,9 @@ public void logCreateTime(ProceedingJoinPoint point) throws Throwable {
 
 
 
-#### 事务类
+##### 事务类
 
-##### ConnectionUti:
+###### ConnectionUti:
 
 保证在一个线程用的都是同一个 Connection
 
@@ -1023,7 +1023,7 @@ public class ConnectionUtils {
 }
 ```
 
-##### MyTransactionManager
+###### MyTransactionManager
 
 ```java
 import com.apai.util.ConnectionUtils;
@@ -1109,7 +1109,7 @@ public class MyTransactionManager {
 
 
 
-### 切入点表达式说明
+#### 切入点表达式说明
 
 execution:匹配方法的执行(常用)
 
@@ -1189,13 +1189,13 @@ execution(* com.woniu.service.impl.*.*(..))
 
 
 
-## 注解的 AOP 配置通知
+### 注解的 AOP 配置通知
 
-### **第一步：@Aspect**
+#### **第一步：@Aspect**
 
 ​		**把通知类上使用注解配置使用  @Aspect  注解声明为切面**
 
-### **第二步：通知配置**
+#### **第二步：通知配置**
 
 ​		**在通知类里的  增强的方法上 使用注解配置通知**
 
@@ -1216,7 +1216,7 @@ public class MyTransactionManager {
 }
 ```
 
-### **第三步：开启通知注解**
+#### **第三步：开启通知注解**
 
 ​		**在 spring 配置文件中开启 spring 对注解 AOP 的支持**
 
@@ -1227,9 +1227,9 @@ public class MyTransactionManager {
 
 
 
-## spring配置数据源
+### spring配置数据源
 
-### druid数据源
+#### druid数据源
 
 ```xml
 <!-- druid -->
@@ -1249,7 +1249,7 @@ public class MyTransactionManager {
     </bean>
 ```
 
-### 配置 spring 内置数据源
+#### 配置 spring 内置数据源
 
 spring 框 架 也 提 供 了 一 个 内 置 数 据 源 ， 我 们 也 可 以 使 用 spring 的 内 置 数 据 源 ， 它 就 在spring-jdbc-5.3.18.jar 包中：
 
@@ -1262,7 +1262,7 @@ spring 框 架 也 提 供 了 一 个 内 置 数 据 源 ， 我 们 也 可 �
     </bean>
 ```
 
-### 将数据库信息配置外部
+#### 将数据库信息配置外部
 
 【定义属性文件:  jdbc.properties】
 
@@ -1298,9 +1298,9 @@ jdbc.password=123456
 
 
 
-## Spring 事务
+### Spring 事务
 
-### **事务的隔离级别**
+#### **事务的隔离级别**
 
 1. READ_UNCOMMITTED
 
@@ -1318,7 +1318,7 @@ jdbc.password=123456
 
    串行化，最高的事务隔离级别，不管多少事务，挨个运行完一个事务的所有子事务之后才可以执行另外一个事务里面的所有子事务，这样就解决了脏读、不可重复读和幻读的问题了
 
-### **事务的传播行为**
+#### **事务的传播行为**
 
 1. REQUIRED:如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。一般的选择（默认值）
 
@@ -1346,9 +1346,9 @@ jdbc.password=123456
 
 建议查询时设置为只读
 
-### 基于 XML 的声明式事务
+#### 基于 XML 的声明式事务
 
-#### 环境搭建
+##### 环境搭建
 
  1、引入事务jar
 
@@ -1423,9 +1423,9 @@ jdbc.password=123456
 
 
 
-## junit5
+### junit5
 
-#### 配置步骤
+##### 配置步骤
 
 **第一步 修改pom.xml，添加JUnit5依赖**
 
@@ -1502,15 +1502,15 @@ public class JTest5 {
 
 
 
-# SpringMVC的简介
+## SpringMVC的简介
 
-## SpringMVC概述
+### SpringMVC概述
 
 SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于SpringFrameWork 的后续产品。
 
 SpringMVC 已经成为目前最主流的MVC框架之一，并且随着Spring3.0 的发布，全面超越 Struts2，成为最优秀的 MVC 框架。它通过一套注解，让一个简单的 Java 类成为处理请求的控制器，而无须实现任何接口。同时它还支持 RESTful 编程风格的请求。
 
-## SpringMVC快速入门
+### SpringMVC快速入门
 
 需求：客户端发起请求，服务器端接收请求，执行逻辑并进行视图跳转。
 
@@ -1637,7 +1637,7 @@ SpringMVC 已经成为目前最主流的MVC框架之一，并且随着Spring3.0 
 
 
 
-## SpringMVC的组件解析
+### SpringMVC的组件解析
 
 1. **前端控制器：DispatcherServlet**
 
@@ -1675,9 +1675,9 @@ Handler 对具体的用户请求进行处理。
 
 
 
-## SpringMVC注解解析
+### SpringMVC注解解析
 
-#### @RequestMapping
+##### @RequestMapping
 
 * 作用：用于建立请求 URL 和处理请求方法之间的对应关系
 
@@ -1711,7 +1711,7 @@ Handler 对具体的用户请求进行处理。
 
 SpringMVC基于Spring容器，所以在进行SpringMVC操作时，需要将Controller存储到Spring容器中，如果使用@Controller注解标注的话，就需要使用<context:component-scan base-package=“com.itheima.controller"/>进行组件扫描。
 
-#### SpringMVC的XML配置
+##### SpringMVC的XML配置
 
 SpringMVC有默认组件配置，默认组件都是DispatcherServlet.properties配置文件中配置的，该配置文件地址org/springframework/web/servlet/DispatcherServlet.properties，该文件中配置了默认的视图解析器，如下：
 
@@ -1730,7 +1730,7 @@ suffix = "";     --视图名称后缀
 
 InternalResourceViewResolver的buildView返回view，view的rend渲染页面
 
-#### 视图解析器
+##### 视图解析器
 
 我们可以通过属性注入的方式修改视图的的前后缀 在esources目下下创建spring-mvc.xml 里加入
 
@@ -1744,7 +1744,7 @@ InternalResourceViewResolver的buildView返回view，view的rend渲染页面
 
 
 
-# SpringMVC的数据响应
+## SpringMVC的数据响应
 
 01-SpringMVC的数据响应-数据响应方式(理解)
 
@@ -1764,7 +1764,7 @@ InternalResourceViewResolver的buildView返回view，view的rend渲染页面
 
 ![image-20220411232952335](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/gnqeqo-0.png)
 
-## 页面跳转 - 方式三
+### 页面跳转 - 方式三
 
 前提需在esources目下下创建spring-mvc.xml 里加上 视图解析器 和 配置注解扫描
 
@@ -1809,7 +1809,7 @@ public class QuickController {
 }
 ```
 
-##  回写数据 - 3.1
+###  回写数据 - 3.1
 
 ```xml
 // java对象转换成json格式的字符串  json转换工具jackson进行转换依赖坐标
@@ -1940,7 +1940,7 @@ response.setContentType("application/json;charset=utf-8");
     }
 ```
 
-## SpringMVC的请求
+### SpringMVC的请求
 
 注意: 时间类型 因为类型的特殊 需要加上对应的四个注解
 
@@ -2030,7 +2030,7 @@ public void save15(@RequestBody List<User> userList) throws IOException {
 <button onclick="verfityUserCode()">测试</button>
 ```
 
-### 参数名称不一致
+#### 参数名称不一致
 
 当请求的参数名称与Controller的业务方法参数名称不一致时，就需要通过@RequestParam注解显示的绑定
 
@@ -2050,7 +2050,7 @@ public void save16(@RequestParam(value="name",required = false,defaultValue = "�
 }
 ```
 
-### Restful 风格的参数的获取
+#### Restful 风格的参数的获取
 
 Restful是一种软件架构风格、设计风格，而不是标准，只是提供了一组设计原则和约束条件。主要用于客户端和服务器交互类的软件，基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存机制等。
 
@@ -2094,7 +2094,7 @@ DELETE：用于删除资源    	/user/1   DELETE：  删除 id = 1 的 user
 
 
 
-### 自定义类型转换器
+#### 自定义类型转换器
 
 日期类型的数据就需要自定义转换器。
 
@@ -2153,7 +2153,7 @@ public void save21(LocalDateTime dateTime) throws IOException {
 <mvc:annotation-driven conversion-service="conversionService" />
 ```
 
-### 获得Servlet相关API
+#### 获得Servlet相关API
 
 SpringMVC支持使用原始ServletAPI对象作为控制器方法的参数进行注入，常用的对象如下：
 
@@ -2169,7 +2169,7 @@ public void save22(HttpServletRequest request, HttpServletResponse response, Htt
 }
 ```
 
-### 获得请求头信息
+#### 获得请求头信息
 
 使用@RequestHeader可以获得请求头信息，相当于web阶段学习的request.getHeader(name)
 
@@ -2205,7 +2205,7 @@ public void save24(@CookieValue(value = "JSESSIONID") String jsessionId) throws 
 
 
 
-## 静态资源访问的开启
+### 静态资源访问的开启
 
 当有静态资源需要加载时，比如jquery文件，通过谷歌开发者工具抓包发现，没有加载到jquery文件，原因是SpringMVC的前端控制器DispatcherServlet的url-pattern配置的是/,代表对所有的资源都进行过滤操作，我们可以通过以下两种方式指定放行静态资源：
 
@@ -2225,7 +2225,7 @@ public void save24(@CookieValue(value = "JSESSIONID") String jsessionId) throws 
 <mvc:default-servlet-handler/>
 ```
 
-## 配置全局乱码过滤器
+### 配置全局乱码过滤器
 
 配置在: web.xml      当post请求时，数据会出现乱码，我们可以设置一个过滤器来进行编码的过滤。
 
@@ -2251,7 +2251,7 @@ public void save24(@CookieValue(value = "JSESSIONID") String jsessionId) throws 
 
 
 
-## SpringMVC的文件上传
+### SpringMVC的文件上传
 
 文件上传 步骤
 
@@ -2327,19 +2327,19 @@ public void save23(String username, MultipartFile[] uploadFile) throws IOExcepti
 }
 ```
 
-## SpringMVC的拦截器
+### SpringMVC的拦截器
 
-#### 01-拦截器的作用
+##### 01-拦截器的作用
 
 Spring MVC 的拦截器类似于 Servlet  开发中的过滤器 Filter，用于对处理器进行预处理和后处理。将拦截器按一定的顺序联结成一条链，这条链称为拦截器链（InterceptorChain）。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。拦截器也是AOP思想的具体实现。
 
-#### 02-interceptor和filter区别
+##### 02-interceptor和filter区别
 
 关于interceptor和filter的区别，如图所示：
 
 ![image-20220412120911223](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/gnuc5n-0.png)
 
-#### 03-快速入门
+##### 03-快速入门
 
 自定义拦截器很简单，只有如下三步：
 
@@ -2445,7 +2445,7 @@ public class GlobalException {
 
 
 
-# SpringBoot  异常处理
+## SpringBoot  异常处理
 
 > 发生异常时 可跳转到自定义的异常页面 或者 发送具体的异常报错信息
 >
@@ -2453,7 +2453,7 @@ public class GlobalException {
 >
 > 在src/main/resources/ templates创建error.html页面 （使用thymeleaf）
 
-## @ControllerAdvice方式
+### @ControllerAdvice方式
 
 > config 功能包下创建 GlobalException 异常类
 
@@ -2518,11 +2518,11 @@ public class GlobalException {
 
 
 
-# ----------  内容补充  ---------
+## ----------  内容补充  ---------
 
-# Spring  boot 补充
+## Spring  boot 补充
 
-## Spring  boot 项目的环境
+### Spring  boot 项目的环境
 
 在默认的 application.yml  配置文件指定调用的环境配置
 
@@ -2538,7 +2538,7 @@ spring:
 * application-test.yml    |  测试环境
 * application-proc.yml  |  生产环境
 
-## Spring  boot 默认的配置文件
+### Spring  boot 默认的配置文件
 
 > Spring  boot 默认的配置文件 有三种 他们的有着不同的优先级
 
@@ -2562,7 +2562,7 @@ spring:
 
 过程:   hello.java ---> 编译java.class (java的字节码文件)  ---->  有类加获器帮你加裁到内东  ---->  对象堆 --  java的即时编译器编译  ---->  java即时优化器去优化  ----->  cpu执行
 
-## 调用配置数据
+### 调用配置数据
 
 **获取配置 端口**
 
@@ -2576,7 +2576,7 @@ public String port() {
 }
 ```
 
-## Spring  boot 注解
+### Spring  boot 注解
 
 Spring  boot 注解 是依赖于 web 依赖 
 
@@ -2595,16 +2595,16 @@ Spring  boot 注解 是依赖于 web 依赖
 * 当不在同同层时 必须在配置指定
 
 ```yml
-# resources包下的 META-INF包下的 spring.factories文件
-# org.springframework.cloud.bootstrap.BootstrapConfiguration= 该类的路径
+## resources包下的 META-INF包下的 spring.factories文件
+## org.springframework.cloud.bootstrap.BootstrapConfiguration= 该类的路径
 org.springframework.cloud.bootstrap.BootstrapConfiguration=comx.woniu.utils.ResponseResult
 ```
 
 
 
-# Spring 注解总汇
+## Spring 注解总汇
 
-## 一.创建对象注解
+### 一.创建对象注解
 
 ```java
 @Component 相当于：<bean id="类名的全小写" class="类全名"> 作用于类
@@ -2617,7 +2617,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=comx.woniu.utils.Resp
 细节：如果注解中有且只有一个自定义bean的ID名属性要赋值时，且名称是 value ，value 在赋值是可以不写。
 ```
 
-## 二.注入数据的注解
+### 二.注入数据的注解
 
 ```java
 @Autowired  作用：自动按照类型注入。当使用注解注入属性时，set方法可以省略。
@@ -2635,7 +2635,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=comx.woniu.utils.Resp
 	如果没有找到，则会按照类型注入，会到spring容器中查找IUserDao的类型，对应<bean class="">，class的属性值，如果找到，可以匹配，如果没有找到会抛出异常。
 ```
 
-## 三.spring 新注解配置
+### 三.spring 新注解配置
 
 ```java
 @Configuration
@@ -2662,7 +2662,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=comx.woniu.utils.Resp
 	属性：value[]：用于指定其他配置类的字节码
 ```
 
-## 四.junit5注解
+### 四.junit5注解
 
 ```java
 // 每次表现层获取实例化对象都需使用可使用junit5注解代替 前提: 导入对应依赖
@@ -2683,7 +2683,7 @@ UserService userService = (UserService)ac.getBean("userService");
 	@SpringJUnitConfig(SpringConfig.class)
 ```
 
-## 五.AOP通知注解
+### 五.AOP通知注解
 
 ```java
 @Aspect 表示此类为通知类 如:事务类就为通知类 包含回滚 提交方法等
@@ -2700,7 +2700,7 @@ UserService userService = (UserService)ac.getBean("userService");
     @Around("execution(* com.woniu.service.*.*(..))")
 ```
 
-## 六.实体类注解
+### 六.实体类注解
 
 ```java
 // 需要在pom.xml添加依赖
@@ -2727,7 +2727,7 @@ UserService userService = (UserService)ac.getBean("userService");
 private LocalDateTime birthday;
 ```
 
-## 七.MVC 注解 
+### 七.MVC 注解 
 
 ```java
 // 请求获取
@@ -2762,7 +2762,7 @@ private LocalDateTime birthday;
 	@PathVariable
 ```
 
-## 八.SQL语句注解
+### 八.SQL语句注解
 
 ```java
 // 添加
@@ -2780,7 +2780,7 @@ private LocalDateTime birthday;
     @Select("select * from 表名")
 ```
 
-## 九.SpringBoot  注解
+### 九.SpringBoot  注解
 
 ```java
 // 启动器 类的注解 - 组合注解
@@ -2806,7 +2806,7 @@ private LocalDateTime birthday;
 	@ServletComponentScan   
 ```
 
-## 十. MyBatisPlus注解
+### 十. MyBatisPlus注解
 
 ```java
 // 表名注解   表名注解指定当前实体类对应的表名，比如下面 UserInfo 实体类对应表名为 user
@@ -2826,7 +2826,7 @@ private LocalDateTime birthday;
 	@TableField(select = false) 
 ```
 
-## 十一. springsecurity 注解
+### 十一. springsecurity 注解
 
 > PrePost 注解也是 jsr250 标准出现之前，Spring Security 框架自己定义的注解。PrePost 注解的功能比 Secured 注解的功能更强大，通过使用 Spring EL 来表达具有逻辑判断的校验规则。
 
@@ -2848,7 +2848,7 @@ public String admin() {
 }
 ```
 
-## 十二. 微服务 注解
+### 十二. 微服务 注解
 
 **Eureka 注解**
 
@@ -2905,9 +2905,9 @@ public String admin() {
 
 
 
-# 过滤器 - 坐标依赖 - 父子工程
+## 过滤器 - 坐标依赖 - 父子工程
 
-## 过滤器
+### 过滤器
 
 ```java
 // req 类型转换
@@ -2938,7 +2938,7 @@ String Path = req.getServletPath(); // 调用的jsp  如: xxx.jsp
 
 ```
 
-### 登录过滤器
+#### 登录过滤器
 
 > filter  包下  LoginFilter 类
 >
@@ -2954,7 +2954,7 @@ String Path = req.getServletPath(); // 调用的jsp  如: xxx.jsp
 > static-locations:
 >     - file:D:/BluceLee
 >     - classpath:static
->     - classpath:templates  # 把 templates 文件夹设置为静态资源 
+>     - classpath:templates  ## 把 templates 文件夹设置为静态资源 
 > ```
 
 ```java
@@ -3008,11 +3008,11 @@ public class LoginFilter implements Filter {
 
 
 
-## 分模块开发
+### 分模块开发
 
 分模块开发: 即在共同开发的项目中, 都会相互依赖各个模块, 达到项目完整
 
-### 分模块开发步骤:
+#### 分模块开发步骤:
 
 - 将分模块使用meven的生命周期 install 打包成 jar包 存储在本地仓库内
 - 将分模块的坐标依赖导入主模块即可
@@ -3022,9 +3022,9 @@ public class LoginFilter implements Filter {
 > <artifactId>springMVC-03</artifactId>
 > <version>1.0-SNAPSHOT</version>
 
-## 坐标依赖
+### 坐标依赖
 
-### 依赖范围:
+#### 依赖范围:
 
  依赖范围 - 在添加依赖gav坐标时，使用scope标签来指定jar包文件起作用的范围
 
@@ -3041,19 +3041,19 @@ runtime         0       1         1         1     mysql-connector-java：[JDK ja
 test      1[测试代码]    1       1[测试代码]   0     junit-jupiter-engine
 ```
 
-### 依赖传递:
+#### 依赖传递:
 
 1. 直接依赖:在当前项目中通过依赖配置建立的依赖关系
 2. 间接依赖:被资源的资源如果依赖其他资源，当前项目间接依赖其他资源
 3. 简单来说: 直接依赖 和 简介依赖 同时存在时可删除直接依赖 使用间接依赖也是可以正常使用
 
-### 依赖冲突
+#### 依赖冲突
 
 1. 声明优先:当资源在相同层级被依赖时，配置顺序靠前的覆盖配置顺序靠后的
 2. 路径优先:当依赖中出现相同的资源时，层级越深，优先级越低，层级越浅，优先级越高
 3. 特殊优先:当同级配置了相同资源的不同版本，后配置的覆盖先配置的
 
-### 依赖排除:
+#### 依赖排除:
 
 * 表示对依赖传递的jar可以选择性的排除
 
@@ -3071,7 +3071,7 @@ test      1[测试代码]    1       1[测试代码]   0     junit-jupiter-engin
 </dependency>
 ```
 
-### 声明周期:
+#### 声明周期:
 
 clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deploy
 
@@ -3083,18 +3083,18 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
   
 
-##  版本的统一管理
+###  版本的统一管理
 
 * 解决不同的模块引用了不同版本的jar包依赖，从而出现兼容性问题
 * 方便版本的统一升级维护，防止部分模块的依赖升级，导致项目中的多个版本的同名jar
 
-### Maven 父子工程
+#### Maven 父子工程
 
 在实际的项目中，如果项目比较大的情况下，会把项目的功能分成很多个模块(module)，模块与模块之间使用RPC(远程调用)，而聚合和继承就特别适合多个模块的协同工作。
 
-#### Maven继承与聚合（重点）
+##### Maven继承与聚合（重点）
 
-##### 继承
+###### 继承
 
 * 父子工程项目一定是具有继承关系的 子工程能够继承父工程的依赖 和 坐标
 
@@ -3106,7 +3106,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 继承的特性是指建立一个父模块，我们项目中的多个模块都作为该模块的子模块，将各个子模块相同的依赖和插件配置提取出来，从而简化配置文件
 ```
 
-##### 父工程 - pom.xml
+###### 父工程 - pom.xml
 
 ```xml
     <groupId>com.woniu</groupId>
@@ -3137,7 +3137,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
     </dependency>
 ```
 
-##### 聚合
+###### 聚合
 
 * 被聚合的模块不一定是子工程，只是idea在创建一个模块的子模块项目时，会自动添加子模块为被聚合的模块
 * 使用一个模块聚合多个模块，其作用就是可以将多个模块的项目进行 一键编译，测试，打包，安装
@@ -3154,9 +3154,9 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
 
 
-# 补充: 数据获取 请求发送
+## 补充: 数据获取 请求发送
 
-## 前端 上下文路径
+### 前端 上下文路径
 
 ```html
 <-- SpringBoot Thymeleaf 上下文路径 -->
@@ -3184,7 +3184,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
 
 
-## 后台 数据获取:
+### 后台 数据获取:
 
 ```java
 // 方式一:  根据name 的类型和名字获取
@@ -3214,7 +3214,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
 
 
-## Servlet相关API
+### Servlet相关API
 
 - HttpServletRequest request
 - HttpServletResponse response
@@ -3222,7 +3222,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
 
 
-## Spring MVC 页面跳转
+### Spring MVC 页面跳转
 
 - 客户端 重定向: 执行该路径 相对于一次请求并执行 还可以在后面带上请求参数
 
@@ -3250,7 +3250,7 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 
   resp.sendRedirect(req.getContextPath() + "/文件地址");
 
-## 前端发送请求和数据
+### 前端发送请求和数据
 
 ```html
 ------------------  前端页面发送请求和数据 ----------------------
@@ -3278,9 +3278,9 @@ clean -> 编译compile -> test -> 打包package -> install安装  -> 部署deplo
 </script>
 ```
 
-## spring 文件 补充
+### spring 文件 补充
 
-### 文件上传:
+#### 文件上传:
 
  spring 获取 文件时: -->  MultipartFile 文件表单的name名
 
@@ -3325,7 +3325,7 @@ for (int i = 0; i < upload.length; i++) {
 }
 ```
 
-### 文件下载:
+#### 文件下载:
 
 ```java
 // 根据文件名字下载
@@ -3363,7 +3363,7 @@ public String downloadFile(HttpServletRequest request, HttpServletResponse respo
 
 
 
-## 分页插件 业务层
+### 分页插件 业务层
 
 ```java
 //开始分页 可使用传参设置 页数 和 每页的数据条数

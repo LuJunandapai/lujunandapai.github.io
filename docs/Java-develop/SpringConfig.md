@@ -3,12 +3,12 @@ title: SpringConfig 微服务
 date: 2023/04/26
 ---
 
-# 集群与分布式
+## 集群与分布式
 
 集群:把一个项目放到多个容器(tomcat)，不同的服务器上面跑
 分布式:把一一个项目拆分成多个微服务(项目)，每个项目在不同的服务器上面跑
 
-# Boot 和 Config 的区别
+## Boot 和 Config 的区别
 
 > 如果某些服务的并发量非常高，如双十一，用户下单量非常大，这种时候项目的架构就要考虑高并发的问题，可以采用微服务架构。
 
@@ -19,7 +19,7 @@ springcloud:  就是把一一个完整的项目，拆分成n个子模块，每�
 
 
 
-# Eureka 与 Nacos 的区别
+## Eureka 与 Nacos 的区别
 
 Eureka 与 Nacos 都作为注册中心
 
@@ -42,11 +42,11 @@ CAP 方案:
 
 
 
-# Springcloud Config 微服务
+## Springcloud Config 微服务
 
 > 微服务架构，是一种软件架构方式。微服务的主要特点体现在组件化、松耦合、自治和去中心化等方面。它将应用构建成一系列按业务领域划分模块的、小的自治服务，通过分解巨大单体式应用为多个服务方法解决了复杂性问题。每个服务还提供了一个严格的模块边界，甚至允许用不同的编程语言编写不同的服务。
 
-## 服务调用方式
+### 服务调用方式
 
 常见的远程调用方式有以下2种：
 
@@ -54,7 +54,7 @@ CAP 方案:
 
 - Http：http其实是一种网络传输协议，基于TCP，规定了数据传输的格式。现在客户端浏览器与服务端通信基本都是采用Http协议，也可以用来进行远程服务调用。缺点是消息封装臃肿，优势是对服务的提供和调用方没有任何技术限定，自由灵活，更符合微服务理念。现在热门的Rest风格，就可以通过http协议来实现。
 
-## Http客户端工具
+### Http客户端工具
 
 既然微服务选择了Http，那么我们就需要考虑自己来实现对请求和响应的处理。不过开源世界已经有很多的http客户端工具，能够帮助我们做这些事情，Java 的 JDK 中自带了与网络有关的类（HttpURLConnection），能够让你在 Java 代码中发出 HTTP 请求，并解析 HTTP 响应。不过，由于这些底层类和方法的使用过于繁杂罗嗦（并且执行效率不高），因此直接使用它们的情况并不多。通常，我们是使用对底层类和方法进行了二次包装的工具包（库），常见的有 apache 基金会的 httpclient（以及它的后辈、竞争对手 OkHTTP） 
 
@@ -82,11 +82,11 @@ Spring 体系对 HttpURLConnection、httpclient 和 OkHTTP 进行了 2 次包装
 
 
 
-# Spring 的 RestTemplate 远程请求
+## Spring 的 RestTemplate 远程请求
 
 RestTemplate 是从 Spring3.0 开始支持的一个 HTTP 请求工具，它提供了常见的REST请求方案的模版，例如 GET 请求、POST 请求、PUT 请求、DELETE 请求以及一些通用的请求执行方法 exchange 以及 execute。RestTemplate 继承InterceptingHttpAccessor 并且实现了 RestOperations 接口，其中 RestOperations 接口定义了基本的 RESTful 操作，这些操作在 RestTemplate 中都得到了实现
 
-## 常用方法
+### 常用方法
 
 | HTTP Method | 常用方法      | 描述                                                         |
 | ----------- | ------------- | ------------------------------------------------------------ |
@@ -97,7 +97,7 @@ RestTemplate 是从 Spring3.0 开始支持的一个 HTTP 请求工具，它提�
 | DELETE      | delete        | 发起 HTTP 的 DELETE 方法请求                                 |
 | PUT         | put           | 发起 HTTP 的 PUT 方法请求                                    |
 
-## 微服务准备: 
+### 微服务准备: 
 
 1.启动类
 
@@ -139,9 +139,9 @@ private RestTemplate restTemplate;
 
 
 
-## Get  请求
+### Get  请求
 
-### 1.占位符传参
+#### 1.占位符传参
 
 getForEntity（）方法：如果开发者需要获取响应头的话，那么就需要使用 getForEntity 来发送 HTTP 请求，此时返回的对象是一个 ResponseEntity 的实例。这个实例中包含了响应数据以及响应头
 
@@ -174,7 +174,7 @@ public List<User> findUsers(String name,Integer id){
 
 > 第一个参数是 url ，url 中有一个占位符 {1} ,如果有多个占位符分别用 {2} 、 {3} … 去表示，第二个参数是接口返回的数据类型，最后是一个可变长度的参数，用来给占位符填值
 
-### 2.map传参
+#### 2.map传参
 
 ~~~java
 ///////////////////////调用方 
@@ -199,7 +199,7 @@ public  String  getUserById(Integer id) throws JsonProcessingException {
 }
 ~~~
 
-### 3.urI方式传参
+#### 3.urI方式传参
 
 ~~~java
 ///////////////////////调用方 
@@ -218,7 +218,7 @@ public String test3(String name) throws UnsupportedEncodingException {
 } 
 ~~~
 
-### 4.rest传参
+#### 4.rest传参
 
 ~~~java
 ///////////////////////调用方
@@ -234,15 +234,15 @@ public String test4(@PathVariable Integer id){
 >
 > getForObject 方法和 getForEntity 方法类似，getForObject 方法也有三个重载的方法，参数和 getForEntity 一样，这里主要说下 getForObject 和 getForEntity 的差异，这两个的差异主要体现在返回值的差异上， getForObject 的返回值就是服务提供者返回的数据，使用 getForObject 无法获取到响应头
 
-## Post  请求
+### Post  请求
 
  根据上图可以看出POST请求方式一共提供了两个函数 postForEntity、postForObject、postForLocation。每个函数都有三个重载方法
 
-### postForEntity
+#### postForEntity
 
 这些函数中的参数用法大部分与getForEntity一致，这里需要注意的是新增加（可为空的请求对象）request参数， 该参数可以是一个普通对象，也可以是一个HttpEntity对象。如果是一个普通对象，request内容会被视作完整的body来处理；而如果request 是一个HttpEntity对象， 那么就会被当作一个完成的HTTP请求对象来处理， 这个 request 中不仅包含了body的内容， 也包含了header的内容
 
-#### 传递 key-value
+##### 传递 key-value
 
 案例1：组合传参
 
@@ -269,7 +269,7 @@ public String test1(@RequestBody MultiValueMap map, HttpServletRequest request){
 }
 ~~~
 
-#### 单个 对象 传参
+##### 单个 对象 传参
 
 > 单个 对象 传参
 
@@ -298,7 +298,7 @@ public String test2(@RequestBody User user){
 >
 > 2.server端要接收参数需要用@RequestBody注解，不然无法接收到参数
 
-#### 传递JSON参数
+##### 传递JSON参数
 
 ~~~java
 ////////客户端
@@ -339,7 +339,7 @@ public String test3(@RequestBody String str,HttpServletRequest request){
 
 
 
-### postForObject
+#### postForObject
 
 参数可以是Json字符串，JavaBean对象，也可以是map，其中本质都是使用了HttpEntity对象，在RestTemplate内部有这样一段源码：程序会自动判断，如果不是HttpEntity对象就手动添加一次
 
@@ -360,7 +360,7 @@ public HttpEntityRequestCallback(@Nullable Object requestBody, @Nullable Type re
 
 
 
-#### 传递 javaBean
+##### 传递 javaBean
 
 ~~~java
 ////////////////////客户端
@@ -401,7 +401,7 @@ public String test2(@RequestBody User user, HttpServletRequest request) {
 
 
 
-### postForLocation
+#### postForLocation
 
 postForLocation也是提交新资源，提交成功之后，返回新资源的URI，postForLocation的参数和前面两种的参数基本一致，只不过该方法的返回值为Uri，这个只需要服务提供者返回一个Uri即可，该Uri表示新资源的位置
 
@@ -435,7 +435,7 @@ public String loginPage(String name){
 
 
 
-## RestTemplate底层实现切换
+### RestTemplate底层实现切换
 
 RestTemplate 底层实现最常用的有以下三种：
 
@@ -464,9 +464,9 @@ public RestTemplate restTemplate() {
 
 
 
-# |-- Eureka 注册中心 组件
+## |-- Eureka 注册中心 组件
 
-## 基础架构
+### 基础架构
 
 > Eureka架构中的三个核心角色：
 
@@ -482,9 +482,9 @@ public RestTemplate restTemplate() {
 
   消费应用从注册中心获取服务列表，从而得知每个服务方的信息，知道去哪里调用服务方。本例中就是我们实现的woniu-service-consumer。
 
-## EurekaServer 客户端 服务中心
+### EurekaServer 客户端 服务中心
 
-### pom 依赖
+#### pom 依赖
 
 ```xml
 <properties>
@@ -525,43 +525,43 @@ public RestTemplate restTemplate() {
 </dependencyManagement>
 ```
 
-### application.yml
+#### application.yml
 
 ```yml
 spring:
   application:
-    # 注意: 服务名 不能为'_'下划线 否则在表现层调用会出问题 中划线则没问题 
+    ## 注意: 服务名 不能为'_'下划线 否则在表现层调用会出问题 中划线则没问题 
     name: EurekaServer
 
 server:
-  port: 10086 # 端口
+  port: 10086 ## 端口
 
 eureka:
   client:
     service-url:
-      # EurekaServer的地址，如果是集群，需要加上其它Server的地址。
+      ## EurekaServer的地址，如果是集群，需要加上其它Server的地址。
       defaultZone: http://127.0.0.1:${server.port}/eureka
-    # 不把自己注册到eureka服务列表
+    ## 不把自己注册到eureka服务列表
     register-with-eureka: true
-    # 拉取eureka服务信息
+    ## 拉取eureka服务信息
     fetch-registry: true
 
   instance:
-    # 设置 IP
+    ## 设置 IP
     hostname: 127.0.0.1
-    # 客户端在注册时使用自己的IP而不是主机名
+    ## 客户端在注册时使用自己的IP而不是主机名
     prefer-ip-address: true
-    # 实例id
+    ## 实例id
     instance-id: ${eureka.instance.hostname}:${server.port}
     
   server:
-    # 关闭自我保护模式（默认为打开）
+    ## 关闭自我保护模式（默认为打开）
     enable-self-preservation: false
-    # 扫描失效服务的间隔时间（缺省为60*1000ms）
+    ## 扫描失效服务的间隔时间（缺省为60*1000ms）
     eviction-interval-timer-in-ms: 1000
 ```
 
-### 启动类
+#### 启动类
 
 如果启动类报错 如未报错则无视
 
@@ -591,11 +591,11 @@ public class EurekaServerApplication {
 }
 ```
 
-## EurekaServer 服务端 提供端口
+### EurekaServer 服务端 提供端口
 
 > 将会让服务端的IP和端口自动注册到 注册中心 以供他人调用
 
-### pom 依赖
+#### pom 依赖
 
 ```xml
 <!--EurekaServer-自动注册-->
@@ -611,20 +611,20 @@ server:
 
 spring:
     application:
-    	# 注意: 服务名 不能为'_'下划线 否则在表现层调用会出问题 中划线则没问题 
+    	## 注意: 服务名 不能为'_'下划线 否则在表现层调用会出问题 中划线则没问题 
         name: Moduleone
 
 eureka:
     client:
         service-url:
-            # 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
+            ## 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
             defaultZone: http://127.0.0.1:10086/eureka
     instance:
-        # 心跳监测超过设定时间则注册中心会删除该服务方
+        ## 心跳监测超过设定时间则注册中心会删除该服务方
         lease-expiration-duration-in-seconds: 10
-        # 服务方心跳监测根据时间发送心跳
+        ## 服务方心跳监测根据时间发送心跳
         lease-renewal-interval-in-seconds: 5
-        # 设置 IP
+        ## 设置 IP
         hostname: 127.0.0.1
         #客户端在注册时使用自己的IP而不是主机名
         prefer-ip-address: true
@@ -632,7 +632,7 @@ eureka:
         instance-id: ${eureka.instance.hostname}:${server.port}
 ```
 
-### 启动类
+#### 启动类
 
 > 通过添加`@EnableDiscoveryClient`来开启Eureka客户端功能
 
@@ -648,9 +648,9 @@ public class woniuServiceProviderApplication {
 }
 ```
 
-## EurekaServer 调用方 使用端口
+### EurekaServer 调用方 使用端口
 
-### pom 依赖
+#### pom 依赖
 
 ```xml
 <!--EurekaServer-自动注册-->
@@ -660,7 +660,7 @@ public class woniuServiceProviderApplication {
 </dependency>
 ```
 
-### application.yml
+#### application.yml
 
 ```yml
 server:
@@ -673,20 +673,20 @@ spring:
 eureka:
     client:
         service-url:
-        	# 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
+        	## 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
             defaultZone: http://localhost:10086/eureka
-        # 每隔5秒向注册中心拉取服务
+        ## 每隔5秒向注册中心拉取服务
         registry-fetch-interval-seconds: 5
     instance:
-        # 设置 IP
+        ## 设置 IP
         hostname: 127.0.0.1
-        # 注册时使用自己的IP而不是主机名
+        ## 注册时使用自己的IP而不是主机名
         prefer-ip-address: true
-        # 实例id
+        ## 实例id
         instance-id: ${eureka.instance.hostname}:${server.port}  
 ```
 
-### 启动类
+#### 启动类
 
 > 通过添加`@EnableDiscoveryClient`来开启Eureka客户端功能
 
@@ -702,7 +702,7 @@ public class woniuServiceProviderApplication {
 }
 ```
 
-### 表现层-调用
+#### 表现层-调用
 
 使用 负载均衡 可直接调用 服务名 
 
@@ -741,7 +741,7 @@ public String porttest() {
 
 
 
-# Eureka Server 高可用性
+## Eureka Server 高可用性
 
 Eureka Server即服务的注册中心，在刚才的案例中，我们只有一个EurekaServer，事实上EurekaServer也可以是一个集群，形成高可用的Eureka中心。
 
@@ -749,7 +749,7 @@ Eureka Server即服务的注册中心，在刚才的案例中，我们只有一�
 
 多个Eureka Server之间也会互相注册为服务，当服务提供者注册到Eureka Server集群中的某个节点时，该节点会把服务的信息同步给集群中的每个节点，从而实现**数据同步**。因此，无论客户端访问到Eureka Server集群中的任意一个节点，都可以获取到完整的服务列表信息。
 
-## Eureka Server 集群配置
+### Eureka Server 集群配置
 
 > 10086-注册中心 调用  10087-注册中心 的地址 
 >
@@ -768,11 +768,11 @@ Eureka Server即服务的注册中心，在刚才的案例中，我们只有一�
   ```yml
   eureka:
     client:
-      service-url: # EurekaServer地址,多个地址以','隔开
+      service-url: ## EurekaServer地址,多个地址以','隔开
         defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
   ```
 
-### 一.  application.yml
+#### 一.  application.yml
 
 ```yml
 spring:
@@ -780,28 +780,28 @@ spring:
     name: EurekaServer
 
 server:
-  port: 10086 # 端口
+  port: 10086 ## 端口
 
 eureka:
   client:
     service-url:
-      # EurekaServer集群 调用 10087。
+      ## EurekaServer集群 调用 10087。
       defaultZone: http://127.0.0.1:10087/eureka
-    # 不把自己注册到eureka服务列表
+    ## 不把自己注册到eureka服务列表
     register-with-eureka: true
-    # 拉取eureka服务信息
+    ## 拉取eureka服务信息
     fetch-registry: true
 
   instance:
-    # 设置 IP
+    ## 设置 IP
     hostname: 127.0.0.1
-    # 客户端在注册时使用自己的IP而不是主机名
+    ## 客户端在注册时使用自己的IP而不是主机名
     prefer-ip-address: true
-    # 实例id
+    ## 实例id
     instance-id: ${eureka.instance.hostname}:${server.port}
 ```
 
-### 二.  application.yml
+#### 二.  application.yml
 
 ```yml
 spring:
@@ -809,30 +809,30 @@ spring:
     name: EurekaServer
 
 server:
-  port: 10087 # 端口
+  port: 10087 ## 端口
 
 eureka:
   client:
     service-url:
-      # EurekaServer集群 调用 10087。
+      ## EurekaServer集群 调用 10087。
       defaultZone: http://127.0.0.1:10086/eureka
-    # 不把自己注册到eureka服务列表
+    ## 不把自己注册到eureka服务列表
     register-with-eureka: true
-    # 拉取eureka服务信息
+    ## 拉取eureka服务信息
     fetch-registry: true
 
   instance:
-    # 设置 IP
+    ## 设置 IP
     hostname: 127.0.0.1
-    # 客户端在注册时使用自己的IP而不是主机名
+    ## 客户端在注册时使用自己的IP而不是主机名
     prefer-ip-address: true
-    # 实例id
+    ## 实例id
     instance-id: ${eureka.instance.hostname}:${server.port}
 ```
 
 
 
-## 获取服务列表
+### 获取服务列表
 
 当服务消费者启动时，会检测`eureka.client.fetch-registry=true`参数的值，如果为true，则会拉取Eureka Server服务的列表只读备份，然后缓存在本地。并且`每隔30秒`会重新获取并更新数据。我们可以通过下面的参数来修改：
 
@@ -847,7 +847,7 @@ eureka:
 
 
 
-## 失效剔除和自我保护
+### 失效剔除和自我保护
 
 > 服务下线
 
@@ -872,15 +872,15 @@ eureka:
 ```yaml
 eureka:
   server:
-    enable-self-preservation: false # 关闭自我保护模式（缺省为打开）
-    eviction-interval-timer-in-ms: 1000 # 扫描失效服务的间隔时间（缺省为60*1000ms）
+    enable-self-preservation: false ## 关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 1000 ## 扫描失效服务的间隔时间（缺省为60*1000ms）
 ```
 
 
 
-# Ribbon  负载均衡 组件
+## Ribbon  负载均衡 组件
 
-## 简介
+### 简介
 
 **它是一个负载均衡组件**，在刚才的案例中，我们启动了一个woniu-service-provider，然后通过DiscoveryClient来获取服务实例信息，然后获取ip和端口来访问。
 
@@ -896,7 +896,7 @@ eureka:
 在你没有意识到 Ribbon 存在的时候，Ribbon 就已经可以在你的项目中（配合 RestTemplate）起作用了。为你的 RestTemplate 的 @Bean 加上 **@LoadBalanced** 注解：
 @LoadBalanced 注解背后就是 Spring AOP 动态代理的思想。
 
-## 开启负载均衡
+### 开启负载均衡
 
 * 调用方
 
@@ -925,7 +925,7 @@ public String porttest() {
 }
 ```
 
-## 负载均衡策略
+### 负载均衡策略
 
 Ribbon默认的负载均衡策略是简单的轮询，我们可以测试一下：
 
@@ -947,15 +947,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
-service-provider:  # 冒号左侧为: 服务名 注意大小写
+service-provider:  ## 冒号左侧为: 服务名 注意大小写
   ribbon:
-  	# 负载均衡策略: 随机策略 可进行设置
+  	## 负载均衡策略: 随机策略 可进行设置
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 ```
 
 格式是：`{服务名称}.ribbon.NFLoadBalancerRuleClassName`，值就是IRule的实现类。
 
-## 负载均衡 内置策略
+### 负载均衡 内置策略
 
 Ribbon 内置了 8 种负载均衡策略（其实是 7 种），它们都直接或间接实现了 **IRule** 接口：
 
@@ -975,13 +975,13 @@ Ribbon 内置了 8 种负载均衡策略（其实是 7 种），它们都直接�
 
 * ZoneAvoidanceRule	区域权衡策略	综合判断 Server 所在区域的性能和 Server 的可用性轮询选择 Server，并且判定一个 AWS Zone 的运行性能是否可用，剔除不可用的 Zone 中的所有 Server
 
-## Ribbon 的超时和超时重试
+### Ribbon 的超时和超时重试
 
 理论上，Ribbon 是有超时设置，以及超时之后的重试功能的。但是，在 RestTemplate 和 Ribbon 结合的方案中，Ribbon 的超时设置和重试设置的配置方式一直在变动，因此有很多『配置无效』的现象，十分诡异。
 
 考虑到我们在后续的项目中不会使用 RestTemplate 和 Ribbon 整合，而是使用 OpenFeign ，因此，这里就不展开解释了。
 
-## Ribbon 的饥饿加载
+### Ribbon 的饥饿加载
 
 默认情况下，服务消费方调用服务提供方接口的时候，第一次请求会慢一些，甚至会超时，而之后的调用就没有问题了。
 
@@ -992,13 +992,13 @@ Ribbon 内置了 8 种负载均衡策略（其实是 7 种），它们都直接�
 ~~~yml
 ribbon:
   eager-load:
-    enabled: true   # 开启饥饿加载
-    clients: woniu-service-provider(服务名), xxx        # 需要饥饿加载的服务
+    enabled: true   ## 开启饥饿加载
+    clients: woniu-service-provider(服务名), xxx        ## 需要饥饿加载的服务
 ~~~
 
 
 
-# Hystrix 组件
+## Hystrix 组件
 
 Hystix是Netflix开源的一个延迟和容错库，用于隔离访问远程服务、第三方库，防止出现级联失败。
 
@@ -1011,9 +1011,9 @@ Hystix解决雪崩问题的手段有两个：
 
 
 
-## Hystrix熔断 服务降级
+### Hystrix熔断 服务降级
 
-### 引入依赖
+#### 引入依赖
 
 首先在woniu-service-consumer的pom.xml中引入Hystrix依赖：
 
@@ -1025,7 +1025,7 @@ Hystix解决雪崩问题的手段有两个：
 </dependency>
 ```
 
-### 开启Hystrix熔断
+#### 开启Hystrix熔断
 
 * 调用方
 
@@ -1058,7 +1058,7 @@ public class woniuServiceConsumerApplication {
 
 
 
-## 编写降级逻辑
+### 编写降级逻辑
 
 > 当目标服务的调用出现故障，我们希望快速失败，给用户一个友好提示。因此需要提前编写好失败时的降级处理逻辑，要使用HystixCommond来完成：
 
@@ -1087,7 +1087,7 @@ public class UserController {
 }
 ```
 
-## 默认 FallBack
+### 默认 FallBack
 
 > 如果有很多这样的业务方法访问不了服务器都需要降级时，那岂不是要写很多，所以我们可以把  @DefaultProperties(defaultFallback = "fallBackMethod") // 指定一个类的全局降级方法    Fallback配置加在类上，实现默认fallback：
 >
@@ -1127,7 +1127,7 @@ public class UserController {
 - @HystrixCommand：在方法上直接使用该注解，使用默认的降级方法。
 - defaultFallback：默认降级方法，不用任何参数，以匹配更多方法，但是返回值一定一致
 
-## Hystrix 超时配置
+### Hystrix 超时配置
 
 Hystrix 的全局配置也称为默认配置，它们在配置文件中通过 **hystrix.command.default.\*** 来进行配置（再次强调，Hystrix 是用于服务的调用方，所以这里的配置自然也是配置在服务的调用方这边）
 
@@ -1142,7 +1142,7 @@ hystrix:
       execution:
         isolation:
           thread:   #其实是对每一次http请求，就开启一个线程，hystrix内部有一个线程池。
-            timeoutInMilliseconds: 6000 # 设置hystrix的超时时间为6000ms 
+            timeoutInMilliseconds: 6000 ## 设置hystrix的超时时间为6000ms 
           strategy: THREAD    ##默认是采用线程池隔离技术   可以省略
              注意：配合测试，要改造服务提供者，打开浏览器 F12 看看时间
 ```
@@ -1169,7 +1169,7 @@ public User queryUserById(@PathVariable("id") Long id) {
 
 当6s 不能正常请求服务提供者，其实先触发熔断，然后再降级
 
-## 服务熔断机制
+### 服务熔断机制
 
 熔断器，也叫断路器，其英文单词为：Circuit Breaker 
 
@@ -1181,7 +1181,7 @@ public User queryUserById(@PathVariable("id") Long id) {
 - Open：打开状态，所有请求都会被降级。Hystrix会对请求情况计数，当一定时间内失败请求百分比达到阈值，则触发熔断，断路器会完全打开。默认失败比例的阈值是50%，请求次数最少不低于20次。默认是 五秒之内请求20次 如果有10次失败（50%），则断开
 - Half Open：半开状态，open状态不是永久的，打开后会进入休眠时间（默认是5S）。随后断路器会自动进入半开状态。此时会释放部分请求通过，若这些请求都是健康的，则会完全关闭断路器，否则继续保持打开，再次进行休眠计时
 
-### 熔断策略配置
+#### 熔断策略配置
 
 ```properties
 hystrix.command.default.circuitBreaker.requestVolumeThreshold=10
@@ -1196,14 +1196,14 @@ hystrix:
             execution:
                 isolation:
                     thread:
-                    	# Hystrix 超时配置
+                    	## Hystrix 超时配置
                         timeoutInMilliseconds: 6000
             circuitBreaker:
-            	# 20 次请求
+            	## 20 次请求
                 requestVolumeThreshold: 20
-                # 待机 10秒进入半开状态
+                ## 待机 10秒进入半开状态
                 sleepWindowInMilliseconds: 10000
-                # 20 次请求 有50%的请求 出现异常则降级
+                ## 20 次请求 有50%的请求 出现异常则降级
                 errorThresholdPercentage: 50
                 #forceOpen: true    #是否强制开启熔断（跳闸），默认false，如果为true，则所有请求都将被拒绝，直接执行fallback降级方法
 ~~~
@@ -1217,15 +1217,15 @@ hystrix:
 
 
 
-# Open Feign 远程调用组件
+## Open Feign 远程调用组件
 
 Feign是一个远程调用组件，集成了ribbon和hystrix。在前面的学习中，我们使用了Ribbon的负载均衡功能，大大简化了远程调用时的代码：
 
  ![1525652009416](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/1525652009416.png)
 
-## Open Feign 创建
+### Open Feign 创建
 
-### 引入依赖
+#### 引入依赖
 
 在创建一个 Spring Boot Maven 项目，在 Spring Initializer 中引入依赖：
 
@@ -1250,7 +1250,7 @@ Feign是一个远程调用组件，集成了ribbon和hystrix。在前面的学�
 </dependency>
 ```
 
-### application.yaml
+#### application.yaml
 
 ~~~yml
 server:
@@ -1264,7 +1264,7 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
 ~~~
 
-### 启动类 注解
+#### 启动类 注解
 
 > @EnableFeignClients  内置了熔断器和负载均衡注解
 
@@ -1281,7 +1281,7 @@ public class EurekaFeignApplication {
 
 我们可以看到启动类增加了一个新的注解: **@EnableFeignClients**，如果我们要使用 Feign（声明式 HTTP 客户端），必须要在启动类加入这个注解，以开启 Feign 。
 
-### 创建Feign的客户端 接口
+#### 创建Feign的客户端 接口
 
 **防坑说明：**
 
@@ -1311,7 +1311,7 @@ public interface FinancingClient {
 
 * 一个服务只能被一个类绑定，不能让多个类绑定同一个远程服务，否则，会在启动项目是出现『**已绑定**』异常
 
-### 调用方 表现层
+#### 调用方 表现层
 
 ```java
 package com.apai.controller;
@@ -1339,7 +1339,7 @@ public class FinancingController {
 }
 ```
 
-### 服务方
+#### 服务方
 
 ```java
 @GetMapping("/testopenfeign/{id}")
@@ -1350,7 +1350,7 @@ public String testopenfeign(@PathVariable() Integer id) {
 
 
 
-# Open Feign 请求注解
+## Open Feign 请求注解
 
 **防坑指南:** 
 
@@ -1359,7 +1359,7 @@ public String testopenfeign(@PathVariable() Integer id) {
 * 服务方的请求建议加上跟调用方的Client接口里一样加上对应的注解
 * 方法一旦写上了参数 则在请求时必须带上参数没有值也可以 如: id= | 否则报错
 
-## token 问题
+### token 问题
 
 > 微服务 Open Feign 远程调用组件 在调用对方请求获取数据时 如果该微服务使用的security安全框架 则必须在 请求头带上token 否则无法访问  
 
@@ -1401,7 +1401,7 @@ public class FeignLogConfiguration implements RequestInterceptor {
 
 ```
 
-## Restful 风格请求
+### Restful 风格请求
 
 > 注解: @PathVariable("占位名")
 >
@@ -1420,7 +1420,7 @@ public String test1(@PathVariable("id") Integer id);
 public String test5(@PathVariable("id") Integer id, @RequestHeader("token") String token);
 ```
 
-## Get 请求
+### Get 请求
 
 > 单个参数注解: @RequestParam("占位名")
 >
@@ -1442,7 +1442,7 @@ public String test4(@RequestParam  Map<String,Object> map, @RequestHeader("token
 
 ```
 
-## Post 请求
+### Post 请求
 
 > 单个参数注解: @RequestParam("占位名")
 >
@@ -1465,11 +1465,11 @@ public String test8(@RequestParam Map<String,Object> map, @RequestHeader("token"
 
 
 
-# Open Feign 内置 Hystrix 熔断
+## Open Feign 内置 Hystrix 熔断
 
 默认情况下是关闭的。我们需要通过下面的参数来开启：(在woniu-service-consumer工程添加配置内容)
 
-## Open Feign 熔断
+### Open Feign 熔断
 
 只需要开启hystrix的熔断功能即可，默认时间是1s中，如果要修改熔断的时间，要做如下的配置:
 
@@ -1478,18 +1478,18 @@ public String test8(@RequestParam Map<String,Object> map, @RequestHeader("token"
 ```yml
 feign:
     hystrix:
-        # 开启 Feign 的熔断功能
+        ## 开启 Feign 的熔断功能
         enabled: true
     client:
         config:
-            # 注意: feign熔断 必须跟 hystrix熔断一起使用才有效
+            ## 注意: feign熔断 必须跟 hystrix熔断一起使用才有效
             default:
                 #设置feign超时连接时长
                 connectTimeout: 4000
                 #设置feign请求的超时时长  4s之后 提供方没有响应 直接降级
                 readTimeout: 4000
                 
-# Hystrix 熔断配置                
+## Hystrix 熔断配置                
 hystrix:
     command:
         default:
@@ -1506,7 +1506,7 @@ hystrix:
 >
 > openfeign集成了hystrix组件，不再需要引入hystrix组件，在启动类上不要去添加熔断注解
 
-## Open Feign 熔断降级
+### Open Feign 熔断降级
 
 定义类 实现 Open Feign远程调用Client接口 作为fallback的降级处理类
 
@@ -1574,7 +1574,7 @@ public class FinancingController {
 
 
 
-## 超时和超时重试
+### 超时和超时重试
 
 OpenFeign 本身也具备重试能力，在早期的 Spring Cloud 中，OpenFeign 使用的是 feign.Retryer.Default#Default() ，重试 5 次。但 OpenFeign 集成了Ribbon依赖和自动配置（默认也是轮询），Ribbon 也有重试的能力，此时，就可能会导致行为的混乱。（总重试次数 = OpenFeign 重试次数 x Ribbon 的重试次数，这是一个笛卡尔积。）
 
@@ -1585,26 +1585,26 @@ OpenFeign 本身也具备重试能力，在早期的 Spring Cloud 中，OpenFeig
 **在调用方配置如下**
 
 ~~~yaml
-# 全局配置
+## 全局配置
 ribbon:
-  # 请求连接的超时时间
+  ## 请求连接的超时时间
   connectTimeout: 1000
-  # 请求处理的超时时间
+  ## 请求处理的超时时间
   readTimeout: 1000   #1秒
-  # 最大重试次数
+  ## 最大重试次数
   MaxAutoRetries: 5
-  # 切换实例的重试次数
+  ## 切换实例的重试次数
   MaxAutoRetriesNextServer: 1
   #NFLoadBalancerRuleClassName: RandomRule
-  # 对所有请求开启重试，并非只有get 请求才充实。一般不会开启这个功能。该参数和上面的3三个参数没有关系
+  ## 对所有请求开启重试，并非只有get 请求才充实。一般不会开启这个功能。该参数和上面的3三个参数没有关系
   #okToRetryOnAllOperations: true
 feign:
   hystrix:
     enabled: true     #默认是1s降级
   #client:         
     #config:
-     # default:
-       # connectTimeout: 4000  #要关掉feign超时连接时长
+     ## default:
+       ## connectTimeout: 4000  #要关掉feign超时连接时长
         #readTimeout: 150000
 hystrix:
   command:
@@ -1635,7 +1635,7 @@ public String hello() throws InterruptedException {
 则其他的请求走上面的重试，SERVICE-PRODUCER该服务的重试单独配置
 
 ~~~yaml
-# 针对 spring-service-b 的设置，注意服务名的大小写
+## 针对 spring-service-b 的设置，注意服务名的大小写
 spring-service-b:
   ribbon:
     connectTimeout: 1000
@@ -1655,7 +1655,7 @@ public String hello() throws InterruptedException {
 }
 ```
 
-## 如何替换底层用HTTP实现
+### 如何替换底层用HTTP实现
 
 本质上是 OpenFeign 所使用的 RestTemplate 替换底层 HTTP 实现
 
@@ -1677,7 +1677,7 @@ public String hello() throws InterruptedException {
 ~~~yaml
 feign:
   httpclient:
-    enabled: true # 激活 httpclient 的使用
+    enabled: true ## 激活 httpclient 的使用
 ~~~
 
 * 替换成 OkHttp
@@ -1698,14 +1698,14 @@ feign:
 ~~~yaml
 feign:
   httpclient:
-    enabled: false  # 关闭 httpclient 的使用
+    enabled: false  ## 关闭 httpclient 的使用
   okhttp:
-    enabled: true   # 激活 okhttp 的使用
+    enabled: true   ## 激活 okhttp 的使用
 ~~~
 
 
 
-## 日志级别(了解)
+### 日志级别(了解)
 
 ```java
 前面讲过，通过`logging.level.xx=debug`来设置日志级别。然而这个对Fegin客户端而言不会产生效果。因为`@FeignClient`注解修改的客户端在被代理时，都会创建一个新的Fegin.Logger实例。我们需要额外指定这个日志的级别才可以。然后根据 **logging.level.<FeignClient>** 参数配置格式来开启 Feign 客户端的 DEBUG 日志，其中 **<FeignClient>** 部分为 Feign 客户端定义接口的完整路径。默认值是**NONE**，而NONE不会记录Feign**调用过程**的任何日志的，**也就是说这个日志不是启动feign客户端的日志，而是feign调用远程接口时产生的日志**。
@@ -1763,7 +1763,7 @@ public interface UserFeignClient {
 
 
 
-# Zuul 网关组件
+## Zuul 网关组件
 
 **它是一个路由网关组件**，通过前面的学习，使用Spring Cloud实现微服务的架构基本成型，大致是这样的：
 
@@ -1791,7 +1791,7 @@ public interface UserFeignClient {
 
 服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供REST API的过程中，除了具备`服务路由`、`均衡负载`功能之外，它还具备了`权限控制`等功能。Spring Cloud Netflix中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。
 
-## Zuul 网关组件 简介
+### Zuul 网关组件 简介
 
 官网：https://github.com/Netflix/zuul
 
@@ -1801,11 +1801,11 @@ public interface UserFeignClient {
 
 
 
-## Zuul 架构
+### Zuul 架构
 
 > 不管是来自于客户端（PC或移动端）的请求，还是服务内部调用。一切对服务的请求都会经过Zuul这个网关，然后再由网关来实现 鉴权、动态路由等等操作。Zuul就是我们服务的统一入口。
 
-### **pom  文件导入**
+#### **pom  文件导入**
 
 Zuul 网关组件 依赖 为 Zuul [Maintenance] 不要导错alibb
 
@@ -1827,7 +1827,7 @@ Zuul 网关组件 依赖 为 Zuul [Maintenance] 不要导错alibb
 </dependency>
 ```
 
-### **编写 配置**
+#### **编写 配置**
 
 > 方式一: 不进行注册  直接使用 url  不够灵活
 
@@ -1839,9 +1839,9 @@ spring:
     name: api-gateway #指定服务名
 zuul:
   routes:
-    service-provider: # 这里是路由id，随意写
-      path: /service-provider/** # 这里是映射路径
-      url: http://127.0.0.1:8081 # 映射路径对应的实际url地址
+    service-provider: ## 这里是路由id，随意写
+      path: /service-provider/** ## 这里是映射路径
+      url: http://127.0.0.1:8081 ## 映射路径对应的实际url地址
 ```
 
 > 方式二: 注册 使用服务名 且内置有负载均衡 默认轮询
@@ -1857,31 +1857,31 @@ spring:
 eureka:
   client:
     service-url:
-      # 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
+      ## 注册中心的地址 如果注册集群可可以写入多个注册中心的地址 , 隔开
       defaultZone: http://localhost:10086/eureka
-    # 每隔5秒向注册中心拉取服务
+    ## 每隔5秒向注册中心拉取服务
     registry-fetch-interval-seconds: 5
   instance:
-    # 设置 IP
+    ## 设置 IP
     hostname: 127.0.0.1
-    # 注册时使用自己的IP而不是主机名
+    ## 注册时使用自己的IP而不是主机名
     prefer-ip-address: true
-    # 实例id
+    ## 实例id
     instance-id: ${eureka.instance.hostname}:${server.port}
 
 zuul:
   routes:
-    # 冒号左边是路由id可配置多个，路由名，随意写，不能写中文
+    ## 冒号左边是路由id可配置多个，路由名，随意写，不能写中文
     Modulethree:
-      # 这里是映射路径 在转发时会将 three 裁切掉
+      ## 这里是映射路径 在转发时会将 three 裁切掉
       path: /three/**
-      serviceId: Modulethree # 指定服务名称
+      serviceId: Modulethree ## 指定服务名称
 
-    # 冒号左边是路由id可配置多个，路由名，随意写，不能写中文
+    ## 冒号左边是路由id可配置多个，路由名，随意写，不能写中文
     Moduletow:
-      # 这里是映射路径 在转发时会将 tow 裁切掉
+      ## 这里是映射路径 在转发时会将 tow 裁切掉
       path: /tow/**
-      serviceId: Moduletow # 指定服务名称
+      serviceId: Moduletow ## 指定服务名称
 ```
 
 > 方式三: 简化 注册 使用服务名 且内置有负载均衡 默认轮询
@@ -1889,18 +1889,18 @@ zuul:
 ```yml
 zuul:
   routes:
-  	# 指定服务名称 : 映射路径 在转发时会将 tow 裁切掉
+  	## 指定服务名称 : 映射路径 在转发时会将 tow 裁切掉
     service-provider: /service-provider/** 
 ```
 
 > 方式四: 默认配置  且内置有负载均衡 默认轮询
 
 ```yml
-# 即 不配置  zuul:  使用默认的范围名进行转发
+## 即 不配置  zuul:  使用默认的范围名进行转发
 http://localhost:10010/服务名/请求
 ```
 
-### 启动类
+#### 启动类
 
 ```java
 package com.apai;
@@ -1922,9 +1922,9 @@ public class ZuulApplication {
 
 测试: http://localhost:10010/three/list
 
-## 其他配置
+### 其他配置
 
-### 1、路由前缀
+#### 1、路由前缀
 
 配置示例：
 
@@ -1933,12 +1933,12 @@ zuul:
   routes:
     service-provider: /service-provider/**
     service-consumer: /service-consumer/**
-  prefix: /api # 添加路由前缀
+  prefix: /api ## 添加路由前缀
 ```
 
 我们通过`zuul.prefix=/api`来指定了路由的前缀，这样在发起请求时，路径就要以/api开头。
 
-### 2、不去除映射路径前缀
+#### 2、不去除映射路径前缀
 
 > strip-prefix 默认值为true，表示除去前缀，strip-prefix  = false 表示不除去前缀
 >
@@ -1960,7 +1960,7 @@ zuul:
   strip-prefix: false  #采用这个方式配置路由strip-prefix不会生效
 ~~~
 
-### 3、关闭默认配置访问
+#### 3、关闭默认配置访问
 
 如果不想使用默认的路由规则，就可以在配置文件中加入下列内容，即可关闭所有默认的路由规则：
 
@@ -1999,11 +1999,11 @@ zuul:
 
 
 
-## ZuulFilter  过滤器
+### ZuulFilter  过滤器
 
 > Zuul作为网关的其中一个重要功能，就是实现请求的鉴权。而这个动作我们往往是通过Zuul提供的过滤器来实现的。
 
-### ZuulFilter
+#### ZuulFilter
 
 ZuulFilter是过滤器的顶级父类。在这里我们看一下其中定义的4个最重要的方法：
 
@@ -2036,7 +2036,7 @@ public abstract ZuulFilter implements IZuulFilter{
 
 - `filterOrder`：通过返回的int值来定义过滤器的执行顺序，数字越小优先级越高。
 
-### 过滤器执行生命周期
+#### 过滤器执行生命周期
 
 这张是Zuul官网提供的请求生命周期图，清晰的表现了一个请求在各个过滤器的执行顺序。
 
@@ -2056,7 +2056,7 @@ public abstract ZuulFilter implements IZuulFilter{
 
  ![](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/1525682427811.png)
 
-## 定义过滤器类
+### 定义过滤器类
 
 > 该类 @Component 注入配置 继承 ZuulFilter 重写其方法 
 >
@@ -2116,9 +2116,9 @@ public class LoginFilter extends ZuulFilter {
 
 
 
-## 常用 过滤器 模板
+### 常用 过滤器 模板
 
-### pre 过滤器 检验 token
+#### pre 过滤器 检验 token
 
 ```java
 package com.apai.zuulfilter;
@@ -2182,7 +2182,7 @@ public class ExpFilterpre extends ZuulFilter {
 
 ```
 
-### post 过滤器 获取异常
+#### post 过滤器 获取异常
 
 > 程序出现异常 如:404 500等在 post 过滤器可获取到
 
@@ -2247,7 +2247,7 @@ public class ExpFilterprepost extends ZuulFilter {
 
 
 
-## Zuul 与 Hystrix 结合实现熔断
+### Zuul 与 Hystrix 结合实现熔断
 
 Zuul 和 Hystrix 结合使用实现熔断功能时，需要完成 FallbackProvider 接口。该接口提供了 2 个方法：
 
@@ -2281,7 +2281,7 @@ woniu-service-provider:  #在网关上配置 请求某个服务名的负载均�
 >
 >  5.如果A服务通过feign调用了B服务失败，A服务自己实现了feign的降级功能，那么站在zuul的角度来看，A服务是正常响应，此时zuul不会执行降级，最终只执行post类型过滤器，过滤器收到A服务的响应状态码就是200，你可以注掉feign的降级实现类。
 
-### Zuul 与 Hystrix 降级
+#### Zuul 与 Hystrix 降级
 
 防坑指南:  
 
@@ -2377,7 +2377,7 @@ public class ZuulFallBack implements FallbackProvider {
 }
 ```
 
-## Zuul 中的 Eager Load 配置
+### Zuul 中的 Eager Load 配置
 
 zuul 的路由转发也是由通过 Ribbon 实现负载均衡的。默认情况下，客户端相关的 Bean 会延迟加载，在第一次调用微服务时，才会初始化这些对象。所以 zuul 无法在第一时间加载到 Ribbon 的负载均衡。
 
@@ -2392,7 +2392,7 @@ zuul:
 
 注意 **eager-load** 配置对于默认路由不起作用。因此，通常它都是结合 `zuul.ignored-services=*` （即忽略所有的默认路由） 一起使用的，以达到 zuul 启动时就默认已经初始化各个路由所要转发的负载均衡对象。
 
-## 禁用 zuul 过滤器
+### 禁用 zuul 过滤器
 
 Spring Cloud 默认为 zuul 编写并启动了一些过滤器，这些过滤器都放在 `org.springframework.cloud.netflix.zuul.filters` 包下。
 
@@ -2409,9 +2409,9 @@ zuul:
 
 
 
-# ||-> Eureka 微服务 总汇
+## ||-> Eureka 微服务 总汇
 
-## 依赖
+### 依赖
 
 ```xml
 <!--Eureka 微服务-->
@@ -2465,7 +2465,7 @@ zuul:
 </dependencyManagement>
 ```
 
-## Eureka 注解
+### Eureka 注解
 
 ```java
 // -- 启动类 --
@@ -2504,9 +2504,9 @@ zuul:
 
 
 
-# SpringConfig-Nacos 微服务
+## SpringConfig-Nacos 微服务
 
-## Nacos 的下载和安装
+### Nacos 的下载和安装
 
 首先去 nacos 的 github 地址下载 release 安装包。[下载地址](https://github.com/alibaba/nacos/releases)
 
@@ -2548,7 +2548,7 @@ nacos 的默认服务端口是 **8848** ，启动完成之后通过浏览器访�
 
 nacos 的单机 standalone 模式是开发环境中使用的启动方式，它对用户而言非常友好，几乎不需要的更多的操作就可以搭建 nacos 单节点。另外，standalone 模式安装默认是使用了 nacos 本身的嵌入式数据库 apache derby(Derby是一个Open source的产品，是一个小型的数据库) 。
 
-# |-- Nacos 注册中心
+## |-- Nacos 注册中心
 
 > Nacos  启动即为注册中心 无需创建项目 制作注册中心 只需将微服务注册即可
 >
@@ -2556,9 +2556,9 @@ nacos 的单机 standalone 模式是开发环境中使用的启动方式，它�
 >
 > 默认的账号 密码: nacos
 
-## Nacos 注册 步骤
+### Nacos 注册 步骤
 
-### Nacos  依赖
+#### Nacos  依赖
 
 注意引入依赖时 选择 Nacos Service Discovery 且 还要对应的版本 可引入父项目
 
@@ -2572,7 +2572,7 @@ nacos 的单机 standalone 模式是开发环境中使用的启动方式，它�
 </dependencies>
 ```
 
-### Nacos  注解
+#### Nacos  注解
 
 ```java
 // ---- 启动类 ----
@@ -2580,11 +2580,11 @@ nacos 的单机 standalone 模式是开发环境中使用的启动方式，它�
 @EnableDiscoveryClient 
 ```
 
-## Nacos  配置中心
+### Nacos  配置中心
 
 Nacos 作为配置管理中心，实现的核心功能就是配置的统一管理。
 
-### Nacos 配置中心 注解
+#### Nacos 配置中心 注解
 
 > 添加 <!--Nacos 配置中心 配置文件存放注册中心--> 注解
 
@@ -2596,7 +2596,7 @@ Nacos 作为配置管理中心，实现的核心功能就是配置的统一管�
 </dependency>
 ```
 
-### 新建配置文件 bootstrap.yml  
+#### 新建配置文件 bootstrap.yml  
 
 新增 **spring.cloud.nacos.config** 节点配置，将服务指向正确的 nacos 服务端。
 
@@ -2618,33 +2618,33 @@ spring:
   application:
     name: 服务名
   profiles:
-  	# 指定 Nacos 在不同环境下的配置
+  	## 指定 Nacos 在不同环境下的配置
     active: dev
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-        # 配置分组。未配置时，默认分组是 DEFAULT_GROUP
+        ## 配置分组。未配置时，默认分组是 DEFAULT_GROUP
         group: XXX_GROUP  
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        # nacos 配置文件后缀。注意是 yaml，不是 yml
+        ## nacos 配置文件后缀。注意是 yaml，不是 yml
         file-extension: yaml
         
         
-# 共同开发 在注册nacos的时候可能导致注册的ip地址被其他的代理而不是项目的ip 所以需指定ip前缀
+## 共同开发 在注册nacos的时候可能导致注册的ip地址被其他的代理而不是项目的ip 所以需指定ip前缀
     cloud:
         nacos:
             discovery:
                 server-addr: 192.172.0.18:8848
             config:
                 server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        # 指定注册到nacos的前缀
+        ## 指定注册到nacos的前缀
         inetutils:
             preferred-networks: 192.168.10
 ```
 
-### 在 Nacos 添加配置
+#### 在 Nacos 添加配置
 
 > 通过配置列表右侧的 `+` 按钮添加配置文件：
 
@@ -2696,7 +2696,7 @@ spring:
 
 
 
-## 微服务 group 分组
+### 微服务 group 分组
 
 Nacos 的微服务分组概念，有两层含义：
 
@@ -2715,7 +2715,7 @@ spring:
 
 由于多个项目可能、可以使用同一个 nacos 作为注册中心，这种情况下，`group` 就是区分你我的标识，每个微服务从 nacos 上拉取的只有本组的注册表。 如果微服务没有指定组，默认分组是 default_group
 
-## 验证和动态刷新
+### 验证和动态刷新
 
 > 在 表现层 有调用配置文件的数据时 加上 -  @RefreshScope  -  可进行既时刷新
 
@@ -2735,9 +2735,9 @@ public String demo() {
 
 
 
-## Nacos 的数据存储
+### Nacos 的数据存储
 
-### windos 数据库储存修改
+#### windos 数据库储存修改
 
 Nacos 的数据是存储在它自带的内嵌 derby 数据库中的，数据文件就在 Nacos 的解压目录下的 `data` 文件夹中。
 
@@ -2761,10 +2761,10 @@ create database nacos
 ~~~mysql
 spring.datasource.platform=mysql
 
-### Count of DB:
+#### Count of DB:
 db.num=1
 
-### Connect URL of DB:
+#### Connect URL of DB:
 db.url.0=jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
 db.user.0=root
 db.password.0=root
@@ -2780,7 +2780,7 @@ db.password.0=root
 
 
 
-### Liunx 系统 修改
+#### Liunx 系统 修改
 
 > 镜像容器:  docker-compose.yml 
 
@@ -2828,7 +2828,7 @@ services:
       - "9999:9999"
 ```
 
-## nacos 集群配置
+### nacos 集群配置
 
 官网：https://nacos.io/zh-cn/ ，点击手册找到运维，拷贝cluster.conf.example文件，并改名为cluster.conf
 
@@ -2855,7 +2855,7 @@ spring:
         server-addr: localhost:8848,localhost:8849,localhost:8850
 ~~~
 
-# Gateway 服务网关
+## Gateway 服务网关
 
 > Spring Cloud Gateway 介绍
 
@@ -2867,11 +2867,11 @@ Spring Cloud Gateway 中最重要的几个概念：
 - 断言 Predicate：Java 8 中的断言函数。Spring Cloud Gateway 中的断言函数输入类型是 Spring 5.0 框架中的 ServerWebExchange 。Spring Cloud Gateway 中的断言函数允许开发者去定义匹配来自 Http Request 中的任何信息，比如请求头和参数等。
 - 过滤器 Filter：一个标准的 Spring Web Filter。Spring Cloud Gateway 中的 Filter 分为两种类型：Gateway Filter 和 Global Filter。过滤器 Filter 将会对请求和响应进行修改处理。
 
-## Gateway 网关创建
+### Gateway 网关创建
 
 注意:  未配置 开启自动支持到 Nacos 注册中心 则默认自动注册到 8848 端口的注册中心
 
-### 导入依赖
+#### 导入依赖
 
 > **注意**：在创建项目是不要选错依赖 单纯选择 Gateway  | 而不是 那个含有 alibb的依赖
 >
@@ -2892,7 +2892,7 @@ Spring Cloud Gateway 中最重要的几个概念：
 </dependencies>
 ```
 
-### 路由配置
+#### 路由配置
 
 **方式一: 启动类 配置路由转发 进行bean注入 (不建议)**
 
@@ -2953,21 +2953,21 @@ spring:
                 server-addr: 127.0.0.1:8848
         gateway:
             routes:
-                # 路由 ID，唯一 可中文
+                ## 路由 ID，唯一 可中文
                 - id: Nacos-A-微服务
-                  # uri: http://www.163.com 转发路径写死
-                  # 使用微服务名 可进行负载均衡调用微服务集群
+                  ## uri: http://www.163.com 转发路径写死
+                  ## 使用微服务名 可进行负载均衡调用微服务集群
                   uri: lb://Nacos-A
-                  # 断言规则 如: 请求路径前缀
+                  ## 断言规则 如: 请求路径前缀
                   predicates:
-                      # 请求路径前缀 不会截掉前缀
+                      ## 请求路径前缀 不会截掉前缀
                       - Path=/wuzi/**
 
 ```
 
 
 
-### Gateway 路由转发详解
+#### Gateway 路由转发详解
 
 > Spring Cloud Gateway 是由很多的路由断言工厂组成。
 
@@ -2979,11 +2979,11 @@ spring:
 
 
 
-## Gateway  路由断言
+### Gateway  路由断言
 
 路由断言的执行顺序是根据 写入的顺序依次往下执行
 
-### Path 路由断言
+#### Path 路由断言
 
 > **Path 断言不会改变请求的 URI ，整个过程中只有 IP、端口部分会被『替换』掉** 
 >
@@ -2996,7 +2996,7 @@ spring:
       routes:
         - id: 微服务名称
           uri: http://www.163.com 
-          # 输入 /163 路径时，Gateway 将会导向到 163 网址
+          ## 输入 /163 路径时，Gateway 将会导向到 163 网址
           predicates:
              - Path=/163
         - id: 微服务名称
@@ -3005,7 +3005,7 @@ spring:
             - Path=/xxx/**     
 ```
 
-### After 路由断言
+#### After 路由断言
 
 After 路由断言会要求你提供一个 UTC 格式的时间，当 Gateway 接收到的请求时间在配置的 UTC 时间之后，则会成功匹配，予以转发，否则不成功。
 
@@ -3053,7 +3053,7 @@ String datetime = ZonedDateTime.now().minusHours(1).format(DateTimeFormatter.ISO
 System.out.println(datetime);
 ```
 
-### Before 路由断言
+#### Before 路由断言
 
 Before 路由断言和之前的 After 路由断言类似。它会取一个 UTC 时间格式的时间参数，当请求进来的当前时间在配置的时间之前会成功（放行），否则不能成功。
 
@@ -3069,7 +3069,7 @@ spring:
             - Before=2022-07-21T15:33:11.009+08:00[Asia/Shanghai]
 ~~~
 
-### Between 路由断言
+#### Between 路由断言
 
 连个时间之间 则断言成功
 
@@ -3085,7 +3085,7 @@ spring:
             - Between=2020-07-21T15:33:11.009+08:00[Asia/Shanghai],2022-07-21T15:33:11.009+08:00[Asia/Shanghai]
 ~~~
 
-### Cookie 路由断言
+#### Cookie 路由断言
 
 Cooke 路由断言会取两个参数：HTTP 请求所携带的 Cookie 的 key 和 value。当请求中携带的 **cookie** 和 Cookie 路由断言中配置的 **cookie** 一致时，路由才匹配成功。
 
@@ -3106,7 +3106,7 @@ spring:
 > 1. 直接在 **Headers** 中添加 Cookie和 username=tom
 > 2. 在 `Cookies` 功能中使用 `Add Cookie` 添加
 
-### Header 路由断言
+#### Header 路由断言
 
 Header 路由断言用于根据 HTTP 请求的 header 中是否携带所配置的信息与否，来决定是否通过断言。
 
@@ -3122,7 +3122,7 @@ spring:
 			- Path=/xxx/** 
 ```
 
-### Method 路由断言
+#### Method 路由断言
 
 Method 路由断言会根据路由信息所配置的 method 对请求方式是 GET 或者 POST 等进行断言匹配。
 
@@ -3138,7 +3138,7 @@ spring:
             - Path=/users/** 
 ```
 
-### Query 路由断言
+#### Query 路由断言
 
 Query 断言会从请求中获取两个参数，将请求参数和 Query 断言中的配置进行匹配。
 
@@ -3156,7 +3156,7 @@ spring:
             - Path=/users/**  
 ```
 
-### 组合使用
+#### 组合使用
 
 各种 Predicates 同时存在于同一个路由时，请求必须『**同时满足所有**』的条件才被这个路由匹配。
 
@@ -3177,7 +3177,7 @@ spring:
 
 **order代表的优先级是从小往大排序的，即数值越小，优先级越高**
 
-## 自定义路由断言
+### 自定义路由断言
 
 自定义路由断言，就是允许你自定义路由的评判规则。自定义路由断言有几个前提要求：
 
@@ -3185,7 +3185,7 @@ spring:
 2. 自定义的路由断言按惯例叫作：**XxxRoutePredicateFactory** ，这样，在未来使用时可直接使用 **Xxx** 作为其名字引用。当然，你可以通过 **name()** 方法自定义名字，后续使用时，就使用 name() 返回的字符串。
 3. 每个 RoutePredicateFactory 都会有一个 **Config** 类与之对应，由于它们常见是 1:1 的关系，所以，通常会将 Config 类定义成 RoutePredicateFactory 内部类的形式。
 
-### **自定义路由断言类**
+#### **自定义路由断言类**
 
 ```java
 package com.apai.predicates;
@@ -3250,7 +3250,7 @@ public class apaiRoutePredicateFactory extends AbstractRoutePredicateFactory<apa
 
 ```
 
-### **自定义断言 配置**
+#### **自定义断言 配置**
 
 ```yml
 server:
@@ -3265,30 +3265,30 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        # 路由 ID，唯一 可中文
+        ## 路由 ID，唯一 可中文
         - id: Nacos-A-微服务
-          # uri: http://www.163.com 转发路径写死
-          # 使用微服务名 可进行负载均衡调用微服务集群
+          ## uri: http://www.163.com 转发路径写死
+          ## 使用微服务名 可进行负载均衡调用微服务集群
           uri: lb://Nacos-A
-          # 断言规则 如: 请求路径前缀
+          ## 断言规则 如: 请求路径前缀
           predicates:
-            # 请求路径前缀 不会截掉前缀
+            ## 请求路径前缀 不会截掉前缀
             - Path=/wuzi/**
-            # 调用自定义断言 - name: 自定义的断言名
+            ## 调用自定义断言 - name: 自定义的断言名
             - name: apai
-              # 根据自定义的断言类的Config类的属性赋值
+              ## 根据自定义的断言类的Config类的属性赋值
               args:
                 name: www
                 password: www
 ```
 
-## 内置 Filter 过滤器
+### 内置 Filter 过滤器
 
 Spring Cloud Gateway 中内置了很多的过滤器，你也可以根据自己的实际需求定制并添加自己的路由过滤器。
 
 路由过滤器允许以某种方式修改请求进来的 HTTP 请求或返回的 HTTP 响应。
 
-### AddRequestHeader 过滤器
+#### AddRequestHeader 过滤器
 
 > AddRequestHeader 过滤器用于对匹配上的请求加上指定的 header 。
 
@@ -3321,7 +3321,7 @@ spring:
 
 当我们在浏览器输入http://localhost:9000/user/test?username=zhangsan&password=111时，首先网关能匹配到请求url，然后转发给8081，其实是把IP和端口替换掉，则请求url为http://localhost:8081/user/test?username=zhangsan&password=111，在请求8081之前，过滤器帮我们在请求头添加 jwtToken=aaaaaaaaaaaa，
 
-### StripPrefix 过滤 | 去掉前缀
+#### StripPrefix 过滤 | 去掉前缀
 
 > 去除请求路径前缀
 
@@ -3353,7 +3353,7 @@ public String xxx(){
 
 则网关转发到8081时，去掉一个前缀，真实url为:http://localhost:8081/test
 
-### RewritePath 过滤器
+#### RewritePath 过滤器
 
 RewritePath 过滤器可以重写 URI，去掉 URI 中的前缀。例如，下面就是去掉所有 URI 中的 **/xxx/yyy/zzz** 部分，只留之后的内容，再进行转发。
 
@@ -3390,7 +3390,7 @@ spring:
 
   最终转发到 http://localhost:8080/test
 
-## 自定义路由局部 Filter
+### 自定义路由局部 Filter
 
 > 和自定义路由断言一样，自定义路由有几个前提要求：
 
@@ -3511,11 +3511,11 @@ request.getHeaders().keySet().forEach(key -> {
 });
 ~~~
 
-### 自定义 Filter 异常处理
+#### 自定义 Filter 异常处理
 
 > 捕获程序出现的异常 并自定义提示信息 返回浏览器
 
-#### 配置 指定 自定义异常类
+##### 配置 指定 自定义异常类
 
 ```yml
 server:
@@ -3530,23 +3530,23 @@ spring:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        # 路由 ID，唯一 可中文
+        ## 路由 ID，唯一 可中文
         - id: Nacos-A-微服务
-          # uri: http://www.163.com 转发路径写死
-          # 使用微服务名 可进行负载均衡调用微服务集群
+          ## uri: http://www.163.com 转发路径写死
+          ## 使用微服务名 可进行负载均衡调用微服务集群
           uri: lb://Nacos-A
-          # 断言规则 如: 请求路径前缀
+          ## 断言规则 如: 请求路径前缀
           predicates:
-            # 请求路径前缀 不会截掉前缀
+            ## 请求路径前缀 不会截掉前缀
             - Path=/wuzi/**
           #局部过滤器的执行顺序，按配置文件配置的顺序来加载
           filters:
-            # 过滤器使每次请求带上token
+            ## 过滤器使每次请求带上token
             - AddRequestHeader=token,bbbbbb
             - name: guolv
 ```
 
-#### 自定义过滤器
+##### 自定义过滤器
 
 > 自定义的路由过滤器按惯例叫做：**XxxGatewayFilterFactory** ，可以直接使用 **Xxx** 作为其名字引用。
 >
@@ -3643,7 +3643,7 @@ public class guolvGatewayFilterFactory extends
 }
 ```
 
-#### 异常信息封装类
+##### 异常信息封装类
 
 ```java
 package com.apai.config;
@@ -3657,7 +3657,7 @@ public class ErrorStatus {
 }
 ```
 
-#### 异常处理类
+##### 异常处理类
 
 > 定义统一异常处理的相关类，继承ErrorWebExceptionHandler
 >
@@ -3724,7 +3724,7 @@ public class GlobalExceptionConfiguration implements ErrorWebExceptionHandler {
 }
 ```
 
-### JSON 形式的错误返回
+#### JSON 形式的错误返回
 
 上述的『**拒绝**』是以 HTTP 的错误形式返回，即 4xx、5xx 的错误。
 
@@ -3739,7 +3739,7 @@ DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
 return exchange.getResponse().writeWith(Flux.just(buffer));
 ```
 
-### 获取 Body 中的请求参数
+#### 获取 Body 中的请求参数
 
 由于 Gateway 是基于 Spring 5 的 WebFlux 实现的（采用的是 Reactor 编程模式），因此，从请求体中获取参数信息是一件挺麻烦的事情。
 
@@ -3751,7 +3751,7 @@ return exchange.getResponse().writeWith(Flux.just(buffer));
 
 不过考虑到 Gateway 只是做请求的『**转发**』，而不会承担业务责任，因此，是否真的需要在 Gateway 中从请求的 Body 中获取请求数据，这个问题可以斟酌。
 
-### 过滤器的另一种逻辑形式
+#### 过滤器的另一种逻辑形式
 
 有时你对过滤器的运用并非是为了决定是否继续路由，为了在整个流程中『**嵌入**』额外的代码、逻辑：在路由之前和之后执行某些代码
 如果仅仅是在路由至目标微服务之前执行某些代码逻辑，那么 Filter 的形式比较简单：
@@ -3779,7 +3779,7 @@ public GatewayFilter apply(Config config) {
 }
 ~~~
 
-### 自定义过滤器的参数
+#### 自定义过滤器的参数
 
 和自定义路由断言一样，自定义的过滤器断言可以自定义参数。
 定义的形式是写成 Config 类的属性；使用的形式是在配置中使用 **args** 配置。
@@ -3794,7 +3794,7 @@ filters:
 
 
 
-## 自定义全局 Filter
+### 自定义全局 Filter
 
 自定义全局过滤器比局部过滤器要简单，因为它『**不需要指定对哪个路由生效，它对所有路由都生效**』。
 
@@ -3837,7 +3837,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 }
 ```
 
-### 全局过滤器异常处理
+#### 全局过滤器异常处理
 
 > 获取微服务的状态信息，如果非200，进行统一的异常处理 
 >
@@ -3926,7 +3926,7 @@ public class QuanjuGlobalFilter implements GlobalFilter {
 
 > 需要说明的是：如果网关转发的微服务宕机或者没有启动，那么全局过滤器是不会执行的。
 
-## 跨域配置
+### 跨域配置
 
 > **跨域: 即不同的IP 或者 不同的端口 就是跨域  |  直接请求跨域的服务器是无法正常调用**
 
@@ -3966,13 +3966,13 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            # 允许携带认证信息
+            ## 允许携带认证信息
             allow-credentials: true
-            # 允许跨域的源(网站域名/ip)，设置*为全部
+            ## 允许跨域的源(网站域名/ip)，设置*为全部
             allowedOrigins: "*"
-            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            ## 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
             allowedMethods: "*"
-            # 允许跨域请求里的head字段，设置*为全部
+            ## 允许跨域请求里的head字段，设置*为全部
             allowedHeaders: "*"
       routes:
         - id: sickroom微服务
@@ -3991,7 +3991,7 @@ spring:
 
 ~~~
 
-## Gateway网关的熔断降级
+### Gateway网关的熔断降级
 
 1.添加springcloud的hystrix启动器
 
@@ -4016,13 +4016,13 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            # 允许携带认证信息
+            ## 允许携带认证信息
             allow-credentials: true
-            # 允许跨域的源(网站域名/ip)，设置*为全部
+            ## 允许跨域的源(网站域名/ip)，设置*为全部
             allowedOrigins: "*"
-            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            ## 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
             allowedMethods: "*"
-            # 允许跨域请求里的head字段，设置*为全部
+            ## 允许跨域请求里的head字段，设置*为全部
             allowedHeaders: "*"
       routes:
         - id: b服务
@@ -4072,7 +4072,7 @@ public class FallBackController {
 
 
 
-# Bucket4j  令牌
+## Bucket4j  令牌
 
 ```xml
 <!--Bucket4j 令牌桶-->
@@ -4101,7 +4101,7 @@ l 漏桶算法能够强行限制数据的传输速率。令牌桶算法能够在
 
 
 
-## 1. 基本使用
+### 1. 基本使用
 
 最简单的 bucket4j 的使用需要提供、涵盖以下几个概念：
 
@@ -4120,7 +4120,7 @@ Bucket bucket = Bucket4j.builder().addLimit(limit).build();
 log.info("{}", bucket.tryConsume(1) ? "do something" : "do nothing")
 ```
 
-## 2. 阻塞式消费
+### 2. 阻塞式消费
 
 在上面的基础案例中，如果 bucket 中的令牌的数量不够你的当前消费时，**.tryConsume** 方法会以失败的方式返回。
 
@@ -4140,7 +4140,7 @@ while (true) {
 }
 ```
 
-## 3. 探针
+### 3. 探针
 
 通过创建并使用 **ConsumptionProbe** 对象，除了可以实现正常的消费功能之外，还可以通过它去查询消费后的桶中的“余额”。
 
@@ -4163,7 +4163,7 @@ while (true) {
 } 
 ```
 
-## 4. Refill 和 classic 方法
+### 4. Refill 和 classic 方法
 
 在之前的例子中，我们使用的都是 **Bandwidth.simple** 方法，实际上，它相当于是 **Bandwidth.classic** 方法的简写。
 
@@ -4189,7 +4189,7 @@ while (true) {
 
 初始化桶有9个令牌，打印8 7 6 5 4 3 2 1 0 ，刚好消费完，   线程休眠2s，2s期间，桶每秒生产2个令牌，2s刚好4个，故睡醒后 打印 3 2 1 0，以此类推
 
-## 5. 初始化令牌数量
+### 5. 初始化令牌数量
 
 『**桶的容量**』和桶中的『**令牌的数量**』是两个概念。
 
@@ -4214,7 +4214,7 @@ while (true) {
 } 
 ```
 
-## 6. 非贪婪式创建令牌
+### 6. 非贪婪式创建令牌
 
 在之前的示例中，令牌的创建方式都是贪婪式的。所谓贪婪式，指的就是在每一次的添加令牌的周期中，只要有创建了令牌就开始消费，是非贪婪式就是说必须等一次性等到所有的令牌都创建完成之后才开始消费，不过有时，你可能需要这个添加过程更均匀一些，这种情况下，你就需要使用 Refill.intervally 方法。
 
@@ -4242,13 +4242,13 @@ void contextLoads() {
 }
 ```
 
-# Gateway 限流
+## Gateway 限流
 
 限流的目的时通过对并发访问接口方法（或对一个时间窗口内的请求）进行限速，一旦达到限制速率则可以拒绝服务。
 
 网关就要通过限流来承担保护后端应用的责任。
 
-## 1. 限流策略
+### 1. 限流策略
 
 常见的算法有『**令牌桶**』和『**漏桶**』两种方案。
 
@@ -4260,7 +4260,7 @@ void contextLoads() {
 
 当新的请求来临时，会拿走令牌，有令牌则意味着有资格进行请求，如果没有令牌可能就会阻塞或者拒绝。
 
-## 2. Gateway 自定义过滤器限流
+### 2. Gateway 自定义过滤器限流
 
 在 Gateway 中实现限流比较简单，只需要编写一个过滤器。
 
@@ -4435,9 +4435,9 @@ eureka:
 
 
 
-# ||-> Nacos  微服务 总汇
+## ||-> Nacos  微服务 总汇
 
-## 依赖
+### 依赖
 
 ```xml
 <properties>
@@ -4492,7 +4492,7 @@ eureka:
 </dependencyManagement>
 ```
 
-## Nacos  注解
+### Nacos  注解
 
 ```java
 // ---- 启动类 ----

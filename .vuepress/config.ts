@@ -13,7 +13,7 @@ export default defineUserConfig({
     logo: "/logo.png",
     author: "LuisApai",
     authorAvatar: "/head.jpg",
-    docsRepo: "https://github.com/vuepress-reco/vuepress-theme-reco-next",
+    docsRepo: "https://space.bilibili.com/168090249?spm_id_from=333.1007.0.0",
     docsBranch: "main",
     docsDir: "example",
     lastUpdatedText: "",

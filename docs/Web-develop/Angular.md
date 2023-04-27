@@ -3,11 +3,11 @@ title: Angular 框架
 date: 2023/04/26
 ---
 
-# | --- Angular 基础
+## | --- Angular 基础
 
 [(8条消息) angular基础学习_book_longker的博客-CSDN博客_angular学习](https://blog.csdn.net/book_longker/article/details/105421125)
 
-## Angular 项目的创建
+### Angular 项目的创建
 
 Angular CLI用于简单，快速构建Angular2项目，只要掌握几行命令就能扣减前端架构。依赖于NodeJs和npm。
 
@@ -69,7 +69,7 @@ http://localhost:4200/
 },
 ```
 
-## Angular 目录结构
+### Angular 目录结构
 
 [(8条消息) Angular项目目录结构详解_XeonYu的博客-CSDN博客_angular项目结构](https://blog.csdn.net/yuzhiqiang_1993/article/details/71191873?ops_request_misc=%7B%22request%5Fid%22%3A%22166634022416782388094440%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=166634022416782388094440&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-1-71191873-null-null.142^v59^pc_rank_34_2,201^v3^control_1&utm_term=Angular目录结构&spm=1018.2226.3001.4187)
 
@@ -106,11 +106,11 @@ typings.d.ts        不用管
 
 
 
-# Angular 模块
+## Angular 模块
 
 模块组件的特征在于可以用于执行单个任务的代码块。您可以从代码(类)中导出值。 Angular应用程序被称为模块， 并使用许多模块构建您的应用程序。Angular 的基本构建块是可以从模块导出的组件类。
 
-## app 模块：
+### app 模块：
 
 ```java
 app-routing.module.ts  路由文件
@@ -171,7 +171,7 @@ userLists: any[] = [
 
 
 
-## 组件生命周期
+### 组件生命周期
 
    Angular 会按以下顺序执行钩子方法。你可以用它来执行以下类型的操作。
 
@@ -188,7 +188,7 @@ userLists: any[] = [
 
 
 
-## 创建模块
+### 创建模块
 
 > **ng g c 模块名称 | 命令创建**
 
@@ -206,7 +206,7 @@ ng g c 模块名称  |  将会在app 目录下生成一个模块组件
 
 > **Angular Files 插件创建**
 
-## 组件生命周期
+### 组件生命周期
 
    Angular 会按以下顺序执行钩子方法。你可以用它来执行以下类型的操作。
 
@@ -221,9 +221,9 @@ ng g c 模块名称  |  将会在app 目录下生成一个模块组件
 | ngAfterViewChecked()    | 每当 Angular 做完组件视图和子视图或包含该指令的视图的变更检测之后调用。 | `ngAfterViewInit()` 和每次 `ngAfterContentChecked()` 之后调用。 |
 | ngOnDestroy()           | 每当 Angular 每次销毁指令/组件之前调用并清扫。 在这儿反订阅可观察对象和分离事件处理器，以防内存泄漏 | 在 Angular 销毁指令或组件之前立即调用。                      |
 
-## 组件交互
+### 组件交互
 
-### @Input | 子获取父数据
+#### @Input | 子获取父数据
 
 父组件通过`@Input`给子组件绑定属性设置输入类数据
 
@@ -244,7 +244,7 @@ ngOnInit() {
 }
 ```
 
-### @Output | 子触发父事件传值
+#### @Output | 子触发父事件传值
 
 父组件给子组件传递一个事件，子组件通过`@Output`弹射触发事件
 
@@ -272,7 +272,7 @@ pushList(v:string){
 }
 ```
 
-### @ViewChild() | 父获取子数据
+#### @ViewChild() | 父获取子数据
 
 通过`ViewChild`获取子组件实例，获取子组件数据
 
@@ -295,7 +295,7 @@ zizujan(){
 }
 ```
 
-# Angular 服务
+## Angular 服务
 
 > Angular中，把从组件内抽离出来的代码叫服务，服务的本质就是函数
 
@@ -304,7 +304,7 @@ zizujan(){
 而服务就充当着数据访问，逻辑处理的功能。把组件和服务区分开，以提高模块性和复用性。通过把组件中和视图有关的功能与其他类型的处理分离开，可以让组件类更加精简、高效。
 ```
 
-## 创建服务
+### 创建服务
 
 1.使用命令 | ng g s 服务名 | 创建一个服务，通过**@Injectable()**装饰器标识服务。
 
@@ -335,7 +335,7 @@ export class MyHomeserviceService {
 
 ```
 
-## 依赖注入
+### 依赖注入
 
 组件中如何使用服务呢，必须将服务依赖注入系统、组件或者模块，才能够使用服务。我们可以用**注册提供商**和**根注入器**实现**。**
 
@@ -417,9 +417,9 @@ export class MyHomeComponent implements OnInit {
 
 
 
-# Angular 指令
+## Angular 指令
 
-## 差值表达式
+### 差值表达式
 
 > {{ 变量名 }}
 
@@ -451,7 +451,7 @@ export class MyHomeComponent implements OnInit {
 三元表达式: 1
 ```
 
-## 属性绑定
+### 属性绑定
 
 > [属性名] = "'值'"  |   [属性名] = "变量名"  |  [ngClass]="变量名"
 
@@ -484,7 +484,7 @@ box3:string = 'box1 box2 box3';
 <div_ ngcontent-wjv-c17 ng-reflect-ng-class="c1" class="c1">ngclas属性绑定</div>
 ```
 
-## 样式绑定
+### 样式绑定
 
 > [ngStyle]="{'color':'red'}"
 
@@ -497,7 +497,7 @@ box3:string = 'box1 box2 box3';
 <p [style]="{'color': false ? 'red' : 'black'}">ngstyle 三元表达式 样式绑定</p>
 ```
 
-##   条件判断
+###   条件判断
 
 ***ngIf**   是直接影响元素是否被渲染，而非控制元素的显示和隐藏     
 
@@ -534,7 +534,7 @@ export class AppComponent {
 </ul>
 ```
 
-##     循环语句
+###     循环语句
 
 > 解析器会把 `let color`、`let i` 和 `let odd` 翻译成命名变量 `color`、`i` 和 `odd`
 
@@ -567,7 +567,7 @@ export class AppComponent {
 </ng-template>
 ```
 
-##  事件绑定
+###  事件绑定
 
 > (事件)="方法名称(实参)" |  Angular 的事件绑定语法由等号左侧括号内的目标事件名和右侧引号内的模板语句组成。
 
@@ -590,7 +590,7 @@ export class AppComponent {
 
 ```
 
-##  双向绑定
+###  双向绑定
 
 * 双向绑定是应用中的组件共享数据的一种方式。使用双向绑定绑定来侦听事件并在父组件和子组件之间同步更新值
 
@@ -628,7 +628,7 @@ export class AppComponent {
 </div>
 ```
 
-## 表单控件
+### 表单控件
 
 > 使用表单控件有三个步骤。
 
@@ -693,7 +693,7 @@ export class NameEditorComponent {
 <button (click)="updatebiaodan()">修改表单控件的值</button>
 ```
 
-## 表单控件分组
+### 表单控件分组
 
 表单中通常会包含几个相互关联的控件。响应式表单提供了两种把多个相关控件分组到同一个输入表单中的方法
 
@@ -746,7 +746,7 @@ export class ProfileEditorComponent {
 </form>
 ```
 
-## 表单验证 
+### 表单验证 
 
 表单元素添加`required`关键字表示必填，通过绑定`ngModel`的引用可以拿到到当前组件的信息，通过引用获取到验证的信息
 
@@ -790,11 +790,11 @@ export class AppComponent {
 | 控件值已经变化   | `ng-dirty`     | `ng-pristine`   |
 | 控件值是有效的   | `ng-valid`     | `ng-invalid`    |
 
-## 自定义表单验证
+### 自定义表单验证
 
 
 
-## 管道
+### 管道
 
 管道的作用就是传输。不同的管道具有不同的作用。(其实就是处理数据)
 
@@ -888,11 +888,11 @@ export class AppModule { }
 <p>{{str | mypipetest:'实参'}}</p>
 ```
 
-# Angular 路由
+## Angular 路由
 
 > 路由就是连接组件的筋络,它也是树形结构的.有了它,就可以在angular中实现路径的导航模式
 
-## 路由基本使用
+### 路由基本使用
 
 > **路由器**是一个调度中心,它是一套规则的列表,能够查询当前URL对应的规则,并呈现出相应的视图.
 
@@ -903,7 +903,7 @@ export class AppModule { }
 
 每个带路由的Angular应用都有一个路由器服务的单例对象,通过路由定义的列表进行配置后使用。
 
-### app-routing.module.ts
+#### app-routing.module.ts
 
 ```jsx
 import { NgModule } from '@angular/core';
@@ -928,7 +928,7 @@ export class AppRoutingModule { }
 
 ```
 
-### app.module.ts
+#### app.module.ts
 
 ```jsx
 import { NgModule } from '@angular/core';
@@ -974,7 +974,7 @@ export class AppModule { }
 
 ```
 
-### app.component.html
+#### app.component.html
 
 ```html
 //路由导航 
@@ -989,9 +989,9 @@ export class AppModule { }
 - 当浏览器地址栏的URL变化时，路径部分`/home`满足了列表中path为"**home**"的这个路由定义,激活对应**HomeComponent**的实例,显示它的视图
 - 当应用程序请求导航到路径`/hello`时,符合了另外的规则,激活对应视图且展示内容,并将该路径更新到浏览器地址栏和历史
 
-## 路由嵌套
+### 路由嵌套
 
-### app-routing.module.ts
+#### app-routing.module.ts
 
 ```jsx
 import { NgModule } from '@angular/core';
@@ -1037,7 +1037,7 @@ export class AppRoutingModule { }
 
 ```
 
-### 父组件 HTML
+#### 父组件 HTML
 
 ```html
 <!-- 子路由跳转 注意路由的层级嵌套 | 与vue不同 -->
@@ -1046,9 +1046,9 @@ export class AppRoutingModule { }
 <router-outlet></router-outlet>
 ```
 
-## 路由传参
+### 路由传参
 
-### query: 键值对
+#### query: 键值对
 
 > http://localhost:4200/home/zujianone?id=3&name=张三
 
@@ -1089,7 +1089,7 @@ export class MyZujianoneComponent implements OnInit {
 }
 ```
 
-### params: /风格
+#### params: /风格
 
 > http://localhost:4200/home/zujianone/aa值/张三/张三cczhi
 
@@ -1156,11 +1156,11 @@ export class MyZujianoneComponent implements OnInit {
 
 
 
-# Angular 功能
+## Angular 功能
 
-## 表单数据获取
+### 表单数据获取
 
-### $event : 事件对象获取
+#### $event : 事件对象获取
 
 ```ts
 <input type="text" (input)="inpchange($event)">
@@ -1170,7 +1170,7 @@ export class MyZujianoneComponent implements OnInit {
 }
 ```
 
-### 模板引用变量
+#### 模板引用变量
 
 模板变量可以帮助你在模板的另一部分使用这个部分的数据。使用模板变量，你可以执行某些任务，比如响应用户输入或微调应用的表单
 
@@ -1195,11 +1195,11 @@ Angular 根据你所声明的变量的位置给模板变量赋值：
 
 
 
-# Angular 码云
+## Angular 码云
 
-## 创建组件复制
+### 创建组件复制
 
-### 创建组件命令
+#### 创建组件命令
 
 ```jsx
 // 路径是以app开始创建
@@ -1219,7 +1219,7 @@ PS C:\Users\码云\Documents\Mayun\sanitary-web\src\api\system> ng g s /dim/dimS
 git commit --no-verify -m '提交备注信息'
 ```
 
-### 组件的引入和注册
+#### 组件的引入和注册
 
 > **furniture.module.ts**
 
@@ -1229,9 +1229,9 @@ git commit --no-verify -m '提交备注信息'
 
 路径: src/app/routes/admin/furniture-routing.module.ts
 
-### 组件的模块_页面
+#### 组件的模块_页面
 
-#### HTML
+##### HTML
 
 > unit-supplier-aging.component.html  |  页面模板
 
@@ -1366,7 +1366,7 @@ git commit --no-verify -m '提交备注信息'
 
 ```
 
-#### component.ts
+##### component.ts
 
 > sale-reserve-order.component.ts  |  页面 JS 逻辑
 
@@ -1861,7 +1861,7 @@ export class UnitSupplierAgingComponent implements OnInit {
 
 ```
 
-#### 组件名称.ts
+##### 组件名称.ts
 
 > unit-supplier-aging.ts   |  数据文件一 |  跟Service的数据文件差不多
 
@@ -1924,9 +1924,9 @@ export interface unitMeetSum {
 
 ```
 
-### 组件的模块_Service
+#### 组件的模块_Service
 
-#### service.ts
+##### service.ts
 
 > unit-supplier-aging.service.ts  |  储存请求路径 后续直接调用
 
@@ -2060,9 +2060,9 @@ export interface unitMeetDialog extends Dialog {
 
 
 
-# 前端组件
+## 前端组件
 
-## 判断value类型
+### 判断value类型
 
 ```ts
 let paymentMethodName = '';
@@ -2071,7 +2071,7 @@ if (typeof this.form.value.paymentMethod === 'string') {
 }
 ```
 
-## 时间格式化
+### 时间格式化
 
 ```jsx
 dateString(unitBillingVo.busiDate);
@@ -2079,7 +2079,7 @@ dateString(unitBillingVo.busiDate);
 this.busiDate.value.format("YYYY-MM");
 ```
 
-## 赋值和取值
+### 赋值和取值
 
 ```jsx
 // 获取表单对象
@@ -2108,7 +2108,7 @@ this.form.patchValue({
 
 
 
-## 父传子值
+### 父传子值
 
 ```jsx
 // 父组件 点击修改触发调用子组件 并传值 data
@@ -2159,7 +2159,7 @@ onSubmitClick() {
 }
 ```
 
-## 表单的样式及属性
+### 表单的样式及属性
 
 > 样式
 
@@ -2214,7 +2214,7 @@ this.formBases[0].disabled = true;
 this.formBases[0].readonly = true;
 ```
 
-### 输入联想可选择框
+#### 输入联想可选择框
 
 ```jsx
 // 下拉选择框
@@ -2255,7 +2255,7 @@ this.form.patchValue({
 });
 ```
 
-### 下拉多选框
+#### 下拉多选框
 
 ```jsx
 // 下拉多选框 无法用户直接输入 所以传递到后台的ID字符串 如: 1,2,3
@@ -2315,7 +2315,7 @@ private String dimSeriesStr;
 </if>
 ```
 
-### 下拉单选框
+#### 下拉单选框
 
 ```jsx
 new SelectField({
@@ -2341,7 +2341,7 @@ this.workshopService.listWorkshopChoice().subscribe((res: Response) => {
 
 
 
-### 页面跳转选择框
+#### 页面跳转选择框
 
 ```jsx
 <form [formGroup]="formOther">
@@ -2393,7 +2393,7 @@ private dapPlanList(data: any) {
 }
 ```
 
-### 年月选择框
+#### 年月选择框
 
 ```jsx
 <mat-form-field class="no-padding" appearance="outline">
@@ -2454,7 +2454,7 @@ this.endDate = new FormControl(moment()) 现在月份
 
 
 
-## 列表的输入框
+### 列表的输入框
 
 ```jsx
 <input
@@ -2467,7 +2467,7 @@ this.endDate = new FormControl(moment()) 现在月份
 />
 ```
 
-## 列表的选择框
+### 列表的选择框
 
 ```jsx
 <ng-container matColumnDef="warehouseId">
@@ -2504,9 +2504,9 @@ queryRegion(row: any) {
 
 
 
-## 文件上传
+### 文件上传
 
-### 前端
+#### 前端
 
 ```html
 <div>
@@ -2607,7 +2607,7 @@ uploadEnclosure(file: File, folder: UploadFolder) {
 }
 ```
 
-### 后端
+#### 后端
 
 ```java
 package com.my.pin.controller.admin.system;
@@ -2783,11 +2783,11 @@ public class FileUtils {
 
 
 
-# Getwey 远程调用
+## Getwey 远程调用
 
-## POST 请求
+### POST 请求
 
-### 键值对_传参
+#### 键值对_传参
 
 ```java
 // 前端请求
@@ -2814,7 +2814,7 @@ public UserInfo getByNameUserInfo(@RequestParam("name") String name){
 }
 ```
 
-### JSON_传参
+#### JSON_传参
 
 ```java
 updateWeekPlan(data: any) {
@@ -2841,7 +2841,7 @@ public R saveSpuUnitPrice(@RequestBody SpuUnitPriceVo spuUnitPriceVo){
 }
 ```
 
-### 表格_导出
+#### 表格_导出
 
 ```jsx
 <button mat-raised-button color="accent" (click)="exportExcel()">
@@ -2872,7 +2872,7 @@ public void exportExcel(@RequestBody UnitTakingVo unitTakingVo, HttpServletRespo
 
 
 
-### 表格_导入
+#### 表格_导入
 
 ```java
 <button mat-raised-button color='accent' (click)='openChooseWindow()'>
@@ -2941,9 +2941,9 @@ public R importExcel(@RequestPart("file") MultipartFile file) throws Exception {
 
 
 
-## GET 请求
+### GET 请求
 
-### 风格传参
+#### 风格传参
 
 ```java
 // 前端请求

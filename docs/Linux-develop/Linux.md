@@ -4,9 +4,9 @@ date: 2023/02/15
 
 ---
 
-# Linux 
+## Linux 
 
-## **文件管理**
+### **文件管理**
 
 > d rwx rwx rwx. 2 root root    34 6月  21 16:47 aslic
 >
@@ -18,7 +18,7 @@ date: 2023/02/15
 
 ![image-20220622092610669](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220622092610669.png)
 
-## 配置全路径名
+### 配置全路径名
 
 ![image-20220627105046702](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220627105046702.png)
 
@@ -31,7 +31,7 @@ date: 2023/02/15
 > export JAVA_HOME=/root/jdk8
 > export PATH=$JAVA_HOME/bin:$PATH
 
-## Linux 系统 固定 - IP 
+### Linux 系统 固定 - IP 
 
 进入 网络配置文件
 
@@ -69,7 +69,7 @@ GATEWAY=192.168.1.1
 
 
 
-# Linux 文件与目录管理
+## Linux 文件与目录管理
 
 - **绝对路径：**
   路径的写法，由根目录 **/** 写起，
@@ -81,18 +81,18 @@ GATEWAY=192.168.1.1
 
   > 例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成： **cd ../man** 这就是相对路径的写法。
 
-## 处理目录的常用命令
+### 处理目录的常用命令
 
-### ls (列出目录)
+#### ls (列出目录)
 
 > ls（英文全拼：list files）: 列出目录及文件名
 
 语法：
 
 ```
-[root@www ~]# ls [-aAdfFhilnrRSt] 目录名称
-[root@www ~]# ls [--color={never,auto,always}] 目录名称
-[root@www ~]# ls [--full-time] 目录名称
+[root@www ~]## ls [-aAdfFhilnrRSt] 目录名称
+[root@www ~]## ls [--color={never,auto,always}] 目录名称
+[root@www ~]## ls [--full-time] 目录名称
 ```
 
 选项与参数：
@@ -104,12 +104,12 @@ GATEWAY=192.168.1.1
 将家目录下的所有文件列出来(含属性与隐藏档)
 
 ```
-[root@www ~]# ls -al ~
+[root@www ~]## ls -al ~
 ```
 
 
 
-### cd (切换目录)
+#### cd (切换目录)
 
 > cd  是Change Directory的缩写，这是用来变换工作目录的命令。
 
@@ -118,29 +118,29 @@ GATEWAY=192.168.1.1
 ```linux
 // cd [相对路径或绝对路径]
 #使用 mkdir 命令创建 runoob 目录
-[root@www ~]# mkdir runoob
+[root@www ~]## mkdir runoob
 
 #使用绝对路径切换到 runoob 目录
-[root@www ~]# cd /root/runoob/
+[root@www ~]## cd /root/runoob/
 
 #使用相对路径切换到 runoob 目录
-[root@www ~]# cd ./runoob/
+[root@www ~]## cd ./runoob/
 
-# 表示回到自己的家目录，亦即是 /root 这个目录
-[root@www runoob]# cd ~
+## 表示回到自己的家目录，亦即是 /root 这个目录
+[root@www runoob]## cd ~
 
-# 表示去到目前的上一级目录，亦即是 /root 的上一级目录的意思；
-[root@www ~]# cd ..
+## 表示去到目前的上一级目录，亦即是 /root 的上一级目录的意思；
+[root@www ~]## cd ..
 ```
 
 
 
-### pwd (显示目前所在的目录)
+#### pwd (显示目前所在的目录)
 
 > pwd 是 **Print Working Directory** 的缩写，也就是显示目前所在目录的命令。
 
 ```
-[root@www ~]# pwd [-P]
+[root@www ~]## pwd [-P]
 ```
 
 选项与参数：
@@ -150,27 +150,27 @@ GATEWAY=192.168.1.1
 实例：单纯显示出目前的工作目录：
 
 ```
-[root@www ~]# pwd
+[root@www ~]## pwd
 /root   <== 显示出目录啦～
 ```
 
 实例显示出实际的工作目录，而非连结档本身的目录名而已。
 
 ```
-[root@www ~]# cd /var/mail   <== 注意，/var/mail是一个连结档
-[root@www mail]# pwd
+[root@www ~]## cd /var/mail   <== 注意，/var/mail是一个连结档
+[root@www mail]## pwd
 /var/mail         <==列出目前的工作目录
-[root@www mail]# pwd -P
+[root@www mail]## pwd -P
 /var/spool/mail   <==怎么回事？有没有加 -P 差很多～
-[root@www mail]# ls -ld /var/mail
+[root@www mail]## ls -ld /var/mail
 lrwxrwxrwx 1 root root 10 Sep  4 17:54 /var/mail -> spool/mail
-# 看到这里应该知道为啥了吧？因为 /var/mail 是连结档，连结到 /var/spool/mail 
-# 所以，加上 pwd -P 的选项后，会不以连结档的数据显示，而是显示正确的完整路径啊！
+## 看到这里应该知道为啥了吧？因为 /var/mail 是连结档，连结到 /var/spool/mail 
+## 所以，加上 pwd -P 的选项后，会不以连结档的数据显示，而是显示正确的完整路径啊！
 ```
 
 
 
-### mkdir (创建新目录)
+#### mkdir (创建新目录)
 
 > mkdir (make directory)  创建新的目录
 
@@ -188,12 +188,12 @@ mkdir [-mp] 目录名称
 实例：请到/tmp底下尝试创建数个新目录看看：
 
 ```
-[root@www ~]# cd /tmp
-[root@www tmp]# mkdir test    <==创建一名为 test 的新目录
-[root@www tmp]# mkdir test1/test2/test3/test4
+[root@www ~]## cd /tmp
+[root@www tmp]## mkdir test    <==创建一名为 test 的新目录
+[root@www tmp]## mkdir test1/test2/test3/test4
 mkdir: cannot create directory `test1/test2/test3/test4': 
 No such file or directory       <== 没办法直接创建此目录啊！
-[root@www tmp]# mkdir -p test1/test2/test3/test4
+[root@www tmp]## mkdir -p test1/test2/test3/test4
 ```
 
 加了这个 -p 的选项，可以自行帮你创建多层目录！
@@ -201,8 +201,8 @@ No such file or directory       <== 没办法直接创建此目录啊！
 实例：创建权限为 **rwx--x--x** 的目录。
 
 ```
-[root@www tmp]# mkdir -m 711 test2
-[root@www tmp]# ls -l
+[root@www tmp]## mkdir -m 711 test2
+[root@www tmp]## ls -l
 drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
 drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1
 drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
@@ -214,7 +214,7 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 
 
 
-### touch (创建新文件)
+#### touch (创建新文件)
 
 > touch   创建新的文件
 
@@ -227,7 +227,7 @@ touch test.txt
 
 
 
-### rmdir (删除空的目录)
+#### rmdir (删除空的目录)
 
 语法：
 
@@ -242,21 +242,21 @@ touch test.txt
 删除 runoob 目录
 
 ```
-[root@www tmp]# rmdir runoob/
+[root@www tmp]## rmdir runoob/
 ```
 
 将 mkdir 实例中创建的目录(/tmp 底下)删除掉！
 
 ```
-[root@www tmp]# ls -l   <==看看有多少目录存在？
+[root@www tmp]## ls -l   <==看看有多少目录存在？
 drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
 drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1
 drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
-[root@www tmp]# rmdir test   <==可直接删除掉，没问题
-[root@www tmp]# rmdir test1  <==因为尚有内容，所以无法删除！
+[root@www tmp]## rmdir test   <==可直接删除掉，没问题
+[root@www tmp]## rmdir test1  <==因为尚有内容，所以无法删除！
 rmdir: `test1': Directory not empty
-[root@www tmp]# rmdir -p test1/test2/test3/test4
-[root@www tmp]# ls -l        <==您看看，底下的输出中test与test1不见了！
+[root@www tmp]## rmdir -p test1/test2/test3/test4
+[root@www tmp]## ls -l        <==您看看，底下的输出中test与test1不见了！
 drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 ```
 
@@ -266,15 +266,15 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 
 
 
-### cp (复制文件或目录)
+#### cp (复制文件或目录)
 
 > cp 即拷贝文件和目录。
 
 语法:
 
 ```
-[root@www ~]# cp [-adfilprsu] 来源档(source) 目标档(destination)
-[root@www ~]# cp [options] source1 source2 source3 .... directory
+[root@www ~]## cp [-adfilprsu] 来源档(source) 目标档(destination)
+[root@www ~]## cp [options] source1 source2 source3 .... directory
 ```
 
 选项与参数：
@@ -292,14 +292,14 @@ drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
 用 root 身份，将 root 目录下的 .bashrc 复制到 /tmp 下，并命名为 bashrc
 
 ```
-[root@www ~]# cp ~/.bashrc /tmp/bashrc
-[root@www ~]# cp -i ~/.bashrc /tmp/bashrc
+[root@www ~]## cp ~/.bashrc /tmp/bashrc
+[root@www ~]## cp -i ~/.bashrc /tmp/bashrc
 cp: overwrite `/tmp/bashrc'? n  <==n不覆盖，y为覆盖
 ```
 
 
 
-### rm (移除文件或目录)
+#### rm (移除文件或目录)
 
 语法：
 
@@ -317,7 +317,7 @@ cp: overwrite `/tmp/bashrc'? n  <==n不覆盖，y为覆盖
 将刚刚在 cp 的实例中创建的 bashrc 删除掉！
 
 ```
-[root@www tmp]# rm -i bashrc
+[root@www tmp]## rm -i bashrc
 rm: remove regular file `bashrc'? y
 ```
 
@@ -325,13 +325,13 @@ rm: remove regular file `bashrc'? y
 
 
 
-### mv (移动文件与目录，或修改名称)
+#### mv (移动文件与目录，或修改名称)
 
 语法：
 
 ```
-[root@www ~]# mv [-fiu] source destination
-[root@www ~]# mv [options] source1 source2 source3 .... directory
+[root@www ~]## mv [-fiu] source destination
+[root@www ~]## mv [options] source1 source2 source3 .... directory
 ```
 
 选项与参数：
@@ -343,10 +343,10 @@ rm: remove regular file `bashrc'? y
 复制一文件，创建一目录，将文件移动到目录中
 
 ```
-[root@www ~]# cd /tmp
-[root@www tmp]# cp ~/.bashrc bashrc
-[root@www tmp]# mkdir mvtest
-[root@www tmp]# mv bashrc mvtest
+[root@www ~]## cd /tmp
+[root@www tmp]## cp ~/.bashrc bashrc
+[root@www tmp]## mkdir mvtest
+[root@www tmp]## mv bashrc mvtest
 ```
 
 将某个文件移动到某个目录去，就是这样做！
@@ -354,12 +354,12 @@ rm: remove regular file `bashrc'? y
 将刚刚的目录名称更名为 mvtest2
 
 ```
-[root@www tmp]# mv mvtest mvtest2
+[root@www tmp]## mv mvtest mvtest2
 ```
 
 
 
-## Linux 文件内容查看
+### Linux 文件内容查看
 
 Linux系统中使用以下命令来查看文件的内容：
 
@@ -373,7 +373,7 @@ Linux系统中使用以下命令来查看文件的内容：
 
 你可以使用 *man [命令]*来查看各个命令的使用文档，如 ：man cp。
 
-### cat (由第一行开始显示文件内容)
+#### cat (由第一行开始显示文件内容)
 
 语法：
 
@@ -393,23 +393,23 @@ cat [-AbEnTv]
 检看 /etc/issue 这个文件的内容：
 
 ```
-[root@www ~]# cat /etc/issue
+[root@www ~]## cat /etc/issue
 CentOS release 6.4 (Final)
 Kernel \r on an \m
 ```
 
-### tac (最后一行开始显示)
+#### tac (最后一行开始显示)
 
 tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：
 
 ```
-[root@www ~]# tac /etc/issue
+[root@www ~]## tac /etc/issue
 
 Kernel \r on an \m
 CentOS release 6.4 (Final)
 ```
 
-### nl
+#### nl
 
 显示行号
 
@@ -433,22 +433,22 @@ nl [-bnw] 文件
 实例一：用 nl 列出 /etc/issue 的内容
 
 ```
-[root@www ~]# nl /etc/issue
+[root@www ~]## nl /etc/issue
      1  CentOS release 6.4 (Final)
      2  Kernel \r on an \m
 ```
 
-### more(翻页)
+#### more(翻页)
 
 一页一页翻动
 
 ```
-[root@www ~]# more /etc/man_db.config 
+[root@www ~]## more /etc/man_db.config 
 #
-# Generated automatically from man.conf.in by the
-# configure script.
+## Generated automatically from man.conf.in by the
+## configure script.
 #
-# man.conf from man-1.6d
+## man.conf from man-1.6d
 ....(中间省略)....
 --More--(28%)  <== 重点在这一行喔！你的光标也会在这里等待你的命令
 ```
@@ -462,17 +462,17 @@ nl [-bnw] 文件
 - q       ：代表立刻离开 more ，不再显示该文件内容。
 - b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。
 
-### less (滚动查看)
+#### less (滚动查看)
 
 一页一页翻动，以下实例输出/etc/man.config文件的内容：
 
 ```
-[root@www ~]# less /etc/man.config
+[root@www ~]## less /etc/man.config
 #
-# Generated automatically from man.conf.in by the
-# configure script.
+## Generated automatically from man.conf.in by the
+## configure script.
 #
-# man.conf from man-1.6d
+## man.conf from man-1.6d
 ....(中间省略)....
 :   <== 这里可以等待你输入命令！
 ```
@@ -488,7 +488,7 @@ less运行时可以输入的命令有：
 - N     ：反向的重复前一个搜寻 (与 / 或 ? 有关！)
 - q     ：离开 less 这个程序；
 
-### head
+#### head
 
 取出文件前面几行
 
@@ -503,16 +503,16 @@ head [-n number] 文件
 - -n ：后面接数字，代表显示几行的意思
 
 ```
-[root@www ~]# head /etc/man.config
+[root@www ~]## head /etc/man.config
 ```
 
 默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：
 
 ```
-[root@www ~]# head -n 20 /etc/man.config
+[root@www ~]## head -n 20 /etc/man.config
 ```
 
-### tail
+#### tail
 
 > 取出文件后面几行
 
@@ -528,16 +528,16 @@ tail [-n number] 文件
 - -f ：表示持续侦测后面所接的档名，要等到按下[ctrl]-c才会结束tail的侦测
 
 ```
-[root@www ~]# tail /etc/man.config
-# 默认的情况中，显示最后的十行！若要显示最后的 20 行，就得要这样：
-[root@www ~]# tail -n 20 /etc/man.config
+[root@www ~]## tail /etc/man.config
+## 默认的情况中，显示最后的十行！若要显示最后的 20 行，就得要这样：
+[root@www ~]## tail -n 20 /etc/man.config
 ```
 
 
 
-## Linux 功能类命令
+### Linux 功能类命令
 
-### ln 链接命令
+#### ln 链接命令
 
 > 硬链接 - 相对于复制但是能够继承其所有属性
 >
@@ -568,7 +568,7 @@ tail [-n number] 文件
 
 
 
-### chmod 权限管理命令
+#### chmod 权限管理命令
 
 > 功能描述：改变文件或目录权限 
 
@@ -588,7 +588,7 @@ tail [-n number] 文件
 
 
 
-### find  文件搜索命令
+#### find  文件搜索命令
 
 > 功能描述：文件或者文件夹搜索
 
@@ -627,7 +627,7 @@ find / -name mengni -exec rm -rf { } \
 
 
 
-### grep 文件内容搜索命令
+#### grep 文件内容搜索命令
 
 > 在文件中搜寻字串匹配的行并输出
 
@@ -646,14 +646,14 @@ grep -iv is cs.txt
 // 从install.log文中找mysql
 grep mysql /root/install.log  
 // 把文件inittab每行的开头#去掉 如果不加^ 那么有可能去掉的是内容中间的#
-grep -v ^# /etc/inittab
+grep -v ^## /etc/inittab
 ```
 
 
 
 
 
-## tar 压缩解压命令
+### tar 压缩解压命令
 
 > tar这个命令既可以打包压缩也可以解压
 >
@@ -683,23 +683,23 @@ grep -v ^# /etc/inittab
 
 
 
-## 网络命令
+### 网络命令
 
-### ping 测试网络连通性
+#### ping 测试网络连通性
 
 > 测试网络连通性
 
 **语法：ping 选项 IP地址**
 
 ```
-范例： # ping 192.168.1.156
+范例： ## ping 192.168.1.156
 
 ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 ```
 
 
 
-### netstat  网络相关信息
+#### netstat  网络相关信息
 
 > 显示网络相关信息
 >
@@ -729,25 +729,25 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 >
 > 注意：自己电脑的端口是系统随机分配，不一定也要是22
 >
-> \# netstat -rn
+> \## netstat -rn
 >
 > 显示route路由信息  n：numberic
 
 
 
-### ifconfig  查看和设置网卡信息
+#### ifconfig  查看和设置网卡信息
 
 > 查看和设置网卡信息
 
 语法：ifconfig 网卡名称  IP地址
 
-- 范例：# ifconfig eth0 192.168.8.250
+- 范例：## ifconfig eth0 192.168.8.250
 
-- 范例：# ifconfig -a #查看所有网卡
+- 范例：## ifconfig -a #查看所有网卡
 
 
 
-### last  登入系统的用户信息
+#### last  登入系统的用户信息
 
 > 列出目前与过去登入系统的用户信息
 
@@ -755,30 +755,30 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 
 
-### traceroute 数据包到主机的路径
+#### traceroute 数据包到主机的路径
 
 > 显示数据包到主机间的路径
 
 语法：traceroute
 
 ```
-范例：# traceroute www.lampbrother.net
-   	 # traceroute www.sina.com.cn
+范例：## traceroute www.lampbrother.net
+   	 ## traceroute www.sina.com.cn
 访问新浪官网所经过的路由信息ip以及所花费的时间，如果时间长，
 表示在某一块路由服务有问题，或者断掉，通过这个命令可以看在哪一块出了问题
 ```
 
 
 
-## 用户管理命令
+### 用户管理命令
 
-### su 切换用户
+#### su 切换用户
 
 语法：su - 用户名
 
 
 
-### useradd   添加新用户
+#### useradd   添加新用户
 
 > 添加新用户
 
@@ -786,7 +786,7 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 
 
-### passwd  设置用户密码
+#### passwd  设置用户密码
 
 > 设置用户密码
 
@@ -794,7 +794,7 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 
 
-### w 查看登录用户详细信息
+#### w 查看登录用户详细信息
 
 > 查看登录用户详细信息
 
@@ -809,7 +809,7 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 
 
-### userdel  删除帐号
+#### userdel  删除帐号
 
 语法:   userdel 选项 用户名
 
@@ -817,7 +817,7 @@ ping -c 3 192.168.1.156服务器回应3次即可，默认一直回应
 
 
 
-### usermod 修改帐号
+#### usermod 修改帐号
 
 修改用户账号就是根据实际情况更改用户的有关属性，如用户号、主目录、用户组、登录Shell等。
 
@@ -836,14 +836,14 @@ usermod 选项 用户名
 例如：
 
 ```
-# usermod -s /bin/ksh -d /home/z –g developer sam
+## usermod -s /bin/ksh -d /home/z –g developer sam
 ```
 
 此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
 
 
 
-## 挂载命令
+### 挂载命令
 
 > 相当于在linux分配一个盘符，把U盘等等的外部设备内容和该盘符（这个盘符是一个目录，在windows里是一个盘符如：H盘，i盘）连接
 
@@ -874,9 +874,9 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 
 
 
-## 关机重启命令
+### 关机重启命令
 
-### shutdown命令
+#### shutdown命令
 
 语法:  shutdown [选项] 时间
 
@@ -894,20 +894,20 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 >
 > [root@localhost ~]#shutdown -c              取消关机
 >
-> [root@localhost cdrom]# shutdown  -r now
+> [root@localhost cdrom]## shutdown  -r now
 >
 > 直接拔掉电源：对于高速运转的硬盘 导致损坏
 
 **其他关机命令**
 
-- [root@localhost ~]# halt
-- [root@localhost ~]# poweroff
-- [root@localhost ~]# init 0
+- [root@localhost ~]## halt
+- [root@localhost ~]## poweroff
+- [root@localhost ~]## init 0
 
 **其他重启命令**
 
-- root@localhost ~]# reboot
-- [root@localhost ~]# init 6
+- root@localhost ~]## reboot
+- [root@localhost ~]## init 6
 
 **系统运行级别**
 
@@ -921,15 +921,15 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 
 
 
-## dos文本和unix格式转换
+### dos文本和unix格式转换
 
-### dos2unix  转linux
+#### dos2unix  转linux
 
 作用：dos2unix命令：用来将DOS格式的文本文件转换成UNIX格式
 
 语法：dos2unix 文件名
 
-### unix2dos  转window
+#### unix2dos  转window
 
 作用：unix2dos命令：用来将unix格式的文本文件转换成dos格式
 
@@ -937,31 +937,31 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 
 
 
-## 系统类命令
+### 系统类命令
 
-### 1、查看linux系统是多少位
+#### 1、查看linux系统是多少位
 
 [oracle@localhost database]$ getconf LONG_BIT
 
-### 2、Linux查看操作系统内核信息
+#### 2、Linux查看操作系统内核信息
 
 [oracle@localhost database]$ uname -a
 
 [oracle@localhost database]$ uname -r
 
-### 3、Linux查看操作系统版本信息
+#### 3、Linux查看操作系统版本信息
 
 > 查看当前操作系统版本信息
 
 [oracle@localhost database]$ cat /proc/version
 
-## wget 命令下载
+### wget 命令下载
 
 > wget是Linux中的一个下载文件的工具，wget是在Linux下开发的开放源代码的软件，wget工具体积小但功能完善，它支持断点下载功能，同时支持FTP和HTTP下载方式，支持代理服务器和设置起来方便简单
 >
-> [root@network test]# yum install -y wget
+> [root@network test]## yum install -y wget
 
-### 下载保存当前目录
+#### 下载保存当前目录
 
 * 语法: wget 下载地址 
 
@@ -969,7 +969,7 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 >
 > [root@network test]#wget http://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/glibc-2.17-55.fc20/glibc-utils-2.17-55.el6.x86_64.rpm
 
-### 下载重命名保存当前目录
+#### 下载重命名保存当前目录
 
 * 语法: wget -O 下载名字 下载地址 
 
@@ -979,7 +979,7 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 >
 > http://copr-be.cloud.fedoraproject.org/results/mosquito/myrepo-el6/epel-6-x86_64/glibc-2.17-55.fc20/glibc-utils-2.17-55.el6.x86_64.rpm
 
-### 断点下载
+#### 断点下载
 
 * 语法: wget -c 下载地址 
 
@@ -989,7 +989,7 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 >
 > [root@network test]#wget -c https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz
 
-### 后台下载
+#### 后台下载
 
 * 语法: wget -b 下载地址 
 
@@ -999,7 +999,7 @@ lrwxrwxrwx. 1 root root 3 10月 28 00:02 /dev/cdrom -> sr0
 
 
 
-## 后台运行jar包
+### 后台运行jar包
 
 > 能够将web项目打包成的jar包放入Linxu系统并运行 使用其ip地址和端口访问程序
 
@@ -1021,7 +1021,7 @@ nohup java -jar XXX.jar &
 
 
 
-##  防火墙 端口
+###  防火墙 端口
 
 https://blog.csdn.net/wade3015/article/details/90725871
 
@@ -1063,13 +1063,13 @@ kill -9  PID
 
 
 
-## 查看linux运行的进程
+### 查看linux运行的进程
 
 **语法**:  ps -ef
 
 
 
-## 管道符  |
+### 管道符  |
 
 > 可以连接两个命令  就是前一个命令的输出作为后一个命令的输入
 
@@ -1079,17 +1079,17 @@ kill -9  PID
 
 
 
-# vim -- 文本编辑器
+## vim -- 文本编辑器
 
 > Vim 是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。vim 的官方网站 (https://www.vim.org/) 
 
-## vi/vim 的使用
+### vi/vim 的使用
 
 基本上 vi/vim 共分为三种模式，分别是**命令模式（Command mode）**，**输入模式（Insert mode）**和**底线命令模式（Last line mode）**。 这三种模式的作用分别是：
 
 下载:   yum -y install vim
 
-### 命令模式：
+#### 命令模式：
 
 用户刚刚启动 vi/vim，便进入了命令模式。
 
@@ -1105,7 +1105,7 @@ kill -9  PID
 
 命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令。
 
-### 输入模式
+#### 输入模式
 
 在命令模式下按下i就进入了输入模式。
 
@@ -1121,7 +1121,7 @@ kill -9  PID
 - **Insert**，切换光标为输入/替换模式，光标将变成竖线/下划线
 - **ESC**，退出输入模式，切换到命令模式
 
-### 底线命令模式
+#### 底线命令模式
 
 在命令模式下按下:（英文冒号）就进入了底线命令模式。
 
@@ -1138,9 +1138,9 @@ kill -9  PID
 
 
 
-## 文件编辑命令
+### 文件编辑命令
 
-### 插入命令
+#### 插入命令
 
 | 命令  | 作用                 |
 | ----- | -------------------- |
@@ -1151,7 +1151,7 @@ kill -9  PID
 | **o** | 在光标下插入新行     |
 | O     | 在光标上插入新行     |
 
-### 定位命令 
+#### 定位命令 
 
 | 命令       | 作用                  |
 | ---------- | --------------------- |
@@ -1163,7 +1163,7 @@ kill -9  PID
 | $          | 行尾                  |
 | 0          | 行首                  |
 
-### 删除命令
+#### 删除命令
 
 | 命令    | 作用                         |
 | ------- | ---------------------------- |
@@ -1174,7 +1174,7 @@ kill -9  PID
 | D       | 删除光标所在处到行尾内容     |
 | :n1,n2d | 删除指定范围的行             |
 
-### 复制和剪切命令 
+#### 复制和剪切命令 
 
 | 命令 | 作用                          |
 | ---- | ----------------------------- |
@@ -1184,7 +1184,7 @@ kill -9  PID
 | ndd  | 剪切当前行以下n行             |
 | p、P | 粘贴在当前光标所在行下 或行上 |
 
-### 替换和取消命令 
+#### 替换和取消命令 
 
 | 命令 | 作用                                  |
 | ---- | ------------------------------------- |
@@ -1192,7 +1192,7 @@ kill -9  PID
 | R    | 从光标所在处开始替换字  符，按Esc结束 |
 | u    | 取消上一步操作                        |
 
-### 搜索和搜索替换命令
+#### 搜索和搜索替换命令
 
 | 命令             | 作用                                        |
 | ---------------- | ------------------------------------------- |
@@ -1201,7 +1201,7 @@ kill -9  PID
 | :%s/old/new/g    | 全文替换指定字符串                          |
 | :1,10s/old/new/g | 在一定范围内替换指定字符串  1到10行         |
 
-### 保存和退出命令 
+#### 保存和退出命令 
 
 | 命令            | 作用                                     |
 | --------------- | ---------------------------------------- |
@@ -1212,7 +1212,7 @@ kill -9  PID
 | :q!             | 不保存修改退出                           |
 | :wq!            | 保存修改并退出（文件所有者及root可使用） |
 
-## Vim使用技巧 
+### Vim使用技巧 
 
 ```java
 导入命令执行结果 :r  !命令
@@ -1234,7 +1234,7 @@ kill -9  PID
 
 
 
-# Linux yum 命令
+## Linux yum 命令
 
 yum（ Yellow dog Updater, Modified）是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。
 
@@ -1242,7 +1242,7 @@ yum（ Yellow dog Updater, Modified）是一个在 Fedora 和 RedHat 以及 SUSE
 
 yum 提供了查找、安装、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。
 
-## yum 语法
+### yum 语法
 
 ```
 yum [options] [command] [package ...]
@@ -1252,7 +1252,7 @@ yum [options] [command] [package ...]
 - **command：**要进行的操作。
 - **package：**安装的包名。
 
-## yum常用命令
+### yum常用命令
 
 ```java
 - \1. 列出所有可更新的软件清单命令：**yum check-update**
@@ -1277,15 +1277,15 @@ yum [options] [command] [package ...]
 >
 > yum install net-tools      
 
-# ------------   nginx 分隔    -----------
+## ------------   nginx 分隔    -----------
 
 
 
-#  nginx 反向代理 服务器 
+##  nginx 反向代理 服务器 
 
-## 版本和安装
+### 版本和安装
 
-### window版
+#### window版
 
 从官网 [*http://nginx.org/en/download.html* (opens new window)](http://nginx.org/en/download.html)下载最新的文档版。例如：`nginx-1.18.0`
 
@@ -1304,7 +1304,7 @@ nginx-1.18.0
 └── nginx.exe   启动程序
 ```
 
-#### 启动
+##### 启动
 
 启动 Nginx 的方式有 2 种：
 
@@ -1318,13 +1318,13 @@ nginx-1.18.0
 2. 在 cmd 命令窗口输入命令 `tasklist /fi "imagename eq nginx.exe"` 。你会看到类似如下页面：
 
    ```text
-   映像名称    PID     会话名      会话#   内存使用
+   映像名称    PID     会话名      会话##   内存使用
    =========== ======= =========== ======= ============
    nginx.exe   17220   Console     8       7,148 K
    nginx.exe   17660   Console     8       7,508 K
    ```
 
-#### 关闭
+##### 关闭
 
 如果使用 cmd 命令窗口启动 nginx，关闭 cmd 窗口是**不能**结束 nginx 进程的。
 
@@ -1333,11 +1333,11 @@ nginx-1.18.0
 1. 输入 `nginx` 命令：`nginx -s stop`（快速停止 nginx）或 `nginx -s quit`（完整有序的停止 nginx）。
 2. 使用 `taskkill` 命令： `taskkill /f /t /im nginx.exe` 
 
-### linux版 
+#### linux版 
 
 > 可看下方简洁安装步骤
 
-#### 环境依赖
+##### 环境依赖
 
 1、需要安装gcc的环境。yum install gcc-c++
 
@@ -1361,12 +1361,12 @@ openssl:	OpenSSL 是一个强大的安全套接字层密码库，囊括主要的
 yum install -y openssl openssl-devel
 ~~~
 
-#### 安装步骤
+##### 安装步骤
 
 把nginx的源码包上传到linux系统
 
 ~~~shell
-[root@localhost ~]# tar zxvf nginx-1.8.0.tar.gz
+[root@localhost ~]## tar zxvf nginx-1.8.0.tar.gz
 ~~~
 
 使用configure命令创建一makeFile文件
@@ -1389,37 +1389,37 @@ yum install -y openssl openssl-devel
 注意：启动nginx之前，上边将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录
 
 ~~~shell
-[root@localhost sbin]# mkdir  -p  /var/temp/nginx/client 
+[root@localhost sbin]## mkdir  -p  /var/temp/nginx/client 
 [root@localhost sbin]#make
 [root@localhost sbin]#make install
 ~~~
 
-#### 启动 nginx
+##### 启动 nginx
 
 > 注意:  安装完成的源目录是在 /usr/local/nginx/sbin 里 并不是安装包的位置
 
 ~~~shell
 进入sbin目录
-[root@localhost sbin]# ./nginx 
+[root@localhost sbin]## ./nginx 
 关闭nginx：
-[root@localhost sbin]# ./nginx -s stop
+[root@localhost sbin]## ./nginx -s stop
 推荐使用：
-[root@localhost sbin]# ./nginx -s quit
+[root@localhost sbin]## ./nginx -s quit
 重启nginx：
 1、先关闭后启动。
 2、刷新配置文件：
-[root@localhost sbin]# ./nginx -s reload
+[root@localhost sbin]## ./nginx -s reload
 ~~~
 
-#### 访问 nginx
+##### 访问 nginx
 
 默认是80端口。注意：是否关闭防火墙。
 
 ~~~powershell
-[root@localhost sbin]# systemctl stop firewalld.service
+[root@localhost sbin]## systemctl stop firewalld.service
 ~~~
 
-## nginx配置文件
+### nginx配置文件
 
 在 nginx.conf 的注释符号为： #；每个指令必须有分号结束
 
@@ -1471,7 +1471,7 @@ events {
 
 
 
-## 配置虚拟主机
+### 配置虚拟主机
 
 就是在一台服务器启动多个网站。如何区分不同的网站：
 
@@ -1479,12 +1479,12 @@ events {
 
 2、端口不同
 
-###  通过端口区分不同虚拟机
+####  通过端口区分不同虚拟机
 
-#### 打开Nginx的配置文件：
+##### 打开Nginx的配置文件：
 
 ~~~shell
-[root@localhost nginx]# vim  conf/nginx.conf
+[root@localhost nginx]## vim  conf/nginx.conf
 ~~~
 
 ~~~shell
@@ -1515,19 +1515,19 @@ server {
     }
 ~~~
 
-#### 重新加载配置文件
+##### 重新加载配置文件
 
 ~~~powershell
-[root@localhost nginx]# sbin/nginx -s reload
+[root@localhost nginx]## sbin/nginx -s reload
 ~~~
 
 注意: **一定要关闭防火墙** 
 
 
 
-### 通过域名区分虚拟主机
+#### 通过域名区分虚拟主机
 
-#### **什么是域名**
+##### **什么是域名**
 
 域名就是网站。如www.baidu.com  www.taobao.com   [www.jd.com](http://www.jd.com)
 
@@ -1561,7 +1561,7 @@ dns服务器：把域名解析为ip地址。保存的就是域名和ip的映射�
 
 2.启用了DNS Client服务（该服务为DNS解析的缓存服务）解决办法：将该服务停用；如果该服务为自动启用，请改为手动启用
 
-#### **Nginx的配置**
+##### **Nginx的配置**
 
 ~~~powershell
 server {
@@ -1586,7 +1586,7 @@ server {
     }
 ~~~
 
-# 反向代理
+## 反向代理
 
 正向代理：如果把局域网外的Internet想象成一个巨大的资源库,则局域网中的客户端要访问Internet ,则需要通过代理服务器来访问,这种代理服务就称为正向代理。代理的是客户端
 
@@ -1594,7 +1594,7 @@ server {
 
 > 在这种情况下，在客户端看来，`Nginx` + `服务端` 整体扮演了一个更大意义上的服务端的概念。
 
-## 案例
+### 案例
 
 1、后端工程：把一个springboot工程2个打包，分别指定运行端口8080和8081，在linux运行起来
 
@@ -1641,17 +1641,17 @@ server {
 >
 > 这里就要注意转发规则：大家可以看看这句话： rewrite "^/user/(.*)$" /$1 break; 也就是路径重写  $1代表第一个（）里面的内容，如果有第二.....多个括号，则同样的用$2.....表示即可，这个正则表达式意思是说 以 api开头的被替换成/,( )里面的内容就是用$1占位符来表示，变相的把api截掉了
 
-# 负载均衡
+## 负载均衡
 
 负载均衡（load balance）就是将负载分摊到多个操作单元上执行，从而提高服务的可用性和响应速度，带给用户更好的体验
 
-## 负载均衡的配置
+### 负载均衡的配置
 
 通过 Nginx 中的 **upstream** 指令可以实现负载均衡，再该指令中能够配置负载均衡服务器组
 
 目前负载均衡有 4 种典型的配置方式。分别是：
 
-|  #   | 负载均衡方式 | 特点                                                         |
+|  ##   | 负载均衡方式 | 特点                                                         |
 | :--: | :----------- | :----------------------------------------------------------- |
 |  1   | 轮询方式     | 默认方式。每个请求按照时间顺序逐一分配到不同的后端服务器进行处理。如果有服务器宕机，会自动删除。 |
 |  2   | 权重方式     | 利用 weight 指定轮循的权重比率，与访问率成正比。用于后端服务器性能不均衡的情况。 |
@@ -1660,7 +1660,7 @@ server {
 
 在 upstream 指定的服务器组中，若每个服务器的权重都设置为 1（默认值）时，表示当前的负载均衡是一般轮循方式
 
-### 准备工作
+#### 准备工作
 
 编写后台（SpringBoot）项目，简单起见，以占用不同的端口的形式启动 2 次，并在返回的信息中返回各自所占用的端口号
 
@@ -1680,9 +1680,9 @@ public Map<String, String> index(HttpServletRequest request) {
 
 
 
-## 负载方式
+### 负载方式
 
-#### 6.3.1 轮询
+##### 6.3.1 轮询
 
 ```powershell
 upstream xxx {
@@ -1712,7 +1712,7 @@ server {
 
 ```powershell
 http {
-    # 它们两者平级
+    ## 它们两者平级
     server { ... }
     upstream { ...}
 }
@@ -1724,7 +1724,7 @@ http {
 
  
 
-#### 6.3.2 加权轮询
+##### 6.3.2 加权轮询
 
 加权轮循就是在轮循的基础上，为每个单点加上权值。权值越重的单点，承担的访问量自然也就越大。
 
@@ -1759,7 +1759,7 @@ upstream web_server {
 }
 ```
 
-#### 6.3.3 ip_hash 负载
+##### 6.3.3 ip_hash 负载
 
 ip_hash 方式的负载均衡，是将每个请求按照访问 IP 的 hash 结果分配，这样就可以使来自同一个 IP 的客户端固定访问一台 Web 服务器，从而就解决了 Session 共享问题
 
@@ -1773,7 +1773,7 @@ upstream xxx {
 
 使用上例配置后，你会发现无论你请求多少次 `http://127.0.0.1/api/hello` 你所看到的端口始终是 `8080` 和 `9090` 中的某一个。
 
-## 将客户端浏览器的 IP 传递到后台
+### 将客户端浏览器的 IP 传递到后台
 
 对于后台而言，它所面对的『**客户端**』就是 Nginx，后台看不见『**客户端**』浏览器。这就意味着，你如果你需要在后台获取客户端浏览器的 IP 地址，你需要明确指出让 Nginx 『**额外地多携带**』一些数据。
 
@@ -1782,9 +1782,9 @@ location /api {
     proxy_pass http://xxx/api;
     proxy_set_header X-Real-IP $remote_addr;
 
-    # proxy_set_header Cookie $http_cookie;
-    # proxy_set_header Host $http_host;
-    # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    ## proxy_set_header Cookie $http_cookie;
+    ## proxy_set_header Host $http_host;
+    ## proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 }
 ```
 
@@ -1801,7 +1801,7 @@ public Map<String, String> index(
 
 
 
-## nginx解决前后端跨域(了解)
+### nginx解决前后端跨域(了解)
 
  Spring Boot 不提供任何动态页面、资源，只提供 JSON 格式数据
 
@@ -1810,24 +1810,24 @@ http {
     include       mime.types;
     default_type  application/octet-stream;
     sendfile        on;
-    keepalive_timeout  65;  # TCP 连接存活 65 秒
+    keepalive_timeout  65;  ## TCP 连接存活 65 秒
     server {
-        # Nginx 监听 localhost:80 端口
+        ## Nginx 监听 localhost:80 端口
         listen       80;
         server_name  localhost;
 
-        # 访问 URI 根路径时，返回 Nginx 根目录下的 html 目录下的 index.html 或 index.htm
+        ## 访问 URI 根路径时，返回 Nginx 根目录下的 html 目录下的 index.html 或 index.htm
         location / {
             root   html;
             index  index.html index.htm;
         }
 
-        # URI 路径以 /api 开头的将转交给『别人』处理
+        ## URI 路径以 /api 开头的将转交给『别人』处理
         location /api {
             proxy_pass http://localhost:8080/api;
         }
 
-        # 出现 500、502、503、504 错误时，返回 Nginx 根目录下的 html 目录下的 50x.html 。
+        ## 出现 500、502、503、504 错误时，返回 Nginx 根目录下的 html 目录下的 50x.html 。
         error_page   500 502 503 504  /50x.html;    
         location = /50x.html {
             root   html;
@@ -1861,7 +1861,7 @@ $.ajax({
 
 首先当我们访问192.168.128.128时。显示index.html首页内容。在首页加载时异步请求http://127.0.0.1:80/api/hello的请求，被Nginx 接收后，Nginx 会『帮』我们去访问 http://127.0.0.1:8080` 的 `/api/hello，并将结果再返回给客户端了浏览器
 
-## nginx搭建文件服务器
+### nginx搭建文件服务器
 
 安装好nginx之后，做相关配置
 
@@ -1872,11 +1872,11 @@ server {
         location / {
 	    root   /opt/soft/; #可以在这个目录放置一些软件包，供别人下载
 	    autoindex on;             #开启索引功能  这句话很重要
-        autoindex_exact_size off; # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
-        autoindex_localtime on;   # 显示本机时间而非 GMT 时间
-        charset utf-8; # 避免中文乱码 
-        # root html;
-        # index  index.html index.htm;
+        autoindex_exact_size off; ## 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
+        autoindex_localtime on;   ## 显示本机时间而非 GMT 时间
+        charset utf-8; ## 避免中文乱码 
+        ## root html;
+        ## index  index.html index.htm;
         } 
     } 
 ~~~
@@ -1887,11 +1887,11 @@ server {
 
 
 
-# -----------  Docker 分隔   ----------- 
+## -----------  Docker 分隔   ----------- 
 
-# Docker 容器引擎
+## Docker 容器引擎
 
-## Nacos 的下载和安装
+### Nacos 的下载和安装
 
 首先去 nacos 的 github 地址下载 release 安装包。[下载地址](https://github.com/alibaba/nacos/releases)
 
@@ -1925,7 +1925,7 @@ server {
 
 nacos 的默认服务端口是 **8848** ，启动完成之后通过浏览器访问 nacos：http://127.0.0.1:8848/nacos 。
 
-## docker 概念
+### docker 概念
 
 > 1、Docker 是一个开源的应用容器引擎
 > 2、诞生于 2013 年初，基于 Go 语言实现， dotCloud 公司出品（后改名为Docker Inc）
@@ -1936,23 +1936,23 @@ nacos 的默认服务端口是 **8848** ，启动完成之后通过浏览器访�
 
 
 
-### 安装docker
+#### 安装docker
 
 Docker可以运行在MAC、Windows、CentOS、UBUNTU等操作系统上，本课程基于CentOS 7 安装Docker。
 官网：https://www.docker.com
 
 ~~~shell
-# yum 包更新到最新
+## yum 包更新到最新
 yum update -y    
-# 安装需要的软件包
+## 安装需要的软件包
 yum install -y yum-utils device-mapper-persistent-data lvm2
-# 设置yum源
+## 设置yum源
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-# 华为的镜像服务器 可提高下载速度
+## 华为的镜像服务器 可提高下载速度
 sudo sed -i 's+download.docker.com+repo.huaweicloud.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
-# 安装docker
+## 安装docker
 yum install -y docker-ce   
-# 查看docker版本，验证是否验证成功
+## 查看docker版本，验证是否验证成功
 docker -v        
 ~~~
 
@@ -1961,13 +1961,13 @@ docker -v
 
 
 
-### docker相关概念
+#### docker相关概念
 
 * 镜像（Image）：Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu16.04 最小系统的 root 文件系统。
 * 容器（Container）：镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和对象一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。
 * 仓库（Repository）：仓库可看成一个代码控制中心，用来保存镜像。
 
-### 配置 Docker 镜像加速器
+#### 配置 Docker 镜像加速器
 
 默认情况下，将来从docker hub（https://hub.docker.com/）上下载docker镜像，太慢。一般都会配置镜像加速器：
 
@@ -1995,13 +1995,13 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ~~~
 
-# Docker 网络模式
+## Docker 网络模式
 
 > 在创建容器时可设置其网络模式: docker run -id -p 3307 :3306 --name=c_ mysql -e --net=host MYSQL_ ROOT_ PASSWORD=root mysql:5.6
 
 四类网络模式:  https://segmentfault.com/a/1190000040335988
 
-## bridge 模式 - 桥接
+### bridge 模式 - 桥接
 
 > 当Docker进程启动时，会在主机上创建一个名为docker0的虚拟网桥，此主机上启动的Docker容器会连接到这个虚拟网桥上。虚拟网桥的工作方式和物理交换机类似，这样主机上的所有容器就通过交换机连在了一个二层网络中。
 
@@ -2009,7 +2009,7 @@ sudo systemctl restart docker
 
 bridge模式是docker的默认网络模式，不写--net参数，就是bridge模式。使用docker run -p时，docker实际是在iptables做了DNAT规则，实现端口转发功能。可以使用iptables -t nat -vnL查看。
 
-## host 模式 - 仅主机模式
+### host 模式 - 仅主机模式
 
 如果启动容器的时候使用host模式，那么这个容器将不会获得一个独立的Network Namespace，而是和宿主机共用一个Network Namespace。容器将不会虚拟出自己的网卡，配置自己的IP等，而是使用宿主机的IP和端口。但是，容器的其他方面，如文件系统、进程列表等还是和宿主机隔离的
 
@@ -2017,13 +2017,13 @@ bridge模式是docker的默认网络模式，不写--net参数，就是bridge模
 
 
 
-## container 模式
+### container 模式
 
 这个模式指定新创建的容器和已经存在的一个容器共享一个 Network Namespace，而不是和宿主机共享。新创建的容器不会创建自己的网卡，配置自己的 IP，而是和一个指定的容器共享 IP、端口范围等。同样，两个容器除了网络方面，其他的如文件系统、进程列表等还是隔离的。两个容器的进程可以通过 lo 网卡设备通信。
 
 
 
-### none模式
+#### none模式
 
 使用none模式，Docker容器拥有自己的Network Namespace，但是，并不为Docker容器进行任何网络配置。也就是说，这个Docker容器没有网卡、IP、路由等信息。需要我们自己为Docker容器添加网卡、配置IP等。
 
@@ -2031,9 +2031,9 @@ bridge模式是docker的默认网络模式，不写--net参数，就是bridge模
 
 
 
-# Docker 命令
+## Docker 命令
 
-## 进程相关命令
+### 进程相关命令
 
 ~~~shell
 systemctl start docker    #启动docker服务
@@ -2045,13 +2045,13 @@ systemctl enable docker   #开机启动docker服务
 
 
 
-## 镜像相关命令
+### 镜像相关命令
 
 1、查看镜像: 查看本地所有的镜像
 
 ~~~shell
 [root@localhost ~]#docker images      
-[root@localhost ~]#docker images –q # 查看所有镜像的id
+[root@localhost ~]#docker images –q ## 查看所有镜像的id
 ~~~
 
 2、搜索镜像:从网络中查找需要的镜像
@@ -2066,17 +2066,17 @@ docker imagesxxxxxxxxxx docker imagesdocker search 镜像名称[root@localhost 
 docker pull 镜像名称:版本号
 [root@localhost ~]#docker pull redis:5.0 
 [root@localhost ~]#docker pull centos:7 
-[root@localhost ~]# docker pull mysql:5.6  |  docker pull mysql:8.0.25 
+[root@localhost ~]## docker pull mysql:5.6  |  docker pull mysql:8.0.25 
 [root@localhost ~]#docker pull tomcat:8 弃用
 				   docker pull openjdk:8
 [root@localhost ~]#docker pull nginx
 
 docker pull java:8
-# minio 文件对象存储 类似阿里云oss
+## minio 文件对象存储 类似阿里云oss
 docker pull minio/minio 
-# 安装消息队列
+## 安装消息队列
 docker pull rabbitmq:management
-# 拉取 wordpress 主题网站镜像
+## 拉取 wordpress 主题网站镜像
 docker pull wordpress 
 ~~~
 
@@ -2091,13 +2091,13 @@ docker pull wordpress
 
 
 
-## 容器相关命令
+### 容器相关命令
 
 1、查看容器
 
 ~~~powershell
-[root@localhost ~]#docker ps       # 查看正在运行的容器
-[root@localhost ~]#docker ps -a    # 查看所有容器 （包括没有运行的容器）
+[root@localhost ~]#docker ps       ## 查看正在运行的容器
+[root@localhost ~]#docker ps -a    ## 查看所有容器 （包括没有运行的容器）
 ~~~
 
 2、创建并启动容器
@@ -2190,7 +2190,7 @@ apt-get  -y install net-tools  | yum .....
 
 
 
-### 配置数据卷
+#### 配置数据卷
 
 语法：docker run ... –v 宿主机目录(文件):容器内目录(文件) ... 
 
@@ -2236,7 +2236,7 @@ apt-get  -y install net-tools  | yum .....
 > [root@localhost ~]#docker inspect c2 
 > 发现c1 c2的宿主机目录和c3相同
 
-### 数据卷小结
+#### 数据卷小结
 
 1、数据卷概念：宿主机的一个目录或文件
 2、数据卷作用：容器数据持久化、客户端和容器数据交换、容器间数据交换
@@ -2250,15 +2250,15 @@ apt-get  -y install net-tools  | yum .....
 
 
 
-# Docker 镜像制作
+## Docker 镜像制作
 
-## Docker 镜像原理
+### Docker 镜像原理
 
 > 本质是一个分层文件系统,由一层一层的文件系统叠加而成，最底端是 bootfs，并使用宿主机的bootfs ，第二层是 root文件系统rootfs，称为base image，然后再往上可以叠加其他的镜像文件，这种层级的文件系统被称之为UnionFS，统一文件系统（Union File System）技术能够将不同的层整合成一个文件系统，为这些层提供了一个统一的视角，这样就隐藏了多层的存在，在用户的角度看来，只存在一个文件系统
 >
 > 一个镜像可以放在另一个镜像的上面。位于下面的镜像称为父镜像，最底部的镜像成为基础镜像，当从一个镜像启动容器时，Docker会在最顶层加载一个读写文件系统作为容器
 
-## 普通方式
+### 普通方式
 
 > 有些容器镜像 会排除某些文件 如: Mysql ...    (具体见)
 
@@ -2267,13 +2267,13 @@ apt-get  -y install net-tools  | yum .....
 1、首先创建一个tomcat容器
 
 ~~~powershell
-[root@localhost tomcat]# docker run -id --name=tomcat1 -p 8080:8080 tomcat:8
+[root@localhost tomcat]## docker run -id --name=tomcat1 -p 8080:8080 tomcat:8
 ~~~
 
 2、把宿主机的某个war包拷贝到容器的某个目录里面，这样将来做镜像时，war包会加载到镜像里
 
 ~~~powershell
-[root@localhost tomcat]# docker cp /root/test.war  #6598a89db5f6:/root   
+[root@localhost tomcat]## docker cp /root/test.war  #6598a89db5f6:/root   
 ~~~
 
 >  注意：不能将内容拷贝到tomcat容器的webapp目录和var目录里，如果放到里面，做成镜像时，该目录下的内容不会载入镜像里面
@@ -2281,31 +2281,31 @@ apt-get  -y install net-tools  | yum .....
 3、把tomcat容器做成镜像
 
 ~~~powershell
-[root@localhost tomcat]# docker commit 6598a89db5f6 woniu_tomcat:1.0
-[root@localhost tomcat]# docker images   #可以查看到woniu_tomcat:1.0镜像
+[root@localhost tomcat]## docker commit 6598a89db5f6 woniu_tomcat:1.0
+[root@localhost tomcat]## docker images   #可以查看到woniu_tomcat:1.0镜像
 ~~~
 
 4、把镜像做成压缩包 放到宿主机的某个位置
 
 ~~~powershell
-[root@localhost ~]# docker save -o woniu_tomcat.tar woniu_tomcat:1.0     #-o:output 压缩文件保存到/root目录下
+[root@localhost ~]## docker save -o woniu_tomcat.tar woniu_tomcat:1.0     #-o:output 压缩文件保存到/root目录下
 ~~~
 
 5、把压缩文件载入镜像（第三方载入该压缩包）
 
 ~~~powershell
-[root@localhost ~]# docker load -i woniu_tomcat.tar  #镜像加载 -i  （input）
-[root@localhost ~]# docker images
+[root@localhost ~]## docker load -i woniu_tomcat.tar  #镜像加载 -i  （input）
+[root@localhost ~]## docker images
 ~~~
 
 6、用woniu_tomcat:1.0镜像做容器
 
 ~~~powershell
-[root@localhost ~]# docker run -id --name=tomcat2 -p:8081:8080 woniu_tomcat:1.0
-[root@localhost ~]# docker exec -it tomcat2 bash  #进入容器，进入/root 可以看到test.war存在
+[root@localhost ~]## docker run -id --name=tomcat2 -p:8081:8080 woniu_tomcat:1.0
+[root@localhost ~]## docker exec -it tomcat2 bash  #进入容器，进入/root 可以看到test.war存在
 ~~~
 
-## dockerfile方式
+### dockerfile方式
 
 > 制作docker镜像的一个文本文件,文件包含了一条条的指令，每一条指令构建一层，基于基础镜像，最终构建出一个新的镜像，
 
@@ -2356,38 +2356,38 @@ CMD java -jar /app.jar
 特别注意: 最后有一个点  '   .   '
 
 ~~~powershell
-[root@localhost docker-file]# docker build -f  ./springboot-dockerfile -t  springboot-app:1.0 .
-[root@localhost docker-file]# docker images
+[root@localhost docker-file]## docker build -f  ./springboot-dockerfile -t  springboot-app:1.0 .
+[root@localhost docker-file]## docker images
 ~~~
 
 步骤3：通过springboot-app:1.0镜像创建容器
 
 ~~~powershell
-[root@localhost docker-file]# docker run -it --name=app -p 8080:8080 springboot-app:1.0
+[root@localhost docker-file]## docker run -it --name=app -p 8080:8080 springboot-app:1.0
 [root@localhost docker-file]#docker logs --tail 100 -f  app    #查看app容器的日志  末尾100行
 ~~~
 
-# Compose 服务编排
+## Compose 服务编排
 
 > Docker Compose是“容器编排技术”。它由Python 语言编写，是Docker官方的一个开源项目，简单来讲，就是编排好一个系统中的众多容器的启动顺序，先启动A，再启动B，在启动C。
 
-## 安装 Compose
+### 安装 Compose
 
 Compose目前已经完全支持Linux、Mac OS和Windows，在我们安装Compose之前，需要先安装Docker。下面我 们以编译好的二进制包方式安装在Linux系统中。
 
 ~~~shell
 [root@localhost ~]#curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-[root@localhost ~]#chmod +x /usr/local/bin/docker-compose    # 设置文件可执行权限
-[root@localhost ~]#docker-compose -version					 # 查看版本信息 
+[root@localhost ~]#chmod +x /usr/local/bin/docker-compose    ## 设置文件可执行权限
+[root@localhost ~]#docker-compose -version					 ## 查看版本信息 
 ~~~
 
-## 卸载 Compose
+### 卸载 Compose
 
 ~~~powershell
-[root@localhost ~]#rm /usr/local/bin/docker-compose   # 二进制包方式安装的，删除二进制文件即可
+[root@localhost ~]#rm /usr/local/bin/docker-compose   ## 二进制包方式安装的，删除二进制文件即可
 ~~~
 
-## Comnpose的使用步骤
+### Comnpose的使用步骤
 
 1、利用 Dockerfile 定义运行环境镜像
 2、使用 docker-compose.yml 文件定义组成应用的各服务的运行顺序
@@ -2403,15 +2403,15 @@ Compose目前已经完全支持Linux、Mac OS和Windows，在我们安装Compose
 
 
 
-# ------------   分隔    ------------
+## ------------   分隔    ------------
 
 
 
 
 
-# Linux 常用命令
+## Linux 常用命令
 
-## 文件类 功能类 命令
+### 文件类 功能类 命令
 
 ```java
 // tar 解压缩 命令
@@ -2426,7 +2426,7 @@ systemctl stop firewalld.service
 chmod +x 文件
 ```
 
-## redis  命令
+### redis  命令
 
 ```java
 // 启动redis服务器
@@ -2436,20 +2436,20 @@ cd /usr/local/bin  // 进入bin目录执行
 redis-cli -h 192.168.174.128 -p 6379
 ```
 
-## nginx  命令
+### nginx  命令
 
 ```java
 // 进入sbin目录 启动nginx
-[root@localhost sbin]# ./nginx 
+[root@localhost sbin]## ./nginx 
 // 关闭nginx：
-[root@localhost sbin]# ./nginx -s stop
+[root@localhost sbin]## ./nginx -s stop
 // 推荐使用：
-[root@localhost sbin]# ./nginx -s quit
+[root@localhost sbin]## ./nginx -s quit
 // 重启nginx： 1、先关闭后启动。 2、刷新配置文件：
-[root@localhost sbin]# ./nginx -s reload
+[root@localhost sbin]## ./nginx -s reload
 ```
 
-## 运行jar包 命令
+### 运行jar包 命令
 
 ```java
 // 特点：当前ssh窗口被锁定，可按CTRL + C打断程序运行，或直接关闭窗口，程序退出
@@ -2466,7 +2466,7 @@ java -jar XXX.jar --server.port=8081 > demo.out &
 nohup java -jar XXX.jar --server.port=8081 > demo.out &
 ```
 
-## Docker 命令
+### Docker 命令
 
 > Docker
 
@@ -2491,8 +2491,8 @@ docker rmi 镜像id
 --restart=always -> 表示docker容器开机自启
 
 // 查看容器
-docker ps       # 查看正在运行的容器
-docker ps -a    # 查看所有容器 （包括没有运行的容器）
+docker ps       ## 查看正在运行的容器
+docker ps -a    ## 查看所有容器 （包括没有运行的容器）
 // 创建容器 但不进入容器 后台运行 可使用命令进入 且退出不会关闭容器  
 // --restart=always -> 表示docker容器开机自启
 docker run -id --name=容器名称 镜像名称:版本
@@ -2523,9 +2523,9 @@ apt-get install vim  // 容器安装vim
 
 
 
-# 项目 部署
+## 项目 部署
 
-## war包部署
+### war包部署
 
 > 即 使用tomcat插件运行的项目
 
@@ -2551,7 +2551,7 @@ apt-get install vim  // 容器安装vim
 >
 > 在访问时 必须带上war名 否则无法正常无法
 
-## jar包部署
+### jar包部署
 
 > 即 使用启动类 的项目
 
@@ -2563,7 +2563,7 @@ apt-get install vim  // 容器安装vim
 
 
 
-## ngins 进行 项目部署
+### ngins 进行 项目部署
 
 > Nginx是一款高性能的http 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。
 >
@@ -2577,14 +2577,14 @@ apt-get install vim  // 容器安装vim
 
 ```java
 // 进入sbin目录
-[root@localhost sbin]# ./nginx 
+[root@localhost sbin]## ./nginx 
 // 关闭nginx：
-[root@localhost sbin]# ./nginx -s stop
+[root@localhost sbin]## ./nginx -s stop
 // 推荐使用：
-[root@localhost sbin]# ./nginx -s quit
+[root@localhost sbin]## ./nginx -s quit
 // 重启nginx：
 // 1、先关闭后启动。 2、刷新配置文件：
-[root@localhost sbin]# ./nginx -s reload
+[root@localhost sbin]## ./nginx -s reload
 ```
 
 **nginx配置文件**
@@ -2592,7 +2592,7 @@ apt-get install vim  // 容器安装vim
 打开Nginx的配置文件：
 
 ~~~shell
-[root@localhost nginx]# vim  conf/nginx.conf
+[root@localhost nginx]## vim  conf/nginx.conf
 ~~~
 
 - 通过端口区分不同虚拟机
@@ -2601,15 +2601,15 @@ apt-get install vim  // 容器安装vim
 
 ~~~shell
 server {
-	# 监听端口
+	## 监听端口
     listen       80;
-    # 监听 ip
+    ## 监听 ip
     server_name  localhost;
-    # 监听到后执行
+    ## 监听到后执行
     location / {
-    # 相对路径的文件夹
+    ## 相对路径的文件夹
     root   html;
-    # 文件夹内的index.html页面
+    ## 文件夹内的index.html页面
     index  index.html index.htm;
     }
 }
@@ -2637,7 +2637,7 @@ server {
 
 - 通过域名区分虚拟主机
 
-#### Nginx的配置
+##### Nginx的配置
 
 ~~~powershell
 server {
@@ -2652,9 +2652,9 @@ server {
 
 
 
-# Linux 安装
+## Linux 安装
 
-## nginx 安装
+### nginx 安装
 
 - 解压   tar  -zxvf nginx-1.8.0.tar.gz    解压后可改名
 
@@ -2699,13 +2699,13 @@ make &&  make install
 
   make install      在源码包的根目录下执行make install命令即可
 
-- ##### 源码包的卸载
+- ###### 源码包的卸载
 
   直接删除这个安装目录即可
 
 
 
-## 源码包
+### 源码包
 
 > 定义：就是程序员开发出来的包，没有编译的包。
 >
@@ -2778,19 +2778,19 @@ make &&  make install
 
   make install      在源码包的根目录下执行make install命令即可
 
-- ##### 源码包的卸载
+- ###### 源码包的卸载
 
   直接删除这个安装目录即可
 
 
 
-## 脚本包
+### 脚本包
 
 > 它其实是源码包中的一种，类似于window的软件安装。我们只需要找到这个脚本包的bin目录，去执行一个脚本文件。一般来说叫  startup.sh  例如：tomcat
 
 
 
-## rpm包（二进制包)
+### rpm包（二进制包)
 
 > 二进制包也叫rpm(redhat  package  manager), 包名一般来说以.rpm结尾
 
@@ -2835,7 +2835,7 @@ rpm -Uvh  包全名
 
 
 
-## yum安装
+### yum安装
 
 > 当我们用yum去安装一个软件或者是一个命令，那么在我们的linux系统中有一个yum源文件，这个文件就是保存了yum的中央仓库地址，这个文件在/etc/yum.repos.d/目录下，你看到了很多文件，其中有一个yum中央仓库文件，叫CentOS-Base.repo，当然这里还有其他的文件，可以用来配置本地yum源
 
@@ -2890,11 +2890,11 @@ yum  -y remove 包名
 
 
 
-## 工具 安装
+### 工具 安装
 
 
 
-### jdk 的安装 
+#### jdk 的安装 
 
 1.将压缩包放入 root 文件夹内   
 
@@ -2918,7 +2918,7 @@ yum  -y remove 包名
 
 
 
-### tomcan8 的安装
+#### tomcan8 的安装
 
 前提需安装 jdk
 
@@ -2936,7 +2936,7 @@ yum  -y remove 包名
 
 
 
-### Mysql 版本5.6安装
+#### Mysql 版本5.6安装
 
 > 如遇出错: 备用 [linux安装 mysql >>http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm - 御本美琴初号机 - 博客园 (cnblogs.com)](https://www.cnblogs.com/lenny-z/p/15666149.html)
 
@@ -2985,9 +2985,9 @@ yum  -y remove 包名
 
 
 
-# Docker 应用部署
+## Docker 应用部署
 
-## 1.mysql  部署
+### 1.mysql  部署
 
 1、搜索mysql镜像
 
@@ -3053,7 +3053,7 @@ docker run -id -p 3307:3306 --name=Apai_mysql --restart=always -e MYSQL_ROOT_PAS
 // 进入容器
 [root@localhost ~]#docker exec -it Apai_mysql /bin/bash
 // 在容器内 登录数据库
-root@053f48be0dc7:~# mysql -uroot -proot
+root@053f48be0dc7:~## mysql -uroot -proot
 // 设置远程客户端（如navicat）连接的密码，不是mysql服务器的登录密码
 mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'lj102528@';
 ~~~
@@ -3070,7 +3070,7 @@ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'lj102528@
 >
 > 然后重启：service mysql start 
 
-## 2.Tomcat  部署
+### 2.Tomcat  部署
 
 1、搜索tomcat镜像
 
@@ -3087,9 +3087,9 @@ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'lj102528@
 3、创建容器，设置端口映射、目录映射
 
 ```shell
-# 在/root目录下创建tomcat目录用于存储tomcat数据信息
-[root@localhost ~]# mkdir tomcat
-[root@localhost ~]# cd tomcat
+## 在/root目录下创建tomcat目录用于存储tomcat数据信息
+[root@localhost ~]## mkdir tomcat
+[root@localhost ~]## cd tomcat
 [root@localhost tomcat]#docker run -id --name=c_tomcat -p 8080:8080 -v $PWD:/usr/local/tomcat/webapps tomcat:8
 ```
 
@@ -3102,16 +3102,16 @@ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'lj102528@
 
 ~~~java
 // 在宿主机目录/root/tomcat下创建test目录。并在test目录下创建index.html。那么test目录会同步到c_tomcat容器的 /usr/local/tomcat/webapps里面
-[root@localhost tomcat]# mkdir test
-[root@localhost tomcat]# cd test/
-[root@localhost test]# vim index.html #在index.html里面编写 <h1>hello tomcat</h1>
+[root@localhost tomcat]## mkdir test
+[root@localhost tomcat]## cd test/
+[root@localhost test]## vim index.html #在index.html里面编写 <h1>hello tomcat</h1>
 ~~~
 
 浏览器测试访问：
 
 http://192.168.128.130:8080/test/index.html
 
-## 3.Nginx  部署
+### 3.Nginx  部署
 
 1、搜索nginx镜像
 
@@ -3192,7 +3192,7 @@ docker run -id --name=c_nginx -p 81:80 -p 8004:8004 nginx
 
 
 
-## 4.Redis  部署
+### 4.Redis  部署
 
 1、搜索redis镜像
 
@@ -3227,7 +3227,7 @@ docker run -id --name=Apai_redis -p 6380:6379 --restart=always redis:5.0 /bin/ba
 
 
 
-## 5.RabbitMq 消息队列 
+### 5.RabbitMq 消息队列 
 
 **注意:**
 
@@ -3258,7 +3258,7 @@ chmod -R 777 /root/local/rabbitmq
 ```shell
 docker run --privileged=true -d -p 5672:5672 -p 15672:15672 --name rabbitmq -v /root/local/rabbitmq/data:/var/lib/rabbitmq -v /root/local/rabbitmq/conf:/etc/rabbitmq -v /root/local/rabbitmq/log:/var/log/rabbitmq --restart=always --hostname=rabbitmqhost -e RABBITMQ_DEFAULT_VHOST=my_vhost -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq
     
-# 解析    
+## 解析    
 端口映射 -p 5672:5672 -p 15672:15672
 容器名称 --name rabbitmq 
 设置用户密码及镜像名 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin rabbitmq
@@ -3289,7 +3289,7 @@ rabbitmq-plugins enable rabbitmq_management
 
 
 
-## 6.Nacos 注册中心
+### 6.Nacos 注册中心
 
 https://blog.csdn.net/u013305864/article/details/125611099
 
@@ -3320,9 +3320,9 @@ docker search nacos
 #拉取镜像
 docker pull nacos/nacos-server
 
-# 运行nacos  挂载  --restart=always -> 表示docker容器开机自启
+## 运行nacos  挂载  --restart=always -> 表示docker容器开机自启
 docker  run --name nacos -d -p 8848:8848 --privileged=true --restart=always -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -e PREFER_HOST_MODE=hostname -v /data/nacos/logs:/home/nacos/logs -v /data/nacos/conf:/home/nacos/conf nacos/nacos-server
-# 不挂载 --restart=always -> 表示docker容器开机自启
+## 不挂载 --restart=always -> 表示docker容器开机自启
 docker run --name Apai_nacos -d -p 8848:8848 --privileged=true --restart=always -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -e PREFER_HOST_MODE=hostname nacos/nacos-server
 
 #--restart=always 开机启动
@@ -3365,7 +3365,7 @@ docker run --name Apai_nacos -d -p 8848:8848 --privileged=true --restart=always 
 
 
 
-## 7.Minio 对象存储
+### 7.Minio 对象存储
 
 **拉取 minio 镜像**
 

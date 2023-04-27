@@ -5,13 +5,13 @@ date: 2023/04/27
 
 
 
-# HTNL - 静态网页 
+## HTNL - 静态网页 
 
 
 
-# HTML - 标签
+## HTML - 标签
 
-## 表单标签
+### 表单标签
 
 ```html
 // 表单
@@ -23,7 +23,7 @@ date: 2023/04/27
 <button id="register" type="button">普通按钮</button>
 ```
 
-## 内嵌网页标签
+### 内嵌网页标签
 
 ```html
 <iframe src="地址路径"></iframe>
@@ -31,7 +31,7 @@ date: 2023/04/27
 	name="myframe" target="myframe" -- 当超链接的target的值与iframe的name一致,点击超链接可切换内容网页
 ```
 
-## 文件点击选中表单框标签
+### 文件点击选中表单框标签
 
 ```html
 // for="name"  id="name" 一致
@@ -40,7 +40,7 @@ date: 2023/04/27
 <input type="text" name="dname" id="name" placeholder="请输入商品名称" >
 ```
 
-##  超链接标签
+###  超链接标签
 
 ```html
 // 属性
@@ -51,9 +51,9 @@ date: 2023/04/27
 
 
 
-# Css - 样式
+## Css - 样式
 
-## Css 引入
+### Css 引入
 
 ```html
 样式:
@@ -69,19 +69,19 @@ date: 2023/04/27
 	// 注意: 样式优先级 行内>内部>外部 最高优先级：!important 就近原则
 ```
 
-## 表格:
+### 表格:
 
 ```css
 border-collapse: collapse;  --->  表格边框线合并
 ```
 
-## 背景:
+### 背景:
 
 ```css
 background-color: transparent;  --->  背景色透明
 ```
 
-## 伪元素:
+### 伪元素:
 
 ```css
 /*::after内容创建一个伪元素，作为通常指定元素的最后一个子元素。会配合content属性来为该元素添加装饰。这个虚拟元素默认是行内元素*/
@@ -101,9 +101,9 @@ input:focus{
 
 
 
-# JavaScript
+## JavaScript
 
-## JavaScript 引入
+### JavaScript 引入
 
 ```html
 写法
@@ -117,9 +117,9 @@ input:focus{
 
 
 
-## 常用 JavaScript 属性及方法
+### 常用 JavaScript 属性及方法
 
-###  js:  或 且 非
+####  js:  或 且 非
 
 * 或 -->  ||
 * 且 -->  &&
@@ -127,7 +127,7 @@ input:focus{
 
 
 
-### Js 迭代遍历方式
+#### Js 迭代遍历方式
 
 > for 遍历 没有赋值的和下标不为数值的输出为undefined
 > in   遍历 获取所有的下标包括字符串下标 但没赋值的下标无法获取输出(undefined)
@@ -137,7 +137,7 @@ input:focus{
 
 
 
-### 获取标签元素
+#### 获取标签元素
 
 ```js
 // 根据类名 - 获取的为数组 必须加上下标 获取时可以加 调用时也可以加
@@ -150,7 +150,7 @@ document.querySelectorAll('选择器');
 
 
 
-### 操作标签的类名
+#### 操作标签的类名
 
 ```js
 // 添加新的类名，如已经存在，取消添加
@@ -174,7 +174,7 @@ classList.replace( oldClassName，newClassName )；
 
 
 
-### 延迟执行方法
+#### 延迟执行方法
 
 ```js
 setTimeout{
@@ -190,11 +190,11 @@ setTimeout{
 
 
 
-## Js 数据类
+### Js 数据类
 
 
 
-### 基本数据类型
+#### 基本数据类型
 
 ```js
 Number
@@ -213,7 +213,7 @@ Undefined
 
 
 
-## Array 数组 
+### Array 数组 
 
 Array对象 -- 用于在单个的变量中存储多个值
 
@@ -243,9 +243,9 @@ let arr2 = new Array( 长度 );
 
 
 
-### Js 对象
+#### Js 对象
 
-#### 字面量对象
+##### 字面量对象
 
 ```js
 // 数组
@@ -258,7 +258,7 @@ let stu = {
 };
 ```
 
-#### JSON  对象
+##### JSON  对象
 
 >  json必须是符合以下 
 >  •	1.键一定要用双引号，值如果是字符串也要用双引号包括
@@ -288,9 +288,9 @@ let stuArr = [
 
 
 
-## JavaScript HTML 事件
+### JavaScript HTML 事件
 
-### 鼠标事件:
+#### 鼠标事件:
 
 ```text
 常用的鼠标事件:
@@ -302,7 +302,7 @@ let stuArr = [
 	onload 文档加载完毕在执行 --> window.onload = function () {  }
 ```
 
-### 表单事件:
+#### 表单事件:
 
 ```text
 表单事件:
@@ -320,13 +320,13 @@ let stuArr = [
 		下拉菜单选项发生改变
 ```
 
-### 键盘事件:
+#### 键盘事件:
 
 ```
 
 ```
 
-## JavaScript 正则表达式
+### JavaScript 正则表达式
 
 ```js
 直接量语法: 
@@ -345,9 +345,9 @@ let stuArr = [
 
 
 
-## JavaScript 函数
+### JavaScript 函数
 
-### 传统方式
+#### 传统方式
 
 ```js
 1.  元素名 . 触发 = function() {
@@ -360,7 +360,7 @@ let stuArr = [
     }
 ```
 
-### add监听模式
+#### add监听模式
 
 ```js
 1.  window.addEventListener( ' 触发 ',函数名 ) // 注意 触发事件去掉 on
@@ -376,9 +376,9 @@ let stuArr = [
 
 
 
-## JavaScript  DOM 元素节点
+### JavaScript  DOM 元素节点
 
-### 基础:
+#### 基础:
 
 ```
 nodeType:  查询节点类型 文本节点包含了文本 换行 空格
@@ -394,7 +394,7 @@ nodeType:  查询节点类型 文本节点包含了文本 换行 空格
 	         注意: 只包含元素节点 未找到则返回null 存在兼容性问题
 ```
 
-### 节点语法:
+#### 节点语法:
 
 ```js
 // 创建节点
@@ -414,7 +414,7 @@ nodeType:  查询节点类型 文本节点包含了文本 换行 空格
 		括号为 true 深拷贝 - 复制标签和内容
 ```
 
-### 动态生成标签案例:
+#### 动态生成标签案例:
 
 ```html
 <body>
@@ -478,7 +478,7 @@ nodeType:  查询节点类型 文本节点包含了文本 换行 空格
  </script>
 ```
 
-## JavaScript Location 对象跳转
+### JavaScript Location 对象跳转
 
 JavaScript Location 对象: 页面的跳转
 
@@ -498,9 +498,9 @@ Location 对象
 
 
 
-# 前端 补充
+## 前端 补充
 
-### 前端页面的请求方式
+#### 前端页面的请求方式
 
 ```html
 // 提交按钮请求 -- 将会提交表单 form 使用的数据可供调用
@@ -542,9 +542,9 @@ Location 对象
 
 
 
-# 功能模板
+## 功能模板
 
-## 多选 联动 
+### 多选 联动 
 
 ```js
  // 使用点击事件 通过class类选择获取全选按钮 和 其他按钮
@@ -577,7 +577,7 @@ Location 对象
         }
 ```
 
-## 表单验证
+### 表单验证
 
 ```js
 // 获取 表单内容进行 if条件判断 class="inputvalue"
@@ -608,7 +608,7 @@ function validdateform() {
 }
 ```
 
-### 表单验证 - AJAX
+#### 表单验证 - AJAX
 
 ```js
 // 在使用表单使用 失去焦点 验证时 如果里面使用了AJAX则其内部无法返回 布尔值 可在外部定义变量 在其内部赋值
@@ -666,7 +666,7 @@ function validdateform() {
 
 
 
-## 动态刷新既时时间
+### 动态刷新既时时间
 
 ```js
 // 获取显示时间的标签 class="time"
@@ -691,7 +691,7 @@ window.onload = dtime;
 setInterval(dtime, 1000);
 ```
 
-## 倒计时
+### 倒计时
 
 ```js
 // 倒计时 获取放入时间的容器标签  将倒计时的日期赋值 设置启动就执行 每一秒刷新
@@ -714,7 +714,7 @@ setInterval(dtime, 1000);
         setInterval(countdown, 1000);
 ```
 
-## 文件上传验证
+### 文件上传验证
 
 ```js
 // 可进行多组表单验证 最后进行一起判断 true则正常提交 否则有一组不符合则不能提交
@@ -744,7 +744,7 @@ function checkForm() {
 
 ```
 
-## JS 获取选中 多选框数据
+### JS 获取选中 多选框数据
 
 ```java
 // --------- 前台js ---------
@@ -787,7 +787,7 @@ function checkForm() {
 // --------- 后台 spring 使用数组接收即可 注意name ---------
 ```
 
-## 超链接 函数发送 AJAX 请求
+### 超链接 函数发送 AJAX 请求
 
 ```jsp
 <%--  超链接触发  --%>
@@ -816,11 +816,11 @@ function checkForm() {
 
 
 
-# web - 前端库工具
+## web - 前端库工具
 
-## 组件
+### 组件
 
-### JavaScript  Bootstrap
+#### JavaScript  Bootstrap
 
 Bootstrap: 需要加载 css 和 js 文件 另外加上 jquery-3.4.1.js
 
@@ -845,14 +845,14 @@ Bootstrap: 需要加载 css 和 js 文件 另外加上 jquery-3.4.1.js
 </html>
 ```
 
-### jquery-3.4.1.js
+#### jquery-3.4.1.js
 
 ```html
 // 放入js包下
 <script src="js/jquery-3.4.1.js"></script>
 ```
 
-### layer
+#### layer
 
 layer: 前端框架    网址: https://layui.itze.cn/index.html
 
@@ -864,7 +864,7 @@ layer: 前端框架    网址: https://layui.itze.cn/index.html
 <script src="layui/layui.js">
 ```
 
-### axios.js库
+#### axios.js库
 
 step1: 添加axios.js库文件 并加载对应的 js 文件
 
@@ -905,7 +905,7 @@ writer.println(result);
 writer.flush();
 ```
 
-### moment.js
+#### moment.js
 
 > 时间格式的转换工具
 
@@ -913,7 +913,7 @@ writer.flush();
 
 
 
-## 3D 页面展示
+### 3D 页面展示
 
 [Vanta.js - 您网站的动画 3D 背景](https://www.vantajs.com/#(alignment:20,backgroundAlpha:1,backgroundColor:465199,birdSize:1,cohesion:20,color1:16711680,color2:53759,colorMode:variance,gyroControls:!f,minHeight:200,minWidth:200,mouseControls:!t,quantity:3,scale:1,scaleMobile:1,separation:20,speedLimit:5,touchControls:!t,wingSpan:30))
 

@@ -3,9 +3,9 @@ title: MyBatisPlus_框架
 date: 2023/04/27
 ---
 
-# ----------  MyBatisPlus  ----------
+## ----------  MyBatisPlus  ----------
 
-# MyBatisPlus 防坑指南
+## MyBatisPlus 防坑指南
 
 ```java
 > 注解
@@ -23,7 +23,7 @@ date: 2023/04/27
 
 
 
-# MyBatisPlus注解
+## MyBatisPlus注解
 
 ```java
 // 表名注解   表名注解指定当前实体类对应的表名，比如下面 UserInfo 实体类对应表名为 user
@@ -45,13 +45,13 @@ date: 2023/04/27
 
 
 
-# Id 的生成策略
+## Id 的生成策略
 
-### 详解
+#### 详解
 
 ![image-20220728221239990](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220728221239990.png)
 
-### 局部配置
+#### 局部配置
 
 > id的生成策略 能够根据内置的规则生成id 需要把数据库的id自动增长关闭
 
@@ -60,16 +60,16 @@ date: 2023/04/27
 private Long id;
 ```
 
-### 全局配置
+#### 全局配置
 
 配置 yml 配置文件里 所有的实体类的id都将使用该 ID的生成策略
 
 ```yml
 mybatis-plus:
-    # 关闭 mybatis-plus 启动日志
+    ## 关闭 mybatis-plus 启动日志
     global-config:
         banner: false
-        # id的生成策略
+        ## id的生成策略
         db-config:
             id-type: auto
 ```
@@ -80,13 +80,13 @@ mybatis-plus:
 
 
 
-# MyBatisPlus 配置 表名 - 字段
+## MyBatisPlus 配置 表名 - 字段
 
-## 配置对应表名
+### 配置对应表名
 
 具体介绍: https://blog.csdn.net/Zack_tzh/article/details/107487209
 
-### 下划线 表名配置
+#### 下划线 表名配置
 
 > - [x] **resources** 包下的 application.yml 配置
 >
@@ -96,24 +96,24 @@ mybatis-plus:
 
 ```yml
 mybatis-plus:
-  # 设置 扫描 entity 实体类包
+  ## 设置 扫描 entity 实体类包
   type-aliases-package: com.apai.entity
-  # 设置 扫描 mapper.xml sql语句包 文件
+  ## 设置 扫描 mapper.xml sql语句包 文件
   mapper-locations: classpath:com/apai/mapper/*.xml
-  # 设置日志打印
+  ## 设置日志打印
   configuration:
-  	# 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
-  	# 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-  	# 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
+  	## 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
+  	## 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
+  	## 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-  # MyBatisPlus 实体类 与 数据库表名 不对应 设置实体类的前缀拼接成表名
+  ## MyBatisPlus 实体类 与 数据库表名 不对应 设置实体类的前缀拼接成表名
   global-config:
     db-config:
       table-prefix: smbms_
 ```
 
-### 大小写区分表名配置
+#### 大小写区分表名配置
 
 > MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
 >
@@ -121,24 +121,24 @@ mybatis-plus:
 
 ```yml
 mybatis-plus:
-  # 设置 扫描 entity 实体类包
+  ## 设置 扫描 entity 实体类包
   type-aliases-package: com.apai.entity
-  # 设置 扫描 mapper.xml sql语句包 文件
+  ## 设置 扫描 mapper.xml sql语句包 文件
   mapper-locations: classpath:com/apai/mapper/*.xml
-  # 设置日志打印
+  ## 设置日志打印
   configuration:
-  	# 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
-  	# 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-  	# 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
+  	## 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
+  	## 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
+  	## 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-  # MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
+  ## MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
   global-config:
     db-config:
       table-underline: false
 ```
 
-### 使用注解 **@TableName**
+#### 使用注解 **@TableName**
 
 > **使用** **@TableName** 表名注解指定当前实体类对应的表名，比如下面 **UserInfo** 实体类对应表名为 **user**：
 
@@ -152,13 +152,13 @@ public class UserInfo {
 }
 ```
 
-## 设置关联的字段名
+### 设置关联的字段名
 
-### 下划线 列名与字段
+#### 下划线 列名与字段
 
 > 同表名一样，如果数据库表里的字段名使用标准的下划线命名，并且能对应上实体类的成员名称（驼峰命名），我们就不需要特别去手动匹配。比如下面 **user_info** 表里的字段会自动跟 **UserInfo** 实体类的各个成员属性一一对应：
 
-### 列名使用驼峰 字段配置
+#### 列名使用驼峰 字段配置
 
 > 如果数据库表里的字段名并不是使用下划线命名（但能跟实体类的成员名称对应上），可以添加如下全局配置，表示数据库表字段名不使用下划线命名： 列名 userName   字段 userName
 
@@ -166,24 +166,24 @@ public class UserInfo {
 mybatis-plus.configuration.map-underscore-to-camel-case=false
 
 mybatis-plus:
-  # 设置 扫描 entity 实体类包
+  ## 设置 扫描 entity 实体类包
   type-aliases-package: com.apai.entity
-  # 设置 扫描 mapper.xml sql语句包 文件
+  ## 设置 扫描 mapper.xml sql语句包 文件
   mapper-locations: classpath:com/apai/mapper/*.xml
-  # 设置日志打印
+  ## 设置日志打印
   configuration:
-  	# 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
-  	# 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-  	# 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
+  	## 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
+  	## 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
+  	## 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-  # MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
+  ## MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
   global-config:
     db-config:
       table-underline: false
 ```
 
-### 使用注解 **@TableId **  **@TableField** 配置
+#### 使用注解 **@TableId **  **@TableField** 配置
 
 > 除了全局配置方法外，我们还可以使用 **@TableId** 注解（标注在主键上）和 **@TableField** 注解（标注在其他成员属性上）来指定对应的字段名
 
@@ -201,9 +201,9 @@ public class UserInfo {
 
 
 
-# MyBatisPlus  使用步骤
+## MyBatisPlus  使用步骤
 
-## 添加MyBatisPlus 依赖
+### 添加MyBatisPlus 依赖
 
 ```xml
 创建 springboot 项目  添加需支持的依赖 和 对应的配置
@@ -218,17 +218,17 @@ public class UserInfo {
 </dependency>
 ```
 
-## Mapper继承BaseMapper<实体类>
+### Mapper继承BaseMapper<实体类>
 
 > Mapper 继承 BaseMapper<实体类> 之后 会自动创建基本的 CUDR 可直接调用方法 实现sql语句的操作
 
 
 
-# 条件构造器
+## 条件构造器
 
 > 更多条件详见: https://baomidou.com/pages/10c804/#abstractwrapper
 
-### eq | 等于 =
+#### eq | 等于 =
 
 ```java
 eq(R column, Object val)
@@ -237,7 +237,7 @@ eq(boolean condition, R column, Object val)
 
 - 例: `eq("name", "老王")`--->`name = '老王'`
 
-### ne | 不等于 <>
+#### ne | 不等于 <>
 
 ```java
 ne(R column, Object val)
@@ -246,7 +246,7 @@ ne(boolean condition, R column, Object val)
 
 - 例: `ne("name", "老王")`--->`name <> '老王'`
 
-### gt | 大于 >
+#### gt | 大于 >
 
 ```java
 gt(R column, Object val)
@@ -255,7 +255,7 @@ gt(boolean condition, R column, Object val)
 
 - 例: `gt("age", 18)`--->`age > 18`
 
-### ge | 大于等于 >=
+#### ge | 大于等于 >=
 
 ```java
 ge(R column, Object val)
@@ -264,7 +264,7 @@ ge(boolean condition, R column, Object val)
 
 - 例: `ge("age", 18)`--->`age >= 18`
 
-### lt  | 小于 <
+#### lt  | 小于 <
 
 ```java
 lt(R column, Object val)
@@ -273,7 +273,7 @@ lt(boolean condition, R column, Object val)
 
 - 例: `lt("age", 18)`--->`age < 18`
 
-### le | 小于等于 <=
+#### le | 小于等于 <=
 
 ```java
 le(R column, Object val)
@@ -282,7 +282,7 @@ le(boolean condition, R column, Object val)
 
 - 例: `le("age", 18)`--->`age <= 18`
 
-### between | 范围之内
+#### between | 范围之内
 
 ```java
 between(R column, Object val1, Object val2)
@@ -292,7 +292,7 @@ between(boolean condition, R column, Object val1, Object val2)
 - BETWEEN 值1 AND 值2
 - 例: `between("age", 18, 30)`--->`age between 18 and 30`
 
-### notBetween | 范围之外
+#### notBetween | 范围之外
 
 ```java
 notBetween(R column, Object val1, Object val2)
@@ -302,7 +302,7 @@ notBetween(boolean condition, R column, Object val1, Object val2)
 - NOT BETWEEN 值1 AND 值2
 - 例: `notBetween("age", 18, 30)`--->`age not between 18 and 30`
 
-### like | 包含
+#### like | 包含
 
 ```java
 like(R column, Object val)
@@ -312,7 +312,7 @@ like(boolean condition, R column, Object val)
 - LIKE '%值%'
 - 例: `like("name", "王")`--->`name like '%王%'`
 
-### notLike | 不要包含
+#### notLike | 不要包含
 
 ```java
 notLike(R column, Object val)
@@ -322,7 +322,7 @@ notLike(boolean condition, R column, Object val)
 - NOT LIKE '%值%'
 - 例: `notLike("name", "王")`--->`name not like '%王%'`
 
-### likeLeft | 结尾
+#### likeLeft | 结尾
 
 ```java
 likeLeft(R column, Object val)
@@ -332,7 +332,7 @@ likeLeft(boolean condition, R column, Object val)
 - LIKE '%值'
 - 例: `likeLeft("name", "王")`--->`name like '%王'`
 
-### likeRight | 开头
+#### likeRight | 开头
 
 ```java
 likeRight(R column, Object val)
@@ -342,7 +342,7 @@ likeRight(boolean condition, R column, Object val)
 - LIKE '值%'
 - 例: `likeRight("name", "王")`--->`name like '王%'`
 
-### isNull | 值为空
+#### isNull | 值为空
 
 ```java
 isNull(R column)
@@ -352,7 +352,7 @@ isNull(boolean condition, R column)
 - 字段 IS NULL
 - 例: `isNull("name")`--->`name is null`
 
-### isNotNull | 不为空
+#### isNotNull | 不为空
 
 ```java
 isNotNull(R column)
@@ -366,11 +366,11 @@ isNotNull(boolean condition, R column)
 
 
 
-# 持久层调用 CRUD及分页
+## 持久层调用 CRUD及分页
 
 ![image-20220601225020569](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220601225020569.png)
 
-## 条件 方法 和 写入
+### 条件 方法 和 写入
 
 ```java
 // QueryWrapper 条件的构造 实体对象封装操作类（可以为 null）
@@ -392,7 +392,7 @@ lambdaQueryWrapper.like(T::get属性, "值").ge(T::get属性, "值"); // 并且
 lambdaQueryWrapper.like(T::get属性, "值").or().ge(T::get属性, "值"); // 或者 or()
 ```
 
-### 判空执行条件
+#### 判空执行条件
 
 > 即  当条件值为 null 则不写该值作为条件
 
@@ -403,7 +403,7 @@ LambdaQueryWrapper<T> lambdaQueryWrapper = new LambdaQueryWrapper<>();
 lambdaQueryWrapper.like(null != T::get属性(), T::get属性, "值");
 ```
 
-### 查询投影
+#### 查询投影
 
 > 即 相对于sql指定查询的列名 没指定的列名映射到实体类则为空
 
@@ -425,7 +425,7 @@ List<Map<String, Object>> maps = Mapper.selectMaps(queryWrapper);
 
 
 
-## Select 查询
+### Select 查询
 
 ```java
 // 根据 ID 查询
@@ -443,7 +443,7 @@ List<T> selectByMap(Map<String, Object> columnMap);
 
 
 
-## innser 增加
+### innser 增加
 
 ```java
 // 添加 | T 实体类 | 添加成功后 直接调用传入的实体类可获取自动增长的ID
@@ -452,7 +452,7 @@ int insert(T t);
 
 
 
-## delete 删除
+### delete 删除
 
 ```java
 // 根据 id 删除 | 删除一条指定 id 的数据
@@ -482,7 +482,7 @@ int deleteByMap(Map);
     isluMapper.deleteByMap(map);
 ```
 
-### 逻辑删除
+#### 逻辑删除
 
 > 不进行真实的物理删除 只是修改器状态 删除的sql变为修改的sql
 >
@@ -506,10 +506,10 @@ int deleteById(int id);
 
 ```yml
 mybatis-plus:
-    # 关闭 mybatis-plus 启动日志
+    ## 关闭 mybatis-plus 启动日志
     global-config:
         banner: false
-        # id的生成策略
+        ## id的生成策略
         db-config:
             id-type: auto
             logic-dekete-field: 逻辑删除的字段名称
@@ -521,7 +521,7 @@ mybatis-plus:
 
 
 
-## update 修改
+### update 修改
 
 ```java
 // 根据 id 修改 | T 实体类 | 动态修改不会一次全部修改
@@ -539,9 +539,9 @@ isluMapper.update(islu, queryWrapper);
 
 
 
-# 业务层调用 CRUD及分页
+## 业务层调用 CRUD及分页
 
-## 条件 简写
+### 条件 简写
 
 > 条件:
 >
@@ -549,7 +549,7 @@ isluMapper.update(islu, queryWrapper);
 >
 > like - 模糊查询
 
-## Select 查询
+### Select 查询
 
 ```java
 // 查询条件类 使用该类 进行条件的判断
@@ -568,7 +568,7 @@ queryWrapper.like("列名", 值);
 
 
 
-## innser 增加
+### innser 增加
 
 ```java
 // 增加数据 save(实体类对象)
@@ -577,7 +577,7 @@ queryWrapper.like("列名", 值);
 
 
 
-## delete 删除
+### delete 删除
 
 ```java
 // 根据id删除  removeById(Id)
@@ -593,7 +593,7 @@ amountService.remove(queryWrapper);
 
 
 
-## update 修改
+### update 修改
 
 ```java
 // 根据id修改  updateById(实体类对象)
@@ -602,23 +602,23 @@ itemService.updateById(item);
 
 
 
-# MyBatisPlus 杂记
+## MyBatisPlus 杂记
 
-## MyBatisPlus 取消启动日志
+### MyBatisPlus 取消启动日志
 
 > 可见: spring 常用模板的yml总汇配置
 
 ![image-20220728215610494](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220728215610494.png)
 
-# MyBatisPlus 插件
+## MyBatisPlus 插件
 
-## 分页插件
+### 分页插件
 
 详解:  https://baomidou.com/pages/97710a/#page
 
 ![image-20230320165533849](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20230320165533849.png)
 
-### 分页测试
+#### 分页测试
 
 ```java
 package com.apai;
@@ -654,7 +654,7 @@ class WxgzhappApplicationTests {
 }
 ```
 
-### 基础分页
+#### 基础分页
 
 > 创建分页配置类MybatisPlusConfig
 
@@ -713,13 +713,13 @@ List<UserAdmin> selectIsPage(Page<UserAdmin> page, @Param("entity") UserAdmin us
 </select>
 ```
 
-## 自动填充插件
+### 自动填充插件
 
 > 在 新增或者修改 对于一些固定字段的自动插入 例如创建时间和修改时间两个字段
 >
 > 参考: [Mybatis-plus的自动填充功能_mybatis-plus自动填充_雨会停rain的博客-CSDN博客](https://blog.csdn.net/wang20010104/article/details/124198229)
 
-### 实体类 字段注解指定
+#### 实体类 字段注解指定
 
 ```java
 // @TableField(fill = FieldFill.INSERT_UPDATE) 在修改和新增时都会触发 也可更改其他情况触发
@@ -735,7 +735,7 @@ private Integer updateUserid;
 private LocalDateTime updateDate;
 ```
 
-### 自动填充配置类
+#### 自动填充配置类
 
 ```java
 package com.apai.config.mybatis;
@@ -798,11 +798,11 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
 
 
 
-# 代码生成器
+## 代码生成器
 
-## mybatis - 代码生成器
+### mybatis - 代码生成器
 
-### pom.xml 生成器插件配置
+#### pom.xml 生成器插件配置
 
 ```xml
 // mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
@@ -832,7 +832,7 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
 </plugin>
 ```
 
-### generatorConfig.xml  配置
+#### generatorConfig.xml  配置
 
 > 代码生成器的启动类  
 >
@@ -886,15 +886,15 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
 </generatorConfiguration>
 ```
 
-### 开启自动生成
+#### 开启自动生成
 
 ![image-20220601174717702](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220601174717702.png)
 
 
 
-## Mybatis-plus 代码生成器
+### Mybatis-plus 代码生成器
 
-### 添加依赖
+#### 添加依赖
 
 > pom.xml 文件内   
 >
@@ -938,7 +938,7 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
 </dependency>
 ```
 
-### 添加 模板引擎
+#### 添加 模板引擎
 
 > **可直接写在测试类里** 使用单元测试开启 即可
 >
@@ -1000,7 +1000,7 @@ public class MybatisPlusGenerator {
 
 
 
-## 自定义代码生成器 [老三分层]
+### 自定义代码生成器 [老三分层]
 
 > 基于: Mybatis-plus 代码生成器修改而来 | 需要对应的依赖
 >
@@ -1090,7 +1090,7 @@ public class MybatisPlusGenerator {
 
 
 
-## 自定义代码生成器 [新分层]
+### 自定义代码生成器 [新分层]
 
 > 基于: Mybatis-plus 代码生成器修改而来 | 需要对应的依赖
 >
@@ -1198,7 +1198,7 @@ public class MybatisPlusGenerator {
 
 
 
-# 码云 代码生成器
+## 码云 代码生成器
 
 ```java
 package com.apai;

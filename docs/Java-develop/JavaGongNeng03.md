@@ -3,13 +3,13 @@ title: Java 功能实现
 date: 2023/04/26
 ---
 
-# | --- Java 第三方工具操作
+## | --- Java 第三方工具操作
 
 
 
-# Pagehelper 分页详解
+## Pagehelper 分页详解
 
-## 1.分页依赖
+### 1.分页依赖
 
 > 特别注意: 还要 Mybatis-plus 依赖  但是与分页插件有依赖冲突
 
@@ -32,7 +32,7 @@ date: 2023/04/26
 </dependency>
 ```
 
-## 2.web 层返回数据
+### 2.web 层返回数据
 
 ```java
 // 总记录数--所需要进行分页的数据条数
@@ -77,7 +77,7 @@ firstPage: 1,
 lastPage: 1
 ```
 
-## 3.service 业务层 | 分页
+### 3.service 业务层 | 分页
 
 ```java
 //开始分页 可使用传参设置 页数 和 每页的数据条数
@@ -91,9 +91,9 @@ return pageInfo;
 
 
 
-# ID 算法生成
+## ID 算法生成
 
-## UUID 唯一识别码
+### UUID 唯一识别码
 
 UUID（Universally Unique Identifier，**通用唯一识别码**）是按照开放软件基金会（OSF）制定的标准计算，用到了以太网卡地址、纳秒级时间、芯片 ID 码和许多可能的数字。
 
@@ -109,7 +109,7 @@ String uuidStr1 = uuid.toString();
 String uuidStr2 = uuidStr1.replaceAll("-","");
 ```
 
-### UUID 的缺点 和 ID的标准 
+#### UUID 的缺点 和 ID的标准 
 
 **UUID的缺点：**
 
@@ -126,7 +126,7 @@ String uuidStr2 = uuidStr1.replaceAll("-","");
 3. 信息安全。另外，『ID 连续』并非好事情。
 4. 在不连续的情况下，最好是递增的。即便不是严格递增，至少也应该是趋势递增。
 
-## SnowFlake 的雪花算法原理
+### SnowFlake 的雪花算法原理
 
 Snowflake 是 Twitter（美国推特公司）开源的分布式 ID 生成算法。最初 Twitter 把存储系统从 MySQL 迁移到 Cassandra（它是NoSQL数据库），因为Cassandra 没有顺序 ID 生成机制，所以 Twitter 开发了这样一套全局唯一 ID 生成服务。
 
@@ -162,7 +162,7 @@ Snowflake **会生成一个 long 类型的数值**，long是8个字节，一共�
 
   > 面试常问：如果是并发量高，同一台机器一毫秒有5000个id，那么id会不会重复，不会，根据源码如果一毫秒内超过4096个id，则会阻塞到下一毫秒再生成
 
-### Snowflake 实现源码
+#### Snowflake 实现源码
 
 **调用方法**
 
@@ -339,7 +339,7 @@ public class SnowflakeIdGenerator {
 
 ~~~
 
-### 解决时间回拨问题
+#### 解决时间回拨问题
 
 原生的 Snowflake 算法是完全依赖于时间的，如果有时钟回拨的情况发生，会生成重复的 ID，市场上的解决方案也是不少。简单粗暴的办法有：
 
@@ -348,7 +348,7 @@ public class SnowflakeIdGenerator {
 - 使用阿里云的的时间服务器和自己的服务器进行同步，2017 年 1 月 1 日的闰秒调整，阿里云服务器 NTP 系统 24 小时“消化”闰秒，完美解决了问题。
 
   ~~~shell
-  [root@localhost ~]# ntpdate ntp1.aliyun.com
+  [root@localhost ~]## ntpdate ntp1.aliyun.com
   ~~~
 
 - 如果发现有时钟回拨，时间很短比如 3 毫秒（一般大于3毫秒就不建议等待），就等待（线程睡3秒再来生成id），然后再生成。
@@ -375,7 +375,7 @@ public class SnowflakeIdGenerator {
 
 
 
-# JSR303n 请求参数校验
+## JSR303n 请求参数校验
 
 > 即: 后台校验请求参数的包 且能自定义返回前端提示
 >
@@ -389,7 +389,7 @@ public class SnowflakeIdGenerator {
 * 时间的校验格式默认为: yyyy/MM/dd 的字符串 自动会进行转换时间Date类型
 * 当时间格式不为默认格式 则报错 可以自定义时间转换器进行转换
 
-## JSR303 依赖:
+### JSR303 依赖:
 
 ```xml
 <!--JSR303 请求参数校验-->
@@ -399,7 +399,7 @@ public class SnowflakeIdGenerator {
 </dependency>
 ```
 
-## 参数校验注解:
+### 参数校验注解:
 
 > 在请求时需要校验 实体类 参数时  可根据实体类字段上面的校验注解进行校验
 
@@ -437,7 +437,7 @@ public interface GroupUpdate {
 @Future(message = "必须在当前时间之后")
 ```
 
-## 请求接口
+### 请求接口
 
 **校验实体类默认的使用字段**
 
@@ -488,7 +488,7 @@ public ResponseResult<Map> group(@Validated(value = GroupUpdate.class) Wuzi wuzi
 }
 ```
 
-## 时间转换器
+### 时间转换器
 
 > 写在 启动类 里 | 进行配置的注入 会覆盖默认的 时间转换器
 
@@ -528,13 +528,13 @@ public Converter<String, Date> convertStringToDate() {
 
 
 
-# SpringBoot 定时任务
+## SpringBoot 定时任务
 
 > 基于: web 依赖
 >
 > 即: 在每隔设置的时间进行方法的调用
 
-## 1.开启定时器注解
+### 1.开启定时器注解
 
 ```java
 package com.woniu;
@@ -554,7 +554,7 @@ public class RegistorServiceConsitentApplication {
 }
 ```
 
-## 2.方法 设置定时器
+### 2.方法 设置定时器
 
 > 定时器类  可放在 timer 包下
 
@@ -581,7 +581,7 @@ public class TpaylogTime {
 }
 ```
 
-## 3.Cron 表达式
+### 3.Cron 表达式
 
 ~~~
 Cron 表达式是一个字符串，分为 6 或 7 个域，每一个域代表一个含义；
@@ -599,7 +599,7 @@ Cron 从左到右（用空格隔开）： 秒 分 小时 月份中的日期 月�
 | 3            小时              0-23                  - * /   |
 | 4              日                1-31                 - * / L W C |
 | 5              月                1-12                 - * /  |
-| 6           星期               1-7                  - * ? / L C # |
+| 6           星期               1-7                  - * ? / L C ## |
 | 7           年(可选)    1970-2099           - * /            |
 
 Cron 表达式的时间字段除允许设置数值外，还可使用一些特殊的字符，提供列表、范围、通配符等功，如下：
@@ -638,11 +638,11 @@ Cron 表达式的时间字段除允许设置数值外，还可使用一些特殊
 
 
 
-# SpringBoot - mail 邮件
+## SpringBoot - mail 邮件
 
 > 详解: SpringBoot2
 
-## 1.引入依赖
+### 1.引入依赖
 
 ~~~xml
 <!--mail 邮件发送 -->
@@ -652,7 +652,7 @@ Cron 表达式的时间字段除允许设置数值外，还可使用一些特殊
 </dependency>
 ~~~
 
-## 2.编写相关配置
+### 2.编写相关配置
 
 ~~~yml
 spring:
@@ -666,9 +666,9 @@ spring:
     protocol: smtp             #SMTP 可以理解为协议
 ~~~
 
-## 3.mail 使用 测试
+### 3.mail 使用 测试
 
-### 邮箱工具类
+#### 邮箱工具类
 
 **防坑指南**
 
@@ -729,7 +729,7 @@ public class MailUtil {
 
 ```
 
-### 默认方法使用
+#### 默认方法使用
 
 ~~~java
 // 内置的工具类
@@ -754,7 +754,7 @@ void contextLoads() {
 
 ![image-20220802141024989](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220802141024989.png)
 
-## 4. 群发 测试
+### 4. 群发 测试
 
 ![image-20220602102420240](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220602102420240.png)
 
@@ -768,7 +768,7 @@ void contextLoads() {
 
 
 
-# Hutool 依赖工具包
+## Hutool 依赖工具包
 
 * [HuTool工具的使用介绍和常用案例](https://blog.csdn.net/weixin_43773867/article/details/113496371) 
 * Hutool 官网: https://hutool.cn/docs/#/
@@ -797,7 +797,7 @@ hutool-poi	针对POI中Excel和Word的封装
 hutool-socket	基于Java的NIO和AIO的Socket封装
 ```
 
-## hutool 依赖
+### hutool 依赖
 
 ```xml
 <!--hutool 工具包-->
@@ -808,9 +808,9 @@ hutool-socket	基于Java的NIO和AIO的Socket封装
 </dependency>
 ```
 
-## Data 时间转换工具
+### Data 时间转换工具
 
-### 时间格式转换
+#### 时间格式转换
 
 ```java
 // ---- 日期格式化工具 ----
@@ -834,7 +834,7 @@ String formatTime = DateUtil.formatTime(new Date());
 
 ![image-20220809130940999](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220809130940999.png)
 
-### 获取Date时间对象的某个部分
+#### 获取Date时间对象的某个部分
 
 ```java
 // ---- 获取Date对象的某个部分  ----
@@ -852,7 +852,7 @@ System.out.println("日:"+DateUtil.dayOfMonth(datePart));
 
 ![image-20220809130822474](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220809130822474.png)
 
-### 自定义时间偏移
+#### 自定义时间偏移
 
 ```java
 // 按格式将时间字符串转换date类型
@@ -865,7 +865,7 @@ String str = DateUtil.format(offset, "yyyy-MM");
 
 
 
-### 以现在为基准 日期时间偏移
+#### 以现在为基准 日期时间偏移
 
 ```java
 // ---- 以现在的时间为基准 日期时间偏移  ----
@@ -896,7 +896,7 @@ System.out.println("下个月:"+ xiayue);
 
 ![image-20220809131020950](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220809131020950.png)
 
-### 开始 和 结束时间
+#### 开始 和 结束时间
 
 ```java
 String dateStr2 = "2021-01-28 11:04:44";
@@ -913,7 +913,7 @@ System.out.println("一天的结束: "+endOfDay);
 
 ![image-20220809131057402](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220809131057402.png)
 
-### 时间的区间
+#### 时间的区间
 
 ```java
 String start = "2021-01-28";
@@ -926,7 +926,7 @@ dateTimeList.stream().forEach(System.out::println);
 
 ![image-20220809131208828](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220809131208828.png)
 
-### LocalDateTime
+#### LocalDateTime
 
 ```java
 // 现在的时间 
@@ -946,7 +946,7 @@ System.out.println("距离下班还有:" + x);
 
 
 
-## 加密工具
+### 加密工具
 
 - 对称加密（symmetric），例如：AES、DES等
 - 非对称加密（asymmetric），例如：RSA、DSA等
@@ -971,9 +971,9 @@ public static void main(String[] args) {
 
 
 
-## 常用字符 API
+### 常用字符 API
 
-### 截取
+#### 截取
 
 ```java
 //字符串模板代替字符串拼接,slf4j
@@ -988,7 +988,7 @@ System.out.println(StrUtil.sub(str, 3, -1)); //defg
 System.out.println(StrUtil.sub(str, 0, 9)); //abcdefgh
 ```
 
-### 常量 字符
+#### 常量 字符
 
 ```java
 //定义了很多常用字符 如: _ / . - \r \n 等
@@ -999,7 +999,7 @@ System.out.println(StrUtil.DASHED);
 System.out.println(StrUtil.EMPTY_JSON);
 ```
 
-### 判断非空
+#### 判断非空
 
 ```java
 //判断非空
@@ -1015,11 +1015,11 @@ System.out.println(StrUtil.hasEmpty("null"));//false
 
 
 
-# 阿里云 OSS 文件上传
+## 阿里云 OSS 文件上传
 
 > 使用element 和 阿里云oss 配合是上传 和 下载
 
-## 1.添加依赖 阿里云-OSS
+### 1.添加依赖 阿里云-OSS
 
 ```xml
 <!--阿里云-OSS-对象存储-->
@@ -1030,7 +1030,7 @@ System.out.println(StrUtil.hasEmpty("null"));//false
 </dependency>
 ```
 
-## 2.前端
+### 2.前端
 
 > 后端如果验证 token 会报空 因为请求不是异步不会被路由守卫装配token 所以需要在发送请求时带上token
 
@@ -1131,7 +1131,7 @@ export default {
 </style>
 ```
 
-## 3.后端
+### 3.后端
 
 > 表现层 请求
 
@@ -1191,9 +1191,9 @@ public class FileUtils {
 }
 ```
 
-# 反射动态添加实体类字段
+## 反射动态添加实体类字段
 
-## BeanUtils 依赖
+### BeanUtils 依赖
 
 > 主要用于通过反射技术操作对象：克隆对象、获取属性等；
 
@@ -1215,7 +1215,7 @@ https://blog.csdn.net/qq_29689343/article/details/125898278
 </dependency>
 ```
 
-## 工具类
+### 工具类
 
 ```java
 package com.apai.utils;
@@ -1356,7 +1356,7 @@ public class ReflectUtil {
 }
 ```
 
-## 动态添加实例
+### 动态添加实例
 
 ```java
 public Object getEntityList() {
@@ -1389,7 +1389,7 @@ public Object getEntityList() {
 }
 ```
 
-## 合计处理
+### 合计处理
 
 ```java
 public Object getEntityList2() {
@@ -1428,9 +1428,9 @@ public Object getEntityList2() {
 }
 ```
 
-# 调用第三方API (钉钉)
+## 调用第三方API (钉钉)
 
-##  钉钉 SDK 依赖
+###  钉钉 SDK 依赖
 
 ```xml
 <dependencies>
@@ -1445,7 +1445,7 @@ public Object getEntityList2() {
 
 ![image-20230202170243579](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/s7xw1e-0.png)
 
-## 调用API接口
+### 调用API接口
 
 > 在 钉钉官方文档 找到对于接口的说明 按照步骤即可 | 注意返回值是 JSON字符串
 
@@ -1474,9 +1474,9 @@ System.out.println(rsp.getBody());
 
 
 
-# | --- Java 功能实现
+## | --- Java 功能实现
 
-# 登录验证码
+## 登录验证码
 
 > 基本流程:https://blog.csdn.net/pp1981002445/article/details/110954646
 
@@ -1484,7 +1484,7 @@ System.out.println(rsp.getBody());
 * 如果使用了 security 则需要对验证码的接口放行
 * 在 security 自定义过滤器在密码校验之前 让每次点击登录时先校验验证码
 
-## 验证码生成工具类
+### 验证码生成工具类
 
 ```java
 package com.apai.util;
@@ -1597,7 +1597,7 @@ public class VerificationCode {
 }
 ```
 
-## 验证码生成接口
+### 验证码生成接口
 
 ```java
 // 获取登录数字验证码
@@ -1620,7 +1620,7 @@ public void verifyCode(HttpServletRequest request, HttpServletResponse resp) thr
 }
 ```
 
-## Security  自定义过滤器
+### Security  自定义过滤器
 
 ```java
 package com.apai.config.security;
@@ -1660,7 +1660,7 @@ public class VerificationCodeFilter extends GenericFilter {
 }
 ```
 
-## Security 配置
+### Security 配置
 
 > 用于自定义过滤器排序 |  自定义注解接口放行
 
@@ -1832,7 +1832,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-## 前端 vue 案例
+### 前端 vue 案例
 
 ```vue
 <template>
@@ -2063,9 +2063,9 @@ h3 {
 
 
 
-# EasyExcel 数据读写表格
+## EasyExcel 数据读写表格
 
-## 依赖
+### 依赖
 
 ```xml
 <!--生成excle的依赖-->
@@ -2076,7 +2076,7 @@ h3 {
 </dependency>
 ```
 
-## 注解
+### 注解
 
 ```java
 // 实体类注解 | 在导出表格是指定列的名称
@@ -2086,7 +2086,7 @@ h3 {
 @ExcelIgnore
 ```
 
-## 前端请求 | 接口 | 工具类
+### 前端请求 | 接口 | 工具类
 
 ```js
 // 可进行拼接带上条件
@@ -2177,7 +2177,7 @@ public class DownloadController {
 
 ```
 
-## EasyExcel 使用注意点
+### EasyExcel 使用注意点
 
 详解:
 
@@ -2187,11 +2187,11 @@ public class DownloadController {
 
 * https://blog.csdn.net/fsadkjl/article/details/105823830  |  加载器方式和流程
 
-### LocalDateTime 转换
+#### LocalDateTime 转换
 
 > 普通导出表格时 LocalDateTime字段会进行报错导致表格打开错误, 需要对其进行转换
 
-#### 1.时间自定义转换器
+##### 1.时间自定义转换器
 
 * 优点：此种方式只需在每个需要转换的字段上添加converter即可
 * 缺点：如果有很多类，每个类中有很多需要单独转换的字段要写很多次就尴尬了！
@@ -2244,7 +2244,7 @@ ExcelProperty (value =“创建时间", converter = "LocalDateTimeConverter.clas
 private LocalDateTime createTime ;
 ```
 
-#### 2.单次导出进行转换
+##### 2.单次导出进行转换
 
 * 优点：此种方式只要在每个导入导出的方法上都单独加载转换器，不用在每个需要转换的字段上都添加converter了，一定程度上可以减少我们的工作量
 
@@ -2294,7 +2294,7 @@ public class DownloadController {
 
 ```
 
-#### 3.自定义全局加载转换器
+##### 3.自定义全局加载转换器
 
 * 优点：此种方式可以全局配置Converter，一劳永逸！配置完之后不用再单独修改字段或者修改方法，可以理解为EasyExcel从现在支持LocalDateTime啦！
 * 缺点：只能添加特殊的Converter
@@ -2460,7 +2460,7 @@ public class CustomerDefaultConverterLoader {
 
 ```
 
-### 类型转换加载器
+#### 类型转换加载器
 
 * 类型转换: 0 --> 男, 1 --> 女
 * 代码中都会使用 **`1/0 分别代表 男/女`** ,可是Excel中都是用"男"，"女"表示的
@@ -2504,13 +2504,13 @@ public class SexConverter implements Converter<Integer> {
 private Integer sex ;
 ```
 
-# Poi_xls_表格操作
+## Poi_xls_表格操作
 
 官方[EasyPoi教程_V1.0 (mydoc.io)](http://easypoi.mydoc.io/#text_197842)
 
-## 表格必备项
+### 表格必备项
 
-### poi_表格依赖
+#### poi_表格依赖
 
 ```xml
 <!--poi_xls_表格操作类-->
@@ -2543,7 +2543,7 @@ private Integer sex ;
 </dependency>
 ```
 
-### 表格导出工具类
+#### 表格导出工具类
 
 > 表格工具类
 
@@ -2922,7 +2922,7 @@ public class DateUtils {
 
 ```
 
-### 表格导入工具类
+#### 表格导入工具类
 
 ```java
 package com.apai.util.mypoi;
@@ -2962,7 +2962,7 @@ public class ExcelUtils {
 }
 ```
 
-### 图片导出工具类
+#### 图片导出工具类
 
 ```java
 package com.my.pin.util;
@@ -3295,9 +3295,9 @@ public class ExcelImgUtils {
 
 
 
-## 表格导出
+### 表格导出
 
-### 1.使用注解导出
+#### 1.使用注解导出
 
 > 缺点: 只能是导出普通的表格文本数据  对于图片 动态的字段 无法实现
 
@@ -3351,7 +3351,7 @@ public void saletableList(HttpServletResponse response) throws IOException {
 
 
 
-### 2.遍历导出
+#### 2.遍历导出
 
 > 数据字段为动态添加无法使用常规的实体类注解导出时使用该方法
 
@@ -3454,7 +3454,7 @@ public void deliveryAnalysisExportExcel(@RequestBody TestGet testGet1, HttpServl
 }
 ```
 
-### 3.图片导出
+#### 3.图片导出
 
 ```java
 /**
@@ -3547,9 +3547,9 @@ public void exportExcelDetail(@RequestBody ReceivableBillRecordVo receivableBill
 
 
 
-### 避坑指南
+#### 避坑指南
 
-#### 导出时间格式问题
+##### 导出时间格式问题
 
 > 可在实体类字段什么加上注解 指定导出时时间的格式
 
@@ -3563,7 +3563,7 @@ private Date date;
 | ----------------------- | -------------- | ------------------- | ------------------- |
 | 2022-10-17T23:35:23.646 | 2022-10-17     | 2022-10-17 23:35:23 | 2022-10-17 23:08:42 |
 
-#### 字段的状态转换
+##### 字段的状态转换
 
 > 如: 状态的状态  1 -> 通过  2 -> 不通过
 
@@ -3575,7 +3575,7 @@ private Integer auditStatus;
 
 
 
-## 表格导入
+### 表格导入
 
 前端文件表单提交
 
@@ -3587,7 +3587,7 @@ private Integer auditStatus;
 </form>
 ```
 
-### 表格导入接口
+#### 表格导入接口
 
 ```java
 // 匿名访问 | Security 需要放行
@@ -3602,7 +3602,7 @@ public String importExcel(@RequestPart("file") MultipartFile file) throws Except
 }
 ```
 
-### 1.表格导入业务层执行
+#### 1.表格导入业务层执行
 
 ```java
 package com.apai.service.impl;
@@ -3691,7 +3691,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 }
 ```
 
-### 2.带图片导入
+#### 2.带图片导入
 
 > 需基于 文件工具类 
 
@@ -3822,7 +3822,7 @@ public R importExcelSpuDevelopApplyFor(MultipartFile file) throws Exception {
 }
 ```
 
-### 导入表格与模板校验
+#### 导入表格与模板校验
 
 - 原理: 获取实体类模板的标题 和 导入表格的标题  进行对比是否一致和顺序
 
@@ -3900,9 +3900,9 @@ for (int i = 1; i < dims.size(); i++) {
 
 
 
-# AOP 切面实现操作日志
+## AOP 切面实现操作日志
 
-## 1.自定义注解
+### 1.自定义注解
 
 > 注解内部字段可进行对应的添加等 后续可在切面通知获取值
 
@@ -3942,7 +3942,7 @@ public PageInfo pageuser(Integer pageNum, Integer pageSize) {
 }
 ```
 
-## 2.进行AOP 环绕通知
+### 2.进行AOP 环绕通知
 
 ```java
 package com.apai.util;
@@ -4030,11 +4030,11 @@ public class SysLogAop {
 
 
 
-# 生成二维码
+## 生成二维码
 
 Hool 生成二维码参考: https://hutool.cn/docs/#/extra/%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%B7%A5%E5%85%B7-QrCodeUtil
 
-## 依赖
+### 依赖
 
 ```xml
 <!-- zxing生成二维码 -->
@@ -4050,7 +4050,7 @@ Hool 生成二维码参考: https://hutool.cn/docs/#/extra/%E4%BA%8C%E7%BB%B4%E7
 </dependency>
 ```
 
-## 工具类
+### 工具类
 
 ```java
 package com.apai.utils;
@@ -4296,7 +4296,7 @@ public class QRCodeUtil {
 }
 ```
 
-## 测试案例
+### 测试案例
 
 ```java
 /**
@@ -4340,9 +4340,9 @@ public void getCode2(int type , HttpServletResponse servletResponse) throws Exce
 
 
 
-# | --- 尽头是花开万里啊
+## | --- 尽头是花开万里啊
 
-## 查看对象在堆的数据
+### 查看对象在堆的数据
 
 ```xml
 <!--显示对象在堆的布局信息-->
@@ -4385,7 +4385,7 @@ Integer // 4字节
 
 ![image-20220915195142706](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220915195142706.png)
 
-## 单例模式 | 线程安全
+### 单例模式 | 线程安全
 
 > 保证每次get方法获取的都是同一个实例对象
 
@@ -4425,7 +4425,7 @@ public class Singleton {
 }
 ```
 
-## 数组的递归求和
+### 数组的递归求和
 
 ```java
 package com.apai.springbootvue;
@@ -4450,7 +4450,7 @@ public class Sum {
 }
 ```
 
-## spring boot 启动执行类
+### spring boot 启动执行类
 
 >  当 springboot 启动时执行该类
 
@@ -4475,7 +4475,7 @@ public class RunUserPermission implements CommandLineRunner {
 
 ```
 
-## 根据 request 获取IP地址
+### 根据 request 获取IP地址
 
 ```java
 package com.apai.util;
@@ -4515,9 +4515,9 @@ public class IpAddress {
 
 
 
-## Java API 补充
+### Java API 补充
 
-### 字符串反转
+#### 字符串反转
 
 ```java
 String str = "abcdefg";
@@ -4526,7 +4526,7 @@ String reverse = reverse(str);
 System.out.println(reverse); // gfedcba
 ```
 
-### 中文转拼音
+#### 中文转拼音
 
 ```java
 // 中文转拼音 | 需要依赖
@@ -4541,7 +4541,7 @@ System.out.println(pinyin);
 </dependency>
 ```
 
-### 数组排序
+#### 数组排序
 
 ```java
 // 数组排序
@@ -4552,11 +4552,11 @@ System.out.println(Arrays.toString(arr));
 
 
 
-## java 集合补充
+### java 集合补充
 
-### List
+#### List
 
-#### ArrayList
+##### ArrayList
 
 > ArrayList底层是由[动态数组](https://so.csdn.net/so/search?q=动态数组&spm=1001.2101.3001.7020)实现的
 
@@ -4564,7 +4564,7 @@ System.out.println(Arrays.toString(arr));
 // 有序 | 内容可重复 | 线程不安全
 ```
 
-#### LinkedList
+##### LinkedList
 
 > LinkedList底层是由双向链表的数据结构实现的
 
@@ -4572,9 +4572,9 @@ System.out.println(Arrays.toString(arr));
 // 线程不安全 没锁 | 增删 效率高 , 查询需要一个个找使用效率低
 ```
 
-### Set
+#### Set
 
-#### HashSet
+##### HashSet
 
 > HashSet底层是采用HashMap实现的
 
@@ -4583,7 +4583,7 @@ System.out.println(Arrays.toString(arr));
 // HashSet不存入重复元素的规则：使用hashcode和equals
 ```
 
-#### TreeSet
+##### TreeSet
 
 > TreeMap的实现就是红黑树数据结构，也就说是一棵自平衡的排序二叉树
 
@@ -4593,7 +4593,7 @@ System.out.println(Arrays.toString(arr));
 // TreeSet是非同步的，线程不安全的。
 ```
 
-#### LinkedHashSet
+##### LinkedHashSet
 
 > LinkedHashSet底层是一个 LinkedHashMap，底层维护了一个数组+双向链表
 
@@ -4602,9 +4602,9 @@ System.out.println(Arrays.toString(arr));
 // 有序 确保插入顺序和遍历顺序一致
 ```
 
-### Map 
+#### Map 
 
-#### HashMap
+##### HashMap
 
 > 先数组 hashCode冲突使用链表  链表长度超过8个转换红黑树储存
 
@@ -4613,7 +4613,7 @@ System.out.println(Arrays.toString(arr));
 // HashMap 线程不安全
 ```
 
-#### HashTable
+##### HashTable
 
 > HashTable是继承与Dictionary类，实现了Map接口，HashTable的主体还是Entry_数组
 
@@ -4623,7 +4623,7 @@ System.out.println(Arrays.toString(arr));
 // 不会转换为红黑
 ```
 
-#### LinkedHashMap
+##### LinkedHashMap
 
 > LinkedHashMap底层是数组 + 单项链表 + 双向链表
 
@@ -4634,7 +4634,7 @@ System.out.println(Arrays.toString(arr));
 // LinkedHashMap是非线程安全的
 ```
 
-#### TreeMap
+##### TreeMap
 
 > TreeMap 是按照 Key 的自然顺序或者 Comprator 的顺序进行排序，内部是通过红黑树来实现。
 

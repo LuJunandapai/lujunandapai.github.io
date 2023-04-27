@@ -3,11 +3,11 @@ title: 阿派的工具类
 date: 2023/04/26
 ---
 
-# | -- 阿派的工具类
+## | -- 阿派的工具类
 
-# Spring Boot 事务工具类
+## Spring Boot 事务工具类
 
-## 事务_注解配置
+### 事务_注解配置
 
 ```java
 // 启动类 开启事务
@@ -16,7 +16,7 @@ date: 2023/04/26
 @Translation
 ```
 
-## 事务_工具类
+### 事务_工具类
 
 > 依赖
 
@@ -115,9 +115,9 @@ public class WebConfig {
 
 
 
-# JSON 序列化工具类
+## JSON 序列化工具类
 
-## JSON 转换依赖:
+### JSON 转换依赖:
 
 json 转换补充: https://blog.51cto.com/u_13561776/3691828
 
@@ -132,7 +132,7 @@ https://blog.csdn.net/angsu7023/article/details/102126540
 </dependency>
 ```
 
-### JSON依赖 常用 API
+#### JSON依赖 常用 API
 
 ```java
 // 序列化 对象
@@ -155,7 +155,7 @@ String dateJson = JSON.toJSONString(date, SerializerFeature.WriteDateUseDateForm
 String dateJson = JSON.toJSONStringWithDateFormat(date,"yyyy-MM-dd HH:mm:ss");
 ```
 
-## JSON工具类
+### JSON工具类
 
 ```java
 package com.apai.utils;
@@ -285,9 +285,9 @@ public class MyJsonUtils {
 
 
 
-## 测试案例
+### 测试案例
 
-### 对象 序列化 | 反序列化
+#### 对象 序列化 | 反序列化
 
 ```java
 Kucun kucun = new Kucun();
@@ -306,7 +306,7 @@ System.out.println(kucun1);
 Kucun(kucun=null, spid=5, spname=萨达)
 ```
 
-### 集合 转换 JSON
+#### 集合 转换 JSON
 
 ```JAVA
 // --------- Map 转换 JSON ---------
@@ -337,7 +337,7 @@ System.out.println(strings);
 [one, two, shree]
 ```
 
-### 时间 转换 JSON
+#### 时间 转换 JSON
 
 ```java
 // ----- 直接对日期进行格式化 ------
@@ -366,7 +366,7 @@ System.out.println(dateJson);
 "2022-08-04 11:58:04"
 ```
 
-### JSON 工具类测试
+#### JSON 工具类测试
 
 ```java
 package com.apai;
@@ -414,7 +414,7 @@ json中result,attendance_result_list字段的值[{"group_id":944640001,"location
 json->对象张三18
 ```
 
-# Date 时间处理工具类
+## Date 时间处理工具类
 
 ```java
 package com.apai.utils.my;
@@ -1081,13 +1081,13 @@ public class MyDateUtils {
 }
 ```
 
-# Java 发起HTTP请求
+## Java 发起HTTP请求
 
-## Hutool 工具类
+### Hutool 工具类
 
 参考: https://hutool.cn/docs/#/http/Http%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%B7%A5%E5%85%B7%E7%B1%BB-HttpUtil
 
-## httpclient 依赖
+### httpclient 依赖
 
 ```xml
 <!-- HTTP: 请求依赖 -->
@@ -1102,7 +1102,7 @@ public class MyDateUtils {
 </dependency>
 ```
 
-## HTTP 工具类
+### HTTP 工具类
 
 ```java
 package com.apai.utils;
@@ -1336,9 +1336,9 @@ public class MyHttpUtils {
 }
 ```
 
-# Bean 复制工具类
+## Bean 复制工具类
 
-## BeanUtils 
+### BeanUtils 
 
 > 包: import org.springframework.beans.BeanUtils;
 >
@@ -1349,7 +1349,7 @@ public class MyHttpUtils {
 BeanUtils.copyProperties("被复制对象", "对象");
 ```
 
-## BeanListUtils 自定义
+### BeanListUtils 自定义
 
 > 自定义 BeanListUtils 集合 和 分页_page  的拷贝复制
 
@@ -1425,11 +1425,11 @@ IPage<S> targetPage = baseMapper.selectPage(new Page<>(page, limit), queryWrappe
 IPage<T> sorecePage = BeanListUtils.copyPage(targetPage, new Page<>(), T::new);
 ```
 
-## Vo Dto Po 互转
+### Vo Dto Po 互转
 
 **详:** https://www.bilibili.com/video/BV1iP4y1p73h/?spm_id_from=333.788.recommend_more_video.-1&vd_source=6f6237fd2c246922ec201a19c8b7b28a
 
-# 金额处理工具类
+## 金额处理工具类
 
 ```java
 package com.apai.utils;
@@ -1564,7 +1564,7 @@ public class MyNumberToWord {
 }
 ```
 
-# Spring上下文 工具类
+## Spring上下文 工具类
 
 > 可使用 getbean 方法获取项目的上下文 容器管理的bean对象 等同于IOC注入
 
@@ -1733,7 +1733,7 @@ public class MySpringContextUtils implements ApplicationContextAware {
 
 ```
 
-# Redis 工具类
+## Redis 工具类
 
 > 使用了 Spring上下文 工具类
 
@@ -2285,7 +2285,7 @@ public class MyRedisUtils {
 }
 ```
 
-# HttpServlet工具类
+## HttpServlet工具类
 
 > 获取请求中的 HttpServlet对象 及其 请求头信息
 
@@ -2378,13 +2378,13 @@ public class ServletUtils {
 
 
 
-# 文件上传下载工具类
+## 文件上传下载工具类
 
 > 即: 在本地直接储存文件 如图片等 参考: [Java如何实现下载文件的几种方式](https://blog.csdn.net/Boy_Martin/article/details/126058565)
 >
 > 使用了 HttpServlet工具类
 
-## 表现层
+### 表现层
 
 * 访问:  http://localhost:1026/tmp//file-test/2022-10-24/2354ab8dffc44ebda574ecd0f9d756bc.png
 * 存储: /tmp//file-test/2022-10-24/2354ab8dffc44ebda574ecd0f9d756bc.png
@@ -2532,7 +2532,7 @@ public ResponseResult downloadFileByFilePath(String filePath) throws IOException
 }
 ```
 
-## 图片工具类
+### 图片工具类
 
 > 使用到了hutool 工具包
 
@@ -2788,7 +2788,7 @@ public class MyFileUtils {
 
 ```
 
-## 配置静态文件夹
+### 配置静态文件夹
 
 需要 web 依赖
 
@@ -2872,13 +2872,13 @@ public class WebMvcConfiguration {
 
 
 
-# | -- 阿派的技术小点
+## | -- 阿派的技术小点
 
-# Spring Boot 内置 API
+## Spring Boot 内置 API
 
 https://mp.weixin.qq.com/s/QdB_AVUoMHEbdorhU1ricg
 
-## Math | 数学类
+### Math | 数学类
 
 ```java
 // PI - 圆周率
@@ -2902,9 +2902,9 @@ double f = 111231.5585;
 System.out.println(String.format("%.2f", f));
 ```
 
-## 字符串类 API
+### 字符串类 API
 
-### 字符串判空
+#### 字符串判空
 
 ```java
 | --- 字符串判空
@@ -2919,7 +2919,7 @@ StrUtil.isBlank(变量)
 StrUtil.hasEmpty(变量);
 ```
 
-### 字符串反转
+#### 字符串反转
 
 ```java
 String str = "abcdefg";
@@ -2930,7 +2930,7 @@ System.out.println(reverse); // gfedcba
 
 
 
-## 集合类 数组类 API
+### 集合类 数组类 API
 
 ```java
 // 判断集合内是否存在该数据
@@ -2956,7 +2956,7 @@ List list = Arrays.asList(countries);
 List<Value> list = new ArrayList<Value>(map.values());
 ```
 
-### 数组排序
+#### 数组排序
 
 ```java
 // 数组排序
@@ -2965,9 +2965,9 @@ Arrays.sort(arr);
 System.out.println(Arrays.toString(arr));
 ```
 
-## 其他
+### 其他
 
-### 中文转拼音
+#### 中文转拼音
 
 ```java
 // 中文转拼音 | 需要依赖
@@ -2982,9 +2982,9 @@ System.out.println(pinyin);
 </dependency>
 ```
 
-## Hutool  Api 
+### Hutool  Api 
 
-### [字段验证器-Validator](https://hutool.cn/docs/#/core/语言特性/字段验证器-Validator?id=字段验证器-validator)
+#### [字段验证器-Validator](https://hutool.cn/docs/#/core/语言特性/字段验证器-Validator?id=字段验证器-validator)
 
 ```java
 // 验证给定字符串是否复合电子邮件格式
@@ -2999,9 +2999,9 @@ Validator.validateChinese("我是一段zhongwen", "内容中包含非中文");
 
 
 
-# 集合类
+## 集合类
 
-## 集合根据对象某字段去重
+### 集合根据对象某字段去重
 
 > 实体类
 
@@ -3049,9 +3049,9 @@ public void aa() {
 }
 ```
 
-# AOP 切面通知
+## AOP 切面通知
 
-## 前置通知给接口参数赋值
+### 前置通知给接口参数赋值
 
 ```java
 package com.apai.config.aop;
@@ -3195,9 +3195,9 @@ public class AutoSetFieldValueAspect {
 
 
 
-# 其他类
+## 其他类
 
-## 联机树状
+### 联机树状
 
 ```java
 // 查询所有的资源, 并按树结构返回

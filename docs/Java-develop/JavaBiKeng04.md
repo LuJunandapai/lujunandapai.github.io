@@ -3,17 +3,17 @@ title: Java 避坑及技巧
 date: 2023/04/26
 ---
 
-# 四_Java 避坑及技巧
+## 四_Java 避坑及技巧
 
 
 
-# Typora
+## Typora
 
 > Typora 设置 阿里云 oss对象存储 作为云盘: https://blog.csdn.net/muxuen/article/details/122441469
 
-# 集合
+## 集合
 
-## 集合对象与对象之间为引用地址
+### 集合对象与对象之间为引用地址
 
 ```java
 @Test
@@ -44,7 +44,7 @@ public void ee() {
 }
 ```
 
-## 调用其他方法跟集合参数的同步赋值
+### 调用其他方法跟集合参数的同步赋值
 
 ```java
 @Test
@@ -79,9 +79,9 @@ public void ee() {
 
 
 
-# Spring Boot 篇
+## Spring Boot 篇
 
-## 无法加载yml文件到target目录
+### 无法加载yml文件到target目录
 
 > 具体问题: 
 
@@ -103,9 +103,9 @@ public void ee() {
 
 
 
-# Mybatis 篇
+## Mybatis 篇
 
-## MySql 批量修改报错
+### MySql 批量修改报错
 
 > 具体问题: 
 
@@ -139,43 +139,43 @@ void upIsById(@Param("list") List<TallyBook> tallyBooks);
 
 
 
-# Liunx 系统
+## Liunx 系统
 
-## Liunx 时间不一致
+### Liunx 时间不一致
 
 > Liunx 系统时间不一致
 
 ```shell
 #有效期限：永久有效 | 用户局限：仅对当前用户
 vim ~/.bashrc 
-# 在最后一行添上：
+## 在最后一行添上：
 export TZ='CST-8'
 #保存、使生效
 source ~/.bashrc
 #查看
 date
 
-# vim ~/.bashrc 内容如下: 
-# User specific aliases and functions
+## vim ~/.bashrc 内容如下: 
+## User specific aliases and functions
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-# Source global definitions
+## Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
-export TZ='CST-8' # 加上这句即可
+export TZ='CST-8' ## 加上这句即可
 ```
 
 > Docker 容器时间不一致
 
 ```shell
-# 暂无
+## 暂无
 ```
 
 
 
-## Linux命令行提示-Fish
+### Linux命令行提示-Fish
 
 > fish是一个用户友好的命令行[外壳程序](http://baike.baidu.com/view/542.htm)全称Friendly Interactive Shell可用于如 [Linux](http://baike.baidu.com/view/1634.htm) 这样的 Unix 类[操作系统](http://baike.baidu.com/view/880.htm)中
 
@@ -187,7 +187,7 @@ export TZ='CST-8' # 加上这句即可
 // 参考: https://blog.csdn.net/oiken/article/details/71081959
 ```
 
-### Fish 安装  
+#### Fish 安装  
 
 1.用下面的命令更新仓库：
 
@@ -205,17 +205,17 @@ yum install fish
 3.改为默认shell
 
 ```crystal
-# 执行这条命令查看路径
+## 执行这条命令查看路径
 which fish
-# 我的路径如下
+## 我的路径如下
 /usr/bin/fish
-# 设置默认shell
+## 设置默认shell
 chsh -s /usr/bin/fish
 ```
 
 4.重启终端打开即可
 
-### Fish 使用
+#### Fish 使用
 
 ```java
 // 如何使用 Fish Shell ？
@@ -232,7 +232,7 @@ history 可以查看历史命令，history |grep command可以搜索历史命令
 
 
 
-## Nginx 搭建本地静态文件夹
+### Nginx 搭建本地静态文件夹
 
 参考: https://blog.csdn.net/weixin_30345577/article/details/95156233
 
@@ -290,11 +290,11 @@ http {
 }
 ```
 
-## win系统: Docker Desktop 
+### win系统: Docker Desktop 
 
 > 内置Linux系统 且可视化 Docker 容器
 
-### Docker Desktop  安装
+#### Docker Desktop  安装
 
 1.安装[docker](https://so.csdn.net/so/search?q=docker&spm=1001.2101.3001.7020) desktop for windows需要Hype-v的支持
 
@@ -303,7 +303,7 @@ https://blog.csdn.net/m0_73795841/article/details/127441288
 2.Docker Desktop for Windows 下载:
 https://docs.docker.com/desktop/install/windows-install/
 
-### Docker Desktop  使用
+#### Docker Desktop  使用
 
 1.面板
 
@@ -311,25 +311,25 @@ https://docs.docker.com/desktop/install/windows-install/
 
 
 
-# IDEA 技巧篇
+## IDEA 技巧篇
 
-## IDEA功能
+### IDEA功能
 
-### 连接服务器Docker
+#### 连接服务器Docker
 
 参考: https://blog.csdn.net/hanxiaotongtong/article/details/124240589
 
 > 服务器端
 
 ```shell
-# 1. 修改配置文件vim /usr/lib/systemd/system/docker.service，这是开启docker远程访问服务的第一步。0.0.0.0:2375表示在当前主机上所有网卡监听2375端口。修改ExecStart这行
+## 1. 修改配置文件vim /usr/lib/systemd/system/docker.service，这是开启docker远程访问服务的第一步。0.0.0.0:2375表示在当前主机上所有网卡监听2375端口。修改ExecStart这行
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375  -H unix:///var/run/docker.sock  --containerd=/run/containerd/containerd.sock
-# 2. 重新加载配置文件，并重启docker守护进程
+## 2. 重新加载配置文件，并重启docker守护进程
 systemctl daemon-reload && systemctl restart docker
-# 3. 查看端口是否开启,有一行记录显示2375端口被监听，即正确 或者通过浏览器访问http://<docker宿主机ip>:2375/info也可以进行验证,有响应结果即正确，返回的是一个JSON的docker服务状态及配置信息
+## 3. 查看端口是否开启,有一行记录显示2375端口被监听，即正确 或者通过浏览器访问http://<docker宿主机ip>:2375/info也可以进行验证,有响应结果即正确，返回的是一个JSON的docker服务状态及配置信息
 netstat -nptl|grep 2375;
 http://175.178.126.61:1011/info
-# 4. 需要注意的是如果你的服务器上防火墙没有开放2375端口访问，请使用下面的命令开放2375端口(注意：下面的命令行适用于CentOS7、8发行版，如果你是其他的linux发行版，命令可能不一样)。
+## 4. 需要注意的是如果你的服务器上防火墙没有开放2375端口访问，请使用下面的命令开放2375端口(注意：下面的命令行适用于CentOS7、8发行版，如果你是其他的linux发行版，命令可能不一样)。
 firewall-cmd --zone=public --add-port=2375/tcp --permanent;   #配置开放端口
 firewall-cmd --reload;   #重新加载配置
 ```
@@ -340,21 +340,21 @@ firewall-cmd --reload;   #重新加载配置
 
 
 
-## IDEA设置
+### IDEA设置
 
-### 自动加载jar包依赖
+#### 自动加载jar包依赖
 
 ![image-20220523121950429](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/nrwpyc-0.png)
 
-### 新窗口打开项目:
+#### 新窗口打开项目:
 
 ![image-20220608191622725](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/nrwkqb-0.png)
 
-### 隐藏项目多余的文件夹
+#### 隐藏项目多余的文件夹
 
 ![image-20221118102532178](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/ns5ndf-0.png)
 
-### Translation 翻译无法联网
+#### Translation 翻译无法联网
 
 > IDEA2022 翻译软件Translate提示：更新 TKK 失败，请检查网络连接 | 使用百度翻译
 
@@ -364,7 +364,7 @@ firewall-cmd --reload;   #重新加载配置
 203.208.40.66 translate.googleapis.com
 ```
 
-### IDEA 热部署
+#### IDEA 热部署
 
 在web项目执行中 使用Debug启动 表现出进行更改后无需重启 使用热部署即可进行更新  
 
@@ -395,85 +395,85 @@ https://blog.csdn.net/m0_58761900/article/details/128802206
 
 
 
-## IDEA 插件
+### IDEA 插件
 
-### 1.中文板 IDEA
+#### 1.中文板 IDEA
 
 > Chinese Language Pack : 中文板 IDEA
 
-###  2.翻译插件
+####  2.翻译插件
 
 > Translation   翻译插件，鼠标选中文本，点击右键即可自动翻译成多国语言。
 
-### 3.彩色括号显示
+#### 3.彩色括号显示
 
 > Rainbow Brackets  彩色括号
 
-### 4.快捷键提示插件
+#### 4.快捷键提示插件
 
 > Key Promoter X    快捷键提示插件。当你执行鼠标操作时，如果该操作可被快捷键代替，会给出提示，帮助你自然形成使用快捷键的习惯，告别死记硬背
 
-### 5.设置背景图片
+#### 5.设置背景图片
 
 > Background Image Plus +    给编辑器设置背景图片
 
-### 6.自动提示和补全代码
+#### 6.自动提示和补全代码
 
 > Tabnine AI Code Completion    使用 AI 去自动提示和补全代码，比 IDEA 自带的代码补全更加智能化
 
-### 7.MyBatis 增强插件
+#### 7.MyBatis 增强插件
 
 > MybatisX   MyBatis 增强插件，支持自动生成 entity、mapper、service 等常用操作的代码，优化体验
 
-### 8.文件 yml  和  xml 互转
+#### 8.文件 yml  和  xml 互转
 
 > Convert YAML and Properties File   文件 yml  和  xml 互转
 
-### 9.接口快速测试
+#### 9.接口快速测试
 
 > RestfulTool : 能够自动检测表现层的接口进行快速测试 [ 发送请求参数 类似于浏览器发送请求]
 
 * 根据url快速搜索接口:   Ctrl + Alt + /
 
-### 10.自定义代码生成器
+#### 10.自定义代码生成器
 
 > Easy Code: 能够自定义的根据数据库表来自定义生成器
 
-### 11.人工智能代码提示
+#### 11.人工智能代码提示
 
 > GitHub Copilot: 人工智能代码提示 [需充值授权后使用]
 
-### 12.Sql语句提取
+#### 12.Sql语句提取
 
 > batslog / MyBatis Log Free :  在配置了sql日志打印的前提下 该插件会自动提取sql日志进行编排然后显示
 
 * https://blog.csdn.net/pxg943055021/article/details/124708499
 
-### 13. git 版本管理
+#### 13. git 版本管理
 
 > gitee   |   能够从gitee平台直接拉取项目和推送
 
-### 14.主题
+#### 14.主题
 
 > Xcode-Dark Theme 主题
 
-### 15.缩略图
+#### 15.缩略图
 
 > CideGlance2
 
-### 16.热部署
+#### 16.热部署
 
 > EditStarters
 >
 > https://blog.csdn.net/m0_58761900/article/details/128802206
 
-### 17.Restful Fast Reque (收費)
+#### 17.Restful Fast Reque (收費)
 
 > 能够自动检测表现层的接口进行快速测试 [ 发送请求参数 类似于浏览器发送请求]
 
 
 
-# WebStorm 前端
+## WebStorm 前端
 
 > 破解方法跟IDEA一致
 
@@ -481,9 +481,9 @@ https://blog.csdn.net/m0_58761900/article/details/128802206
 
 
 
-# 生活小常识
+## 生活小常识
 
-## 局域网不同设备传输
+### 局域网不同设备传输
 
 ```java
 // 在互传的两端打开这个网址即可 开始传输文件

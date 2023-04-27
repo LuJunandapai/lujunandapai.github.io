@@ -3,17 +3,17 @@ title: Element UI 组件
 date: 2023/04/26
 ---
 
-# Element UI
+## Element UI
 
 
 
-# elementUI  表单 
+## elementUI  表单 
 
-## 组件只读或禁用
+### 组件只读或禁用
 
 https://blog.csdn.net/jizhou007/article/details/112918228
 
-### 1.输入框的只读或禁用
+#### 1.输入框的只读或禁用
 
 ```html
 <!--只读-->
@@ -22,14 +22,14 @@ https://blog.csdn.net/jizhou007/article/details/112918228
 <el-form-input :disabled="true"></el-form-input>
 ```
 
-### 2.select下拉框的禁用
+#### 2.select下拉框的禁用
 
 ```html
 <el-select :disabled="true">
 </el-select>
 ```
 
-### 3.table表格中的 选择框的禁用
+#### 3.table表格中的 选择框的禁用
 
 ```html
 <el-table>
@@ -51,7 +51,7 @@ methods:{
 }
 ```
 
-## 时间表单 的格式
+### 时间表单 的格式
 
 > elementUI  时间会自动转换 字符串  当数据库为时间类型  可以直接使用字符串条件
 
@@ -71,9 +71,9 @@ methods:{
 
 
 
-# elementUI  表格
+## elementUI  表格
 
-## 遍历根据状态判断
+### 遍历根据状态判断
 
 ```html
 <el-table-column prop="status" label="状态" >
@@ -85,7 +85,7 @@ methods:{
 </el-table-column>
 ```
 
-## 获取表格选中的所有数据
+### 获取表格选中的所有数据
 
 **具体详见**:  https://blog.csdn.net/loveLifeLoveCoding/article/details/116693763
 
@@ -102,7 +102,7 @@ methods:{
 this.$refs.multipleTable.selection
 ```
 
-## 表格遍历 插入输入框
+### 表格遍历 插入输入框
 
 > 表格遍历 插入输入框 使用 v-model 绑定创建行对象字段数据
 
@@ -114,7 +114,7 @@ this.$refs.multipleTable.selection
 </el-table-column>
 ```
 
-## 表格每行数据具有index索引
+### 表格每行数据具有index索引
 
 ```html
 <el-table ref="multipleTable" :data="goodslist" height="250" border style="width: 100%" :row-class-name="tableRowClassName">
@@ -126,7 +126,7 @@ row.row.index = row.rowIndex
 },
 ```
 
-## 表格 滚动条隐藏
+### 表格 滚动条隐藏
 
 ```html
 <style scoped>

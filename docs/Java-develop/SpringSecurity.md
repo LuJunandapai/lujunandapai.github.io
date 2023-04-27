@@ -3,9 +3,9 @@ title: SpringSecurity 安全框架
 date: 2023/03/26
 ---
 
-# Spring security 安全框架
+## Spring security 安全框架
 
-## Spring security 依赖
+### Spring security 依赖
 
 ```xml
 <!--security 请求拦截 自定义登录 密码加密-->
@@ -33,7 +33,7 @@ date: 2023/03/26
 
 
 
-## Spring security 流程
+### Spring security 流程
 
 1.先进行设置 登录的请求[ /login ]和表单账号[ username ] 密码[ password ]的name属性来进行获取登录的数据
 
@@ -47,11 +47,11 @@ date: 2023/03/26
 
 
 
-# Spring security 匿名访问
+## Spring security 匿名访问
 
 > 即: 不带上token直接可访问接口 
 
-### 简介
+#### 简介
 
 **场景:** 作用于不登录的情况可直接访问的接口
 
@@ -59,7 +59,7 @@ date: 2023/03/26
 
 **解决方法:** 定义注解获取接口的请求路径 在自定义过滤器将token为空的放行 内置的过滤器先获取放行的请求路径集合进行放行
 
-### 定义注解
+#### 定义注解
 
 > 可加载web请求接口是获取该接口的请求路径
 
@@ -79,7 +79,7 @@ public @interface AnonymousAccess {
 }
 ```
 
-### 使用注解
+#### 使用注解
 
 > 指定接口可无需登录直接访问
 
@@ -91,7 +91,7 @@ public Object b() {
 }
 ```
 
-### JwtTokenFilter 自定义过滤器
+#### JwtTokenFilter 自定义过滤器
 
 > 匿名访问无需带上 token 则 当token为空时直接放行
 
@@ -227,7 +227,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 }
 ```
 
-### WebSecurityConfig
+#### WebSecurityConfig
 
 > 定义方法 根据注解获取所有匿名接口的请求集合 并将其全部放行
 >
@@ -369,13 +369,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-# 密码加密与验证
+## 密码加密与验证
 
 加密: String encode1 = passwordEncoder.encode("密码");
 
 核对: boolean matches1 = passwordEncoder.matches("密码", "已加密的密码");
 
-## EncoderConfig 配置类
+### EncoderConfig 配置类
 
 > config 配置包 security  包下
 
@@ -397,7 +397,7 @@ public class EncoderConfig {
 }
 ```
 
-## 密码测试 API
+### 密码测试 API
 
 **注意:** 
 
@@ -438,13 +438,13 @@ public class SpringTest {
 
 
 
-# JWT_Token 凭证
+## JWT_Token 凭证
 
-## JWT 简介
+### JWT 简介
 
 JWT全称是Json Web Token， 是JSON风格轻量级的授权和身份认证规范，可实现无状态、分布式的Web应用授权；官网：https://jwt.io   
 
-## Token 数据格式
+### Token 数据格式
 
 **例如:** 
 
@@ -471,15 +471,15 @@ JWT包含三部分数据：
 
 
 
-## Token 续期问题
+### Token 续期问题
 
 > 即: 只校验token存放在redis的过期时间, token只校验是否合法, 在token未过期的情况下用户进行了操作而延长token的过期时间, 防止token到期了而用户还在进行操作被强制退出需再次登录的情况发生
 
-### 登录获取权限
+#### 登录获取权限
 
 > 1.登录在数据库里获取用户的权限集合 储存在Spring security的上下文里
 
-### 登录成功储存 Token
+#### 登录成功储存 Token
 
 > 2.登录成功处理器 拿到上下文的权限集合一用户名储存至redis | token以用户名:token 储存到redis设置过期时间
 
@@ -543,7 +543,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 }
 ```
 
-### 过滤器续期 Token
+#### 过滤器续期 Token
 
 > 3.自定义过滤器 判断请求的token不为空且合法在对比redis的token是一致则再次储存刷新其过期时间
 
@@ -656,9 +656,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 }
 ```
 
-## Token 工具类
+### Token 工具类
 
-### Token 工具一
+#### Token 工具一
 
 > 将校验token的返回值改成 布尔 
 
@@ -771,7 +771,7 @@ public class JwtTokenUtil {
 }
 ```
 
-### Token 工具二
+#### Token 工具二
 
 > 将校验token的返回值改成对应的string提示
 
@@ -888,15 +888,15 @@ public class JwtTokenUtil {
 
 
 
-# Spring security 执行代码
+## Spring security 执行代码
 
-## Security 基础款
+### Security 基础款
 
 > Spring security 基础配置
 
-### 配置包 | config . security
+#### 配置包 | config . security
 
-#### **登录成功处理器**
+##### **登录成功处理器**
 
 > MyAuthenticationSuccessHandler
 
@@ -934,7 +934,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 }
 ```
 
-#### **登录出错 处理器**
+##### **登录出错 处理器**
 
 > MyAuthenticationFailureHandler
 >
@@ -996,7 +996,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
 ```
 
-#### **用户未登录处理器**
+##### **用户未登录处理器**
 
 > MyAuthenticationEntryPoint
 >
@@ -1032,7 +1032,7 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 ```
 
-#### 账号退出处理器
+##### 账号退出处理器
 
 > MyLogoutSuccessHandLer
 >
@@ -1070,7 +1070,7 @@ public class MyLogoutSuccessHandLer implements LogoutSuccessHandler {
 
 ```
 
-#### **鉴权处理器 **
+##### **鉴权处理器 **
 
 > MyAccessDeniedHandler | @PreAuthorize("hasAuthority('权限符内容')")  
 >
@@ -1120,7 +1120,7 @@ public class HollerController {
 }
 ```
 
-#### 微服务调用自带 token 
+##### 微服务调用自带 token 
 
 微服务 Open Feign 远程调用组件 在调用对方请求获取数据时 如果该微服务使用的security安全框架
 
@@ -1154,7 +1154,7 @@ public class FeignLogConfiguration implements RequestInterceptor {
 
 ```
 
-#### JwtTokenFilter 过滤器
+##### JwtTokenFilter 过滤器
 
 > 在未登录的情况下 但携带了正确且合法的 token 则直接放行 请求
 >
@@ -1254,7 +1254,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 
 
-#### Security  配置类
+##### Security  配置类
 
 > WebSecurityConfig
 >
@@ -1380,7 +1380,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ```
 
-#### 密码校验 | 权限集合获取
+##### 密码校验 | 权限集合获取
 
 > 进行密码的校验 注意: 在密码校验是 将数据库的密码进行MD6解析的加密密码  而不是直接对比校验
 >
@@ -1434,9 +1434,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-### 工具类 - util
+#### 工具类 - util
 
-#### JwtTokenUtil
+##### JwtTokenUtil
 
 > 生成 token | token 校验 | 根据 token 获取username | 测试
 
@@ -1550,7 +1550,7 @@ public class JwtTokenUtil {
 
 ```
 
-#### **ResponseResult**
+##### **ResponseResult**
 
 ```java
 package com.apai.util;
@@ -1597,7 +1597,7 @@ public class ResponseResult<T> {
 
 ```
 
-#### **ResultCode**
+##### **ResultCode**
 
 ```java
 package com.apai.util;
@@ -1776,9 +1776,9 @@ public class JwtTokenUtil {
 }
 ```
 
-### exception - 异常包
+#### exception - 异常包
 
-#### MyTokenIsInvalidException
+##### MyTokenIsInvalidException
 
 ```java
 package com.apai.exception;
@@ -1796,7 +1796,7 @@ public class MyTokenIsInvalidException extends AuthenticationException {
 }
 ```
 
-#### MyTokenIsNullException
+##### MyTokenIsNullException
 
 ```java
 package com.apai.exception;
@@ -1814,7 +1814,7 @@ public class MyTokenIsNullException extends AuthenticationException {
 }
 ```
 
-### 自定义登录页
+#### 自定义登录页
 
 ```html
 <!DOCTYPE html>
@@ -1892,13 +1892,13 @@ public class MyTokenIsNullException extends AuthenticationException {
 
 
 
-## Security  续期 | 匿名
+### Security  续期 | 匿名
 
 > 配置了 token的续期 和  匿名接口的请求直接访问
 
-### 配置包 | config . security
+#### 配置包 | config . security
 
-#### **登录成功处理器**
+##### **登录成功处理器**
 
 > MyAuthenticationSuccessHandler
 
@@ -1969,7 +1969,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
 ```
 
-#### **登录出错 处理器**
+##### **登录出错 处理器**
 
 > MyAuthenticationFailureHandler
 >
@@ -2031,7 +2031,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
 ```
 
-#### **用户未登录处理器**
+##### **用户未登录处理器**
 
 > MyAuthenticationEntryPoint
 >
@@ -2067,7 +2067,7 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 ```
 
-#### 账号退出处理器
+##### 账号退出处理器
 
 > MyLogoutSuccessHandLer
 >
@@ -2105,7 +2105,7 @@ public class MyLogoutSuccessHandLer implements LogoutSuccessHandler {
 
 ```
 
-#### **鉴权处理器 **
+##### **鉴权处理器 **
 
 > MyAccessDeniedHandler | @PreAuthorize("hasAuthority('权限符内容')")  
 >
@@ -2155,7 +2155,7 @@ public class HollerController {
 }
 ```
 
-#### 微服务调用自带 token 
+##### 微服务调用自带 token 
 
 微服务 Open Feign 远程调用组件 在调用对方请求获取数据时 如果该微服务使用的security安全框架
 
@@ -2189,7 +2189,7 @@ public class FeignLogConfiguration implements RequestInterceptor {
 
 ```
 
-#### JwtTokenFilter 过滤器
+##### JwtTokenFilter 过滤器
 
 * 在未登录的情况下 但携带了正确且合法的 token 则直接放行 请求
 
@@ -2310,7 +2310,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 
 
-#### Security  配置类
+##### Security  配置类
 
 > WebSecurityConfig
 >
@@ -2454,7 +2454,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ```
 
-#### 密码校验 | 权限集合获取
+##### 密码校验 | 权限集合获取
 
 > 进行密码的校验 注意: 在密码校验是 将数据库的密码进行MD6解析的加密密码  而不是直接对比校验
 >
@@ -2508,9 +2508,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-### 工具类 - util
+#### 工具类 - util
 
-#### 自定义注解
+##### 自定义注解
 
 > @AnonymousAccess 
 
@@ -2530,7 +2530,7 @@ public @interface AnonymousAccess {
 }
 ```
 
-#### JwtTokenUtil
+##### JwtTokenUtil
 
 > 生成 token | token 校验 | 根据 token 获取username | 测试
 >
@@ -2646,7 +2646,7 @@ public class JwtTokenUtil {
 
 ```
 
-#### **ResponseResult**
+##### **ResponseResult**
 
 ```java
 package com.apai.util;
@@ -2693,7 +2693,7 @@ public class ResponseResult<T> {
 
 ```
 
-#### **ResultCode**
+##### **ResultCode**
 
 ```java
 package com.apai.util;
@@ -2872,9 +2872,9 @@ public class JwtTokenUtil {
 }
 ```
 
-### exception - 异常包
+#### exception - 异常包
 
-#### MyTokenIsInvalidException
+##### MyTokenIsInvalidException
 
 ```java
 package com.apai.exception;
@@ -2892,7 +2892,7 @@ public class MyTokenIsInvalidException extends AuthenticationException {
 }
 ```
 
-#### MyTokenIsNullException
+##### MyTokenIsNullException
 
 ```java
 package com.apai.exception;
@@ -2910,11 +2910,11 @@ public class MyTokenIsNullException extends AuthenticationException {
 }
 ```
 
-## Security  续期 匿名 验证码
+### Security  续期 匿名 验证码
 
-### 配置包 | config . security
+#### 配置包 | config . security
 
-#### **登录成功处理器**
+##### **登录成功处理器**
 
 > MyAuthenticationSuccessHandler
 
@@ -2985,7 +2985,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 
 ```
 
-#### **登录出错 处理器**
+##### **登录出错 处理器**
 
 > MyAuthenticationFailureHandler
 >
@@ -3047,7 +3047,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
 ```
 
-#### **用户未登录处理器**
+##### **用户未登录处理器**
 
 > MyAuthenticationEntryPoint
 >
@@ -3083,7 +3083,7 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 ```
 
-#### 账号退出处理器
+##### 账号退出处理器
 
 > MyLogoutSuccessHandLer
 >
@@ -3121,7 +3121,7 @@ public class MyLogoutSuccessHandLer implements LogoutSuccessHandler {
 
 ```
 
-#### **鉴权处理器 **
+##### **鉴权处理器 **
 
 > MyAccessDeniedHandler | @PreAuthorize("hasAuthority('权限符内容')")  
 >
@@ -3171,7 +3171,7 @@ public class HollerController {
 }
 ```
 
-#### 微服务调用自带 token 
+##### 微服务调用自带 token 
 
 微服务 Open Feign 远程调用组件 在调用对方请求获取数据时 如果该微服务使用的security安全框架
 
@@ -3205,7 +3205,7 @@ public class FeignLogConfiguration implements RequestInterceptor {
 
 ```
 
-#### JwtTokenFilter 过滤器
+##### JwtTokenFilter 过滤器
 
 * 在未登录的情况下 但携带了正确且合法的 token 则直接放行 请求
 
@@ -3360,7 +3360,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 
 
-#### Security  配置类
+##### Security  配置类
 
 > WebSecurityConfig
 >
@@ -3525,7 +3525,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 密码校验 | 权限集合获取
+##### 密码校验 | 权限集合获取
 
 > 进行密码的校验 注意: 在密码校验是 将数据库的密码进行MD6解析的加密密码  而不是直接对比校验
 >
@@ -3586,7 +3586,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 ```
 
-#### 登录验证码校验过滤器
+##### 登录验证码校验过滤器
 
 ```java
 package com.apai.config.security;
@@ -3628,9 +3628,9 @@ public class VerificationCodeFilter extends GenericFilter {
 
 
 
-### 工具类 - util
+#### 工具类 - util
 
-#### 自定义注解 | 获取接口路径
+##### 自定义注解 | 获取接口路径
 
 > @AnonymousAccess 
 
@@ -3650,7 +3650,7 @@ public @interface AnonymousAccess {
 }
 ```
 
-#### JwtTokenUtil
+##### JwtTokenUtil
 
 > 生成 token | token 校验 | 根据 token 获取username | 测试
 >
@@ -3766,7 +3766,7 @@ public class JwtTokenUtil {
 
 ```
 
-#### **ResponseResult  返回封装**
+##### **ResponseResult  返回封装**
 
 ```java
 package com.apai.util;
@@ -3813,7 +3813,7 @@ public class ResponseResult<T> {
 
 ```
 
-#### **ResultCode | 返回参数**
+##### **ResultCode | 返回参数**
 
 ```java
 package com.apai.util;
@@ -3992,7 +3992,7 @@ public class JwtTokenUtil {
 }
 ```
 
-#### VerificationCode | 验证码
+##### VerificationCode | 验证码
 
 ```java
 package com.apai.util;
@@ -4105,9 +4105,9 @@ public class VerificationCode {
 }
 ```
 
-### exception - 异常包
+#### exception - 异常包
 
-#### MyTokenIsInvalidException
+##### MyTokenIsInvalidException
 
 ```java
 package com.apai.exception;
@@ -4125,7 +4125,7 @@ public class MyTokenIsInvalidException extends AuthenticationException {
 }
 ```
 
-#### MyTokenIsNullException
+##### MyTokenIsNullException
 
 ```java
 package com.apai.exception;
@@ -4143,7 +4143,7 @@ public class MyTokenIsNullException extends AuthenticationException {
 }
 ```
 
-### 验证码生成接口
+#### 验证码生成接口
 
 ```java
 // 获取登录数字验证码
@@ -4166,7 +4166,7 @@ public void verifyCode(HttpServletRequest request, HttpServletResponse resp) thr
 }
 ```
 
-### 前端案例
+#### 前端案例
 
 ```vue
 <template>
@@ -4397,7 +4397,7 @@ h3 {
 
 
 
-# Spring security 防坑指南:  
+## Spring security 防坑指南:  
 
 * 过滤器: config.security 包下分别为  JwtTokenFilter || WebSecurityConfig || 前端 index.js 的路由守卫
 
@@ -4416,7 +4416,7 @@ h3 {
 
 
 
-# Spring security_旧 [备份]
+## Spring security_旧 [备份]
 
 > Spring Security是一个专注于为Java Spring应用程序提供身份验证和授权的框架。与所有Spring项目一样，Spring Security的真正强大之处在于它可以轻松扩展以满足自定义要求。
 
@@ -4438,7 +4438,7 @@ h3 {
 
 ```yml
 spring:
-    # security 拦截 与 权限控制 设置账号与密码
+    ## security 拦截 与 权限控制 设置账号与密码
     security:
         user:
             name: apai
@@ -4516,7 +4516,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-## Spring security 密码加密与验证
+### Spring security 密码加密与验证
 
 > 简介:  密码和 随机密钥(盐) 配合生成 加密密码  在加上随机密钥 存储至数据库
 >
@@ -4528,7 +4528,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 >
 > 核对: **boolean matches1 = passwordEncoder.matches("密码", "已加密的密码");**
 
-### EncoderConfig 配置类
+#### EncoderConfig 配置类
 
 > config 配置包 security  包下
 
@@ -4550,7 +4550,7 @@ public class EncoderConfig {
 }
 ```
 
-### 密码测试 test
+#### 密码测试 test
 
 注意: com.apai 层级  或者  @SpringBootTest(classes = {ApplicationMybatis.class})
 
@@ -4583,7 +4583,7 @@ public class SpringTest {
 
 ```
 
-### 验证登录
+#### 验证登录
 
 2.**WebSecurityConfig 类** 拦截并设置自定义登录页 并进行传输 账号密码  至 UserDetailsServiceImpl
 
@@ -4697,7 +4697,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 ```
 
-## Spring security 登录 异常 鉴权
+### Spring security 登录 异常 鉴权
 
 **特别注意:**  
 
@@ -4732,9 +4732,9 @@ if(StringUtils.isEmpty(token)||token.equals("null")) {
 
 
 
-### 工具类 - util
+#### 工具类 - util
 
-#### JwtTokenUtil
+##### JwtTokenUtil
 
 > 生成 token | token 校验 | 根据 token 获取username | 测试
 
@@ -4848,7 +4848,7 @@ public class JwtTokenUtil {
 
 ```
 
-#### **ResponseResult**
+##### **ResponseResult**
 
 ```java
 package com.apai.util;
@@ -4895,7 +4895,7 @@ public class ResponseResult<T> {
 
 ```
 
-#### **ResultCode**
+##### **ResultCode**
 
 ```java
 package com.apai.util;
@@ -5074,9 +5074,9 @@ public class JwtTokenUtil {
 }
 ```
 
-### 配置包 | config . security
+#### 配置包 | config . security
 
-#### **登录成功处理器**
+##### **登录成功处理器**
 
 > MyAuthenticationSuccessHandler
 
@@ -5114,7 +5114,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
 }
 ```
 
-#### **登录出错 处理器**
+##### **登录出错 处理器**
 
 > MyAuthenticationFailureHandler
 >
@@ -5176,7 +5176,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
 
 ```
 
-#### **用户未登录处理器**
+##### **用户未登录处理器**
 
 > MyAuthenticationEntryPoint
 >
@@ -5212,7 +5212,7 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 ```
 
-#### 账号退出处理器
+##### 账号退出处理器
 
 > MyLogoutSuccessHandLer
 >
@@ -5250,7 +5250,7 @@ public class MyLogoutSuccessHandLer implements LogoutSuccessHandler {
 
 ```
 
-#### **鉴权处理器 **
+##### **鉴权处理器 **
 
 > MyAccessDeniedHandler | @PreAuthorize("hasAuthority('权限符内容')")  
 >
@@ -5300,7 +5300,7 @@ public class HollerController {
 }
 ```
 
-#### 微服务调用自带 token 
+##### 微服务调用自带 token 
 
 微服务 Open Feign 远程调用组件 在调用对方请求获取数据时 如果该微服务使用的security安全框架
 
@@ -5334,7 +5334,7 @@ public class FeignLogConfiguration implements RequestInterceptor {
 
 ```
 
-#### JwtTokenFilter 过滤器
+##### JwtTokenFilter 过滤器
 
 > 在未登录的情况下 但携带了正确且合法的 token 则直接放行 请求
 >
@@ -5434,7 +5434,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 
 
-#### Security  配置类
+##### Security  配置类
 
 > WebSecurityConfig
 >
@@ -5560,7 +5560,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ```
 
-#### 密码校验 | 权限集合获取
+##### 密码校验 | 权限集合获取
 
 > 进行密码的校验 注意: 在密码校验是 将数据库的密码进行MD6解析的加密密码  而不是直接对比校验
 >
@@ -5615,9 +5615,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-### exception - 异常包
+#### exception - 异常包
 
-#### MyTokenIsInvalidException
+##### MyTokenIsInvalidException
 
 ```java
 package com.apai.exception;
@@ -5635,7 +5635,7 @@ public class MyTokenIsInvalidException extends AuthenticationException {
 }
 ```
 
-#### MyTokenIsNullException
+##### MyTokenIsNullException
 
 ```java
 package com.apai.exception;
@@ -5653,7 +5653,7 @@ public class MyTokenIsNullException extends AuthenticationException {
 }
 ```
 
-### 自定义登录页
+#### 自定义登录页
 
 ```html
 <!DOCTYPE html>

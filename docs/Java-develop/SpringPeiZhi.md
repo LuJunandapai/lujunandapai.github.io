@@ -5,11 +5,11 @@ date: 2023/04/26
 
 
 
-# ----------  Spring 模板  ----------
+## ----------  Spring 模板  ----------
 
-# Spring 通用模板 
+## Spring 通用模板 
 
-## spring --> pom.xml
+### spring --> pom.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -131,7 +131,7 @@ date: 2023/04/26
 
 ```
 
-## 容器 applicationContext.xml
+### 容器 applicationContext.xml
 
 applicationContext.xml
 
@@ -240,13 +240,13 @@ applicationContext.xml
 </beans>
 ```
 
-## 容器 SpringConfig.java 注解
+### 容器 SpringConfig.java 注解
 
 > config包下 --> SpringConfig.java 基于注解 可代替 容器 applicationContext.xml 
 
 
 
-### jdbc.properties 配置数据库
+#### jdbc.properties 配置数据库
 
 ```
 jdbc.driverClass=com.mysql.cj.jdbc.Driver
@@ -255,7 +255,7 @@ jdbc.username=root
 jdbc.password=123456
 ```
 
-### DbProperties 储存数据库
+#### DbProperties 储存数据库
 
 ```java
 package com.apai.config;
@@ -283,7 +283,7 @@ public class DbProperties {
 
 ```
 
-### SpringConfig 基于注解 容器
+#### SpringConfig 基于注解 容器
 
 ```java
 package com.apai.config;
@@ -414,7 +414,7 @@ public class SpringConfig {
 }
 ```
 
-## 表现层获取实例化对象
+### 表现层获取实例化对象
 
 ```java
 // 方法一: 获取xml配置文件的bean
@@ -436,9 +436,9 @@ public class SpringConfig {
 
 
 
-# Spring MVC 通用模板
+## Spring MVC 通用模板
 
-## Spring MVC --> pox.xml
+### Spring MVC --> pox.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -542,7 +542,7 @@ public class SpringConfig {
 </project>
 ```
 
-## Web.xml
+### Web.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -589,7 +589,7 @@ public class SpringConfig {
 </web-app>
 ```
 
-## spring-mvc.xml 
+### spring-mvc.xml 
 
 resources资源包下
 
@@ -641,11 +641,11 @@ resources资源包下
 
 
 
-# SSM  整合 模板
+## SSM  整合 模板
 
-## 项目执行流程
+### 项目执行流程
 
-## 修改pom.xml，引入依赖
+### 修改pom.xml，引入依赖
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -820,7 +820,7 @@ resources资源包下
 </project>
 ```
 
-## resources  --> spring配置文件
+### resources  --> spring配置文件
 
 位于 resources  -->   spring 下
 
@@ -828,7 +828,7 @@ resources资源包下
 * application-service.xml：它是业务层的配置文件，它主要是配置spring容器的
 * application-mapper.xml：它是持久层的配制文件，它主要是配置mybatis
 
-### spring-mvc 的配置
+#### spring-mvc 的配置
 
 * 扫描Controller包
 * 视图解析器
@@ -873,7 +873,7 @@ resources资源包下
 </beans>
 ```
 
-### application-service 的配置
+#### application-service 的配置
 
 * 扫描service包
 * 事务配置：事务管理器、事务通知、事务顾问
@@ -935,7 +935,7 @@ resources资源包下
 </beans>
 ```
 
-### application-mapper 的配置
+#### application-mapper 的配置
 
 * 引入 jdbc.properties 
 
@@ -1014,7 +1014,7 @@ jdbc.password=123456
 </beans>
 ```
 
-## web.xml 配置
+### web.xml 配置
 
 * ServletContext监听器：使用 application-service、application-mapper的配置，初始化Spring容器，它是父容器。
 
@@ -1083,7 +1083,7 @@ jdbc.password=123456
 </web-app>
 ```
 
-## service 业务层 
+### service 业务层 
 
 * service 业务层 调用 mapper 持久层  
 
@@ -1107,7 +1107,7 @@ public class SmbmsUserServiceImpl implements SmbmsUserService {
 }
 ```
 
-##  Controller 表现层
+###  Controller 表现层
 
 * Controller 表现层 调用 service 业务层 
 
@@ -1146,9 +1146,9 @@ public class smbmsUserController {
 
 
 
-## SpringBoot Web配置
+### SpringBoot Web配置
 
-#### pom 配置
+##### pom 配置
 
 ```xml
 <parent>
@@ -1166,7 +1166,92 @@ public class smbmsUserController {
 
 ```
 
-#### yml 配置
+##### yml 配置
+
+```yaml
+server:
+    port: 8080
+    servlet:
+        context-path: /project-name
+```
+
+
+
+### SpringBoot Mybatis 配置
+
+##### pom配置
+
+```xml
+<!--数据库驱动--->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+</dependency>
+<!--数据源--->
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<!--Mybatis-->
+<dependency>
+    <groupId>org.mybatis.spring.boot</groupId>
+    <artifactId>mybatis-spring-boot-starter</artifactId>
+    <version>2.1.4</version>
+</dependency>
+
+<!--aop-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+##### yml配置
+
+```yaml
+spring: 
+	datasource: 
+		driver-class-name: com.mysql.cj.jdbc.Driver
+		username: root
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://localhost:3306/smbms?useUnicode=true&characterEncoding=utf8&useSSL=false&nullCatalogMeansCurrent=true&serverTimezone=Asia/Shanghai
+        hikari:
+            idle-timeout: 60000
+            maximum-pool-size: 30
+            minimum-idle: 10
+            
+mybatis:
+    mapper-locations: classpath:com/woniu/mapper/*.xml
+    type-aliases-package: com.woniu.entity
+    configuration:
+        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+	
+```
+
+
+
+## SpringBoot Web配置
+
+### pom 配置
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.6.RELEASE</version>
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+</dependencies>
+
+```
+
+### yml 配置
 
 ```yaml
 server:
@@ -1179,7 +1264,7 @@ server:
 
 ## SpringBoot Mybatis 配置
 
-#### pom配置
+### pom  配置
 
 ```xml
 <!--数据库驱动--->
@@ -1206,7 +1291,7 @@ server:
 </dependency>
 ```
 
-#### yml配置
+### yml  配置
 
 ```yaml
 spring: 
@@ -1231,94 +1316,9 @@ mybatis:
 
 
 
-# SpringBoot Web配置
+## SpringBoot  项目 - 模板
 
-## pom 配置
-
-```xml
-<parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.6.RELEASE</version>
-</parent>
-
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-</dependencies>
-
-```
-
-## yml 配置
-
-```yaml
-server:
-    port: 8080
-    servlet:
-        context-path: /project-name
-```
-
-
-
-# SpringBoot Mybatis 配置
-
-## pom  配置
-
-```xml
-<!--数据库驱动--->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-</dependency>
-<!--数据源--->
- <dependency>
-     <groupId>org.springframework.boot</groupId>
-     <artifactId>spring-boot-starter-jdbc</artifactId>
-</dependency>
-<!--Mybatis-->
-<dependency>
-    <groupId>org.mybatis.spring.boot</groupId>
-    <artifactId>mybatis-spring-boot-starter</artifactId>
-    <version>2.1.4</version>
-</dependency>
-
-<!--aop-->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
-```
-
-## yml  配置
-
-```yaml
-spring: 
-	datasource: 
-		driver-class-name: com.mysql.cj.jdbc.Driver
-		username: root
-        password: 123456
-        type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/smbms?useUnicode=true&characterEncoding=utf8&useSSL=false&nullCatalogMeansCurrent=true&serverTimezone=Asia/Shanghai
-        hikari:
-            idle-timeout: 60000
-            maximum-pool-size: 30
-            minimum-idle: 10
-            
-mybatis:
-    mapper-locations: classpath:com/woniu/mapper/*.xml
-    type-aliases-package: com.woniu.entity
-    configuration:
-        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-	
-```
-
-
-
-# SpringBoot  项目 - 模板
-
-## pom.xml 文件
+### pom.xml 文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1498,7 +1498,7 @@ mybatis:
 </project>
 ```
 
-## application.yml 配置
+### application.yml 配置
 
 ```yml
 server:
@@ -1527,11 +1527,11 @@ spring:
 mybatis-plus:
     type-aliases-package: com.apai.entity
     configuration:
-        map-underscore-to-camel-case: false   # false 表示不开启驼峰     true表示开启驼峰功能
-        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl     # logbak 日志
+        map-underscore-to-camel-case: false   ## false 表示不开启驼峰     true表示开启驼峰功能
+        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl     ## logbak 日志
 ```
 
-## 启动主程序
+### 启动主程序
 
 ```java
 import org.springframework.boot.SpringApplication;
@@ -1548,9 +1548,9 @@ public class ApplicationMybatis {
 
 
 
-# SpringBoot  父项目 - 模板
+## SpringBoot  父项目 - 模板
 
-## pom.xml 文件
+### pom.xml 文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1646,9 +1646,9 @@ public class ApplicationMybatis {
 </project>
 ```
 
-## resources 包
+### resources 包
 
-### application.yml 配置
+#### application.yml 配置
 
 ```yml
 spring:
@@ -1664,21 +1664,21 @@ spring:
             minimum-idle: 10
 
 mybatis:
-    # 设置 扫描 entity 实体类包
+    ## 设置 扫描 entity 实体类包
     type-aliases-package: com.apai.entity
-    # 设置 扫描 mapper.xml sql语句包 文件
+    ## 设置 扫描 mapper.xml sql语句包 文件
     mapper-locations: classpath:com/apai/mapper/*.xml
-    # 设置日志打印
+    ## 设置日志打印
     configuration:
         log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 
-# 分页配置 需加依赖
+## 分页配置 需加依赖
 pagehelper:
     reasonable: true #当传入的页数大于总页数时，会查询最后一页
-    # dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
+    ## dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
 ```
 
-### logback配置文件：
+#### logback配置文件：
 
 logback-spring.xml 【采用logback-spring.xml配置，就不要再application.yml里面配置了，以免冲突】
 
@@ -1716,7 +1716,7 @@ log.debug("测试....");  // 自定义日志打印
 </configuration>
 ```
 
-## 事务配置类
+### 事务配置类
 
 config 包下  事务保证业务层的业务 提交 回滚 等
 
@@ -1784,7 +1784,7 @@ public class TransConfig {
 
 ```
 
-## 启动主程序
+### 启动主程序
 
 ```java
 import org.springframework.boot.SpringApplication;
@@ -1800,7 +1800,7 @@ public class ApplicationMybatis {
 
 ```
 
-## controller 表现层
+### controller 表现层
 
 ```java
 import com.apai.entity.User;
@@ -1827,7 +1827,7 @@ public class UserController {
 
 ```
 
-## Service 业务层
+### Service 业务层
 
 ```java
 import com.apai.entity.User;
@@ -1852,7 +1852,7 @@ public class UserServiceImpl implements IUserService { // 实现业务层接口 
 }
 ```
 
-## Mapper 数据访问层
+### Mapper 数据访问层
 
 ```java
 import com.apai.entity.User;
@@ -1872,7 +1872,7 @@ public interface UserMapper {
 
 
 
-# SpringBoot Jsp  项目模板
+## SpringBoot Jsp  项目模板
 
 * SpringBoot 默认不支持 jsp 文件 需加上对应的配置
 
@@ -1880,7 +1880,7 @@ public interface UserMapper {
 
 * jsp 文件需方在 webapp / WEB-INF / jsp 文件夹下    可在app配置进行更改
 
-## pom.xml 文件
+### pom.xml 文件
 
 * 需加三组jsp支持的依赖坐标
 
@@ -2011,7 +2011,7 @@ public interface UserMapper {
 </project>
 ```
 
-## resources -> application.yml 
+### resources -> application.yml 
 
 ```yml
 spring:
@@ -2036,27 +2036,27 @@ server:
             enabled: true
             charset: UTF-8
             force: true
-        # boot不支持jsp 可配置 需要热部署感谢页面
+        ## boot不支持jsp 可配置 需要热部署感谢页面
         jsp:
             init-parameters:
                 development: true
 
 mybatis:
-    # 设置 扫描 entity 实体类包
+    ## 设置 扫描 entity 实体类包
     type-aliases-package: com.apai.entity
-    # 设置 扫描 mapper.xml sql语句包 文件
+    ## 设置 扫描 mapper.xml sql语句包 文件
     mapper-locations: classpath:com/apai/mapper/*.xml
-    # 设置日志打印
+    ## 设置日志打印
     configuration:
         log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
         
-# 分页配置
+## 分页配置
 pagehelper:
     reasonable: true #当传入的页数大于总页数时，会查询最后一页
-    # dialect: mysql #设置数据库类型 但是会报错 暂时未知原因
+    ## dialect: mysql #设置数据库类型 但是会报错 暂时未知原因
 ```
 
-## JSP -->  pom 专属配置
+### JSP -->  pom 专属配置
 
 ```xml
 <!-- jasper jsp 的支持. 用于编译jsp-->
@@ -2099,7 +2099,7 @@ pagehelper:
 </build>
 ```
 
-## JSP -- yml  专属配置
+### JSP -- yml  专属配置
 
 ```yml
 server:
@@ -2110,7 +2110,7 @@ server:
             force: true
         jsp:
             init-parameters:
-                development: true   # jsp 热部署
+                development: true   ## jsp 热部署
                 
 spring: 
 	mvc: 
@@ -2122,9 +2122,9 @@ spring:
 
 
 
-# SpringBoot Thymeleaf  项目模板
+## SpringBoot Thymeleaf  项目模板
 
-## pom.xml 文件
+### pom.xml 文件
 
 * 需添加 Thymeleaf 启动器 
 * 如果使用thymeleaf作为模板，那么需要把jsp配置清掉
@@ -2232,7 +2232,7 @@ spring:
 </project>
 ```
 
-## resources -> application.yml 
+### resources -> application.yml 
 
 ```yml
 spring:
@@ -2252,7 +2252,7 @@ spring:
             maximum-pool-size: 30
             minimum-idle: 10
             
-# 设置 编码 防止乱码
+## 设置 编码 防止乱码
 server:
     servlet:
         encoding:
@@ -2261,21 +2261,21 @@ server:
             force: true
 
 mybatis:
-    # 设置 扫描 entity 实体类包
+    ## 设置 扫描 entity 实体类包
     type-aliases-package: com.apai.entity
-    # 设置 扫描 mapper.xml sql语句包 文件
+    ## 设置 扫描 mapper.xml sql语句包 文件
     mapper-locations: classpath:com/apai/mapper/*.xml
-    # 设置日志打印
+    ## 设置日志打印
     configuration:
         log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
         
-# 分页配置
+## 分页配置
 pagehelper:
     reasonable: true #当传入的页数大于总页数时，会查询最后一页
-    # dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
+    ## dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
 ```
 
-## thymeleaf  -- pom 专属配置
+### thymeleaf  -- pom 专属配置
 
 如果使用thymeleaf作为模板，那么需要把jsp配置清掉
 
@@ -2287,7 +2287,7 @@ pagehelper:
 </dependency>
 ```
 
-## thymeleaf  -- yml  专属配置
+### thymeleaf  -- yml  专属配置
 
 ```yml
 spring: 
@@ -2297,7 +2297,7 @@ spring:
 		suffix: .html
 ```
 
-## thymeleaf -- HTML 网页
+### thymeleaf -- HTML 网页
 
 resources -> templates 包下 注意: 因为在yml文件中配置了跳转地址使用必须在该包下 也可修改配置
 
@@ -2330,7 +2330,7 @@ resources -> templates 包下 注意: 因为在yml文件中配置了跳转地址
 </html>
 ```
 
-### thymeleaf  添加静态资源
+#### thymeleaf  添加静态资源
 
 * 查看ResourceProperties类，静态资源存放的默认位置由4个目录，分别在根目录，
 * 即/src/main/resources/目录下的
@@ -2338,9 +2338,9 @@ resources -> templates 包下 注意: 因为在yml文件中配置了跳转地址
 
 
 
-# 父子工程模板配置
+## 父子工程模板配置
 
-## 父工程 pom.xml 依赖配置
+### 父工程 pom.xml 依赖配置
 
 > 特别注意:  <!--mybatis-plus 启动器-->  和   <!--分页插件-->  会产生依赖冲突 会造成异常
 >
@@ -2520,7 +2520,7 @@ resources -> templates 包下 注意: 因为在yml文件中配置了跳转地址
 
 ```
 
-## application.yml 配置
+### application.yml 配置
 
 > **resources** 包下的 application.yml 配置
 
@@ -2538,18 +2538,18 @@ spring:
       minimum-idle: 10
 
 mybatis-plus:
-  # 设置 扫描 entity 实体类包
+  ## 设置 扫描 entity 实体类包
   type-aliases-package: com.apai.entity
-  # 设置 扫描 mapper.xml sql语句包 文件
+  ## 设置 扫描 mapper.xml sql语句包 文件
   mapper-locations: classpath:com/apai/mapper/*.xml
-  # 设置日志打印
+  ## 设置日志打印
   configuration:
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 ```
 
-# |---------------------- 分界线
+## |---------------------- 分界线
 
-# Spring 脚手架创建 父子工程
+## Spring 脚手架创建 父子工程
 
 > Spring Initializr 脚手架创建 父子工程
 
@@ -2559,7 +2559,7 @@ mybatis-plus:
 
 ![image-20220625115532840](https://gitee.com/LuisApai/apai_imags/raw/master/image-20220625115532840.png)
 
-## 父工程 pom
+### 父工程 pom
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2626,7 +2626,7 @@ mybatis-plus:
 
 ```
 
-## 子项目 pom
+### 子项目 pom
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2761,7 +2761,7 @@ mybatis-plus:
 
 ```
 
-## 子项目 application.yml
+### 子项目 application.yml
 
 ```yml
 server:
@@ -2786,7 +2786,7 @@ spring:
         cache: false
         prefix: classpath:/templates/
         suffix: .html
-    #  连接 redis  
+    ##  连接 redis  
     redis:
         host: 192.168.174.128
         port: 6379
@@ -2795,8 +2795,8 @@ spring:
 mybatis-plus:
     type-aliases-package: com.woniu.entity
     configuration:
-        map-underscore-to-camel-case: false                     # false 表示不开启驼峰     true表示开启驼峰功能
-        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl     # logbak 日志
+        map-underscore-to-camel-case: false                     ## false 表示不开启驼峰     true表示开启驼峰功能
+        log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl     ## logbak 日志
 
 
 pagehelper:
@@ -2806,11 +2806,11 @@ pagehelper:
 
 
 
-# 代码生成器
+## 代码生成器
 
-## mybatis - 代码生成器
+### mybatis - 代码生成器
 
-### pom.xml 生成器插件配置
+#### pom.xml 生成器插件配置
 
 ```xml
 // mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
@@ -2840,7 +2840,7 @@ pagehelper:
 </plugin>
 ```
 
-### generatorConfig.xml  配置
+#### generatorConfig.xml  配置
 
 > 代码生成器的启动类  
 >
@@ -2894,15 +2894,15 @@ pagehelper:
 </generatorConfiguration>
 ```
 
-### 开启自动生成
+#### 开启自动生成
 
 ![image-20220601174717702](https://gitee.com/LuisApai/apai_imags/raw/master/image-20220601174717702.png)
 
 
 
-## Mybatis-plus 代码生成器
+### Mybatis-plus 代码生成器
 
-### 添加依赖
+#### 添加依赖
 
 > pom.xml 文件内   
 >
@@ -2946,7 +2946,7 @@ pagehelper:
 </dependency>
 ```
 
-### 添加 模板引擎
+#### 添加 模板引擎
 
 > **可直接写在测试类里** 使用单元测试开启 即可
 >
@@ -3010,9 +3010,9 @@ public class MybatisPlusGenerator {
 
 
 
-# POM.xml 依赖文件
+## POM.xml 依赖文件
 
-## POM.xml  总体详解
+### POM.xml  总体详解
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3177,9 +3177,9 @@ public class MybatisPlusGenerator {
 
 ```
 
-## POM.xml  依赖
+### POM.xml  依赖
 
-### 基础依赖配置
+#### 基础依赖配置
 
 ```xml
 <!-- web 注解支持 -->
@@ -3221,7 +3221,7 @@ public class MybatisPlusGenerator {
 </dependency>
 ```
 
-### 依赖升级配置
+#### 依赖升级配置
 
 ```xml
 <dependencies>
@@ -3279,7 +3279,7 @@ public class MybatisPlusGenerator {
 </dependencies>
 ```
 
-### 功能类依赖
+#### 功能类依赖
 
 ```xml
 <dependencies>
@@ -3399,7 +3399,7 @@ public class MybatisPlusGenerator {
 </dependencies>
 ```
 
-### Eureka 微服务 依赖
+#### Eureka 微服务 依赖
 
 ```xml
 <!--Eureka 微服务-->
@@ -3453,7 +3453,7 @@ public class MybatisPlusGenerator {
 </dependencyManagement>
 ```
 
-### Nacos 依赖
+#### Nacos 依赖
 
 ```xml
 <properties>
@@ -3497,9 +3497,9 @@ public class MybatisPlusGenerator {
 </dependencyManagement>
 ```
 
-## build 插件
+### build 插件
 
-### SQL 映射配置
+#### SQL 映射配置
 
 ```xml
 <!--  插件  -->
@@ -3526,7 +3526,7 @@ public class MybatisPlusGenerator {
 </build>
 ```
 
-### 指定项目启动类
+#### 指定项目启动类
 
 ```xml
 <!-- 构建项目需要的信息 -->
@@ -3565,23 +3565,23 @@ public class MybatisPlusGenerator {
 
 
 
-# application.yml 配置文件
+## application.yml 配置文件
 
-## YML 常用基础模板
+### YML 常用基础模板
 
 ```yaml
-# 指定项目端口
+## 指定项目端口
 server:
     port: 8001
 
 spring:
-	# 项目名称
+	## 项目名称
     application:
         name: wxapplet
-    # 配置文件的指定
+    ## 配置文件的指定
     profiles:
         active: dev
-    # MYSQL 数据库配置
+    ## MYSQL 数据库配置
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
@@ -3592,7 +3592,7 @@ spring:
         password: lj102528@
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://1.12.252.62:3306/luapai?serverTimezone=UTC&allowMultiQueries=true
-    # 微服务 NACOS 配置
+    ## 微服务 NACOS 配置
     cloud:
         nacos:
             discovery:
@@ -3600,33 +3600,33 @@ spring:
             config:
                 server-addr: ${spring.cloud.nacos.discovery.server-addr}
                 file-extension: yaml
-    # 中间件 Redis 配置
+    ## 中间件 Redis 配置
     redis:
-        # Redis 服务器地址
+        ## Redis 服务器地址
         host: 1.12.252.62
-        # Redis 服务器连接端口
+        ## Redis 服务器连接端口
         port: 6379
-        # Redis 数据库索引（默认为 0）
+        ## Redis 数据库索引（默认为 0）
         database: 0
 
 mybatis-plus:
-    # 关闭 mybatis-plus 启动日志
+    ## 关闭 mybatis-plus 启动日志
     global-config:
         banner: false
-        # id的生成策略
+        ## id的生成策略
         db-config:
             id-type: assign_id
-    # 设置 扫描 entity 实体类包
+    ## 设置 扫描 entity 实体类包
     type-aliases-package: com.apai.entity
-    # 设置 扫描 mapper.xml sql语句包 文件
+    ## 设置 扫描 mapper.xml sql语句包 文件
     mapper-locations: classpath:com/apai/mapper/*.xml
     configuration:
-        # 设置日志打印
+        ## 设置日志打印
         log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-        map-underscore-to-camel-case: true # false 表示不开启驼峰     true表示开启驼峰功能
+        map-underscore-to-camel-case: true ## false 表示不开启驼峰     true表示开启驼峰功能
 ```
 
-## 配置汇总 | 历史
+### 配置汇总 | 历史
 
 * application-dev.yml  |  开发环境
 * application-test.yml    |  测试环境
@@ -3635,14 +3635,14 @@ mybatis-plus:
 ```yml
 spring:
   main:
-    # 关闭 spring 启动日志
+    ## 关闭 spring 启动日志
     banner-mode: off
-  # 跳转的前缀 和 后缀
+  ## 跳转的前缀 和 后缀
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
-  # 数据源配置
+  ## 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -3653,7 +3653,7 @@ spring:
       idle-timeout: 60000
       maximum-pool-size: 30
       minimum-idle: 10
-  # 文件上传大小
+  ## 文件上传大小
   servlet:
     multipart:
       max-file-size: 1MB
@@ -3666,9 +3666,9 @@ spring:
           - classpath:static
 
 server:
-  # 设置端口号
+  ## 设置端口号
   port: 8080
-  # 设置 编码 防止乱码
+  ## 设置 编码 防止乱码
   servlet:
     encoding:
       enabled: true
@@ -3677,26 +3677,26 @@ server:
 
 
 mybatis-plus:
-  # 关闭 mybatis-plus 启动日志
+  ## 关闭 mybatis-plus 启动日志
   global-config:
     banner: false
-  # 设置 扫描 entity 实体类包
+  ## 设置 扫描 entity 实体类包
   type-aliases-package: com.apai.entity
-  # 设置 扫描 mapper.xml sql语句包 文件
+  ## 设置 扫描 mapper.xml sql语句包 文件
   mapper-locations: classpath:com/apai/mapper/*.xml
   configuration:
-    # 设置日志打印
+    ## 设置日志打印
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-   	# 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
-  	# 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-  	# 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
+   	## 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
+  	## 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
+  	## 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
     map-underscore-to-camel-case: true 
 
 
-# 分页配置
+## 分页配置
 pagehelper:
   reasonable: true #当传入的页数大于总页数时，会查询最后一页
-  # dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
+  ## dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
 ```
 
 ```yml
@@ -3705,7 +3705,7 @@ server:
 spring:
     application:
         name: User_apai
-    # 配置文件的指定
+    ## 配置文件的指定
     profiles:
         active: dev
     datasource:
@@ -3724,9 +3724,9 @@ spring:
             max-request-size: 500MB   #设置单次请求的文件总大小
             enabled: true    #千万注意要设置该参数，否则不生效
     redis:
-        # Redis 服务器地址
+        ## Redis 服务器地址
         host: 192.168.174.133
-        # Redis 服务器连接端口
+        ## Redis 服务器连接端口
         port: 6379
     cloud:
         nacos:
@@ -3740,34 +3740,34 @@ spring:
         password: admin
         virtual-host: my_vhost
         port: 5672
-        # 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
+        ## 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
         publisher-confirm-type: CORRELATED
-        # 开启 消息到队列的回调 生产方
+        ## 开启 消息到队列的回调 生产方
         publisher-returns: true
         listener:
             simple:
-                # 开启手动应答 消费方
+                ## 开启手动应答 消费方
                 acknowledge-mode: manual
-                # 队列每次拉取消息次数 消费方
+                ## 队列每次拉取消息次数 消费方
                 prefetch: 1
 
 mybatis-plus:
-    # 关闭 mybatis-plus 启动日志
+    ## 关闭 mybatis-plus 启动日志
     global-config:
         banner: false
-        # id的生成策略
+        ## id的生成策略
         db-config:
             id-type: assign_id
-    # 设置 扫描 entity 实体类包
+    ## 设置 扫描 entity 实体类包
     type-aliases-package: com.woniu.outlet.po
-    # 设置 扫描 mapper.xml sql语句包 文件
+    ## 设置 扫描 mapper.xml sql语句包 文件
     mapper-locations: classpath:com/woniu/outlet/mapper/*.xml
     configuration:
-        # 设置日志打印
+        ## 设置日志打印
         log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-        map-underscore-to-camel-case: true # false 表示不开启驼峰     true表示开启驼峰功能
+        map-underscore-to-camel-case: true ## false 表示不开启驼峰     true表示开启驼峰功能
 
-# minio 文件存储配置信息
+## minio 文件存储配置信息
 minio:
     endpoint: http://192.172.0.18:9090
     accesskey: minioadmin
@@ -3775,16 +3775,16 @@ minio:
 
 ```
 
-## 功能配置
+### 功能配置
 
-### 设置端口号
+#### 设置端口号
 
 ```yml
 server:
 	port: 8080
 ```
 
-### 页面跳转 
+#### 页面跳转 
 
 ```yml
 spring:
@@ -3794,10 +3794,10 @@ spring:
     cache: false
 ```
 
-### 数据源
+#### 数据源
 
 ```yml
-# 方式一
+## 方式一
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -3810,7 +3810,7 @@ spring:
       maximum-pool-size: 30
       minimum-idle: 10
 
-# 方式二  
+## 方式二  
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -3824,10 +3824,10 @@ spring:
         url: jdbc:mysql://localhost:3306/licaimoney?serverTimezone=UTC
 ```
 
-### 编码和解码
+#### 编码和解码
 
 ```yml
-# 设置 编码 防止乱码
+## 设置 编码 防止乱码
 server:
   servlet:
     encoding:
@@ -3836,7 +3836,7 @@ server:
       force: true
 ```
 
-### 文件上传大小 yml 配置
+#### 文件上传大小 yml 配置
 
 ```yaml
 spring:
@@ -3846,66 +3846,66 @@ spring:
             max-request-size: 3MB
 ```
 
-### Spring security 账号和密码
+#### Spring security 账号和密码
 
 可在 application.yml 里配置 Spring security 账号和密码
 
 ```yml
 spring:
-    # security 拦截 与 权限控制 设置账号与密码
+    ## security 拦截 与 权限控制 设置账号与密码
     security:
         user:
             name: apai
             password: 123456
 ```
 
-### Redis  配置
+#### Redis  配置
 
 ```yml
-## Redis 服务器地址
+### Redis 服务器地址
 spring.redis.host=localhost
-## Redis 服务器连接端口
+### Redis 服务器连接端口
 spring.redis.port=6379
-## Redis 数据库索引（默认为 0）
+### Redis 数据库索引（默认为 0）
 spring.redis.database=0
-## Redis 服务器连接密码（默认为空）
+### Redis 服务器连接密码（默认为空）
 spring.redis.password=
-## 以下非必须，有默认值
-## 连接池最大连接数（使用负值表示没有限制）默认 8
+### 以下非必须，有默认值
+### 连接池最大连接数（使用负值表示没有限制）默认 8
 spring.redis.lettuce.pool.max-active=8
-## 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
+### 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
 spring.redis.lettuce.pool.max-wait=-1
-## 连接池中的最大空闲连接 默认 8
+### 连接池中的最大空闲连接 默认 8
 spring.redis.lettuce.pool.max-idle=8
-## 连接池中的最小空闲连接 默认 0
+### 连接池中的最小空闲连接 默认 0
 spring.redis.lettuce.pool.min-idle=0
 ```
 
 ```yml
 spring:
     redis:
-        # Redis 服务器地址
+        ## Redis 服务器地址
         host: localhost
-        # Redis 服务器连接端口
+        ## Redis 服务器连接端口
         port: 6379
-        # Redis 数据库索引（默认为 0）
+        ## Redis 数据库索引（默认为 0）
         database: 0
-        # Redis 服务器连接密码（默认为空）
+        ## Redis 服务器连接密码（默认为空）
         password: 123
-        # Redis 连接池 | 以下非必须，有默认值
+        ## Redis 连接池 | 以下非必须，有默认值
         lettuce:
             pool:
-                # 连接池最大连接数（使用负值表示没有限制）默认 8
+                ## 连接池最大连接数（使用负值表示没有限制）默认 8
                 max-active: 8
-                # 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
+                ## 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
                 max-wait: -1
-                # 连接池中的最大空闲连接 默认 8
+                ## 连接池中的最大空闲连接 默认 8
                 max-idle: 8
-                # 连接池中的最小空闲连接 默认 0
+                ## 连接池中的最小空闲连接 默认 0
                 min-idle: 0
 ```
 
-### RabbitMQ 消息队列
+#### RabbitMQ 消息队列
 
 ```yml
 spring:
@@ -3915,35 +3915,35 @@ spring:
     password: guest
     virtual-host: /
     port: 5672
-    # 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: CORRELATED
-    # 开启 消息到队列的回调 生产方
+    ## 开启 消息到队列的回调 生产方
     publisher-returns: true
     listener:
       simple:
-        # 开启手动应答 消费方
+        ## 开启手动应答 消费方
         acknowledge-mode: manual
-        # 队列每次拉取消息次数 消费方
+        ## 队列每次拉取消息次数 消费方
         prefetch: 1
 ```
 
 
 
-## MyBatisPlus 表名 列名 配置
+### MyBatisPlus 表名 列名 配置
 
-### 关闭启动日志 | id生成策略
+#### 关闭启动日志 | id生成策略
 
 ```yml
 mybatis-plus:
     global-config:
-        # 关闭 mybatis-plus 启动日志
+        ## 关闭 mybatis-plus 启动日志
         banner: false
-        # id的生成策略
+        ## id的生成策略
         db-config:
             id-type: auto
 ```
 
-### 下划线 表名配置
+#### 下划线 表名配置
 
 > - [x] **resources** 包下的 application.yml 配置
 >
@@ -3955,11 +3955,11 @@ mybatis-plus:
 mybatis-plus:
   global-config:
     db-config:
-      # MyBatisPlus 实体类 与 数据库表名 不对应 设置实体类的前缀拼接成表名
+      ## MyBatisPlus 实体类 与 数据库表名 不对应 设置实体类的前缀拼接成表名
       table-prefix: smbms_
 ```
 
-### 大小写区分  表名配置
+#### 大小写区分  表名配置
 
 > MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
 >
@@ -3967,7 +3967,7 @@ mybatis-plus:
 
 ```yml
 mybatis-plus:
-  # MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
+  ## MyBatisPlus 实体类 与 表名 有大小写区分 解决方法
   global-config:
     db-config:
       table-underline: false
@@ -3975,11 +3975,11 @@ mybatis-plus:
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 下划线 列名与 字段配置
+#### 下划线 列名与 字段配置
 
 > 同表名一样，如果数据库表里的字段名使用标准的下划线命名，并且能对应上实体类的成员名称（驼峰命名），我们就不需要特别去手动匹配。比如下面 **user_info** 表里的字段会自动跟 **UserInfo** 实体类的各个成员属性一一对应：
 
-### 列名使用驼峰 字段配置
+#### 列名使用驼峰 字段配置
 
 > 如果数据库表里的字段名并不是使用下划线命名（但能跟实体类的成员名称对应上），可以添加如下全局配置，表示数据库表字段名不使用下划线命名： 列名 userName   字段 userName
 
@@ -3988,17 +3988,17 @@ mybatis-plus.configuration.map-underscore-to-camel-case=false
 
 mybatis-plus:
   configuration:
-  	# 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
-  	# 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-  	# 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
+  	## 实体类 和 表 列名的对应设置 false 表示不开启驼峰 true表示开启驼峰功能
+  	## 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
+  	## 开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
     map-underscore-to-camel-case: true
-    # 设置日志打印
+    ## 设置日志打印
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 ```
 
 
 
-## 设置静态资源文件夹
+### 设置静态资源文件夹
 
 方式一:
 
@@ -4037,7 +4037,7 @@ public class MyWebConfiture implements WebMvcConfigurer {
 
 
 
-## 分页配置
+### 分页配置
 
 **依赖**
 
@@ -4073,16 +4073,16 @@ public class MyWebConfiture implements WebMvcConfigurer {
 ```yaml
 pagehelper:
     reasonable: true 	#当传入的页数大于总页数时，会查询最后一页
-    # dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
+    ## dialect: mysql   #设置数据库类型 但是会报错 暂时未知原因
 ```
 
 
 
 
 
-# 模板补充
+## 模板补充
 
-## logback SQL日志配置文件：
+### logback SQL日志配置文件：
 
 logback-spring.xml 【采用logback-spring.xml配置，就不要再application.yml里面配置了，以免冲突】
 

@@ -3,11 +3,11 @@ title: Redis 内存数据库
 date: 2023/04/26
 ---
 
-# redis  内存数据库
+## redis  内存数据库
 
 参考: https://blog.csdn.net/guorui_java/article/details/129292178
 
-## 查看默认安装目录
+### 查看默认安装目录
 
 源码包安装的软件。一般都在usr/local/bin下。redis采用源码包安装，进入usr/local/bin下
 
@@ -23,9 +23,9 @@ date: 2023/04/26
 
 * redis-server：Redis服务器启动命令
 
-## redis -- 安装配置方法
+### redis -- 安装配置方法
 
-### redis -- 安装
+#### redis -- 安装
 
 1.解压  --  redis-5.0.4.tar.gz
 
@@ -55,12 +55,12 @@ date: 2023/04/26
 > 在源码包的根目录下执行make install命令即可
 > ~~~
 
-### redis 配置
+#### redis 配置
 
 将redis安装包下的redis.conf配置文件复制一份到/usr/local/bin目录下
 
 ~~~
-[root@localhost redis-5.0.4]# cp redis.conf /usr/local/bin/
+[root@localhost redis-5.0.4]## cp redis.conf /usr/local/bin/
 ~~~
 
 修改配置文件
@@ -88,9 +88,9 @@ redis-cli -h 192.168.174.128 -p 6379
 
 > 如果是redis服务器就在本机，那么ip地址就可以省略，如果不是本机就要带上redis服务器的ip地址，而且redis服务器的配置文件添加 bind 0.0.0.0 或者是bind 远程服务器的ip，如bind 192.168.128.128
 
-# redis 常用指令
+## redis 常用指令
 
-## redis 服务器关闭
+### redis 服务器关闭
 
 进入redis客户端后，执行shutdown
 
@@ -102,11 +102,11 @@ redis-cli -h 192.168.174.128 -p 6379
 杀掉redis服务器进程
 
 ~~~
-[root@localhost bin]# ps -ef|grep redis
-[root@localhost bin]# kill -9 进程id
+[root@localhost bin]## ps -ef|grep redis
+[root@localhost bin]## kill -9 进程id
 ~~~
 
-## Redis 数据库
+### Redis 数据库
 
 redis默认16个数据库，类似数组下表从零开始，默认数据库为0，可以使用SELECT命令在连接上指定数据库id
 
@@ -140,7 +140,7 @@ redis默认16个数据库，类似数组下表从零开始，默认数据库为0
 
 
 
-## redis单线程模型
+### redis单线程模型
 
 > redis是单线程来处理网络请求的，这里的单线程，只是在处理我们的网络请求的时候只有一个线程来处理，即一个线程处理所有网络请求，一个正式的Redis Server运行的时候肯定是不止一个线程的，例如Redis进行持久化的时候会以子进程或者子线程的方式执行
 >
@@ -152,7 +152,7 @@ redis默认16个数据库，类似数组下表从零开始，默认数据库为0
 >
 > 采用单线程,避免了不必要的上下文切换和竞争条件，redis采用非阻塞IO - IO多路复用， epoll做为I/O多路复用技术的实现，这里“多路”指的是和多个网络客户端连接，“复用”指的是复用同一个线程。采用多路 I/O 复用技术可以让单个线程高效的处理多个连接请求（尽量减少网络 IO 的时间消耗）
 
-# Redis数据类型指令
+## Redis数据类型指令
 
 > **Redis的五大数据类型：**
 >
@@ -160,11 +160,11 @@ redis默认16个数据库，类似数组下表从零开始，默认数据库为0
 
 
 
-## string（字符串）
+### string（字符串）
 
 String（字符串）string是redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。string类型是Redis最基本的数据类型，一个redis中字符串value最多可以是512M
 
-#### set key value
+##### set key value
 
 语法： set key value [EX seconds] [PX milliseconds] [NX|XX]
 将字符串值 value 关联到 key
@@ -188,7 +188,7 @@ redis 127.0.0.1:6379> SET exists-key "value" XX        #键存在时，设置成
 redis 127.0.0.1:6379> SET key-with-expire-and-NX "hello" EX 10 NX
 ~~~
 
-#### get key
+##### get key
 
 返回 key 所关联的字符串值
 如果 key 不存在那么返回特殊值 nil 
@@ -198,7 +198,7 @@ redis 127.0.0.1:6379> SET key-with-expire-and-NX "hello" EX 10 NX
 redis> GET db
 ~~~
 
-#### del key
+##### del key
 
 删除某个key
 
@@ -206,13 +206,13 @@ redis> GET db
 redis> del username
 ~~~
 
-#### append key value
+##### append key value
 
 如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
 如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样
 
 ~~~
-redis> EXISTS myphone               # myphone 不存在
+redis> EXISTS myphone               ## myphone 不存在
 (integer) 0
 redis> APPEND myphone "nokia" 
 redis> APPEND myphone " - 1110"
@@ -220,7 +220,7 @@ redis> GET myphone
 "nokia - 1110"
 ~~~
 
-#### strlen key
+##### strlen key
 
 返回 key 所储存的字符串值的长度。
 当 key 储存的不是字符串值时，返回一个错误。
@@ -233,7 +233,7 @@ redis> GET myphone
 127.0.0.1:6379[1]> strlen username
 ~~~
 
-#### INCR key
+##### INCR key
 
 将 key 中储存的数字值增一。
 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。
@@ -247,7 +247,7 @@ redis> GET myphone
 127.0.0.1:6379[1]> decr k1   #将 key 中储存的数字值减一
 ~~~
 
-#### INCRBY key 	
+##### INCRBY key 	
 
 将 key 所储存的值加上增量 increment 。
 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCRBY 命令。
@@ -260,7 +260,7 @@ redis> GET myphone
 127.0.0.1:6379[1]> decrby k1 2    #将 key 所储存的值减量 increment 
 ~~~
 
-#### GETRANGE key start end
+##### GETRANGE key start end
 
 返回 key 中字符串值的子字符串，字符串的截取范围由 start 和 end 两个偏移量决定(包括 start 和 end 在内)。
 负数偏移量表示从字符串最后开始计数， -1 表示最后一个字符， -2 表示倒数第二个，以此类推。
@@ -274,7 +274,7 @@ GETRANGE 通过保证子字符串的值域(range)不超过实际字符串的值�
 127.0.0.1:6379[1]> getrange username 0 -1
 ~~~
 
-#### SETRANGE key offset value
+##### SETRANGE key offset value
 
 用 value 参数覆写(overwrite)给定 key 所储存的字符串值，从偏移量 offset 开始。不存在的 key 当作空白字符串处理
 
@@ -288,7 +288,7 @@ GETRANGE 通过保证子字符串的值域(range)不超过实际字符串的值�
 "zhanxxxnfeng"
 ~~~
 
-#### SETEX key seconds value
+##### SETEX key seconds value
 
 将值 value 关联到 key ，并将 key 的生存时间设为 seconds (以秒为单位)。
 如果 key 已经存在， SETEX 命令将覆写旧值。
@@ -297,7 +297,7 @@ GETRANGE 通过保证子字符串的值域(range)不超过实际字符串的值�
 
 ~~~
 SET key value
-EXPIRE key seconds  # 设置生存时间
+EXPIRE key seconds  ## 设置生存时间
 ~~~
 
 返回值：
@@ -307,13 +307,13 @@ EXPIRE key seconds  # 设置生存时间
 ~~~
 redis> SETEX cache_user_id 60 10086   #设置60秒
 OK
-redis> GET cache_user_id  # 值
+redis> GET cache_user_id  ## 值
 "10086"
-redis> TTL cache_user_id  # 剩余生存时间
+redis> TTL cache_user_id  ## 剩余生存时间
 (integer) 49
 ~~~
 
-#### SETNX key value
+##### SETNX key value
 
 将 key 的值设为 value ，当且仅当 key 不存在。
 若给定的 key 已经存在，则 SETNX 不做任何动作。
@@ -324,15 +324,15 @@ SETNX 是『SET if Not exists』(如果不存在，则 SET)的简写。
 设置失败，返回 0 。
 
 ~~~
-redis> EXISTS job                # job 不存在
+redis> EXISTS job                ## job 不存在
 (integer) 0
 
-redis> SETNX job "programmer"    # job 设置成功
+redis> SETNX job "programmer"    ## job 设置成功
 (integer) 1
 redis> GET job 
 ~~~
 
-#### MSET key value [key value ...]
+##### MSET key value [key value ...]
 
 同时设置一个或多个 key-value 对。 (m:more)
 如果某个给定 key 已经存在，那么 MSET 会用新值覆盖原来的旧值，如果这不是你所希望的效果，请考虑使用 MSETNX 命令：它只会在所有给定 key 都不存在的情况下进行设置操作。
@@ -342,7 +342,7 @@ redis> GET job
 127.0.0.1:6379[1]> mget k1 k2 k3
 ~~~
 
-#### MGET key [key ...]
+##### MGET key [key ...]
 
 返回所有(一个或多个)给定 key 的值。
 如果给定的 key 里面，有某个 key 不存在，那么这个 key 返回特殊值 nil 。因此，该命令永不失败
@@ -356,7 +356,7 @@ redis> SET mongodb mongodb.org
 redis> MGET redis mongodb mysql
 ~~~
 
-#### MSETNX key value [key value ...]
+##### MSETNX key value [key value ...]
 
 同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。
 即使只有一个给定 key 已存在， MSETNX 也会拒绝执行所有给定 key 的设置操作。
@@ -367,7 +367,7 @@ MSETNX 是原子性的，因此它可以用作设置多个不同 key 表示不�
 如果所有给定 key 都设置失败(至少有一个 key 已经存在)，那么返回 0 。
 
 ~~~
-# 对不存在的 key 进行 MSETNX
+## 对不存在的 key 进行 MSETNX
 redis> MSETNX rmdbs "MySQL" nosql "MongoDB" key-value-store "redis"
 (integer) 1
 redis> MGET rmdbs nosql key-value-store
@@ -375,22 +375,22 @@ redis> MGET rmdbs nosql key-value-store
 2) "MongoDB"
 3) "redis"
 
-# MSET 的给定 key 当中有已存在的 key
-redis> MSETNX rmdbs "Sqlite" language "python"  # rmdbs 键已经存在，操作失败
+## MSET 的给定 key 当中有已存在的 key
+redis> MSETNX rmdbs "Sqlite" language "python"  ## rmdbs 键已经存在，操作失败
 (integer) 0
-redis> EXISTS language                          # 因为 MSET 是原子性操作，language 没有被设置
+redis> EXISTS language                          ## 因为 MSET 是原子性操作，language 没有被设置
 (integer) 0
-redis> GET rmdbs                                # rmdbs 也没有被修改
+redis> GET rmdbs                                ## rmdbs 也没有被修改
 "MySQL"
 ~~~
 
 
 
-## Hash（哈希）
+### Hash（哈希）
 
 Hash（哈希）Redis hash 是一个键值对集合。Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。类似Java里面的Map<String,Object>，在hash类型中，也是一个键值对，key不变  v又是一个键值对
 
-#### HSET key field value
+##### HSET key field value
 
 将哈希表 key 中的域 field 的值设为 value 。
 如果 key 不存在，一个新的哈希表被创建并进行 HSET 操作。如果域 field 已经存在于哈希表中，旧值将被覆盖
@@ -410,7 +410,7 @@ sunion求并集  sunion   key1 key2 key3 .....
 
 sdiff 求差     sdiff  key1  key2  .....
 
-#### HGET key field
+##### HGET key field
 
 返回哈希表 key 中给定域 field 的值
 
@@ -421,7 +421,7 @@ sdiff 求差     sdiff  key1  key2  .....
 127.0.0.1:6379> hget user id  
 ~~~
 
-#### HMSET key field value [field value ...]
+##### HMSET key field value [field value ...]
 
 同时将多个 field-value (域-值)对设置到哈希表 key 中。
 此命令会覆盖哈希表中已存在的域。如果 key 不存在，一个空哈希表被创建并执行 HMSET 操作
@@ -438,7 +438,7 @@ OK
 2) "zhangsan"
 ~~~
 
-#### HMGET key field [field ...]
+##### HMGET key field [field ...]
 
 HMGET key field [field ...]
 返回哈希表 key 中，一个或多个给定域的值。
@@ -453,7 +453,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HMGET user id name
 ~~~~
 
-#### HGETALL key
+##### HGETALL key
 
 返回哈希表 key 中，所有的域和值。
 在返回值里，紧跟每个域名(field name)之后是域的值(value)，所以返回值的长度是哈希表大小的两倍。
@@ -465,7 +465,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HGETALL user
 ~~~
 
-#### HDEL key field [field ...]
+##### HDEL key field [field ...]
 
 删除哈希表 key 中的一个或多个指定域，不存在的域将被忽略
 
@@ -476,7 +476,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HDEL user id name
 ~~~
 
-#### HLEN key
+##### HLEN key
 
 返回哈希表 key 中域的数量
 
@@ -487,7 +487,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HLEN user
 ~~~
 
-#### HEXISTS key field
+##### HEXISTS key field
 
 查看哈希表 key 中，给定域 field 是否存在
 
@@ -499,7 +499,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HEXISTS user name        判断key是user 的值中 是否含有name的键
 ~~~
 
-#### HKEYS key
+##### HKEYS key
 
 返回哈希表 key 中的所有域。
 
@@ -511,7 +511,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HKEYS user
 ~~~
 
-#### HVALS key
+##### HVALS key
 
 返回哈希表 key 中所有域的值。
 
@@ -522,7 +522,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HVALS user
 ~~~
 
-#### HINCRBY key field increment
+##### HINCRBY key field increment
 
 为哈希表 key 中的域 field 的值加上增量 increment,增量也可以为负数，相当于对给定域进行减法操作
 
@@ -538,7 +538,7 @@ HMGET key field [field ...]
 127.0.0.1:6379> HINCRBY user age 5
 ~~~
 
-#### HINCRBYFLOAT key field increment
+##### HINCRBYFLOAT key field increment
 
 为哈希表 key 中的域 field 加上浮点数增量 increment
 
@@ -557,11 +557,11 @@ HMGET key field [field ...]
 
 
 
-## list（列表）
+### list（列表）
 
 List（列表）Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素导列表的头部（左边）或者尾部（右边）。它的底层实际是个链表
 
-#### LPUSH key value [value ...]
+##### LPUSH key value [value ...]
 
 将一个或多个值 value 插入到列表 key 的表头
 
@@ -576,7 +576,7 @@ List（列表）Redis 列表是简单的字符串列表，按照插入顺序排�
 127.0.0.1:6379> LRANGE list01 0 -1
 ~~~
 
-#### RPUSH key value [value ...]
+##### RPUSH key value [value ...]
 
 将一个或多个值 value 插入到列表 key 的表尾(最右边)。
 
@@ -593,7 +593,7 @@ List（列表）Redis 列表是简单的字符串列表，按照插入顺序排�
 
 
 
-#### LRANGE key start stop
+##### LRANGE key start stop
 
 返回列表 key 中指定区间内的元素，区间以偏移量 start 和 stop 指定。下标(index)参数 start 和 stop 都以 0 为底，也就是说，以 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推
 
@@ -602,7 +602,7 @@ List（列表）Redis 列表是简单的字符串列表，按照插入顺序排�
 127.0.0.1:6379> LRANGE list01 0 -1
 ~~~
 
-#### LLen key
+##### LLen key
 
 返回列表 key 的长度。
 
@@ -623,7 +623,7 @@ redis> LLEN job
 (integer) 2
 ~~~
 
-#### LPOP key
+##### LPOP key
 
 移除并返回列表 key 的头元素。
 
@@ -637,7 +637,7 @@ redis> LLEN job
 "5"
 ~~~
 
-#### RPOP key
+##### RPOP key
 
 移除并返回列表 key 的尾元素
 
@@ -652,7 +652,7 @@ redis> LLEN job
 "5"
 ~~~
 
-#### LINDEX key index
+##### LINDEX key index
 
 返回列表 key 中，下标为 index 的元素
 
@@ -666,7 +666,7 @@ redis> LLEN job
 127.0.0.1:6379> lindex list01  3   #返回集合里面的第四个元素
 ~~~
 
-#### LREM key count value
+##### LREM key count value
 
 根据参数 count 的值，移除列表中与参数 value 相等的元素。
 
@@ -685,30 +685,30 @@ count = 0 : 移除表中所有与 value 相等的值
 127.0.0.1:6379> lrem  list01 2 3    #删除集合里面2个3
 ~~~
 
-#### LTRIM key start stop
+##### LTRIM key start stop
 
 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。举个例子，执行命令 LTRIM list 0 2 ，表示只保留列表 list 的前三个元素，其余元素全部删除。下标(index)参数 start 和 stop 都以 0 为底，也就是说，以 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。
 
 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。当 key 不是列表类型时，返回一个错误。LTRIM 命令通常和 LPUSH 命令或 RPUSH 命令配合使用
 
 ~~~
-redis> LRANGE alpha 0 -1       # alpha 是一个包含 5 个字符串的列表
+redis> LRANGE alpha 0 -1       ## alpha 是一个包含 5 个字符串的列表
 1) "h"
 2) "e"
 3) "l"
 4) "l"
 5) "o"
 
-redis> LTRIM alpha 1 -1        # 删除 alpha 列表索引为 0 的元素
+redis> LTRIM alpha 1 -1        ## 删除 alpha 列表索引为 0 的元素
 OK
-redis> LRANGE alpha 0 -1       # "h" 被删除了
+redis> LRANGE alpha 0 -1       ## "h" 被删除了
 1) "e"
 2) "l"
 3) "l"
 4) "o"
 ~~~
 
-#### RPOPLPUSH source destination
+##### RPOPLPUSH source destination
 
 将列表 source 中的最后一个元素(尾元素)弹出，并返回给客户端。将 source 弹出的元素插入到列表 destination ，作为 destination 列表的的头元素。
 
@@ -726,7 +726,7 @@ redis> LRANGE alpha 0 -1       # "h" 被删除了
 "4"
 ~~~
 
-#### LSET key index value
+##### LSET key index value
 
 将列表 key 下标为 index 的元素的值设置为 value 。  下标是从0开始的
 当 index 参数超出范围，或对一个空列表( key 不存在)进行 LSET 时，返回一个错误
@@ -744,7 +744,7 @@ redis> LRANGE alpha 0 -1       # "h" 被删除了
 2) "x"
 ~~~
 
-#### LINSERT key BEFORE|AFTER pivot value
+##### LINSERT key BEFORE|AFTER pivot value
 
 将值 value 插入到列表 key 当中，位于值 pivot 之前或之后。当 pivot 不存在于列表 key 时，不执行任何操作。当 key 不存在时， key 被视为空列表，不执行任何操作。如果 key 不是列表类型，返回一个错误。
 
@@ -758,11 +758,11 @@ redis> LRANGE alpha 0 -1       # "h" 被删除了
 127.0.0.1:6379> LINSERT list01 before 2 xxx  #在元素2的前面插入xxx
 ~~~
 
-## Set（集合）
+### Set（集合）
 
 Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable实现实现的
 
-#### 6.4.1 SADD key member [member ...]
+##### 6.4.1 SADD key member [member ...]
 
 将一个或多个 member 元素加入到集合 key 当中，已经存在于集合的 member 元素将被忽略。假如 key 不存在，则创建一个只包含 member 元素作成员的集合。当 key 不是集合类型时，返回一个错误。
 
@@ -775,7 +775,7 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 1 2 3 4
 ~~~
 
-#### 6.4.1 SMEMBERS key
+##### 6.4.1 SMEMBERS key
 
 返回集合 key 中的所有成员。不存在的 key 被视为空集合。
 返回值:
@@ -785,7 +785,7 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 127.0.0.1:6379> SMEMBERS set01 
 ~~~
 
-#### 6.4.2 SISMEMBER key member
+##### 6.4.2 SISMEMBER key member
 
 判断 member 元素是否集合 key 的成员
 
@@ -794,10 +794,10 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 如果 member 元素不是集合的成员，或 key 不存在，返回 0 。
 
 ~~~
-127.0.0.1:6379> sismember set01 2   # 判断集合里面是否有某个元素  
+127.0.0.1:6379> sismember set01 2   ## 判断集合里面是否有某个元素  
 ~~~
 
-#### 6.4.3 SRANDMEMBER key [count]
+##### 6.4.3 SRANDMEMBER key [count]
 
 如果命令执行时，只提供了 key 参数，那么返回集合中的一个随机元素。从 Redis 2.6 版本开始， SRANDMEMBER 命令接受可选的 count 参数
 
@@ -817,7 +817,7 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 3) "2"
 ~~~
 
-#### 6.4.4 SPOP key
+##### 6.4.4 SPOP key
 
 移除并返回集合中的一个随机元素。如果只想获取一个随机元素，但不想该元素从集合中被移除的话，可以使用 SRANDMEMBER 命令。
 
@@ -829,7 +829,7 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 127.0.0.1:6379> SPOP set02   #随机删除集合中的一个元素
 ~~~
 
-#### 6.4.5 SCARD key
+##### 6.4.5 SCARD key
 
 返回集合 key 的基数(集合中元素的数量)
 
@@ -840,15 +840,15 @@ Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable
 ~~~
 redis> SADD set01 pc printer phone
 (integer) 3
-redis> SCARD set01   # 非空集合
+redis> SCARD set01   ## 非空集合
 (integer) 3
 redis> DEL set01
 (integer) 1
-redis> SCARD set01   # 空集合
+redis> SCARD set01   ## 空集合
 (integer) 0
 ~~~
 
-#### 6.4.6 SMOVE source destination member
+##### 6.4.6 SMOVE source destination member
 
 将 member 元素从 source 集合移动到 destination 集合。SMOVE 是原子性操作。
 
@@ -862,7 +862,7 @@ redis> SCARD set01   # 空集合
 redis> SMOVE set02 set01 9  把集合set02中的元素9移动到set01集合中
 ~~~
 
-#### 6.4.7 SREM key member [member ...]
+##### 6.4.7 SREM key member [member ...]
 
 移除集合 key 中的一个或多个 member 元素，不存在的 member 元素会被忽略。
 当 key 不是集合类型，返回一个错误。
@@ -881,11 +881,11 @@ redis> SMOVE set02 set01 9  把集合set02中的元素9移动到set01集合中
 3) "lisp"
 ~~~
 
-## zset(有序集合)
+### zset(有序集合)
 
 zset(sorted set：有序集合) Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。zset的成员是唯一的,但分数(score)却可以重复。
 
-#### ZADD key score member [ [score member] ...]
+##### ZADD key score member [ [score member] ...]
 
 将一个或多个 member 元素及其 score 值加入到有序集 key 当中。
 如果某个 member 已经是有序集的成员，那么更新这个 member 的 score 值，并通过重新插入这个 member 元素，来保证该 membe在正确的位置上。score 值可以是整数值或双精度浮点数。
@@ -899,7 +899,7 @@ zset(sorted set：有序集合) Redis zset 和 set 一样也是string类型元�
 127.0.0.1:6379> ZADD set03 60 v1 70 v2 80 v3
 ~~~
 
-#### ZCARD key
+##### ZCARD key
 
 返回有序集 key 的基数
 
@@ -908,7 +908,7 @@ zset(sorted set：有序集合) Redis zset 和 set 一样也是string类型元�
 (integer) 3
 ~~~
 
-#### ZRANGE key start stop [WITHSCORES]
+##### ZRANGE key start stop [WITHSCORES]
 
 返回有序集 key 中，指定区间内的成员。其中成员的位置按 score 值递增(从小到大)来排序。具有相同 score 值的成员按字典序(lexicographical order )来排列。如果你需要成员按 score 值递减(从大到小)来排列，请使用 ZREVRANGE 命令
 
@@ -931,7 +931,7 @@ zset(sorted set：有序集合) Redis zset 和 set 一样也是string类型元�
 6) "80"
 ~~~
 
-#### 6.5.4 ZREM key member [member ...]
+##### 6.5.4 ZREM key member [member ...]
 
 移除有序集 key 中的一个或多个成员，不存在的成员将被忽略。当 key 存在但不是有序集类型时，返回一个错误。
 返回值:
@@ -947,7 +947,7 @@ zset(sorted set：有序集合) Redis zset 和 set 一样也是string类型元�
 4) "70"
 ~~~
 
-#### ZSCORE key member
+##### ZSCORE key member
 
 
 返回有序集 key 中，成员 member 的 score 值。如果 member 元素不是有序集 key 的成员，或 key 不存在，返回 nil 。
@@ -960,7 +960,7 @@ member 成员的 score 值，以字符串形式表示
 "70"
 ~~~
 
-#### ZCOUNT key min max
+##### ZCOUNT key min max
 
 返回有序集 key 中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的数量
 
@@ -972,7 +972,7 @@ score 值在 min 和 max 之间的成员的数量。
 (integer) 2
 ~~~
 
-#### ZREVRANGE key start stop [WITHSCORES]
+##### ZREVRANGE key start stop [WITHSCORES]
 
 返回有序集 key 中，指定区间内的成员。其中成员的位置按 score 值递减(从大到小)来排列。具有相同 score 值的成员按字典序的逆序(reverse lexicographical order)排列。除了成员按 score 值递减的次序排列这一点外， ZREVRANGE 命令的其他方面和 ZRANGE 命令一样。
 
@@ -985,7 +985,7 @@ score 值在 min 和 max 之间的成员的数量。
 2) "v1"
 ~~~
 
-#### ZREVRANGEBYSCORE key max min [WITHSCORES]
+##### ZREVRANGEBYSCORE key max min [WITHSCORES]
 
 返回有序集 key 中， score 值介于 max 和 min 之间(默认包括等于 max 或 min )的所有的成员。有序集成员按 score 值递减(从大到小)的次序排列。
 
@@ -1001,15 +1001,15 @@ redis > ZADD salary 7500 peter
 (integer) 1
 redis > ZADD salary 3500 joe
 (integer) 1
-redis > ZREVRANGEBYSCORE salary 10000 2000  # 逆序排列薪水介于 10000 和 2000 之间的成员
+redis > ZREVRANGEBYSCORE salary 10000 2000  ## 逆序排列薪水介于 10000 和 2000 之间的成员
 1) "peter"
 2) "tom"
 3) "joe"
 ~~~
 
-# redis配置文件-参数
+## redis配置文件-参数
 
-### 7.1 常规 ###
+#### 7.1 常规 ###
 
 ~~~
 daemonize no
@@ -1075,10 +1075,10 @@ databases 16
 
 设置数据库个数。默认数据库是 DB 0，你可以通过SELECT dbid  WHERE dbid（0～'databases' - 1）来为每个连接使用不同的数据库
 
-###  7.2 快照 ###
+####  7.2 快照 ###
 
 ~~~
-save 900 1     # 900秒（15分钟）之后，且至少1次变更
+save 900 1     ## 900秒（15分钟）之后，且至少1次变更
 save 300 10    #300秒（5分钟）之后，且至少10次变更
 save 60 10000  #60秒之后，且至少10000次变更
 ~~~
@@ -1103,7 +1103,7 @@ dir ./
 
 工作目录，数据库会写到这个目录下，文件名就是上面的 "dbfilename" 的值， 累加文件也放这里，注意你这里指定的必须是目录，不是文件名，默认是当前目录
 
-### 7.3 同步 ###
+#### 7.3 同步 ###
 
 ~~~ 
 slaveof <masterip> <masterport>  redis3.2以上   replicaof <masterip> <masterport>
@@ -1145,7 +1145,7 @@ repl-timeout 60
 
 这个参数一定不能小于repl-ping-replica-period，可以考虑为repl-ping-replica-period的3倍或更大。定义多长时间内均PING不通时，判定心跳超时。对于redis集群，达到这个值并不会发生主从切换,主从何时切换由参数cluster-node-timeout控制，只有master状态为fail后，它的slaves才能发起选举，默认60秒
 
-### 7.4 安全 ###
+#### 7.4 安全 ###
 
 ~~~
 requirepass foobared
@@ -1178,7 +1178,7 @@ rename-command CONFIG ""
 
 命令重命名，在共享环境下，可以为危险命令改变名字。比如，你可以为 CONFIG 改个其他不太容易猜到的名字，这样你自己仍然可以使用，而别人却没法做坏事了，例如：rename-command CONFIG b840fc02d524045429941cc15f59e41cb7be6c52
 
-### 7.5 限制 ###
+#### 7.5 限制 ###
 
 ~~~
 maxclients 128
@@ -1217,7 +1217,7 @@ maxmemory-samples 10
 
 设置样本个数，maxmemory-samples在redis-3.0.0中的默认配置为5，如果增加，会提高LRU或TTL的精准度，redis作者测试的结果是当这个配置为10时已经非常接近全量LRU的精准度了，并且增加maxmemory-samples会导致在主动清理时消耗更多的CPU时间
 
-### 7.6 纯累加模式 ###
+#### 7.6 纯累加模式 ###
 
 ~~~
 appendonly no    #默认值
@@ -1266,7 +1266,7 @@ auto-aof-rewrite-min-size 64mb
 auto-aof-rewrite-percentage 100：当前AOF文件大小是上次日志重写得到AOF文件大小的二倍时，自动启动新的日志重写过程
 auto_aofrewrite_min_size: 当前aof文件大于多少字节后才触发。避免在aof较小的时候无谓行为。默认大小为64mb
 
-###  7.7 慢查询日志 ###
+####  7.7 慢查询日志 ###
 
 Redis Slow Log是一个用于记录超过指定执行时间的查询的系统。执行时间不包括与客户端交谈，发送答复等I / O操作，而仅包括实际执行命令所需的时间（这是命令执行的唯一阶段，在该阶段线程被阻塞并且不能同时满足其他要求）。
 
@@ -1320,7 +1320,7 @@ OK
 slowlog-max-len 128
 ~~~
 
-### 7.8 包含 ###
+#### 7.8 包含 ###
 
 ~~~
 include /path/to/local.conf
@@ -1331,23 +1331,23 @@ include /path/to/other.conf
 
 
 
-# redis持久化
+## redis持久化
 
 由于 Redis 是一个内存数据库，所谓内存数据库，就是将数据库中的内容保存在内存中，这与传统的MySQL，Oracle等关系型数据库直接将内容保存到硬盘中相比，内存数据库的读写效率比传统数据库要快的多（内存的读写效率远远大于硬盘的读写效率）。但是保存在内存中也随之带来了一个缺点，一旦断电或者宕机，那么内存数据库中的数据将会全部丢失。
 
 为了解决这个缺点，Redis提供了将内存数据持久化到硬盘，以及用持久化文件来恢复数据库数据的功能。Redis 支持两种形式的持久化，一种是RDB快照（snapshotting），另外一种是AOF（append-only-file）
 
-## 8.1 RDB（Redis DataBase）
+### 8.1 RDB（Redis DataBase）
 
-#### 1. RDB 简介
+##### 1. RDB 简介
 
 RDB是Redis用来进行持久化的一种方式，是把当前内存中的数据集快照写入磁盘，也就是 Snapshot 快照（数据库中所有键值对数据）。恢复时是将快照文件直接读到内存里
 
-#### 2. 触发方式
+##### 2. 触发方式
 
 RDB 有两种触发方式，分别是自动触发和手动触发
 
-#### ① 自动触发
+##### ① 自动触发
 
 在 redis.conf 配置文件中的 SNAPSHOTTING 下
 
@@ -1369,7 +1369,7 @@ save 60 10000：表示60 秒内如果至少有 10000 个 key 的值变化，则�
 
 > 注：fork的作用是复制一个与当前进程一样的进程。新进程的所有数据（变量、环境变量、程序计数器等）数值都和原进程一致，但是是一个全新的进程，并作为原进程的子进程，
 
-#### ② 手动触发
+##### ② 手动触发
 
 > shutdown  关闭  会自动执行保存 
 
@@ -1398,11 +1398,11 @@ save 60 10000：表示60 秒内如果至少有 10000 个 key 的值变化，则�
 
 当我们用20秒的时间就set 5个key-value键值对的话，那么这个dump.rdb文件就会马上生成（其实是执行了redis检测到规定时间内有了相应的修改key操作，就会调用bgsave指令执行持久化操作），不需要等到1分钟后才生成
 
-#### 3. 恢复数据
+##### 3. 恢复数据
 
 将备份文件 (dump.rdb) 移动到 redis 安装目录并启动服务即可，redis就会自动加载文件数据至内存了。Redis 服务器在载入 RDB 文件期间，会一直处于阻塞状态，直到载入工作完成为止 
 
-#### 4. 停止 RDB 持久化 
+##### 4. 停止 RDB 持久化 
 
 有些情况下，我们只想利用Redis的缓存功能，并不想使用 Redis 的持久化功能，那么这时候我们最好停掉 RDB 持久化。可以通过上面讲的在配置文件 redis.conf 中，可以注释掉所有的 save 行来停用保存功能或者直接一个空字符串来实现停用：save ""
 
@@ -1412,7 +1412,7 @@ save 60 10000：表示60 秒内如果至少有 10000 个 key 的值变化，则�
 redis-cli config set save " "
 ~~~
 
-#### 5. RDB 的优势和劣势
+##### 5. RDB 的优势和劣势
 
 ①、优势
 
@@ -1428,7 +1428,7 @@ redis-cli config set save " "
 
 2、在一定间隔时间做一次备份，所以如果redis意外down掉的话，就会丢失最后一次快照后的所有修改(数据有丢失)
 
-#### 6. RDB 自动保存的原理 
+##### 6. RDB 自动保存的原理 
 
 Redis有个服务器状态结构：
 
@@ -1476,7 +1476,7 @@ lastsave 属性是一个时间戳，记录上一次成功执行 save 命令或�
 
  AOF持久化
 
-#### 1.AOF简介
+##### 1.AOF简介
 
 Redis的持久化方式之一RDB是通过保存数据库中的键值对来记录数据库的状态。而另一种持久化方式 AOF 则是通过保存Redis服务器所执行的写命令来记录数据库状态。
 
@@ -1493,7 +1493,7 @@ OK
 
 RDB 持久化方式就是将 str1,set01,list01 这三个键值对保存到 RDB文件中，而 AOF 持久化则是将执行的 set,sadd,lpush 三个命令保存到 AOF 文件中
 
-#### 2. AOF配置
+##### 2. AOF配置
 
 在 redis.conf 配置文件的 APPEND ONLY MODE 下：
 
@@ -1515,17 +1515,17 @@ everysec表示每秒执行一次fsync，可能会导致丢失这1s数据。通�
 
 ⑥ **auto-aof-rewrite-min-size**：64mb。设置允许重写的最小aof文件大小，避免了达到约定百分比但尺寸仍然很小的情况还要重写。
 
-#### 3. 开启 AOF
+##### 3. 开启 AOF
 
 将 redis.conf 的 appendonly 配置改为 yes 即可。可以通过 config get dir 命令获取保存的路径
 
-#### 4. AOF 文件恢复
+##### 4. AOF 文件恢复
 
 重启 Redis 之后就会进行 AOF 文件的载入。
 
 异常修复命令：redis-check-aof --fix  文件名(appendonly.aof)
 
-#### 5. AOF 重写
+##### 5. AOF 重写
 
 由于AOF持久化是Redis不断将写命令记录到 AOF 文件中，随着Redis不断的进行，AOF 的文件会越来越大，文件越大，占用服务器内存越大以及 AOF 恢复要求时间越长。为了解决这个问题，Redis新增了重写机制，当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩，只保留可以恢复数据的最小指令集合。可以使用命令 bgrewriteaof 来重写
 
@@ -1570,7 +1570,7 @@ AOF 文件重写触发机制：通过 redis.conf 配置文件中的 auto-aof-rew
 >
 > 为了解决这个数据状态不一致的问题，Redis 服务器设置了一个 AOF 重写缓冲区，这个缓冲区是在创建子进程后开始使用，当Redis服务器执行一个写命令之后，就会将这个写命令也发送到 AOF 重写缓冲区。当子进程完成 AOF 重写之后，就会给父进程发送一个信号，父进程接收此信号后，就会调用函数将 AOF 重写缓冲区的内容都写到新的 AOF 文件中
 
-#### 6. AOF的优缺点
+##### 6. AOF的优缺点
 
 　优点：
 
@@ -1588,7 +1588,7 @@ AOF 文件重写触发机制：通过 redis.conf 配置文件中的 auto-aof-rew
 
 　③ RDB 使用快照的形式来持久化整个 Redis 数据，而 AOF 只是将每次执行的命令追加到 AOF 文件中，因此从理论上说，RDB 比 AOF 方式更健壮。官方文档也指出，AOF 的确也存在一些 BUG，这些 BUG 在 RDB不存在。
 
-## 8.3 持久化方案选择
+### 8.3 持久化方案选择
 
 那么对于 AOF 和 RDB 两种持久化方式，我们应该如何选择呢？
 
@@ -1596,7 +1596,7 @@ AOF 文件重写触发机制：通过 redis.conf 配置文件中的 auto-aof-rew
 如果可以忍受一小段时间内数据的丢失，毫无疑问使用 RDB 是最好的，定时生成 RDB 快照（snapshot）非常便于进行数据库备份， 并且 RDB 恢复数据集的速度也要比 AOF 恢复的速度要快，而且使用 RDB 还可以避免 AOF 一些隐藏的 bug；否则就使用 AOF 重写。但是一般情况下建议不要单独使用某一种持久化机制，而是应该两种一起用，在这种情况下,当redis重启的时候会优先载入AOF文件来恢复原始的数据，因为在通常情况下AOF文件保存的数据集要比RDB文件保存的数据集要完整。Redis后期官方可能都有将两种持久化方式整合为一种持久化模型
 ~~~
 
-## 8.4 RDB-AOF混合持久化
+### 8.4 RDB-AOF混合持久化
 
 这里补充一个知识点，在Redis4.0之后，又新增了RDB-AOF混合持久化方式。这种方式结合了RDB和AOF的优点，既能快速加载又能避免丢失过多的数据。
 
@@ -1612,22 +1612,22 @@ aof-use-rdb-preamble yes   #设置为yes表示开启，设置为no表示禁用
 
 
 
-# Redis主从复制
+## Redis主从复制
 
-### 1.主从复制概述
+#### 1.主从复制概述
 
 前面介绍Redis，我们都在一台服务器上进行操作的，也就是说读和写以及备份操作都是在一台Redis服务器上进行的，那么随着项目访问量的增加，对Redis服务器的操作也越加频繁，虽然Redis读写速度都很快，但是一定程度上也会造成一定的延时，那么为了解决访问量大的问题，通常会采取的一种方式是主从架构Master/Slave，Master 以写为主，Slave 以读为主，Master 主节点更新后根据配置，自动同步到从机Slave 节点
 
-### 2.主从复制实验
+#### 2.主从复制实验
 
 1、修改配置文件
 
 首先将redis.conf 配置文件复制三份，通过修改端口分别模拟三台Redis服务器。
 
 ~~~
-[root@localhost bin]# cp redis.conf 6379redis.conf
-[root@localhost bin]# cp redis.conf 6380redis.conf
-[root@localhost bin]# cp redis.conf 6381redis.conf
+[root@localhost bin]## cp redis.conf 6379redis.conf
+[root@localhost bin]## cp redis.conf 6380redis.conf
+[root@localhost bin]## cp redis.conf 6381redis.conf
 ~~~
 
 然后我们分别对这三个redis.conf 文件进行修改
@@ -1643,16 +1643,16 @@ dbfilename "dump6379.rdb"
 依次将 6380redis.conf 、6381redis.conf 配置一次，则配置完毕。然后分别启动这三个服务，并通过命令查看Redis是否启动
 
 ~~~
-[root@localhost bin]# ./redis-server 6379redis.conf   #其它省略
-[root@localhost bin]# ps -ef|grep redis
+[root@localhost bin]## ./redis-server 6379redis.conf   #其它省略
+[root@localhost bin]## ps -ef|grep redis
 ~~~
 
 接下来通过如下命令分别进入到这三个Redis客户端
 
 ~~~
-[root@localhost bin]# ./redis-cli -p 6379
-[root@localhost bin]# ./redis-cli -p 6380
-[root@localhost bin]# ./redis-cli -p 6381
+[root@localhost bin]## ./redis-cli -p 6379
+[root@localhost bin]## ./redis-cli -p 6380
+[root@localhost bin]## ./redis-cli -p 6381
 ~~~
 
 2、设置主从
@@ -1716,11 +1716,11 @@ exit
 
 
 
-# Redis 和 Boot 新整合
+## Redis 和 Boot 新整合
 
-## 基础配置
+### 基础配置
 
-### 引入依赖
+#### 引入依赖
 
 ```xml
 <!--redis 依赖-->
@@ -1735,33 +1735,33 @@ exit
 </dependency>
 ```
 
-### yml 配置
+#### yml 配置
 
 ```yml
 spring:
     redis:
-        # Redis 服务器地址
+        ## Redis 服务器地址
         host: localhost
-        # Redis 服务器连接端口
+        ## Redis 服务器连接端口
         port: 6379
-        # Redis 数据库索引（默认为 0）
+        ## Redis 数据库索引（默认为 0）
         database: 0
-        # Redis 服务器连接密码（默认为空）
+        ## Redis 服务器连接密码（默认为空）
         password: 123
-        # Redis 连接池 | 以下非必须，有默认值
+        ## Redis 连接池 | 以下非必须，有默认值
         lettuce:
             pool:
-                # 连接池最大连接数（使用负值表示没有限制）默认 8
+                ## 连接池最大连接数（使用负值表示没有限制）默认 8
                 max-active: 8
-                # 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
+                ## 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
                 max-wait: -1
-                # 连接池中的最大空闲连接 默认 8
+                ## 连接池中的最大空闲连接 默认 8
                 max-idle: 8
-                # 连接池中的最小空闲连接 默认 0
+                ## 连接池中的最小空闲连接 默认 0
                 min-idle: 0
 ```
 
-### 数据类型
+#### 数据类型
 
 | 专有操作        | 说明                  |
 | :-------------- | :-------------------- |
@@ -1771,9 +1771,9 @@ spring:
 | ZSetOperations  | zset 类型数据操作     |
 | HashOperations  | map 类型的数据操作    |
 
-## Template 方式数据读写
+### Template 方式数据读写
 
-### 1.RedisTemplate  注入
+#### 1.RedisTemplate  注入
 
 > 不推荐: 因为使用 不管什么类型的数据 都将会转化成字符串 导致在 redis数据库里 乱码
 
@@ -1784,7 +1784,7 @@ private RedisTemplate redisTemplate;
 private RedisTemplate<String,String> redisTemplate;
 ```
 
-### 2.序列化 配置类注入
+#### 2.序列化 配置类注入
 
 > 使用 序列化 配置类 可解决乱码问题
 
@@ -1797,7 +1797,7 @@ private RedisTemplate<String,String> redisTemplate;
 </dependency>
 ```
 
-#### **序列化工厂 配置类**
+##### **序列化工厂 配置类**
 
 ```java
 package com.api.config;
@@ -1832,7 +1832,7 @@ public class RedisConfig {
 
 ```
 
-#### opsForValue 字符串
+##### opsForValue 字符串
 
 ```java
 @Autowired
@@ -1850,7 +1850,7 @@ Object value = redisTemplate.opsForValue().get("key-键");
 
 ```
 
-### 3.StringRedisTemplate 注入
+#### 3.StringRedisTemplate 注入
 
 > 推荐使用: 储存时不会造成乱码
 
@@ -1859,7 +1859,7 @@ Object value = redisTemplate.opsForValue().get("key-键");
 private StringRedisTemplate stringRedisTemplate;
 ```
 
-#### opsForValue 字符串 
+##### opsForValue 字符串 
 
 ```java
 package com.apai;
@@ -1925,7 +1925,7 @@ public class RedisTest {
 
 
 
-# redis 和 sping boot 整合
+## redis 和 sping boot 整合
 
 **详见 sping boot 详解2**
 
@@ -1942,22 +1942,22 @@ public class RedisTest {
 > application 配置
 
 ~~~yml
-## Redis 服务器地址
+### Redis 服务器地址
 spring.redis.host=localhost
-## Redis 服务器连接端口
+### Redis 服务器连接端口
 spring.redis.port=6379
-## Redis 数据库索引（默认为 0）
+### Redis 数据库索引（默认为 0）
 spring.redis.database=0
-## Redis 服务器连接密码（默认为空）
+### Redis 服务器连接密码（默认为空）
 spring.redis.password=
-## 以下非必须，有默认值
-## 连接池最大连接数（使用负值表示没有限制）默认 8
+### 以下非必须，有默认值
+### 连接池最大连接数（使用负值表示没有限制）默认 8
 spring.redis.lettuce.pool.max-active=8
-## 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
+### 连接池最大阻塞等待时间（使用负值表示没有限制）默认 -1
 spring.redis.lettuce.pool.max-wait=-1
-## 连接池中的最大空闲连接 默认 8
+### 连接池中的最大空闲连接 默认 8
 spring.redis.lettuce.pool.max-idle=8
-## 连接池中的最小空闲连接 默认 0
+### 连接池中的最小空闲连接 默认 0
 spring.redis.lettuce.pool.min-idle=0
 ~~~
 
@@ -1973,9 +1973,9 @@ Spring Data Redis 针对 api 进行了重新归类与封装，将同一类型的
 | ZSetOperations  | zset 类型数据操作     |
 | HashOperations  | map 类型的数据操作    |
 
-## Template方式
+### Template方式
 
-### RedisTemplate方式
+#### RedisTemplate方式
 
 ```java
 // RedisTemplate 方式
@@ -2008,7 +2008,7 @@ public List<User> findAllUser() {
 }
 ```
 
-### StringRedisTemplate 方式 
+#### StringRedisTemplate 方式 
 
 ```java
 // StringRedisTemplate 方式 
@@ -2034,7 +2034,7 @@ public List<User> findAllUser() throws Exception {
 }
 ```
 
-### 常用 - API
+#### 常用 - API
 
 ```java
 @Autowired
@@ -2050,7 +2050,7 @@ hash.put("name", "小九");
 hash.put("xianqun", "仙裙");
 ```
 
-### 序列化
+#### 序列化
 
 ```java
 // 序列化
@@ -2067,9 +2067,9 @@ userList = objectMapper.readValue(s, new TypeReference<List<User>>() {});
 userlist.set(objectMapper.writeValueAsString(userList));
 ```
 
-### 各类型实践
+#### 各类型实践
 
-#### 1 String字符串
+##### 1 String字符串
 
 ```java
 @Slf4j
@@ -2113,7 +2113,7 @@ public void testExpire() throws InterruptedException {
 redisTemplate.delete("key");
 ~~~
 
-#### 2 Hash（哈希）
+##### 2 Hash（哈希）
 
 一般我们存储一个键，很自然的就会使用 get/set 去存储，实际上这并不是很好的做法。Redis 存储一个 key 会有一个最小内存，不管你存的这个键多小，都不会低于这个内存，因此合理的使用 Hash 可以帮我们节省很多内存。
 
@@ -2143,7 +2143,7 @@ hash value :tom
 
 根据上面测试用例发现，Hash set 的时候需要传入三个参数，第一个为 key，第二个为 field，第三个为存储的值。一般情况下 Key 代表一组数据，field 为 key 相关的属性，而 value 就是属性对应的值。
 
-#### 3 List集合类型
+##### 3 List集合类型
 
 Redis List 的应用场景非常多，也是 Redis 最重要的数据结构之一。 使用 List 可以轻松的实现一个队列， List 典型的应用场景就是消息队列，可以利用 List 的 Push 操作，将任务存在 List 中，然后工作线程再用 POP 操作将任务取出进行执行。
 
@@ -2188,7 +2188,7 @@ range 后面的两个参数就是插入数据的位置，输入不同的参数�
 
 Redis List 的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销，Redis 内部的很多实现，包括发送缓冲队列等也都是用的这个数据结构。
 
-#### 4 Set集合类型
+##### 4 Set集合类型
 
 Redis Set 对外提供的功能与 List 类似，是一个列表的功能，特殊之处在于 Set 是可以自动排重的，当你需要存储一个列表数据，又不希望出现重复数据时，Set 是一个很好的选择，并且 Set 提供了判断某个成员是否在一个 Set 集合内的重要接口，这个也是 List 所不能提供的。
 
@@ -2218,7 +2218,7 @@ set value :goodbye
 
 通过上面的例子我们发现，输入了两个相同的值 `world`，全部读取的时候只剩下了一条，说明 Set 对队列进行了自动的排重操作。另外，Redis 为集合提供了求交集、并集、差集等操作，可以非常方便的使用，这里就不一一举例了。
 
-#### 5 ZSet集合类型
+##### 5 ZSet集合类型
 
 Redis Sorted Set 的使用场景与 Set 类似，区别是 Set 不是自动有序的，而 Sorted Set 可以通过用户额外提供一个优先级（Score）的参数来为成员排序，并且是插入有序，即自动排序。
 
@@ -2262,7 +2262,7 @@ zset-B value : bye
 
 
 
-## Redis Repositories方式
+### Redis Repositories方式
 
 > Spring Data Redis 从 1.7 开始提供 Redis Repositories ，可以无缝的转换并存储 domain objects，使用的数据类型为哈希（hash）。
 >
@@ -2270,7 +2270,7 @@ zset-B value : bye
 >
 > 基础用法（Usage）分为以下三步：
 
-### **1.启用 Repository 功能**
+#### **1.启用 Repository 功能**
 
 在启动类上加上注解 @EnableRedisRepositories(basePackages = "com.woniu.outlet.redis")
 
@@ -2287,7 +2287,7 @@ public class K15ManagerApplication {
 }
 ```
 
-####  2.注解需要缓存的实体
+#####  2.注解需要缓存的实体
 
 添加关键的两个注解 ***`@RedisHash`*** 和 ***`@Id`*** ;
 
@@ -2322,7 +2322,7 @@ hget user:1 userName
 hget user:1 lists.[0].属性
 ~~~
 
-#### 3.创建Repository 接口
+##### 3.创建Repository 接口
 
 自定的 Repository 接口必须继承 CrudRepository，才能“天生”具有存取数据的能力。
 
@@ -2333,7 +2333,7 @@ public interface RedisUserRepo extends CrudRepository<User,Integer> {
 
 ![image-20220625164939902](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220625164939902.png)
 
-#### 4.业务层 测试
+##### 4.业务层 测试
 
 ```java
 @Autowired
@@ -2355,9 +2355,9 @@ userRepository.saveAll(listall);
 
 
 
-# redis的缓存失效问题
+## redis的缓存失效问题
 
-## 1、缓存雪崩
+### 1、缓存雪崩
 
 **场景：**
 
@@ -2373,13 +2373,13 @@ setRedis（Key，value，time + Math.random() * 10000）；
 
 如果**Redis**是集群部署，将热点数据均匀分布在不同的**Redis**库中也能避免全部失效的问题，或者设置热点数据永远不过期
 
-## 2、缓存穿透
+### 2、缓存穿透
 
 缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求，如我们数据库的 id 都是1开始自增上去的，这个时候发起为id值为 -1 的数据或 id 为特别大不存在的数据。这时的用户很可能是攻击者，攻击会导致数据库压力过大，严重会击垮数据库，**像这种你如果不对参数做校验，数据库id都是大于0的，我一直用小于0的参数去请求你，每次都能绕开Redis直接打到数据库，数据库也查不到，每次都这样，并发高点就容易崩掉了**
 
 处理缓存穿透的方式很简单：在接口层增加校验，比如用户鉴权校验，参数做校验，不合法的参数直接代码Return，比如：id 做基础校验，id <=0的直接拦截等，或者也可以将对应Key的Value对写为null，还有就是Redis一个高级用法**布隆过滤器（Bloom Filter）**这个也能很好的防止缓存穿透的发生，他的原理也很简单就是利用高效的数据结构和算法快速判断出你这个Key是否在数据库中存在，不存在你return就好了，存在你就去查了DB刷新KV再return
 
-## 3、缓存击穿
+### 3、缓存击穿
 
 缓存击穿是指一个Key非常热点，在不停的扛着大并发，大并发集中对这一个点进行访问，当这个Key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，就像在一个完好无损的桶上凿开了一个洞
 
@@ -2387,9 +2387,9 @@ setRedis（Key，value，time + Math.random() * 10000）；
 
 缓存击穿的方案：设置热点数据永远不过期。分布式锁就能搞定了
 
-# 缓存与数据库一致性
+## 缓存与数据库一致性
 
-## Cache Aside Pattern
+### Cache Aside Pattern
 
 标准的方案，facebook 就是使用这种方式。
 
@@ -2399,7 +2399,7 @@ setRedis（Key，value，time + Math.random() * 10000）；
 | 命中     | 应用程序从 cache 中取数据，取到后返回。                      |
 | 更新     | 先把数据存到数据库中，成功后，再让缓存失效。                 |
 
-### 1.1 读流程
+#### 1.1 读流程
 
 | 步骤 | 说明                   |
 | ---- | ---------------------- |
@@ -2407,7 +2407,7 @@ setRedis（Key，value，time + Math.random() * 10000）；
 | 2    | 如果没命中，读数据库   |
 | 3    | 更新缓存               |
 
-### 1.2 写流程
+#### 1.2 写流程
 
 | 步骤 | 说明               |
 | ---- | ------------------ |
@@ -2416,24 +2416,24 @@ setRedis（Key，value，time + Math.random() * 10000）；
 
 先更新数据库，在删除缓存
 
-## 双写读写并发问题
+### 双写读写并发问题
 
 Cache Aside Pattern 方案能解决 `双写并发` 问题：结论：**即写完操作，就删除对应的redis缓存**
 
-### 先更新数据库，再更新缓存场景-不推荐
+#### 先更新数据库，再更新缓存场景-不推荐
 
 当有两个线程A、B，同时对一条数据进行操作，一开始数据库和redis的数据都为1，当线程A去修改数据库，将1改为2，然后线程A在修改缓存中的数据，可能因为网络原因出现延迟，这个时候线程B将数据库的2修改成了3、然后将redis中的1也改成了3，然后线程A恢复正常，将redis中的缓存改成了2，此时就出现了缓存数据和数据库数据不一致情况。**不推荐**
  ![ ](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20211023094213033.png)
 
 
 
-### 先更新缓存，再更新数据库场景-不推荐
+#### 先更新缓存，再更新数据库场景-不推荐
 
 当有两个线程A、B，同时对一条数据进行操作，线程A先将redis中的数据修改为了2，然后CPU切换到了线程B，将redis中的数据修改为了3，然后将数据库中的信息也修改了3，然后线程A获得CPU执行，将数据库中的信息改为了2，此时出现缓存和数据库数据不一致情况。不推荐
 
 ![image-20211023094755926](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20211023094755926.png) 
 
-### 先删除缓存，再更新数据库的场景-不推荐
+#### 先删除缓存，再更新数据库的场景-不推荐
 
 先删除缓存，再更新数据库能解决双写并发问题，不能解决读写并发问题。
 
@@ -2442,17 +2442,17 @@ Cache Aside Pattern 方案能解决 `双写并发` 问题：结论：**即写完
 当有两个线程A、B，同时对一条数据进行操作，当线程A进行修改缓存操作时，先删除掉缓存中的数据，然后去修改数据库，因为网络问题出现延迟，这时线程B查新redis没有值，因此去数据库中查询数据为1，然后将数据1更新到缓存中，线程A网络恢复，又将数据库数据修改为了2，此时出现数据不一致。不推荐，这种情况在读写并发情况有问题
 ![image-20211023095153207](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20211023095153207.png)
 
-### 先更新数据库，再删除缓存场景-可以接受
+#### 先更新数据库，再删除缓存场景-可以接受
 
 FaceBook 是采用这种方式，简称CAP
 
-#### 两次修改（双写）场景
+##### 两次修改（双写）场景
 
 当有两个线程A、B，线程A去修改数据库中的值改为2，然后出现网络波动，线程B将数库中的值修改为了3，**然后两个线程都会删除缓存，保证数据一致性**。无非是线程A多删了一次
 
 ![image-20211023124410658](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20211023124410658.png) 
 
-#### 一改一查（读写）场景 
+##### 一改一查（读写）场景 
 
 场景1：
 
@@ -2474,7 +2474,7 @@ FaceBook 是采用这种方式，简称CAP
 
 可是，大家想想，数据库的读操作的速度远快于写操作的（不然做读写分离干嘛，做读写分离的意义就是因为读操作比较快，耗资源少），因此步骤（3）耗时比步骤（2）更短，这一情形很难出现。 假设，有人非要抬杠，有强迫症，一定要解决怎么办？
 
-## Cache Aside Pattern 方案
+### Cache Aside Pattern 方案
 
 这个方案足够简单，容易理解，容易实现。只是面对『**部分读写并发问题无能为力**』，不过，实际上出现这种概率可能非常低，因为这个条件需要发生在读缓存时缓存失效，而且并发着有一个写操作。而实际上数据库的写操作会比读操作慢得多，而且还要锁表，而读操作必需在写操作前进入数据库操作，而又要晚于写操作更新缓存，所有的这些条件都具备的概率基本并不大。
 
@@ -2738,9 +2738,9 @@ public interface DepartmentRedisDao extends CrudRepository<Department,Integer> {
 
 
 
-## CAP 方案的改进
+### CAP 方案的改进
 
-### 延期删除
+#### 延期删除
 
 将写操作的『删除 Redis』操作改为异步的延迟删除。例如：更新完数据库，1 秒钟之后再删除缓存，这种情况下，读写并发造成的数据不一致问题最多也就存在 1 秒
 
@@ -2752,7 +2752,7 @@ public interface DepartmentRedisDao extends CrudRepository<Department,Integer> {
 
 如果是A先读的呢？A先找redis缓存，发现没有，然后查数据库，完了之后，当它将数据库数据写到redis缓存之前，这个时候B更新了数据库，然后删除了缓存，然后A在更新redis缓存，那么redis缓存就是旧数据库了。所以这个时候延期删除的话，目的就是等到A放到缓存之后再删除。那么延期多久呢？这也是个问题
 
-### 借助消息队列，将删存缓存的工作委托给第三方
+#### 借助消息队列，将删存缓存的工作委托给第三方
 
 - 读数据的人，先查redis缓存，发现没有数据时，它去查数据库拿到结果，但是把这个结果放到redis缓存不再由它自己来完成，而是发消息给消息队列，队列监听到数据，然后将数据存redis，不再由他自己来刷新缓存，而是由『别人』来刷新；
 - 写数据的人，在更新完数据库之后，同样发送消息给消息队列，表示要删除缓存，队列存该消息，有监听器接收到该消息，去执行删除缓存操作，不再由他自己来删除缓存，而是由『别人』来删除；
@@ -2770,9 +2770,9 @@ public interface DepartmentRedisDao extends CrudRepository<Department,Integer> {
 > 1. 有数据不一致的窗口期，这是可接受的。
 > 2. 改进方案虽然改进了问题，但是同时带来了复杂性
 
-# Redis/Redisson 锁 | 分布式锁
+## Redis/Redisson 锁 | 分布式锁
 
-## 分布式锁使用场景
+### 分布式锁使用场景
 
 随着互联网技术的不断发展，数据量的不断增加，业务逻辑日趋复杂，在这种背景下，传统的集中式系统已经无法满足我们的业务需求，分布式系统被应用在更多的场景，而在分布式系统中访问共享资源就需要一种互斥机制，来防止彼此之间的互相干扰，以保证一致性，在这种情况下，我们就需要用到分布式锁
 
@@ -2793,9 +2793,9 @@ Redis 因为其性能好，实现起来分布式锁简单，所以让很多人�
 >
 > 除了能使用 Redis 实现分布式锁之外，Zookeeper 也能实现分布式锁。但是项目中不可能仅仅为了实现分布式锁而专门引入 Zookeeper ，所以，除非你的项目体系中本来就有 Zookeeper（来实现其它功能），否则不会单独因为分布式锁而引入它
 
-## Redis 锁
+### Redis 锁
 
-### SETNX 命令
+#### SETNX 命令
 
 早期，SETNX 是独立于 SET 命令之外的另一条命令。它的意思是 **SET** if **N**ot e**X**ists，即，在键值对不存在的时候才能设值成功。
 
@@ -2805,7 +2805,7 @@ Redis 因为其性能好，实现起来分布式锁简单，所以让很多人�
 
 ```shell
 SET <key> <value> [EX seconds] [PX milliseconds] [NX | XX]
-# SET <键> <内容> [过期时间] // 详情见 redis 命令
+## SET <键> <内容> [过期时间] // 详情见 redis 命令
 ```
 
 **EX** 值的是 `key` 的存活时间，单位为秒。**PX** 与 **EX** 作用一样，唯一的不同就是后者的单位是微秒（使用较少）。
@@ -2816,7 +2816,7 @@ SET <key> <value> [EX seconds] [PX milliseconds] [NX | XX]
 
 所以，现在我们口头所说的 SETNX 命令，并非单指 SETNX 命令，而是包括带 NX 选项的 SET 命令（甚至以后就没有 SETNX 命令了）
 
-### SETNX 的使用
+#### SETNX 的使用
 
 在使用 `SETNX` 操作实现分布式锁功能时，需要注意以下几点：
 
@@ -2885,7 +2885,7 @@ public class TestController {
 
 当然，上述两个问题我们都能解决，不过有人（ Redisson ）帮我们把这些事情做好了
 
-###  Redisson 如何解决问题
+####  Redisson 如何解决问题
 
 - Redisson 解决 “过期自动删除时长” 问题的思路和方案
 
@@ -2895,7 +2895,7 @@ public class TestController {
 
   Redisson 的上锁和解锁操作都是通过 Lua 脚本实现的。Redis 中 执行 Lua 脚本能保证原子性，整段 Lua 脚本的执行是原子性的，在其执行期间 Redis 不会再去执行其它命令
 
-## Redisson 锁
+### Redisson 锁
 
 **防坑指南**
 
@@ -3026,7 +3026,7 @@ void contextLoads() {
 }
 ```
 
-### Redisson分析
+#### Redisson分析
 
 1、你通过 RedissonClient 拿到的锁都是 “**可重入锁**” 。这里的 “可重入” 的意思是：持有锁的线程可以反复上锁，而不会失败，或阻塞等待；锁的非持有者上锁时，则会失败，或需要等待。当然，如果你对一个锁反复上锁，那么逻辑上，你应该对它执行同样多次的解锁操作
 
@@ -3073,7 +3073,7 @@ Redisson 如何保证线程间的互斥以及锁的重入（反复上锁）？
 
 如果当前执行 lock 的线程 ID 和之前执行 lock 成功的线程的 ID 不一致，则意味着是 “第二个人在申请锁” ，那么就 lock 失败；如果 ID 是一样的，那么就是 “同一个” 在反复 lock，那么就累加锁的上锁次数，即实现了重入。
 
-### watch dog 自动延期机制
+#### watch dog 自动延期机制
 
 如果在使用 lock/tryLock 方法时，你**指定了超时自动删除时间，如：hello.tryLock(10, TimeUnit.SECONDS);Redis 会自动10s后将当前线程锁的键值对给删除掉，不会自动续期**，而且如果你的业务执行时间过长，超过了key的过期时间， 而你在执行完业务之后也去删除这个key，就会报错，提示错误为：当前线程不能删除这个key，因为你删的key不是你之前的key，而是另外一个线程给redis重新设置的key。所以设置带过期时间的hello.tryLock(10, TimeUnit.SECONDS)键值对时，时长一定要超过业务执行的时长
 
@@ -3085,7 +3085,7 @@ Redisson 如何保证线程间的互斥以及锁的重入（反复上锁）？
 
 在 watch dog 机制中，有一个被 “隐瞒” 的细节：表面上看，你的 lock 方法没有指定锁定时长，但是 Redisson 去 Redis 中添加代表锁的键值对时，它还是添加了自动删除时间。默认 30 秒（可配置）。这意味着，如果，你没有主动 unlock 进行解锁，那么这个代表锁的键值对也会在 30 秒之后被 Redis 自动删除，但是实际上，并没有。这正是因为 Redisson 利用 watch dog 机制对它进行了续期（ 使用 Redis 的 expire 命令重新指定新的过期时间）。也就是内部有一个定时任务，每隔10s会会自动启动定时任务，该任务重新给key续期30s。
 
-### Redisson 执行的 Lua 脚本
+#### Redisson 执行的 Lua 脚本
 
 1、加锁的LUA脚本
 

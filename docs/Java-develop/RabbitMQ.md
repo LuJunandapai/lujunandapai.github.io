@@ -3,11 +3,11 @@ title: RabbitMQ 消息队列
 date: 2023/04/26
 ---
 
-# RabbitMQ 消息队列安装 
+## RabbitMQ 消息队列安装 
 
 > 详见: java开发工具安装栏 | java 补充记
 
-## rabbitmq-server服务启动
+### rabbitmq-server服务启动
 
 ```java
 // 查看进程 端口信息
@@ -17,15 +17,15 @@ kill -9 端口号
 // 关闭防火墙
 systemctl stop firewalld.service
 
-[root@localhost ~]#service rabbitmq-server start # 启动服务
-[root@localhost ~]#service rabbitmq-server stop # 停止服务
-[root@localhost ~]#service rabbitmq-server restart # 重启服务
+[root@localhost ~]#service rabbitmq-server start ## 启动服务
+[root@localhost ~]#service rabbitmq-server stop ## 停止服务
+[root@localhost ~]#service rabbitmq-server restart ## 重启服务
     
 // 前端网页
 http://192.168.174.133:15672
 ```
 
-## 消息中间件 - 简介
+### 消息中间件 - 简介
 
 MQ全称为Message Queue，消息队列是应用程序和应用程序之间的通信方法。是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信，在项目中，可将一些无需即时返回且耗时的操作提取出来，进行**异步处理**，而这种异步处理的方式大大的节省了服务器的请求响应时间，从而**提高**了**系统**的**吞吐量**
 
@@ -63,7 +63,7 @@ MQ全称为Message Queue，消息队列是应用程序和应用程序之间的�
 
 
 
-## RabbitMQ 快速入门
+### RabbitMQ 快速入门
 
 1、添加依赖
 
@@ -230,7 +230,7 @@ public class RabbitMqComsumerApplication {
 
 
 
-# RabbitMQ 工作模式
+## RabbitMQ 工作模式
 
 **防坑指南:**
 
@@ -238,7 +238,7 @@ public class RabbitMqComsumerApplication {
 
   
 
-## Work queues 工作队列模式
+### Work queues 工作队列模式
 
 * `Work Queues`与入门程序的`简单模式`相比，多了一个或一些消费端，多个消费端共同消费同一个队列中的消息。它们处于竞争者的关系，
 
@@ -250,7 +250,7 @@ public class RabbitMqComsumerApplication {
 
 
 
-## 订阅模式类型
+### 订阅模式类型
 
 在订阅模型中，多了一个exchange角色，而且过程略有变化：
 
@@ -264,7 +264,7 @@ public class RabbitMqComsumerApplication {
 
 **Exchange（交换机）只负责转发消息，不具备存储消息的能力**，因此如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！
 
-## 广播模式
+### 广播模式
 
 > 无需指定 key 键 路由器会将消息传递至所有跟它绑定的 队列
 
@@ -371,7 +371,7 @@ public class Producer_PubSub {
 
 
 
-## Routing 路由模式
+### Routing 路由模式
 
 > 队列 和 路由器 在绑定时 加入对应的键  
 >
@@ -471,7 +471,7 @@ public class Producer_Routing {
 }
 ```
 
-## Topics 通配符模式
+### Topics 通配符模式
 
 `Topic`类型与`Direct`相比，都是可以根据`RoutingKey`把消息路由到不同的队列。只不过`Topic`类型`Exchange`可以让队列在绑定`Routing key` 的时候**使用通配符**！`Routingkey` 一般都是有一个或多个单词组成，多个单词之间以”.”分割，例如： `item.insert`
 
@@ -497,15 +497,15 @@ channel.basicPublish("jiaohuanji", "one.a.b.c", null, one.getBytes());
 
 
 
-# ------- Spring -------
+## ------- Spring -------
 
-# Spring 整合 RabbitMQ
+## Spring 整合 RabbitMQ
 
-## 搭建生产者工程
+### 搭建生产者工程
 
 > 新建 Meven 工程 RabbitMQ-producer 项目
 
-### pom 文件
+#### pom 文件
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -551,7 +551,7 @@ channel.basicPublish("jiaohuanji", "one.a.b.c", null, one.getBytes());
 </project>
 ```
 
-### RabbitMQ 连接信息: 
+#### RabbitMQ 连接信息: 
 
 > rabbitmq.properties
 
@@ -563,7 +563,7 @@ rabbitmq.password=guest
 rabbitmq.virtual-host=/
 ```
 
-### RabbitMQ 配置: 
+#### RabbitMQ 配置: 
 
 spring-rabbitmq.xml
 
@@ -665,7 +665,7 @@ spring-rabbitmq.xml
             <!--1.1 x-dead-letter-exchange 死信交换机的名称-->
             <entry key="x-dead-letter-exchange" value="exchange_dlx" value-type="java.lang.String"/>
             <!--1.2 x-dead-letter-routing-key 正常队列发送消息到死信 交换机的routingKey-->
-            <!--注意：这个routingKey和死信交换机发送消息到死信队列 匹配一致   dlx.# 能匹配到 dlx.hehe-->
+            <!--注意：这个routingKey和死信交换机发送消息到死信队列 匹配一致   dlx.## 能匹配到 dlx.hehe-->
             <entry key="x-dead-letter-routing-key" value="dlx.hehe" value-type="java.lang.String"/>
 
             <!--2 消息成为死信的三种情况 -->
@@ -698,7 +698,7 @@ spring-rabbitmq.xml
 </beans>
 ```
 
-### test 测试
+#### test 测试
 
 ```java
 import org.junit.Test;
@@ -848,13 +848,13 @@ public class Test1 {
 
 ```
 
-## 搭建消费者工程
+### 搭建消费者工程
 
 > pom 文件跟 生产方一致
 
 > RabbitMQ 连接信息: rabbitmq.properties  文件跟 生产方一致
 
-### 消息打印类: 
+#### 消息打印类: 
 
 ```java
 package com.apai.listener;
@@ -876,7 +876,7 @@ public class SimpleMessageListener implements MessageListener{
 
 ```
 
-### 业务层模拟: 
+#### 业务层模拟: 
 
 ```java
 package com.apai.listener;
@@ -932,7 +932,7 @@ public class AckMessageListener implements ChannelAwareMessageListener {
 }
 ```
 
-### RabbitMQ 配置: 
+#### RabbitMQ 配置: 
 
 spring-rabbitmq.xml
 
@@ -983,7 +983,7 @@ spring-rabbitmq.xml
 </beans>
 ```
 
-### test 测试
+#### test 测试
 
 ```java
 import org.junit.Test;
@@ -1004,7 +1004,7 @@ public class Test1 {
 
 
 
-# 消息的可靠投递
+## 消息的可靠投递
 
 在使用 RabbitMQ 的时候，作为消息发送方希望杜绝任何消息丢失或者投递失败场景。RabbitMQ 为我们提供了两种方式用来控制消息的投递可靠性模式。
 
@@ -1018,14 +1018,14 @@ rabbitmq 整个消息投递的路径为：producer--->rabbitmq broker--->exchang
 
 我们将利用这两个 callback 控制消息的可靠性投递
 
-## 异常回调
+### 异常回调
 
 **防坑指南:** 
 
 * 作用于 生产方 在消息传递时的监测 遇到路由器或者队列异常则可进行对应的回调
 * 配置文件 connnectionfactory 上设置 publisher-confirms="true":开启交换机回调
 
-## spring-rabbitmq.xml
+### spring-rabbitmq.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1068,7 +1068,7 @@ rabbitmq 整个消息投递的路径为：producer--->rabbitmq broker--->exchang
 </beans>
 ```
 
-## test 测试
+### test 测试
 
 ```java
 import org.junit.Test;
@@ -1142,7 +1142,7 @@ public class Test1 {
 
 
 
-# Consumer ACK 应答
+## Consumer ACK 应答
 
 ack指Acknowledge(翻译为：应答)，表示消费端收到消息后的确认方式。有三种确认方式：
 
@@ -1152,14 +1152,14 @@ ack指Acknowledge(翻译为：应答)，表示消费端收到消息后的确认�
 
 其中自动确认是指，当消息一旦被Consumer接收到，则自动确认收到，并将相应 message 从 RabbitMQ 的消息缓存中移除。但是在实际业务处理中，很可能消息接收到，业务处理出现异常，那么该消息就会丢失。如果设置了手动确认方式，则需要在业务处理成功后，调用channel.basicAck()，手动确认，如果出现异常，则调用channel.basicNack()方法，让其自动重新发送消息。
 
-## 消费方的应答
+### 消费方的应答
 
 **防坑指南:**
 
 * 作用于 消费方 当业务层获取消息后出现异常但又消费的消息的情况
 * 能够根据 异常 来对应执行 消息的应答和拒绝
 
-## spring-rabbitmq.xml
+### spring-rabbitmq.xml
 
 > rabbit:listener-container 添加配置:  设置手动签收
 >
@@ -1204,7 +1204,7 @@ ack指Acknowledge(翻译为：应答)，表示消费端收到消息后的确认�
 </beans>
 ```
 
-## ackMessageListener 使用类
+### ackMessageListener 使用类
 
 > 监听消息 根据业务是否出现异常 进行消息的应答和拒绝
 
@@ -1261,7 +1261,7 @@ public class AckMessageListener implements ChannelAwareMessageListener {
 }
 ```
 
-# 消费端限流
+## 消费端限流
 
 > 消费端每次从队列中取一部分消息，然后消费者解决完业务处理，当业务处理完之后，消费者采用手动应答的方式，回应消息队列，然后继续取一部分消息处理，实现削峰填谷的效果
 
@@ -1283,11 +1283,11 @@ acknowledge="manual" prefetch = "1">
 
 
 
-# TTL 消息生命周期
+## TTL 消息生命周期
 
 > TTL 全称 Time To Live（存活时间/过期时间）。当消息到达存活时间后，还没有被消费，会被自动清除。RabbitMQ可以对消息设置过期时间，也可以对整个队列（Queue）设置过期时间。当消息超过过期时间还没有被消费，则丢弃
 
-### 图形化设置
+#### 图形化设置
 
 1、添加交换机
 
@@ -1305,7 +1305,7 @@ acknowledge="manual" prefetch = "1">
 
 ![image-20220211120750369](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220211120750369.png) 
 
-### 代码实现
+#### 代码实现
 
 **防坑指南:**
 
@@ -1360,23 +1360,23 @@ public void TTL(){
 
 
 
-# DLX  死信队列
+## DLX  死信队列
 
 死信队列，英文缩写：DLX  。Dead Letter Exchange（死信交换机），当消息在队列成为Dead message后，通过该队列把这条死信消息发给另一个交换机，这个交换机就是DLX。
 
-## **流程:**
+### **流程:**
 
  正常路由器 --> 正常队列 --> 拒绝签收且不重发 --> 死信路由器 --> 死信队列
 
 ![image-20220728151856201](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220728151856201.png)
 
-## **消息成为死信的三种情况： **
+### **消息成为死信的三种情况： **
 
 * 队列消息长度到达限制；
 * 消费者拒接消费消息，basicNack/basicReject,并且不把消息重新放入原目标队列,requeue=false；
 * 原队列存在消息过期设置，消息到达超时时间未被消费；
 
-## 创建死信队列
+### 创建死信队列
 
 > **1、配置交换机和队列**
 
@@ -1389,7 +1389,7 @@ public void TTL(){
         <!--1.1 x-dead-letter-exchange 死信交换机的名称-->
         <entry key="x-dead-letter-exchange" value="exchange_dlx" value-type="java.lang.String"/>
         <!--1.2 x-dead-letter-routing-key 正常队列发送消息到死信 交换机的routingKey-->
-        <!--注意：这个routingKey和死信交换机发送消息到死信队列 匹配一致   dlx.# 能匹配到 dlx.hehe-->
+        <!--注意：这个routingKey和死信交换机发送消息到死信队列 匹配一致   dlx.## 能匹配到 dlx.hehe-->
         <entry key="x-dead-letter-routing-key" value="dlx.hehe" value-type="java.lang.String"/>
 
         <!--2 消息成为死信的三种情况 -->
@@ -1440,15 +1440,15 @@ public void DLX  (){
 
 
 
-# 日志与监控
+## 日志与监控
 
-## RabbitMQ日志
+### RabbitMQ日志
 
 RabbitMQ默认日志存放路径： /var/log/rabbitmq/rabbit@xxx.log
 
 日志包含了RabbitMQ的版本号、Erlang的版本号、RabbitMQ服务节点名称、cookie的hash值、RabbitMQ配置文件地址、内存限制、磁盘限制、默认账户guest的创建以及权限配置等等。
 
-## rabbitmq常用命令
+### rabbitmq常用命令
 
 1、查看队列
 
@@ -1462,7 +1462,7 @@ rabbitmqctl list_queues  -p  /vhost   #查看某个虚拟主机里面的队列
 ~~~powershell
 rabbitmqctl stop_app   #关闭应用
 rabbitmqctl reset      #清除队列中的消息
-rabbitmqctl start_app  # 再次启动此应用
+rabbitmqctl start_app  ## 再次启动此应用
 ~~~
 
 > 注意：此方式，会同时删除一些配置信息，需要慎用
@@ -1526,7 +1526,7 @@ rabbitmqctl status | grep rabbit  ##查看rabbitmq的版本
 
 
 
-# 消息追踪
+## 消息追踪
 
 在使用任何消息中间件的过程中，难免会出现某条消息异常丢失的情况。
 
@@ -1534,7 +1534,7 @@ rabbitmqctl status | grep rabbit  ##查看rabbitmq的版本
 
 在RabbitMQ中可以使用Firehose和rabbitmq_tracing插件功能来实现消息追踪。
 
-## 消息追踪-Firehose(了解)
+### 消息追踪-Firehose(了解)
 
 firehose的机制是将生产者投递给队列的消息，以及队列投递给消费者的消息按照指定的格式发送到默认的exchange上。这个默认的exchange的名称为**amq.rabbitmq.trace**，它是一个topic类型的exchange。发送到这个exchange上的消息的routing key为 publish.exchangename 和 deliver.queuename。其中exchangename和queuename为实际交换机和队列的名称，分别对应生产者投递到exchange的消息，和消费者从queue上获取的消息。
 
@@ -1558,15 +1558,15 @@ rabbitmqctl trace_on [-p vhost]     ##开启Firehose命令
 
 3、打开任何一个其他的队列，并往队列发送一条消息，则这个test_trace队列也会有其他队列的消息
 
-## 消息追踪-rabbitmq_tracing
+### 消息追踪-rabbitmq_tracing
 
 rabbitmq_tracing和Firehose在实现上如出一辙，只不过rabbitmq_tracing的方式比Firehose多了一层GUI的包装，更容易使用和管理。
 
 1、启用插件：
 
 ~~~shell
-[root@localhost ~]# rabbitmq-plugins list                       ###查询插件
-[root@localhost ~]# rabbitmq-plugins enable rabbitmq_tracing
+[root@localhost ~]## rabbitmq-plugins list                       ###查询插件
+[root@localhost ~]## rabbitmq-plugins enable rabbitmq_tracing
 ~~~
 
 ![image-20220211151141485](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220211151141485.png) 
@@ -1595,11 +1595,11 @@ rabbitmq_tracing和Firehose在实现上如出一辙，只不过rabbitmq_tracing�
 
 
 
-# ------- Spring Boot -------
+## ------- Spring Boot -------
 
-# Spring-Boot 整合 RabbitMQ
+## Spring-Boot 整合 RabbitMQ
 
-## pom.xml
+### pom.xml
 
 ```xml
 <dependencies>
@@ -1611,7 +1611,7 @@ rabbitmq_tracing和Firehose在实现上如出一辙，只不过rabbitmq_tracing�
 </dependencies>
 ```
 
-## application.yml 配置
+### application.yml 配置
 
 ```yml
 server:
@@ -1629,22 +1629,22 @@ spring:
     host: 192.168.174.133
     username: guest
     password: guest
-    # 消息队列的虚拟主机
+    ## 消息队列的虚拟主机
     virtual-host: /
     port: 5672
-    # 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: CORRELATED
-    # 开启 消息到队列的回调 生产方
+    ## 开启 消息到队列的回调 生产方
     publisher-returns: true
     listener:
       simple:
-        # 开启手动应答 消费方
+        ## 开启手动应答 消费方
         acknowledge-mode: manual
-        # 队列每次拉取消息次数 消费方
+        ## 队列每次拉取消息次数 消费方
         prefetch: 1
 ```
 
-## RabbitMqConfig  创建
+### RabbitMqConfig  创建
 
 ```java
 package com.apai.config;
@@ -1682,7 +1682,7 @@ public class RabbitMqConfig {
 
 ```
 
-## 路由器 | 队列 | 回调
+### 路由器 | 队列 | 回调
 
 ```java
 package com.apai.config;
@@ -1753,7 +1753,7 @@ public class RabbitMqConfig {
 }
 ```
 
-## Controller 发送消息
+### Controller 发送消息
 
 ```java
 package com.apai.controller;
@@ -1788,7 +1788,7 @@ public class UserController {
 }
 ```
 
-## listener 接收消息
+### listener 接收消息
 
 ```java
 package com.apai.listener;
@@ -1841,7 +1841,7 @@ public class Mylistener {
 
 
 
-# 确认消息已到路由器
+## 确认消息已到路由器
 
 RabbitMQ 有一个配置属性 `spring.rabbitmq.publisher-confirm-type` 控制是否开启确认功能。该属性默认值是 **NONE** ，表示不开启消息确认。禁用发布确认模式，是默认值
 
@@ -1855,7 +1855,7 @@ RabbitMQ 有一个配置属性 `spring.rabbitmq.publisher-confirm-type` 控制�
 
 
 
-## yml 配置
+### yml 配置
 
 ```yml
 spring:
@@ -1865,11 +1865,11 @@ spring:
     password: guest
     virtual-host: /
     port: 5672
-    # 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: SIMPLE
 ```
 
-## CORRELATED 异步
+### CORRELATED 异步
 
 * publisher-confirm-type = CORRELATED
 
@@ -1892,7 +1892,7 @@ void Callback() {
 }
 ```
 
-## SIMPLE 同步
+### SIMPLE 同步
 
 - publisher-confirm-type = SIMPLE
 
@@ -1922,9 +1922,9 @@ void contextLoads() {
 }
 ```
 
-# 确认消息已到消息队列
+## 确认消息已到消息队列
 
-## yml 配置
+### yml 配置
 
 * spring.rabbitmq.publisher-returns=true
 
@@ -1936,13 +1936,13 @@ spring:
     password: guest
     virtual-host: /
     port: 5672
-    # 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: CORRELATED
-    # 开启 消息到队列的回调
+    ## 开启 消息到队列的回调
     publisher-returns: true
 ```
 
-## 队列回调
+### 队列回调
 
 > 队列的回调: 只有队列出现错误时才会执行该回调方法
 
@@ -1972,9 +1972,9 @@ void quer() {
 
 
 
-# Consumer ACK 应答
+## Consumer ACK 应答
 
-## yml 配置
+### yml 配置
 
 ```yml
 spring:
@@ -1984,19 +1984,19 @@ spring:
     password: guest
     virtual-host: /
     port: 5672
-    # 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 消息确认配置 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: CORRELATED
-    # 开启 消息到队列的回调
+    ## 开启 消息到队列的回调
     publisher-returns: true
     listener:
       simple:
-        # 开启手动应答
+        ## 开启手动应答
         acknowledge-mode: manual
-        # 队列每次拉取消息次数
+        ## 队列每次拉取消息次数
         prefetch: 1
 ```
 
-## 应答与拒绝
+### 应答与拒绝
 
 ```java
 // 注意导包: Channel channel
@@ -2025,20 +2025,20 @@ public void hello(String str, Message message, Channel channel){
 
 
 
-# 死信队列
+## 死信队列
 
-## **死信队列流程:**
+### **死信队列流程:**
 
 * 消息发送: 根据正常的路由器和key发送到注册的队列
 * 消息转发死信路由器: 根据正常队列 绑定的死信路由器和key 在死信绑定方法中进行转发到死信队列
 
-## **消息成为死信的三种情况： **
+### **消息成为死信的三种情况： **
 
 * 队列消息长度到达限制；
 * 消费者拒接消费消息，basicNack/basicReject,并且不把消息重新放入原目标队列,requeue=false；
 * 原队列存在消息过期设置，消息到达超时时间未被消费；
 
-## 死信绑定关系
+### 死信绑定关系
 
 ```java
 package com.apai.config;
@@ -2098,11 +2098,11 @@ public class DlxRabbitmqConfig {
 
 
 
-# ------- 月亮派集 -------
+## ------- 月亮派集 -------
 
-# RabbitMQ 消息的封装
+## RabbitMQ 消息的封装
 
-## 数据的封装发送
+### 数据的封装发送
 
 ```java
 // 赋值额外的数据 消费方可进行调用该数据 队列可调用
@@ -2120,7 +2120,7 @@ CorrelationData data = new CorrelationData(item.getId()+"");
 rabbitTemplate.convertAndSend("路由器名称","key键","消息",processor,data);
 ```
 
-## 回调调用数据
+### 回调调用数据
 
 > 回调调用 CorrelationData 封装的数据
 
@@ -2218,7 +2218,7 @@ public class asdasdasd {
 }
 ```
 
-## 消费方调用数据
+### 消费方调用数据
 
 > 消费方可调用 MessagePostProcessor 封装的额外的数据
 
@@ -2274,9 +2274,9 @@ public class Mylistener {
 
 
 
-# 中间件 总汇
+## 中间件 总汇
 
-## 基础参数详解
+### 基础参数详解
 
 > 创建队列：
 
@@ -2362,9 +2362,9 @@ envelope.getDeliveryTag()
 new String(body, "utf-8")
 ```
 
-## 基础配置
+### 基础配置
 
-### 防坑指南
+#### 防坑指南
 
 * 队列和路由器一旦被创建 然后修改了配置 进行消息发送会报错 需删除路由器或者队列 再次创建
 
@@ -2376,7 +2376,7 @@ new String(body, "utf-8")
 
   
 
-### Rabbitmq-Spring依赖
+#### Rabbitmq-Spring依赖
 
 ```xml
 <dependencies>
@@ -2388,7 +2388,7 @@ new String(body, "utf-8")
 </dependencies>
 ```
 
-### application.yml 配置
+#### application.yml 配置
 
 ```yml
 server:
@@ -2408,19 +2408,19 @@ spring:
     password: guest
     virtual-host: /
     port: 5672
-    # 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
+    ## 路由器消息确认配置 生产方 默认 none | CORRELATED 异步 | SIMPLE 同步
     publisher-confirm-type: CORRELATED
-    # 开启 消息到队列的回调 生产方
+    ## 开启 消息到队列的回调 生产方
     publisher-returns: true
     listener:
       simple:
-        # 开启手动应答 消费方
+        ## 开启手动应答 消费方
         acknowledge-mode: manual
-        # 队列每次拉取消息次数 消费方
+        ## 队列每次拉取消息次数 消费方
         prefetch: 1
 ```
 
-### 路由器的种类
+#### 路由器的种类
 
 ```java
 FANOUT 广播 | DIRECT 定向 | TOPIC 分配符
@@ -2428,7 +2428,7 @@ FANOUT 广播 | DIRECT 定向 | TOPIC 分配符
 fanout 广播 | direct 定向 | topic 分配符
 ```
 
-### 参数说明
+#### 参数说明
 
 **创建队列参数说明：**
 
@@ -2451,7 +2451,7 @@ fanout 广播 | direct 定向 | topic 分配符
 
 > 不指定 durable 和 autoDelete 时，默认为 *`true`* 和 *`false`* 。表示持久化、不用自动删除
 
-### Boot-RabbitMQ 常用方法
+#### Boot-RabbitMQ 常用方法
 
 ```java
 // 创建交换机 name = "指定配置名称"
@@ -2489,7 +2489,7 @@ public void hello(String str){
 }
 ```
 
-### ACK 应答
+#### ACK 应答
 
 ```java
 // 注意导包: Channel channel
@@ -2502,9 +2502,9 @@ channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
 channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
 ```
 
-### 消息发送的额外数据封装
+#### 消息发送的额外数据封装
 
-#### 发送消息的额外数据封装
+##### 发送消息的额外数据封装
 
 > 在生产方 发送消息时 可以封装额外的数据到 队列 以供消费方获取调用
 
@@ -2558,7 +2558,7 @@ void shuju() {
 }
 ```
 
-#### 额外数据的获取
+##### 额外数据的获取
 
 ```java
 package com.apai.listener;
@@ -2607,7 +2607,7 @@ public class Mylistener {
 
 
 
-# RabbitMQ 注解
+## RabbitMQ 注解
 
 ```java
 // RabbitMqConfig 作用：spring的配置类，类创建队列 | 路由器的配置注解 属于spring 新注解

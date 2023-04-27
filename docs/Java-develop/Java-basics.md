@@ -3,9 +3,9 @@ title: Java 基础
 date: 2023/02/15
 ---
 
-# Java 开发
+## Java 开发
 
-## **体系结构:** 
+### **体系结构:** 
 
 * JAVASE 为java语言的基础核心
 * JAVAEE 企业级项目开发
@@ -21,7 +21,7 @@ date: 2023/02/15
 
 > 使用开发工具编写java源码，之后使用编译器将源码编译成class文件，最后通过jvm将class文件进行加载并运行
 
-## 标识符与关键字
+### 标识符与关键字
 
 **标识符**
 
@@ -46,7 +46,7 @@ date: 2023/02/15
 
 
 
-# Java 基础字段属性
+## Java 基础字段属性
 
 **变量**: 
 
@@ -57,11 +57,11 @@ date: 2023/02/15
 
 ​	 final 数据类型 常量名 = 值;  常量的值不可变而变量的值可变.
 
-## 数据类型
+### 数据类型
 
-### 基本数据类型
+#### 基本数据类型
 
-#### 数值类型
+##### 数值类型
 
 > 整数
 
@@ -84,23 +84,23 @@ date: 2023/02/15
 
 * 容器大小   byte < short < int < long < flogat < double
 
-#### 字符类型
+##### 字符类型
 
 - char   只能为单个字符
 
 
-#### 布尔类型
+##### 布尔类型
 
 - boolean  真（true） 假（false)
 
 
-### 引用数据类型
+#### 引用数据类型
 
-#### 字符串 
+##### 字符串 
 
 String
 
-### 数据类型的转换
+#### 数据类型的转换
 
 > 布尔类型不参加类型的转换
 
@@ -111,26 +111,26 @@ short d = (short)c;  强制转换需要转换符
 
 多种数据类型混合运算-结果为大容器类型 如: byte short运算时为常用类型-int
 
-## 运算符
+### 运算符
 
-### **赋值运算符:**  
+#### **赋值运算符:**  
 
 > =     从右往左运算
 
-### **算术运算符:** 
+#### **算术运算符:** 
 
 >  加-减-乘-除-余 + - * / %
 >
 >  整数相除为整数，不会四舍五入和带小数
 >  字符串与其他类型数据进行“ + ”运算、为拼接
 
-### **比较运算符**
+#### **比较运算符**
 
 >  == != > < >= <=   等于-不等于-大于-小于-大于等于-小于等于
 >
 >  结果只能为布尔类型-true/false
 
-### **逻辑运算符**
+#### **逻辑运算符**
 
 > 逻辑运算符是用来进行布尔值运算的运算符，其返回值也是布尔值
 >
@@ -141,12 +141,12 @@ short d = (short)c;  强制转换需要转换符
 > !:  "逻辑非"
 > 		逻辑非(!)也叫作取反符，用来取一个布尔值相反的值
 
-### **自增运算符**
+#### **自增运算符**
 
 > 前++:  自变量+1    先运算后输出
 > 后++:  自变量+1     先输出后运算
 
-### **复合运算符:**
+#### **复合运算符:**
 
 > p += 2; 相当于 p = p + 2
 > p -= 2; 相当于 p = p - 2
@@ -159,11 +159,11 @@ short d = (short)c;  强制转换需要转换符
 
 
 
-# 判断 | 迭代循环 | 数组 | 方法
+## 判断 | 迭代循环 | 数组 | 方法
 
-## 判断 if - switch
+### 判断 if - switch
 
-### if 语句与语法
+#### if 语句与语法
 
 ```java
 if (条件1){
@@ -178,7 +178,7 @@ if (条件1){
 > if跟字符串比较全等必须使用  - 变量.equals(变量)
 > **if与switch的区别:     if:可范围选择,switch:只能是全等选择**
 
-### switch-语法
+#### switch-语法
 
 ```java
 switch(表达式){         
@@ -191,7 +191,7 @@ switch(表达式){
 }
 ```
 
-### 断言 
+#### 断言 
 
 > 断言: 相对于if判断 如果为真 下方代码正常执行 否则下方代码不会执行
 
@@ -199,12 +199,12 @@ switch(表达式){
 
 
 
-## 循环 迭代
+### 循环 迭代
 
 * break :提前结束循环
 * continue:结束本次话环-重新开始下一次循环
 
-### while 循环语法
+#### while 循环语法
 
 循环三要素:可控循环次数 1.初始值 2.循环条件 3.自变
 
@@ -218,13 +218,13 @@ while(条件){
 }
 ```
 
-### do_while循环
+#### do_while循环
 
 do协行代码语句 while (表达式);  表达式为真则循环执行至为假
 
 > while与do_while的区别while:先进行条件判断在执行do_while为先执行一次在进行条件判断是否再次执行
 
-### for-语法
+#### for-语法
 
 > 每—组for循环里的变量名是不会相互影响且可以重复变量名
 
@@ -234,7 +234,7 @@ for (初始值;最大值;自增){
 }
 ```
 
-### 增强 for
+#### 增强 for
 
 ```java
 for (String key : set) {
@@ -245,7 +245,7 @@ for (String key : set) {
 }
 ```
 
-### forEach表达式 
+#### forEach表达式 
 
 > 即箭头函数:  能够进行集合遍历
 
@@ -283,7 +283,7 @@ hashMap.forEach((k,v) -> {
 
 
 
-### 迭代器
+#### 迭代器
 
 **迭代器 语法:** 
 
@@ -329,16 +329,16 @@ public class IteratorClass {
 
 
 
-## 数组
+### 数组
 
-### 简介:
+#### 简介:
 
 * 数组有一系列的相同类型的数据的集合
 * 同一组数组必须是同一种数据类型
 * 数组一旦创建长度无法改变
 * 数组下标顺序从 0 开始 数组下标的最大值为长度减_1
 
-### 语法:
+#### 语法:
 
 	语法一: 定义数据类型 - 数组名 = 分配空间
 	double[] shuzu1 = new double[5];
@@ -347,7 +347,7 @@ public class IteratorClass {
 	语法二: 定义数据类型 - 数组名 = 分配空间及储存数据
 	int[] shuzu = {2,3,5,8,6};
 
-### API: 
+#### API: 
 
 * 查看数组的长度: 数组名.length;
 
@@ -376,7 +376,7 @@ public class IteratorClass {
       int[] l = Arrays.copyOf(k,5);
   ```
 
-### 遍历: 
+#### 遍历: 
 
 ```java
 正序遍历: 使用for循环:从下标_0依次输出到下标最大值(相当于小于数组个数)
@@ -392,9 +392,9 @@ public class IteratorClass {
     }
 ```
 
-## 方法
+### 方法
 
-### main 方法
+#### main 方法
 
 > 一个程序的启动类
 
@@ -408,7 +408,7 @@ public static void main(String[] args) {    }
 // 参数_(String[] args)
 ```
 
-### 自定义方法
+#### 自定义方法
 
 public static void 方法名(形数参数) {  方法的执行代码  }
 
@@ -418,7 +418,7 @@ public static void 方法名(形数参数) {  方法的执行代码  }
 * 方法调用时,有形数参数在实数参数里必须赋值
 * 方法必须添加文档注释
 
-### 返回值
+#### 返回值
 
 return 输出返回值的变量名;   将方法的结果返回到主方法的调用处
 
@@ -437,7 +437,7 @@ void - 为返回值类型-指无法输出返回值-改成输出返回值的类�
     public static int d(int m) {   return 10;  }
 ```
 
-### 方法的重载:
+#### 方法的重载:
 
 定义: 在一个类中,多个方法,方法名称一样,参数列表不一样(参数个数,或者数据类型不一样)
 
@@ -446,7 +446,7 @@ void - 为返回值类型-指无法输出返回值-改成输出返回值的类�
 * 方法重载的调用,根据调用时传入的形参个数和类型,自动选择需要调用的方法
 * 方法的重载跟参数的名称没有关系
 
-### 方法的可变参数
+#### 方法的可变参数
 
 > 变量数据参数过多时   - 方法参数可使用 ...变量名  代替-伪数组
 
@@ -465,7 +465,7 @@ public class Case_07_kebiancanshu {
 }
 ```
 
-### 非静态方法
+#### 非静态方法
 
 定义: 非静态方法 - 去掉static - 全局方法 如: public void 方法名() {     }
 
@@ -477,7 +477,7 @@ public class Case_07_kebiancanshu {
 
 * 非 static 的方法则是都可以调用并且能够调用项目中的任何类和任何方法
 
-### 变量的作用域
+#### 变量的作用域
 
 **局部变量**
 
@@ -498,9 +498,9 @@ public class Case_07_kebiancanshu {
 
 
 
-# 面对对象
+## 面对对象
 
-## 类
+### 类
 
 > 类: 具有相同属性的对象的集合
 
@@ -510,7 +510,7 @@ public class Case_07_kebiancanshu {
   - 类的属性:特征
   - 类的方法:对象的行为
 
-## 对象
+### 对象
 
 > 可以存储不同类型的数据,而且下标由用户自定义这种容器叫对象.
 
@@ -529,7 +529,7 @@ public class Case_07_kebiancanshu {
 名字.方法名();  方法里有return 变量名;
 			
 
-## 构造方法
+### 构造方法
 
 > this: 当成员变量和局部变量同名时使用this区分-类(我的)
 
@@ -541,7 +541,7 @@ public class Case_07_kebiancanshu {
 * 构造方法是在创建对象的时候自动执行
 * 构造方法没有返回值 | 构造方法可以被重戟 | 注意参数类型一致(重载)
 
-## 构造语法
+### 构造语法
 
 > 定义变量:  数据类型 变量名;
 
@@ -561,7 +561,7 @@ public class Case_07_kebiancanshu {
 
 输出单个变量:  system.out.println(名字.变量名);
 
-## 封装
+### 封装
 
 > 数据是存储在对象的属性中,如果用户能直接操作对象的属性,对数据是非常不安全的为了提高程序的安全性,java引入了封装的概念
 
@@ -588,7 +588,7 @@ public class Case_07_kebiancanshu {
 * 名字.方法名(值); 赋值给方法的变量然后在传入分类中的变量
 * 输出单个变量:  system.out.println(名字.get变量名);
 
-## 继承
+### 继承
 
 > 继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为
 
@@ -609,7 +609,7 @@ public class Case_07_kebiancanshu {
 2. 缺点:  继承破坏了封装性,继承提高了代码的耦合度
 3. 在项目开发的时候,尽可能的实现项目功能代码的高内聚,低耦合
 
-## 重写
+### 重写
 
 **定义:** 
 
@@ -631,7 +631,7 @@ public class Case_07_kebiancanshu {
 * 方法的重载-多个方法方法名相同,参数列表不同
 * 方法的重写-子类重写父类的方法,方法名称和参数列表必须跟父类的方法一致
 
-## super 关键字
+### super 关键字
 
 **super 关键字作用:**
 
@@ -644,7 +644,7 @@ public class Case_07_kebiancanshu {
 1.子类中没有写构造方法,默认有一个无参构造方法
 2.子类构造方法的第一行默认有super()用来调用父类的无参构造方法,创建对象一定会执行构造方法
 
-## final 关键字
+### final 关键字
 
 > final 可以用来定义常量--常量的值不可更改
 
@@ -654,7 +654,7 @@ public class Case_07_kebiancanshu {
 
 
 
-## 抽象
+### 抽象
 
 > 抽象类
 
@@ -673,7 +673,7 @@ public abstract class Athletes {  }  |  public abstract class 类名{    }
 
 public abstract void 方法名();  |  抽象修饰方法 - abstact
 
-## 接口
+### 接口
 
 > 作为父类
 
@@ -690,7 +690,7 @@ public abstract void 方法名();  |  抽象修饰方法 - abstact
 default void fun1() { 被default 修饰的方法可以不强制重写  };
 ```
 
-## 多重实现与继承
+### 多重实现与继承
 
 **子类只能有一个父类-为继承关系 | 子类与接口之间为实现关系**
 
@@ -708,12 +708,12 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 - 先写继承(extends)父类 - 在写实现(implements)端口-多个用逗号隔开
 - public class 子类 extends 父类 implements 端口1,端口2{     }
 
-## 引用数据类型转换
+### 引用数据类型转换
 
 数据类型向上转型 - 自动类型转换  |  父类 > 子类
 数据类型向下转型 - 强制类型转换  |  需要强转转换符
 
-## 多态
+### 多态
 
 > 在Java里 - 多态指一个对象的多种数据类型 | 指一个对象在现实生活中扮演的多种角色形态
 
@@ -727,7 +727,7 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 
 
 
-## 修饰符
+### 修饰符
 
 **访问修饰符**
 
@@ -745,7 +745,7 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 
 
 
-## 执行顺序
+### 执行顺序
 
 > 编译 - 类加载 - 创建对象
 
@@ -761,7 +761,7 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 
 
 
-## 匿名对象
+### 匿名对象
 
 > 匿名对象由于没有名字，只能在对象创建的时候使用
 > 在创建后如果没有被使用,会被java的垃圾回收器回牧
@@ -769,7 +769,7 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 
 直接使用 new 类名(  值  ) 作为对象名 | 使用构造方法输入数据 | 使用封装get输入数据
 
-## 匿名内部类
+### 匿名内部类
 
 定义: 匿名内部类指在一个类中在定义一个没有类名的类
 
@@ -784,7 +784,7 @@ default void fun1() { 被default 修饰的方法可以不强制重写  };
 
 ![image-20220723231216137](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220723231216137.png)
 
-## 枚举
+### 枚举
 
 > 枚举: enum  一般用于定义常量 
 
@@ -813,7 +813,7 @@ public enum MessageStatus {
 }
 ```
 
-## 调用枚举字段
+### 调用枚举字段
 
 ```java
 MessageStatus.UNSEND.getMsg() | "未发送"
@@ -823,9 +823,9 @@ MessageStatus.UNSEND.getMsg() | "未发送"
 
 
 
-# 数据类型 及 API
+## 数据类型 及 API
 
-## Object - 类
+### Object - 类
 
 > 定义:类层次结构的根类,每个类都使用 Object 作为超类,即为所有类的默认父类,所有对象（包括数组）都实现这个类的方法 
 
@@ -843,7 +843,7 @@ MessageStatus.UNSEND.getMsg() | "未发送"
 
 
 
-## 基本数据类型的包装类
+### 基本数据类型的包装类
 
 ![image-20220723232359460](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220723232359460.png)
 
@@ -877,9 +877,9 @@ int h = t;
 
 
 
-## String 常用 API
+### String 常用 API
 
-### 获取方法
+#### 获取方法
 
 **语法: **
 
@@ -911,7 +911,7 @@ int d = a.indexOf("k");
 System.out.println(d);
 ```
 
-### 判断方法 - 布尔
+#### 判断方法 - 布尔
 
 **语法*:***
 
@@ -959,7 +959,7 @@ boolean m = s2.startsWith("ww");
 System.out.println(m);
 ```
 
-### 转换方法
+#### 转换方法
 
 **语法:** 
 
@@ -995,7 +995,7 @@ String c = new String(shu);
 System.out.println(c);
 ```
 
-### 其他方法
+#### 其他方法
 
 **语法:**
 
@@ -1053,7 +1053,7 @@ String  n = g.replace(" ","");
 System.out.println(n);
 ```
 
-## Arrays | 数组
+### Arrays | 数组
 
 ```java
 // 数组复制(扩容)
@@ -1068,7 +1068,7 @@ String  变量名  = Arrays.toString(  数组名  );
 
 ![image-20220723234023169](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220723234023169.png)
 
-## Math | 数学类
+### Math | 数学类
 
 ```java
 // PI - 圆周率
@@ -1094,7 +1094,7 @@ System.out.println(String.format("%.2f", f));
 
 ![image-20220723234242193](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220723234242193.png)
 
-## Buffer/Builder  | 字符串
+### Buffer/Builder  | 字符串
 
 > StringBuilder和StringBuffer语法一致,优先使用StringBuffer效率高 | 当程序多次使用string字符串拼接会造成卡顿
 
@@ -1145,7 +1145,7 @@ public static void main(String[] args) {
 }
 ```
 
-## Date | 时间
+### Date | 时间
 
 > 时间单位   导包:  import java.util.Date;
 
@@ -1165,7 +1165,7 @@ long 变量名 = date.getTime();
 Date m = new Date(  毫秒数  );
 ```
 
-### 日期格式化
+#### 日期格式化
 
 年: yyyy | 月: MM | 日: dd | 时: hh | 分: mm |  秒: ss
 
@@ -1212,7 +1212,7 @@ String datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
 
 秒:     相差的秒(相差的毫秒数 / 1000) - 满足天的秒 - 满足小时的分 - 满足一分的秒      剩下就是不足一分的秒
 
-### Date 类型
+#### Date 类型
 
 ```java
 // Date --> string 
@@ -1224,7 +1224,7 @@ Date date = new SimpleDateFormat("yyyy-MM").parse("2022-11");
 Date startDate = DateUtils.addDays(date, -30);
 ```
 
-### LocalDate
+#### LocalDate
 
 https://blog.csdn.net/yy139926/article/details/124298574
 
@@ -1252,7 +1252,7 @@ int dayOfWeek1 = localDate.get(ChronoField.DAY_OF_WEEK); //结果：2
 LocalDate max = LocalDate.parse("2022-07-05",DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 ```
 
-### LocalDateTime
+#### LocalDateTime
 
 ```java
 // 获取当前日期
@@ -1268,7 +1268,7 @@ String dateStr = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(Local
 LocalDateTime max = LocalDateTime.parse("2022-10-17 23:40:58", ateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 ```
 
-### 时间字段总结
+#### 时间字段总结
 
 [java8新特性LocalDateTime字符串转时间比较大小](https://www.cnblogs.com/zzlcome/p/11093292.html)
 
@@ -1287,7 +1287,7 @@ LocalDate     // - 时间类型 可以是: 年月日 对应数据库的时间数
 
 
 
-## BigDecimal | 精确计算
+### BigDecimal | 精确计算
 
 > 类型 - 精确计算  适用于关于金钱属性字段
 
@@ -1308,9 +1308,9 @@ LocalDate     // - 时间类型 可以是: 年月日 对应数据库的时间数
 
 
 
-# Java 常用集合
+## Java 常用集合
 
-## 范性
+### 范性
 
 限制录入的数据类型 - 数据类型只能是引用数据类型
 
@@ -1327,7 +1327,7 @@ ArrayList< 引用数据类型 > fx = new ArrayList< 引用数据类型 >();
 - 将被遍历的容器里的每一组数据赋值给新变量然后输出
 - for( 变量名 : 被遍历的容器 ) {   } -  注意变量类型一致
 
-## ArrayList 集合
+### ArrayList 集合
 
 > 特性: 存储不唯一,有序插入,可以存储任意类型数据,下标从0开始
 
@@ -1403,7 +1403,7 @@ public class ArraylistClass {
 }
 ```
 
-## hashset 集合
+### hashset 集合
 
 **特性:** 
 
@@ -1466,7 +1466,7 @@ public class HashsetClass {
 }
 ```
 
-## hashmap 集合
+### hashmap 集合
 
 **特性:** 
 
@@ -1553,7 +1553,7 @@ public class Mappclass {
 }
 ```
 
-## Collections API
+### Collections API
 
 ```java
 // 排序 - 升序 - 数值类型 - list集合
@@ -1594,7 +1594,7 @@ public static void main(String[] args) {
 
 
 
-## 比较器
+### 比较器
 
 **特性:** 
 
@@ -1651,9 +1651,9 @@ public class Mmm {
 
 
 
-# 异常-自定义 | JDBC 
+## 异常-自定义 | JDBC 
 
-## 异常
+### 异常
 
 **组成: Throwable - 顶级异常**
 
@@ -1665,14 +1665,14 @@ public class Mmm {
 
 * Error - 无法解决的异常 -内存不足
 
-### 常见的异常
+#### 常见的异常
 
 1. 算术异常 ArithmeticException
 2. 下标越界异常 IndexOutOfBoundsException
 3. 空指针异常 NullPointerException
 4. 数字转换异常 	NumberFormatException
 
-### 异常处理
+#### 异常处理
 
 ```java
 // 异常处理
@@ -1702,7 +1702,7 @@ try {
 
 ```
 
-### 异常信息处理
+#### 异常信息处理
 
 * getMessage(): String | 输出异常的描述信息
 
@@ -1712,7 +1712,7 @@ try {
 
 * fillInStackTrace()
 
-### 声明异常
+#### 声明异常
 
 **throws 跟 throw的区别**
 
@@ -1731,13 +1731,13 @@ throw new Exception();
 
 > 制造异常使之进入catch执行回滚
 
-### 系统日志的级别:
+#### 系统日志的级别:
 
 DEBUG < INFO < WARN < ERROR < FATAL
 
 
 
-## 自定义异常
+### 自定义异常
 
 > 持久层的异常自动在业务层捕获，业务层需要将此异常抛给表示层
 >
@@ -1745,7 +1745,7 @@ DEBUG < INFO < WARN < ERROR < FATAL
 
 往上抛出异常 |  throw .....
 
-### 异常层 - 自定义异常类
+#### 异常层 - 自定义异常类
 
 > 所有业务异常的的超类 继承 RuntimeException
 >
@@ -1770,13 +1770,13 @@ public class ServiceException extends RuntimeException{
 }
 ````
 
-### 自定义抛出异常
+#### 自定义抛出异常
 
 ```java
 throw new 自定义异常类名("内容_可根据重载赋值");
 ```
 
-### 异常出现时接收异常
+#### 异常出现时接收异常
 
 ```java
 try {
@@ -1802,9 +1802,9 @@ try {
 
 
 
-## JDBC 数据库
+### JDBC 数据库
 
-### 数据库连接步骤
+#### 数据库连接步骤
 
 **1.获取数据库信息**
 
@@ -1869,7 +1869,7 @@ pst.close();
 rs.close();
 ```
 
-### jdbc - 事务
+#### jdbc - 事务
 
 ```java
 // 默认是自动提交
@@ -1884,7 +1884,7 @@ conn.rollback()
 throw new Exception();
 ```
 
-### 事务的四大特性:
+#### 事务的四大特性:
 
 1、原子性（Atomicity）：化学中的原子指不可再分的基本微粒，数据库中原子性强调事务是一个不可分割的整体，事务开始后所有操作要么全部成功，要么全部失败，不可能停滞在中间某个环节。如果事务执行过程中出错就会回滚到事务开始前的状态，所有的操作就像没有发生一样不会对数据库有任何影响。
 
@@ -1896,11 +1896,11 @@ throw new Exception();
 
 
 
-# File | 流 | 线程 | 网络编程
+## File | 流 | 线程 | 网络编程
 
-## File 文件 | 目录
+### File 文件 | 目录
 
-### 创建目录 
+#### 创建目录 
 
 > \\  | /  |  +File.separator+  |  逗号 , 分隔
 
@@ -1922,7 +1922,7 @@ public static void main(String[] args) {
 }
 ```
 
-### 常用方法 API
+#### 常用方法 API
 
 > File file1 = new File("D:\\qq.bin"); 调用
 
@@ -1997,17 +1997,17 @@ public class File_digui {
 }
 ```
 
-## Io 流
+### Io 流
 
 文件中的换行是由两个独立字节组成: \r回车(13)  \n换行(10)
 
-### 字节流
+#### 字节流
 
 > JDK7 | try(创建流对象){ }
 >
 > IO流创建后,会被try自动管理,在程序执行完后,自动关流释放资源,不需要人为的关闭流
 
-#### 输入字节流
+##### 输入字节流
 
 ```java
 FileInputStream fis =  new FileInputStream("文件路径");
@@ -2020,7 +2020,7 @@ FileInputStream fis =  new FileInputStream("文件路径");
 变量名.close()
 ```
 
-#### 输出字节流
+##### 输出字节流
 
 ```java
 // 默认追加为覆盖 - 如果追加不覆盖则在目录文件后加上 true
@@ -2041,11 +2041,11 @@ byte[] b,1, 3
 abcdef   ->   bcd
 ```
 
-### 缓冲流
+#### 缓冲流
 
 > 缓存是IO的一种性能优化，缓存流为IO流增加了内存缓存区，
 
-#### 字节缓冲流
+##### 字节缓冲流
 
 ```java
 // 输出
@@ -2054,7 +2054,7 @@ BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("路径
 BufferedInputStream bis = new BufferedInputStream(new FileInputStream("路径"));
 ```
 
-#### 字符缓冲流
+##### 字符缓冲流
 
 ```java
 // 输出
@@ -2065,7 +2065,7 @@ BufferedReader br = new BufferedReader(new FileReader("路径"));
 变量名 . readLine();   // 每次读取一行  末尾为null
 ```
 
-### 转换流
+#### 转换流
 
 > 转换流: 如果文件中英文混合 转换流可以完美的输入与输出,不会造成乱码
 
@@ -2076,7 +2076,7 @@ new InputStreamReader(new FileInputStream("路径"), "gbk:指定的编码格式"
 new OutputStreamWriter(new FileOutputStream("路径"), "gbk:指定的编码格式");
 ```
 
-### 打印流
+#### 打印流
 
 > 只有输出流，没有输入流 | System.out，System.err是PrintStream的实例变量
 
@@ -2092,7 +2092,7 @@ pout.print(97); // 会直接输出不会转换 不会换行
 pout.println("打印流 直接输出到文件"); // 会换行
 ```
 
-### 数据流
+#### 数据流
 
 数据流只有字节流，没有字符流
 
@@ -2104,9 +2104,9 @@ pout.println("打印流 直接输出到文件"); // 会换行
 
 通过数据流写入的数据需要通过对应的数据输入流读取
 
-### 对象流
+#### 对象流
 
-#### 序列化
+##### 序列化
 
 > 对象流输出对象 - 序列对象-存档
 
@@ -2114,7 +2114,7 @@ new ObjectOutputStream(new FileOutputStream("地址"));
 
 序列化名.writeObject(对象名);
 
-#### 序列化对象
+##### 序列化对象
 
 > 注意：在使用对象流操作对象时会报错 java.io.NotSerializableException，因为对象进行序列化和反序列化时实体类需要实现Serializable接口
 
@@ -2128,7 +2128,7 @@ transient 修饰
 private  transient int 变量名;
 ```
 
-#### 反序列化 
+##### 反序列化 
 
 > 对象流输出对象 - 反序列对象-读档 获取的对象为object需要强转成对象类型
 
@@ -2136,7 +2136,7 @@ new ObjectInputStream(new FileInputStream("地址");
 
 (对象类型)  反序列化名 .readObject();
 
-### properties 文件
+#### properties 文件
 
 > properties文件是数据为键值对格式的文件,这种文件跟文件的后缀没有关系,
 >
@@ -2164,7 +2164,7 @@ props.put("键","值");
 Set<Object> keys = props.keySet();// 
 ```
 
-## 多线程
+### 多线程
 
 进程:  程序分配资源最小单位为线程提供的容器,任何一个进程内部至少有一个线程--main主线程
 
@@ -2175,7 +2175,7 @@ Set<Object> keys = props.keySet();//
 - run() - 代表线程要执行的任务,当使用线程对象调用时，不会开启新的线程，只是普通方法的调用
 - start() - 会开启新的线程，由CPU的调度，来执行run()方法
 
-### 线程
+#### 线程
 
 > CPU调度的最小单元,多个线程共享进程内存资源线程必须依赖进程存在,线程是进程内部的一个程序的执行路径
 >
@@ -2211,7 +2211,7 @@ Set<Object> keys = props.keySet();//
 
 ![image-20220724125959763](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220724125959763.png)
 
-### 线程的生命周期
+#### 线程的生命周期
 
 1. 新生(创建线程对象)  new Thread()
 2. 就绪(调用线程对象的start方法,线程不会立马执行,线程需要去抢占cpu资源)
@@ -2219,7 +2219,7 @@ Set<Object> keys = props.keySet();//
 4. 阻塞(线程运行的过程中释放cpu资源)
 5. 死亡(线程的任务执行完毕后,进入死亡状态)
 
-### 线程优先级
+#### 线程优先级
 
 优先级代表线程抢占到cpu资源的概率，不代表线程一定会优先执行
 
@@ -2238,7 +2238,7 @@ Thread.MAX_PRIORITY
 Thread.NORM_PRIORITY
 ```
 
-### 常用方法
+#### 常用方法
 
 ```java
 getName()--获取线程的名称
@@ -2253,31 +2253,31 @@ getName()--获取线程的名称
     让调用join()方法的线程先执行完毕
 ```
 
-#### 线程的休眠 
+##### 线程的休眠 
 
 Thread.sleep(毫秒值); 
 
 > 必须指定毫秒时间值 ,   是一个静态方法 Thread.sleep()，必须使用try...catch处理InterruptException异常
 
-#### 中断休眠的线程
+##### 中断休眠的线程
 
 Thread名 . interrupt();
 
 > interrupt() --中断休眠的线程，引发InterruptException异常
 
-#### 线程让步
+##### 线程让步
 
 线程的让步:   Thread.yield();
 
 > 使得当前线程让出CPU资源，让具有相同优先级的线程来获取CPU的执行权，但是不是绝对，因为有可能没有比当前线程优先级高的线程，当前的让步线程会被再次选中执行.
 
-#### 线程抢占
+##### 线程抢占
 
 线程变量名 . join();
 
 > A线程抢占B线程的CPU资源，线程B必须要等到线程A的代码全部执行完了才能继续执行
 
-#### 线程安全
+##### 线程安全
 
 多个线程在共享数据时，极可能会出现数据不安全情形，也是多线程的安全问题
 
@@ -2298,7 +2298,7 @@ synchronized( 对象 ){              }
 万物皆对象->万物皆是锁 -> 对象互斥锁
 ```
 
-#### 线程的挂起
+##### 线程的挂起
 
 同步锁类型.wait() - 挂起  
 
@@ -2306,7 +2306,7 @@ synchronized( 对象 ){              }
 
 挂起后再被唤醒时,会在挂起处开始执行而不是从头开始
 
-#### 线程的唤醒
+##### 线程的唤醒
 
 > 同步锁类型.notif - 随机唤醒  
 
@@ -2316,7 +2316,7 @@ synchronized( 对象 ){              }
 
 必须在同步锁里且类型一致,如果同步锁类型为this那挂起可省略类型 -> notifyAll()
 
-### 死锁
+#### 死锁
 
 > 同步锁使用的弊端：
 
@@ -2324,15 +2324,15 @@ synchronized( 对象 ){              }
 
 
 
-## 网络编程
+### 网络编程
 
 > 获取连接的客户端ip地址
 
 服务端变量名.getInetAddress();
 
-### **TCP-协议**
+#### **TCP-协议**
 
-### 服务端:
+#### 服务端:
 
 1.创建服务器
 	new ServerSocket(5000 - 端口);
@@ -2346,7 +2346,7 @@ synchronized( 对象 ){              }
 
 4.关闭连接
 
-### 客户端:
+#### 客户端:
 
 1.创建客户端对象
 	new Socket("127.0.0.1" - ip地址,5000 - 端口);

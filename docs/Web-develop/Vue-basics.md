@@ -3,7 +3,7 @@ title: Vue 框架基础
 date: 2023/02/15
 ---
 
-# HTTP - 状态码
+## HTTP - 状态码
 
 200: 正常
 
@@ -27,20 +27,20 @@ date: 2023/02/15
 
 
 
-# Post 和 Get 请求的区别
+## Post 和 Get 请求的区别
 
-## Get 请求
+### Get 请求
 
 > 没有请求体,提交的数据都是放在请求行(缓存行)里面的,就是地址通过拼接? & (queryString)
 
-## Post 请求 
+### Post 请求 
 
 > 有请求体，因此它提交的数拥是有两种方式
 
 * icontent-type (applicaion/x-wwww-form-encoded) 类似于 get 请求 数据拼接在地址后 后台直接获取
 * icontent-type (application/json) 默认 json 后台要加上 注解:@RequestBody
 
-## 表单提交
+### 表单提交
 
 > 表单的默认提交方式是: content- type --> applicaion/x-wwww-form-encoded.
 >
@@ -48,9 +48,9 @@ date: 2023/02/15
 
 
 
-# Axios 请求
+## Axios 请求
 
-## get 请求
+### get 请求
 
 **方式一:  无参 get 请求**
 
@@ -149,7 +149,7 @@ public void restfgone(@PathVariable(value = "aa") Integer ti, @PathVariable Stri
 
 
 
-## post 请求
+### post 请求
 
 **方式一:   键之对  appliction/x-www-form-urlencoded**
 
@@ -205,9 +205,9 @@ public void posttow(@RequestBody User user) {
 
 
 
-# Js 常用的函数方法
+## Js 常用的函数方法
 
-## 数组函数方法
+### 数组函数方法
 
 this.数组名.pop:    尾部弹出
 
@@ -238,9 +238,9 @@ for (var i = 0; i < this.brands.length; i++) {
 
 
 
-## 常用函数
+### 常用函数
 
-#### 时间计时器
+##### 时间计时器
 
 ```js
 setTimeout (() => {
@@ -248,7 +248,7 @@ setTimeout (() => {
 }, 技术时间)
 ```
 
-#### Dom 更新后执行
+##### Dom 更新后执行
 
 ```js
 $nextTick ( () => {
@@ -262,7 +262,7 @@ this.$nextTick ( () => {
 
 
 
-## js 常用文件
+### js 常用文件
 
 ```html
 <!DOCTYPE html>
@@ -295,19 +295,19 @@ this.$nextTick ( () => {
 
 
 
-## 属性 有文本 和 数据名时
+### 属性 有文本 和 数据名时
 
 ```html
 <input type="text" class="form-control" :placeholder="'请输入 '+subject.subName+' 的分数'">
 ```
 
-### 路由跳转 数据获取
+#### 路由跳转 数据获取
 
 函数内 发送路由跳转: this.$router.push("/update?id=" + id);
 
 函数内 获取跳转的数据: let id = this.$route.query.id;
 
-### CRUD 请求类型
+#### CRUD 请求类型
 
 查询 删除:  请求为 get     默认传递为 键值对 数据
 
@@ -334,9 +334,9 @@ public Object updateUser(@RequestBody User user) // 后端注解 @RequestBody �
 
 
 
-# Vue  -  简介:
+## Vue  -  简介:
 
-## 简介:
+### 简介:
 
 Vue: 是一套前端框架，免除原生JavaScript中的DOM操作，简化书写 基于MNVM(Model-View-ViewModel)思想，实现数据的双向绑定，将编程的关注点放在数据上
 
@@ -357,9 +357,9 @@ mounted:挂载完成，Vue初始化成功，HTML页面渲染成功。   发送�
 
 
 
-## vue -- 基础
+### vue -- 基础
 
-### 1.引入 Vue
+#### 1.引入 Vue
 
 ```html
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
@@ -369,7 +369,7 @@ mounted:挂载完成，Vue初始化成功，HTML页面渲染成功。   发送�
 <script src="js/vue.min.js"></script>
 ```
 
-### 2.声明式渲染
+#### 2.声明式渲染
 
 Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：
 
@@ -450,7 +450,7 @@ Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数�
 </script>
 ```
 
-# Vue: -- 指令
+## Vue: -- 指令
 
 vue: -- 指令  可以在内部做一些简单的运算
 
@@ -461,9 +461,9 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 
 
-## 内容渲染指令
+### 内容渲染指令
 
-### v-text 纯文本内容
+#### v-text 纯文本内容
 
 ```java
 可将js的数据渲染到标签 如:<p> 的内容节点上
@@ -474,7 +474,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 <p v-text="data里的数据名">数据将被渲染到这里</p>
 ```
 
-### {{  }}  插值表达式
+#### {{  }}  插值表达式
 
 > 插值表达式: **{{ data里的数据名 }}** 根据名可获取对应的数据 
 >
@@ -486,7 +486,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 <p> {{ data里的数据名 }} </p>
 ```
 
-### v-html  带标签的内容
+#### v-html  带标签的内容
 
 > 跟 v-text  作用差不多 但是能够渲染 带标签的数据
 
@@ -494,7 +494,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 <p v-html="data里的数据名">带html标签数据也能将被渲染到这里</p>
 ```
 
-### v-once 渲染一次指令
+#### v-once 渲染一次指令
 
 > 让标签只渲染一次 后续就算data的数据改变也不会联动改变
 
@@ -504,9 +504,9 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 
 
-## 绑定指令
+### 绑定指令
 
-### v-bind   属性绑定指令
+#### v-bind   属性绑定指令
 
 > 为HTML标签绑定属性值，如设置href , css样式等
 >
@@ -538,7 +538,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 
 
-### v-on   事件绑定指令
+#### v-on   事件绑定指令
 
 > 为HTML标签绑定事件 注意: 求掉前面的on 
 >
@@ -557,7 +557,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 <input type="button" value="一个按钮” @click="函数名(参数值)">
 ```
 
-- #### **事件修饰符**
+- ##### **事件修饰符**
 
 > 作用: 可阻止标签的默认行为 如 超链接的跳转等...
 >
@@ -577,7 +577,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 }
 ```
 
-- #### 按键修饰符
+- ##### 按键修饰符
 
 
 > 触发键盘事件时执行  如 当按下 键盘的某个键 时进行触发函数
@@ -594,7 +594,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 
 
-### v-model  双向绑定		 
+#### v-model  双向绑定		 
 
 > 在表单元素上创建双向数据绑定 一般用于表单元素 如 文本框 下拉菜单 单选框等
 >
@@ -606,7 +606,7 @@ vue: -- 指令  可以在内部做一些简单的运算
 
 ![image-20220606171339170](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220606171339170.png)
 
-#### data 数据
+##### data 数据
 
 ```js
 // 修饰符 不会在实时更新双向绑定 而是在表单失去焦点时在进行同步
@@ -619,7 +619,7 @@ data: {
 }
 ```
 
-#### 文本框
+##### 文本框
 
 > 默认为表单的内容文本
 >
@@ -630,7 +630,7 @@ data: {
 <input type="text" v-model="username">
 ```
 
-#### 下拉菜单
+##### 下拉菜单
 
 > 如果data有数据 则会根据数据 与 value 默认选择 
 >
@@ -645,7 +645,7 @@ data: {
 </select>
 ```
 
-#### 选择框
+##### 选择框
 
 > 单选择框 默认 根据布尔选择是否发选中
 >
@@ -668,9 +668,9 @@ data: {
 
 
 
-## 条件渲染指令
+### 条件渲染指令
 
-### v-if   v-else-if   v-else 
+#### v-if   v-else-if   v-else 
 
 > 条件判断 条件性的渲染某元素，判定为true时渲染, 否则不渲染
 >
@@ -684,7 +684,7 @@ data: {
 <p v-else ="data里的数据名 进行判断">动态创建</p>
 ```
 
-### v-show  
+#### v-show  
 
 > 根据条件展示某元素，区别在于切换的是 display 属性的值 不满足则隐藏
 >
@@ -698,9 +698,9 @@ data: {
 
 
 
-## 迭代渲染指令
+### 迭代渲染指令
 
-### v-for  遍历循环	
+#### v-for  遍历循环	
 
 > 列表渲染，遍历容器的元素或者对象的属性  能够添加索引值  在遍历时渲染索引  
 >
@@ -732,9 +732,9 @@ data: {
 
 
 
-## 其他指令
+### 其他指令
 
-### 闪烁解决
+#### 闪烁解决
 
 当 vue 加载过慢 差值表达式 没有加载vue会显示默认样式 一旦加载到vue就会导致页面闪烁
 
@@ -749,20 +749,20 @@ data: {
 
 
 
-# Vue -- 方法
+## Vue -- 方法
 
-## computed -- 计算属性
+### computed -- 计算属性
 
 ![image-20220607230805297](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220607230805297.png)
 
-## 调用多个数据
+### 调用多个数据
 
 ```html
 绑定属性: :title="`${aa}, ${bb}`"   
 插值表达式: {{ `${aa}, ${bb}` }}
 ```
 
-## 获取 Vue -- data 数据
+### 获取 Vue -- data 数据
 
 ```java
 方式一: 使用创建的   vue实例对象名.data里的数据名   可获取到对应的数据
@@ -770,13 +770,13 @@ data: {
 方式二: 在 vue 里 this . data里的数据名可获取到对应的数据   methods函数里 this 就相当于 vue实例对象名
 ```
 
-## 执行 Vue -- methods 函数
+### 执行 Vue -- methods 函数
 
 ```java
 方式一: 使用创建的   vue实例对象名.methods里的函数名(  )   可执行对应的函数
 ```
 
-## Js 获取触发事件的元素
+### Js 获取触发事件的元素
 
 ```html
 vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件对象  形参 可设置为 e
@@ -791,7 +791,7 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 }
 ```
 
-## ref  获取  元素  DOM
+### ref  获取  元素  DOM
 
 ```java
 - 解决的问题: 在vue中操作DOM元素
@@ -821,13 +821,13 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 
 
 
-## filters 过滤器
+### filters 过滤器
 
 - 作用:处理数据格式
 - 使用位置:**双花括号插值和 v-bind 表达式** (后者从 2.1.0+ 开始支持)。
 - 分类:局部注册和全局注册
 
-### **局部注册**
+#### **局部注册**
 
 1. 在vm对象的选项中配置过滤器filters:{}
 2. 过滤器的名字: (要过滤的数据)=>{return 过滤的结果}
@@ -857,7 +857,7 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 </script>
 ```
 
-### 全局注册
+#### 全局注册
 
 ```java
 1. 在创建 Vue 实例之前定义全局过滤器Vue.filter()
@@ -898,7 +898,7 @@ vue提供了内置变量，名字叫做  **$event**  它就是原生DOM的事件
 
 
 
-## watch: 侦听器
+### watch: 侦听器
 
 ```java
 能够听到data数据的变化 且获取对应的 新值 和 旧值
@@ -922,7 +922,7 @@ watch: {
 
 
 
-# Vue 中的网络请求
+## Vue 中的网络请求
 
 在Vue.js中发送网络请求本质还是ajax，我们可以使用插件方便操作。
 
@@ -938,7 +938,7 @@ watch: {
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
 
-## this 注意点
+### this 注意点
 
 > 注意:  如果未使用箭头函数 而使用的 函数 则里面的this获取的对象则不一样
 
@@ -957,7 +957,7 @@ let _this = this;
 })
 ```
 
-## 发送get请求   查询
+### 发送get请求   查询
 
 ```js
 axios.get('http://localhost:3000/json数据名')
@@ -969,7 +969,7 @@ axios.get('http://localhost:3000/json数据名')
 });
 ```
 
-## 发送delete请求  删除
+### 发送delete请求  删除
 
 ```js
 // axios.delete('http://localhost:3000/json数据名/' + id)
@@ -983,7 +983,7 @@ axios.delete('http://localhost:3000/json数据名/109')
 });
 ```
 
-## 发送post请求   添加
+### 发送post请求   添加
 
 ```js
 // let user = {  name: this.name, age: this.age,  }
@@ -997,7 +997,7 @@ axios.post('http://localhost:3000/json数据名', user)
 });
 ```
 
-## jsonp 请求
+### jsonp 请求
 
 >  (如果是jsonp请求, 可以使用`jsonp` 包)
 
@@ -1013,9 +1013,9 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
 });
 ```
 
-## 动态表格的案例
+### 动态表格的案例
 
-### 动态表格 HTML
+#### 动态表格 HTML
 
 ```html
 <!DOCTYPE html>
@@ -1204,7 +1204,7 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
 </html>
 ```
 
-### db.json
+#### db.json
 
 > 先安装 node:  运行在服务端的 JavaScript
 
@@ -1233,9 +1233,9 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
 
 
 
-# Vue 组件
+## Vue 组件
 
-## 组件简介
+### 组件简介
 
 > 页面中有多个一样结构的控件 使用组件可进行复用
 >
@@ -1247,7 +1247,7 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
   - 仅有的例外是像 `el` 这样根实例特有的选项
 - 另外, 组件也有自己的选项 template components等
 
-## 组件的特点
+### 组件的特点
 
 - 组件是一种封装 
 - 组件能够让我们复用已有的html、css、js
@@ -1267,7 +1267,7 @@ jsonp('http://localhost:3000/json数据名', (err, data) => {
 >
 > 建议还是全部用全小写  防止名字报错
 
-## template:  组件标签
+### template:  组件标签
 
 * 组件标签 内容过多时 可在外面写好 标签使用id指定
 
@@ -1283,7 +1283,7 @@ var userlist = {   template: '#adduser',  }
 
 
 
-## 全局注册 组件
+### 全局注册 组件
 
 > * 组件也是要包裹在 vue 的作用范围里的
 >
@@ -1364,7 +1364,7 @@ var userlist = {   template: '#adduser',  }
 </body>
 ```
 
-## 局部注册 组件
+### 局部注册 组件
 
 > 在外面 创建组件变量名及 组件的配置  在 vm 实例里写上components: {  '组件调用名' : 组件变量名  },
 
@@ -1456,7 +1456,7 @@ var userlist = {   template: '#adduser',  }
 </html>
 ```
 
-## 全局注册 组件  嵌套
+### 全局注册 组件  嵌套
 
 ```html
 <body>
@@ -1491,7 +1491,7 @@ var userlist = {   template: '#adduser',  }
 </body>
 ```
 
-## 局部注册 组件  嵌套
+### 局部注册 组件  嵌套
 
 > 注意: 子组件 需在父组件上方 在他之前被加载
 
@@ -1536,7 +1536,7 @@ var userlist = {   template: '#adduser',  }
 </body>
 ```
 
-## 组件  通信
+### 组件  通信
 
 > 组件通信: 就是组件获取vm 实例里的数据
 
@@ -1585,9 +1585,9 @@ var userlist = {   template: '#adduser',  }
 
 
 
-# 前端路由
+## 前端路由
 
-## 单页应用的实现原理
+### 单页应用的实现原理
 
 > 前后端分离(后端专注于数据、前端专注于交互和可视化)+前端路由
 
@@ -1627,13 +1627,13 @@ var userlist = {   template: '#adduser',  }
 </body>
 ```
 
-## Vue-Router  路由组件集
+### Vue-Router  路由组件集
 
 > Vue-Router 是 [Vue.js](http://cn.vuejs.org/) 官方的路由管理器。它和 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌 
 >
 > 实现根据不同的请求地址 而显示不同的组件
 
-> ###### 步骤
+> ####### 步骤
 
 导入vue和vue-router 的js文件
 
@@ -1737,7 +1737,7 @@ var userlist = {   template: '#adduser',  }
 </body>
 ```
 
-## 动态路由
+### 动态路由
 
 > 进行参数传递 即获取参数
 >
@@ -1814,7 +1814,7 @@ var userlist = {   template: '#adduser',  }
 
 
 
-# Vue 基础 Ajax -- CRUD  
+## Vue 基础 Ajax -- CRUD  
 
 **Data 数据池**
 
@@ -1842,7 +1842,7 @@ var userlist = {   template: '#adduser',  }
 
 
 
-## 查询 
+### 查询 
 
 > 简单分页
 
@@ -1920,7 +1920,7 @@ return pageInfo;
 
 
 
-## 删除
+### 删除
 
 > 前端发生删除请求  后台删除成功 利用data数组删除一行
 
@@ -1966,7 +1966,7 @@ public Object deleteUser(Long proid) {
 
 
 
-## 添加
+### 添加
 
 > 组件跳转  --> 添加组件
 
@@ -2011,7 +2011,7 @@ add() {
 
 
 
-## 修改
+### 修改
 
 > 组件跳转 附带 参数传递
 
@@ -2080,11 +2080,11 @@ public Object updateUser(@RequestBody Product product) {
 
 
 
-# vue-cli4  脚手架 项目基本配置
+## vue-cli4  脚手架 项目基本配置
 
 云端仓库第一次启动: npm i
 
-## vue-cli4  脚手架
+### vue-cli4  脚手架
 
 **创建步骤如下配置**
 
@@ -2113,7 +2113,7 @@ public Object updateUser(@RequestBody Product product) {
 
 
 
-## Element UI 前端框架
+### Element UI 前端框架
 
 > 安装:   vue add element
 >
@@ -2145,7 +2145,7 @@ Vue.use(ElementUI)
 
 
 
-## axios  异步请求
+### axios  异步请求
 
 > 安装:   vue add axios
 
@@ -2163,7 +2163,7 @@ import './plugins/element.js' // 引入element-ui
 
 
 
-## 谷歌浏览器插件
+### 谷歌浏览器插件
 
 > Vue.js devtools    vue浏览器插件
 >
@@ -2171,9 +2171,9 @@ import './plugins/element.js' // 引入element-ui
 
 
 
-# vue 项目 目录介绍
+## vue 项目 目录介绍
 
-## **项目  目录说明：**
+### **项目  目录说明：**
 
 | 目录                 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
@@ -2184,7 +2184,7 @@ import './plugins/element.js' // 引入element-ui
 | package.json 文件    | 整个项目的配置文件                                           |
 | src/main.js 文件     | 整个项目的入口文件，并且在这里引入全局使用的 .vue、.css 文件 |
 
-## src 目录说明
+### src 目录说明
 
 - assets 静态资源 (css、 js 、 image 、字体图标)
 
@@ -2226,7 +2226,7 @@ import './plugins/element.js' // 引入element-ui
 
 <font color=red>index.html是页面的入口文件，自动注入 ./src/main.js文件</font>
 
-## 单文件组件
+### 单文件组件
 
 在 **vue-cli** 创建的 vue 项目中，我们看到有一类后缀名为 **.vue** 的文件，我们称为『**单文件组件**』。
 
@@ -2267,7 +2267,7 @@ import './plugins/element.js' // 引入element-ui
 </style>
 ```
 
-## package.json 文件
+### package.json 文件
 
 VsCode:  可在里面点击 调试 运行
 
@@ -2278,7 +2278,7 @@ vue 项目的核心配置文件 **package.json** 中已经配置了两个命令�
 - **serve 是运行命令** 。在开发过程中是我们最经常用到的命令。通过它能将 vue 项目运行起来，是我们能通过浏览器访问。
 - **build 是编译命令** 。是在开发结束后将项目源码编译、整合成最终的 html、js、css 等文件，这些文件会出现在项目的 **dist** 目录下
 
-## vue.config.js 文件
+### vue.config.js 文件
 
 默认情况下通过 `serve` 命令运行项目会占用 `8080` 端口，如果想作出改变的话，可以在项目的根目录下（即，和 package.json 文件同级）创建一个名为 `vue.config.js` 的文件，并在其中加入如下配置：
 
@@ -2304,7 +2304,7 @@ module.exports = defineConfig({
 
 <font color=red>说明： **vue.config.js** 这个文件是 @vue/cli 项目的配置文件，以前（vue-cli）它叫 **config/index.js** </font>
 
-## main.js 的配置
+### main.js 的配置
 
 ```js
 import Vue from 'vue' // 引入vue
@@ -2343,7 +2343,7 @@ new Vue({
 // });
 ```
 
-## App.vue  主路由组件
+### App.vue  主路由组件
 
 ```txt
 渲染时会覆盖 index.html 页面
@@ -2381,7 +2381,7 @@ new Vue({
 </style>
 ```
 
-## index.js  路由器
+### index.js  路由器
 
 ```js
 import Vue from 'vue'
@@ -2439,11 +2439,11 @@ router.beforeEach((to, from, next) => {
 });
 ```
 
-## views 文件夹
+### views 文件夹
 
 > views 文件夹: 为 组件 文件夹 存放各类组件
 
-## 补充: 登录页
+### 补充: 登录页
 
 ```vue
 <template
@@ -2586,11 +2586,11 @@ export default {
 
 
 
-# 组件 -- 路由器 
+## 组件 -- 路由器 
 
 > index.js  -->  根组件 路由器
 
-## **引入文件路径**:
+### **引入文件路径**:
 
 > import 名字 from '路径' 
 >
@@ -2598,7 +2598,7 @@ export default {
 >
 > import HomeView from '@/views/HomeView.vue' // @ 相当于 src 绝对路径
 
-## **路由跳转**:
+### **路由跳转**:
 
 > component: HomeView  -->  如果直接指定 则必须只在上方**引入文件路径**
 >
@@ -2606,7 +2606,7 @@ export default {
 >
 > redirect: '/login'  -->  重定向 可根据请求再次跳转别的组件
 
-## **子组件嵌套 路由 path 请求**
+### **子组件嵌套 路由 path 请求**
 
 > 请求的 path  ' / ' 相对于请求根
 >
@@ -2631,7 +2631,7 @@ const routes = [
 ]
 ```
 
-## **Js 发送请求 跳转组件**
+### **Js 发送请求 跳转组件**
 
 > this.$router.push({name: 'home'});   // 根据 路由 name: 'home' 的名字跳转 注意: 不会刷新请求路由
 >
@@ -2643,9 +2643,9 @@ const routes = [
 
 
 
-# 组件  --  Vue
+## 组件  --  Vue
 
-## **组件模板**
+### **组件模板**
 
 ```vue
 <template>
@@ -2676,14 +2676,14 @@ const routes = [
 </style>
 ```
 
-## **组件 style 样式**
+### **组件 style 样式**
 
 ```vue
 全局样式:  App.vue  --> <style>  为全局样式 该样式应用于所有组件
 局部样式:  <style scoped>  表示此样式只在本组件有效 否则有可能影响其他组件
 ```
 
-## 组件调用
+### 组件调用
 
 ```html
 // 父组件
@@ -2706,21 +2706,21 @@ const routes = [
 
 
 
-# 组件 传值
+## 组件 传值
 
-## 父 --> 子 
+### 父 --> 子 
 
 > this.$refs.组件ref名.子组件数据名 = 值;
 >
 > this.$refs.组件ref名.子组件函数();
 
-## 子 --> 父
+### 子 --> 父
 
 > this.$parent.数据名
 >
 > this.$parent.函数()
 
-## 兄弟传值
+### 兄弟传值
 
 **数据传递**
 
@@ -2749,9 +2749,9 @@ this.saletable = this.$route.query.saletable;
 
 
 
-# Element UI 
+## Element UI 
 
-## 父组件 调用 子组件 
+### 父组件 调用 子组件 
 
 > this.$refs.组件ref名.子组件数据名 = 值;
 >
@@ -2779,13 +2779,13 @@ this.saletable = this.$route.query.saletable;
 </script>
 ```
 
-## 子组件 调用 父组件 
+### 子组件 调用 父组件 
 
 > this.$parent.数据名
 >
 > this.$parent.函数()
 
-## 函数传参 --  本行数据 对象
+### 函数传参 --  本行数据 对象
 
 > scope  会封装 遍历的列表的一行数据 及 对应的index索引
 >
@@ -2793,7 +2793,7 @@ this.saletable = this.$route.query.saletable;
 >
 > ![image-20220617201430656](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220617201430656.png)
 
-## 双向绑定会失效
+### 双向绑定会失效
 
 ```js
 // 通过子组件的引用传递，获得子组件的变量
@@ -2813,13 +2813,13 @@ for(let key in obj) {
 
 
 
-# vue 项目 小知识
+## vue 项目 小知识
 
-## **断点 debug**
+### **断点 debug**
 
 > 只需要在 断点处 debugger 然后再运行时 会自动运行到断点处
 
-## **浏览器 本地储存**
+### **浏览器 本地储存**
 
 > 储存数据:     window.localStorage.setItem('数据名', 数据);
 >
@@ -2829,14 +2829,14 @@ for(let key in obj) {
 >
 > 获取数据:     window.localStorage.getItem('数据名');
 
-## **后端 根据 token 获取数据**
+### **后端 根据 token 获取数据**
 
 > 原理: 获取token后 第二段为载荷数据 根据其名字可以拿出对应的数据 
 >
 > 获取请求头中的token:  String token = request.getHeader("token");
 > 解析出token的用户名:  String username = JwtTokenUtil.getUsername(token);
 
-## 后端权限 联级树状
+### 后端权限 联级树状
 
 ```java
 // 查询所有的资源, 并按树结构返回
@@ -2878,7 +2878,7 @@ public List<Perms> listAll() {
 
 
 
-# Vue-cli4 -- CRUD -- 模板
+## Vue-cli4 -- CRUD -- 模板
 
 条件分页查询列表 删除
 

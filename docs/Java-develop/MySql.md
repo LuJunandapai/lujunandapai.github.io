@@ -5,14 +5,14 @@ date: 2023/04/26
 
 
 
-# MySql_数据库
+## MySql_数据库
 
 * DDL(数据定义语言):数据库结构和表结构的增删改查
 * DML(数据操作语言):表数据的增删改
 * DQL(数据查询语言):表数据的查询
 * DCL(数据控制语言):数据库的权限控制
 
-## 数据库防坑
+### 数据库防坑
 
 > 数据库版本 分组报错
 
@@ -23,10 +23,10 @@ date: 2023/04/26
 select @@global.sql_mode;
 select version(),
 @@sql_mode;SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-# 修改全局
+## 修改全局
 set @@global.sql_mode = '';
 set @@global.sql_mode = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-# 修改当前
+## 修改当前
 set @@sql_mode = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- 方法二: 在mysql配置文件 my.ini 添加下面配置  最后再服务重启mysql即可
@@ -35,11 +35,11 @@ sql_mode = STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 
 ```ini
 [mysqld]
-## 设置server_id，同一局域网中需要唯一
+### 设置server_id，同一局域网中需要唯一
 server_id=103
 port=3306
-basedir=C:\JavaFiles\mysql-8.0.19-winx64 # 这里替换成你自己的解压目录即可
-datadir=C:\JavaFiles\mysql-8.0.19-winx64\data   # 存储数据的文件
+basedir=C:\JavaFiles\mysql-8.0.19-winx64 ## 这里替换成你自己的解压目录即可
+datadir=C:\JavaFiles\mysql-8.0.19-winx64\data   ## 存储数据的文件
 max_connections=200
 max_connect_errors=10
 character-set-server=UTF8MB4
@@ -60,9 +60,9 @@ default-character-set=utf8
 
 
 
-# 数据库_索引
+## 数据库_索引
 
-## 索引简介
+### 索引简介
 
 MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。索引的本质：索引是数据结构。
 
@@ -70,7 +70,7 @@ MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取�
 注：在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。你可以简单理解为“排好序的快速查找数据结构。
 ```
 
-## 存储位置和文件结构
+### 存储位置和文件结构
 
 一般来说索引本身也很大，**不可能存储在内存中，因此索引往往以文件形式存储在硬盘上**
 
@@ -78,7 +78,7 @@ MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取�
 
 其中**聚簇索引，次要索引，覆盖索引，复合索引，前缀索引，唯一索引默认都是使用B+树索引文件结构**， memory的存储引擎使用的是hash结构
 
-## 索引优势和劣势
+### 索引优势和劣势
 
 ```
 优势：
@@ -90,7 +90,7 @@ MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取�
 2）索引只是提高效率的一个因素，如果你的MySQL有大数据量的表，就需要花时间研究建立优秀的索引，或优化查询语句
 ```
 
-## mysql的索引文件
+### mysql的索引文件
 
 > 在msql5.6版本中，如果是MyIsam引擎：那么一个表有三个文件，
 
@@ -107,13 +107,13 @@ set @@global.innodb_file_per_table=on;
 
 
 
-# 索引 结构 语法 分类
+## 索引 结构 语法 分类
 
-## 索引结构
+### 索引结构
 
-### BTREE树结构
+#### BTREE树结构
 
-### hash结构
+#### hash结构
 
 > 是指使用某种哈希函数实现key->value 映射的索引结构
 
@@ -127,7 +127,7 @@ Hash索引只有 Memory, NDB两种引擎支持，Memory引擎默认支持Hash索
 
 
 
-### full-text全文索引
+#### full-text全文索引
 
 > 全文索引（也称全文检索）是目前搜索引擎使用的一种关键技术。它能够利用【分词技术】等多种算法智能分析出文本文字中关键词的频率和重要性，然后按照一定的算法规则智能地筛选出我们想要的搜索结果
 
@@ -143,13 +143,13 @@ Hash索引只有 Memory, NDB两种引擎支持，Memory引擎默认支持Hash索
 
 
 
-### R-Tree索引(了解)
+#### R-Tree索引(了解)
 
 R-Tree在mysql很少使用，仅支持geometry数据类型，支持该类型的存储引擎只有myisam、bdb、innodb、ndb、archive几种。相对于b-tree，**r-tree的优势在于范围查找**
 
 
 
-### 聚簇与非聚簇索引区别
+#### 聚簇与非聚簇索引区别
 
  mysql的索引类型跟存储引擎是相关的，innodb存储引擎数据文件跟索引文件全部放在ibd文件中，而myisam的数据文件放在扩展名为myd文件中，索引放在扩展名为myI文件中，
 
@@ -169,9 +169,9 @@ innodb存储引擎在进行数据插入的时候，数据必须要限索引放�
 
 
 
-## 索引的语法
+### 索引的语法
 
-### 创建索引
+#### 创建索引
 
 1）CREATE [UNIQUE] INDEX  索引名 ON 表名(列名);
 
@@ -189,21 +189,21 @@ ALTER TABLE 表名 ADD INDEX 索引名 (列名)
 ALTER TABLE 表名 ADD FULLTEXT 索引名 (列名)
 ~~~
 
-### 查看索引
+#### 查看索引
 
 ~~~mysql
 show index from 表名
 ~~~
 
-### 删除索引
+#### 删除索引
 
 ~~~mysql
 DROP INDEX 索引名 ON 表名;
 ~~~
 
-## 索引分类
+### 索引分类
 
-### 单值索引
+#### 单值索引
 
 > 即一个索引只包含单个列，一个表可以有多个单列索引
 
@@ -237,7 +237,7 @@ DROP INDEX 索引名 on 表名 ;
 DROP INDEX idx_customer_name on customer ;
 ~~~
 
-### 唯一索引
+#### 唯一索引
 
 > 如果当前表中字段添加了唯一性约束，mysql主动的将当前字段上的数据进行排序，其生成的索引就是唯一索引，索引列的值必须唯一，但允许有空值
 
@@ -246,14 +246,14 @@ CREATE TABLE customer (id int primary key not null auto_increment,
 customer_no varchar(16),customer_name VARCHAR(200),UNIQUE key(customer_no)
 );
 
-# 单独建唯一索引：
+## 单独建唯一索引：
 create unique index idx_customer_no ON customer(customer_no); 
 create unique index 索引名称 ON 表名(列名); 
 ~~~
 
 注：建立唯一索引时必须保证所有的值是唯一的（除了null），若有重复数据，会报错。
 
-### 复合| 组合索引
+#### 复合| 组合索引
 
 > 在数据库操作期间，用户可以在多个列上建立索引,这种索引叫做复合索引(组合索引)，即一个索引包含多个列，复合索引比单值索引所需要的开销更小(对于相同的多个列建索引)
 
@@ -266,12 +266,12 @@ create unique index 索引名称 ON 表名(列名); 
 ~~~mysql
 create table customer(id int(10) UNSIGNED primary key auto_increment,customer_no varchar(200),customer_name varchar(200),unique key(customer_name),key(customer_no,customer_name))
  
-# 单独建索引：
+## 单独建索引：
 create index 索引名 on 表名(列名1, 列名2, 列名3)
 create index idx_no_name on customer(customer_no,customer_name);
 ~~~
 
-### 主键索引
+#### 主键索引
 
 > 如果当前表中字段添加了主键约束，mysql主动的将当前字段上数据进行排序，其生成的索引就是主键索引，**设定为主键后数据库会自动建立索引**，在innodb引擎中，这种索引也是聚簇索引结构
 
@@ -283,9 +283,9 @@ create table customer(id int(10) UNSIGNED auto_increment,customer_no varchar(200
 
 
 
-## 如何合理创建索引
+### 如何合理创建索引
 
-### 建议创建索引
+#### 建议创建索引
 
 1.主键自动建立唯一索引
 
@@ -299,7 +299,7 @@ create table customer(id int(10) UNSIGNED auto_increment,customer_no varchar(200
 
 6.查询中统计或者分组字段
 
-### 不建议创建索引
+#### 不建议创建索引
 
 1.表记录太少
 
@@ -311,19 +311,19 @@ create table customer(id int(10) UNSIGNED auto_increment,customer_no varchar(200
 
 
 
-# Mysql 性能分析及调优
+## Mysql 性能分析及调优
 
-## Explain 性能分析 
+### Explain 性能分析 
 
 > 在Mysql中，有一个专门负责优化SELECT语句的优化器模块（Mysql Query optimizer（优化）)
 
-### 主要功能：
+#### 主要功能：
 
 * 通过计算分析系统中收集到的统计信息，为客户端请求的Query提供他认为最优的执行计划 ，当客户端向MySQL请求一条Query语句到命令解析器模块完成请求分类区别出是SELECT并转发给QueryOptimizer之后，QueryOptimizer首先会对整条Query进行优化处理掉一些常量表达式的预算，直接换算成常量值。
 * 并对Query中的查询条件进行简化和转换，如去掉一些无用或者显而易见的条件，结构调整等等。然后则是分析Query中的Hint信息（如果有），看显示Hint信息是否可以完全确定该Query的执行计划。
 * 如果没有Hint或者Hint信息还不足以完全确定执行计划，则会读取所涉及对象的统计信息，根据Query进行写相应的计算分析，然后再得出最后的执行计划
 
-## Explain 详解
+### Explain 详解
 
 使用EXPLAIN关键字可以模拟优化器执行SQL语句，从而知道MySQL是如何处理你的SQL语句的。分析你的查询语句或是结构的性能瓶颈
 
@@ -333,7 +333,7 @@ explain select * from mysql.user;
 
 ![image-20220819114220876](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819114220876.png)
 
-### ID 列
+#### ID 列
 
 > id：包含一组数字，表示查询中执行select子句或操作表的顺序，
 
@@ -342,7 +342,7 @@ explain select * from mysql.user;
 
 * 如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行
 
-### select_type 列
+#### select_type 列
 
 > 表示查询中每个select子句的类型：SIMPLE、PRIMARY、SUBQUERY、DERIVED、UNION、UNION RESULT
 
@@ -353,24 +353,24 @@ explain select * from mysql.user;
 * UNION：若第二个SELECT出现在UNION之后，则被标记为UNION；若UNION包含在FROM子句的子查询中，外层SELECT将被标记为：DERIVED
 * 从UNION表获取结果的SELECT被标记为：UNION RESULT
 
-### table 列
+#### table 列
 
 > 显示这一行数据时关于哪个表的
 
-### type 列
+#### type 列
 
 * 表示MySQL在表中找到所需行的方式，又称“访问类型” 
 
 * type 扫描方式由快到慢：**system > const > eq_ref > ref > range > index > ALL**
 * 总结：**一般来说，得保证查询只是达到range级别，最好达到ref**
 
-> ##### system 
+> ###### system 
 
 ```sql
 -- 它是const联接类型的特例，表只有一行记录（等于系统表），很少出现
 ```
 
-> ##### const
+> ###### const
 
 ~~~sql
 -- 通过索引一次就能找到，速度非常快。const用于比较【primary key或者unique索引】
@@ -379,21 +379,21 @@ explain select * from mysql.user;
 explain select * from employee where id = 1;
 ~~~
 
-> ##### eq_ref
+> ###### eq_ref
 
 ```sql
 -- 对于前表中的每一行（row），对应后表只有一行被扫描，这类扫描的速度也非常的快。
 -- 应用场景：1.联表（join）查询；2.命中主键或者非空唯一索引；3.等值连接
 ```
 
-> ##### ref
+> ###### ref
 
 ```sql
 -- 非唯一性索引扫描，返回匹配某个单独值的所有行，场景：联表查询普通非唯一索引 
 -- 由于后表使用了`普通非唯一索引`，对于前表`user1`表的每一行(row)，后表`user_balance`表可能有多于一行的数据被扫描
 ```
 
-> ##### range
+> ###### range
 
 ```sql
 -- 只检索给定范围的行，使用一个索引来选择行。key列显示使用了哪个索引，
@@ -401,7 +401,7 @@ explain select * from employee where id = 1;
 -- 这种范围扫描索引扫描比全表扫描要好，因为他只需要开始索引的某一点，而结束语另一点，不用扫描全部索引
 ```
 
-> ##### index
+> ###### index
 
 ```sql
 -- index与ALL区别为index类型只遍历索引树。
@@ -409,13 +409,13 @@ explain select * from employee where id = 1;
 --（也就是说虽然all和index都是读全表，但index是从索引中读取的，而all是从硬盘中读的）
 ```
 
-> ##### All
+> ###### All
 
 ```sql
 -- all：Full Table Scan， MySQL将遍历全表以找到匹配的行
 ```
 
-### possible_keys  列
+#### possible_keys  列
 
 显示可能应用在这张表中的索引一个或多个。查询涉及的字段上若存在索引，则该索引将被列出，但不一定被查询实际使用，这是理论分析
 
@@ -425,7 +425,7 @@ explain select * from employee where name='1';
 
 ![image-20210706213624564](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20210706213624564.png)
 
-### key 列
+#### key 列
 
 实际使用的索引，如果为null则没有使用索引，如果不为null，则表示使用了索引，有可能使用了覆盖索引
 
@@ -446,23 +446,23 @@ explain select * from employee where name='1';
 如果查询条件为普通索引（非聚簇索引），需要扫描两次B+树，第一次扫描通过普通索引定位到聚簇索引的值，然后第二次扫描通过聚簇索引的值定位到要查找的行记录数据，这种也叫回表操作，所谓回表操作：先通过普通索引的值定位聚簇索引值，再通过聚簇索引的值定位行记录数据，需要扫描两次索引B+树，它的性能较扫一遍索引树更低
 ```
 
-### key_len 列
+#### key_len 列
 
 > 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。
 
 在不损失精确性的情况下，长度越短越好,key_len显示的值为索引最大可能长度，并非实际使用长度，即key_len是根据表定义计算而得，不是通过表内检索出的，如果实际上用到索引，则有索引的长度，否则为null
 
-### ref 列
+#### ref 列
 
 > 显示使用哪个列或常数与key一起从表中选择行
 
-### rows 列
+#### rows 列
 
 > 显示MySQL认为它执行查询时必须检查的行数，
 
 这个数字是内嵌循环关联计划里的循环数目，也就是说它不是MySql认为它最终要从表里读取出来的行数，而是MySql为了找到符合查询的每一点上标准的那些行而必须读取的行的平均数
 
-### extra 列
+#### extra 列
 
 **这一列包含的是不适合在其他列显示的额外信息，其值有：**
 
@@ -482,9 +482,9 @@ explain select * from employee where name='1';
 
 
 
-## Mysql 调优-索引优化
+### Mysql 调优-索引优化
 
-### 单表优化
+#### 单表优化
 
 > 对于单表查询，根据 where 后面的字段建立索引，遇到有 <、>、!= 这样的关系运算符，会使已经建完的索引失效
 
@@ -496,7 +496,7 @@ explain select * from employee where name='1';
 -- 当 comments 字段在联合索引里处于中间位置时,因comments > 1 条件是一个范围值(所谓 range),MySQL 无法利用索引再对后面的 views 部分进行检索,即 range 类型查询字段后面的索引无效
 ```
 
-### 两表优化
+#### 两表优化
 
 > 注意: 因为 左连接在查询时已经全表查了 还未到wheel条件那 则必须到查询右表的时候配合where条件建立索引
 
@@ -504,7 +504,7 @@ explain select * from employee where name='1';
 
 * 右连接，一定要要把索引创建到左表上
 
-### 总结
+#### 总结
 
 ~~~
 1、对于单表查询，一定要根据 where 后面的字段建立索引，遇到有 <、>、!= 这样的关系运算符，会使已经建完的索引失效
@@ -512,7 +512,7 @@ explain select * from employee where name='1';
 3、对于三表查询，则根据是左连接对右边的连接建立索引，根据右连接对左边的连接建立索引
 ~~~
 
-## 索引失效情况（重点）
+### 索引失效情况（重点）
 
 1、组合索引不遵循最左匹配原则会导致索引失效
 
@@ -532,9 +532,9 @@ explain select * from employee where name='1';
 
 9、如果mysq|中使用全表扫描比使用索引快，也会导致索引失效
 
-## 索引注意点
+### 索引注意点
 
-> #### 最好全值匹配
+> ##### 最好全值匹配
 
 建立几个复合索引字段，最好就用上几个字段。且按照顺序来用
 
@@ -542,43 +542,43 @@ explain select * from employee where name='1';
 
 
 
-> #### 最佳左前缀法则
+> ##### 最佳左前缀法则
 
 如果索引了多列，要遵守最左前缀法则，指的是查询从索引的最左前列（即name索引列）开始，不跳过索引中间的列（即age索引列）。
 
 
 
-> #### 不在索引列上做任何操作
+> ##### 不在索引列上做任何操作
 
 不在索引列上做任何操作（计算、函数、(自动or手动)类型转换），否则会导致索引失效而转向全表扫描
 
 
 
-> #### 范围之后全失效
+> ##### 范围之后全失效
 
 存储引擎不能使用索引列作为范围条件比较，范围条件右边的列都失效。（范围之后全失效），若中间索引列用到了范围（>、<、like等），则后面的所以全失效
 
 
 
-> ### 尽量使用覆盖索引
+> #### 尽量使用覆盖索引
 
 尽量使用覆盖索引(只访问索引的查询(索引列和查询列一致))，少用select * 查询 ，即不要查询所有列
 
 
 
-> #### 不要使用不等于(!= 或者<>)
+> ##### 不要使用不等于(!= 或者<>)
 
 mysql 在使用不等于(!= 或者<>)的时候无法使用索引会导致全表扫描
 
 
 
-> #### is not null 也无法使用索引
+> ##### is not null 也无法使用索引
 
 is not null和is null 也无法使用索引
 
 
 
-> #### like以通配符开头('%abc...')索引失效
+> ##### like以通配符开头('%abc...')索引失效
 
 like以通配符开头('%abc...')mysql索引失效会变成全表扫描的操作
 
@@ -589,7 +589,7 @@ like以通配符开头('%abc...')mysql索引失效会变成全表扫描的操作
 
 
 
-> #### 字符串不加单引号索引失效
+> ##### 字符串不加单引号索引失效
 
 ~~~mysql
 EXPLAIN SELECT * FROM staffs WHERE name = 2000;
@@ -599,7 +599,7 @@ EXPLAIN SELECT * FROM staffs WHERE name = 2000;
 
 
 
-> #### 少用or,用它来连接时会索引失效
+> ##### 少用or,用它来连接时会索引失效
 
 ~~~mysql
 EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
@@ -609,9 +609,9 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 
 
 
-# MySql 表数据操作
+## MySql 表数据操作
 
-## DDL: 表 操作
+### DDL: 表 操作
 
 ```sql
 -- 创建表
@@ -624,7 +624,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 ​	show tables;
 ```
 
-## 表字段 约束
+### 表字段 约束
 
 约束可以让字段列名的值进行规范 约束加在字段后
 
@@ -649,9 +649,9 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 		SELECT  DISTINCT  *  FROM  TABLE
 ```
 
-##  字段类型
+###  字段类型
 
-### 数值
+#### 数值
 
 ```sql
 -- 整数:
@@ -664,7 +664,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	-- 注意: 在java里 关于金额的数据 可使用 BigDecimal 类型对应 赋值 new BigDecimal("1002"); 推荐使用双引号
 ```
 
-### 字符串
+#### 字符串
 
 ```sql
 -- 字符串
@@ -676,7 +676,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	longtext -- 可变长度-2的32次方
 ```
 
-### 日期
+#### 日期
 
 ```sql
 -- 日期
@@ -691,9 +691,9 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 
 
 
-## DML: 增删改
+### DML: 增删改
 
-### insert 增 
+#### insert 增 
 
 ```sql
 -- 向表中的所有列新增数据 列名-类型-都要对应
@@ -704,7 +704,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	insert into 表名 values(值1,值2,值...),(值1,值2,值...);
 ```
 
-### delete 删
+#### delete 删
 
 ```sql
 -- 删除指定列中的指定值行 --> and - 且  or - 或
@@ -715,7 +715,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	delete from 表名 where id in (1, 2, 3, ...);
 ```
 
-### update 改
+#### update 改
 
 ```sql
 -- 修改指定行的列值
@@ -728,9 +728,9 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	update 表名 set 列名 = 修改值 where id in (1, 2, 3, ...);
 ```
 
-## DQL: 查询
+### DQL: 查询
 
-### 基本查询 | 瑟莱特
+#### 基本查询 | 瑟莱特
 
 ```sql
 -- 语法  select 列名...... from 表名 where 条件
@@ -747,9 +747,9 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 	select 列名...... from 表名 where 列名 like '%值%' / 值% / %值;
 ```
 
-### 关联查询
+#### 关联查询
 
-#### 内连接
+##### 内连接
 
 > **特点:** 只会查询两张表重和的部分 其余的则不会查询出来
 
@@ -763,7 +763,7 @@ EXPLAIN SELECT * FROM staffs WHERE name  like "abc%" or age = 23
 
 ![image-20220819130836662](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819125858951.png)
 
-#### 外/左连接
+##### 外/左连接
 
 > **特点:** 以左表为主全部查询出来 如果右表部分没数据则以null
 
@@ -781,7 +781,7 @@ select * from 表1 left outer join 表2 on 表1.主键=表2.外键 where 表2.�
 
 <img src="https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819130316462.png" alt="image-20220819130316462" style="zoom:150%;" />
 
-#### 外/右连接
+##### 外/右连接
 
 > **特点:** 以右表为主全部查询出来 如果左表部分没数据则以null
 
@@ -799,7 +799,7 @@ select * from 表1 left outer join 表2 on 表1.主键=表2.外键 where 表1.�
 
 ![image-20220819130443814](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819130443814.png)
 
-#### 外连接 多表查询
+##### 外连接 多表查询
 
 ```sql
 -- 多表连接
@@ -809,7 +809,7 @@ select * from 表1 left outer join 表2 on 表1.主键=表2.外键 where 表1.�
 
 
 
-#### 全外查询
+##### 全外查询
 
 > **特点:** 以两张表为主 查询所有的数据 为空的以null填充
 
@@ -823,7 +823,7 @@ select * from 表1 right outer join 表2 on 表1.主键=表2.外键
 
 ![image-20220819131519212](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819131519212.png)
 
-#### 全外(去除内连接)
+##### 全外(去除内连接)
 
 > **特点:** 以两张表为主 查询所有的数据 但会去除内连接查询的重合数据 为空的以null填充
 
@@ -841,9 +841,9 @@ where 表1.主键 is null
 
 
 
-# 特殊条件值
+## 特殊条件值
 
-## 运算符 - 判断
+### 运算符 - 判断
 
 ```sql
 -- 算术运算符 
@@ -878,7 +878,7 @@ where 表1.主键 is null
 	或 or      select 0 or 0;
 ```
 
-## 分页  -- 分组
+### 分页  -- 分组
 
 ```sql
 -- 分页 | 可控制查询的条数
@@ -900,7 +900,7 @@ where 表1.主键 is null
 	语法: select (列名-显示作用 函数) from 表名 group by 分组列名1, 列明2... having 条件;
 ```
 
-## 条件 基本聚合函数
+### 条件 基本聚合函数
 
 > 基本聚合函数
 
@@ -921,7 +921,7 @@ sum        和-相加    条件 真-1 / 假-0
 sum(case when 列名 < 值 then 1 else 0 end) 列别名
 ```
 
-## 排序
+### 排序
 
 ```sql
 -- 排序
@@ -932,11 +932,11 @@ sum(case when 列名 < 值 then 1 else 0 end) 列别名
 		语法: select * from 表名  order by 列名 desc;
 ```
 
-# MySql 特殊函数
+## MySql 特殊函数
 
-## 时间类函数
+### 时间类函数
 
-### 获取现在时间函数
+#### 获取现在时间函数
 
 详见: https://www.runoob.com/sql/sql-dates.html
 
@@ -951,7 +951,7 @@ sum(case when 列名 < 值 then 1 else 0 end) 列别名
 | [DATEDIFF()](https://www.runoob.com/sql/func-datediff-mysql.html) | 返回两个日期之间的天数              |
 | [DATE_FORMAT()](https://www.runoob.com/sql/func-date-format.html) | 用不同的格式显示日期/时间           |
 
-### 时间差列
+#### 时间差列
 
 > 可使用 timediff | 时间差 函数计算出两个时间的时间差为新的一列数据
 
@@ -962,7 +962,7 @@ select timediff(now() , seckill_endtime) from seckill
 -63:13:46
 ```
 
-### 时间差条件
+#### 时间差条件
 
 [Mysql日期差函数，Mysql选择两个日期字段相差大于或小于一定时间_mysql 时间间隔大于](https://blog.csdn.net/homelam/article/details/88647099)
 
@@ -1009,7 +1009,7 @@ SELECT * FROM `stock_info` where
 busi_date > DATE_SUB('2022-11-11',INTERVAL 7 day);
 ```
 
-### 时间转换格式
+#### 时间转换格式
 
 详见: https://www.runoob.com/sql/func-date-format.html
 
@@ -1031,7 +1031,7 @@ select * from stock_in_order where
 </if>
 ```
 
-### 查询时间偏移数据
+#### 查询时间偏移数据
 
 详见: https://blog.csdn.net/weixin_49071539/article/details/116458017
 
@@ -1115,25 +1115,25 @@ select name,submittime from enterprise   where date_format(submittime,'%Y-%m')=d
 select name,submittime from enterprise where submittime between date_sub(now(),interval 6 month) and now();
 ```
 
-## 数学函数
+### 数学函数
 
 https://blog.csdn.net/qq_43842093/article/details/120938688
 
-### 绝对值
+#### 绝对值
 
 ```sql
 -- ABS(数值字段) 绝对值
 SELECT ABS(-33) -- 输出: 字段是绝对值 没有负数 33
 ```
 
-### 余数
+#### 余数
 
 ```sql
 -- MOD(N,M) 或%:返回N被M除的余数
 SELECT MOD(5,2) -- 输出余数 1
 ```
 
-### 不小于最小整数值
+#### 不小于最小整数值
 
 ```sql
 -- CEILING(X) 返回不小于X的最小整数值。
@@ -1141,7 +1141,7 @@ select CEILING(1.23); -- 输出余数 2
 select CEILING(-1.23); -- 输出余数 -1
 ```
 
-### 四舍五入的整数
+#### 四舍五入的整数
 
 ```sql
 -- ROUND(X) :返回参数X的四舍五入的一个整数。
@@ -1149,9 +1149,9 @@ select ROUND(1.58); -- 输出余数 2
 select ROUND(-1.58); -- 输出余数 -2
 ```
 
-## 字符串函数
+### 字符串函数
 
-### ASCII代码值
+#### ASCII代码值
 
 ```sql
 -- ASCII(str):返回字符串str的最左面字符的ASCII代码值。
@@ -1162,7 +1162,7 @@ select ASCII(2); -- 50
 select ASCII('dx') -- 100
 ```
 
-### 合并多列为一列
+#### 合并多列为一列
 
 > CONCAT 语法
 
@@ -1201,14 +1201,14 @@ SELECT GROUP_CONCAT(id,username) FROM `rbac_user`
 
 ![image-20220819220210334](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220819220210334.png)
 
-### 获取字符串长度
+#### 获取字符串长度
 
 ```sql
 -- LENGTH(str):返回字符串str的长度。
 select LENGTH(‘text’);  -- 4
 ```
 
-### 截取字符串
+#### 截取字符串
 
 ```java
 -- LEFT(str,len):返回字符串str的最左面len个字符。
@@ -1245,7 +1245,7 @@ select INSERT(‘whatareyou’, 5, 3, ‘is’); -- whatisyou
 
 
 
-## 判空列
+### 判空列
 
 ```sql
 select
@@ -1256,7 +1256,7 @@ from stock_in_order s
 
 
 
-## 双select查询组合成一表
+### 双select查询组合成一表
 
 ```sql
 select
@@ -1271,7 +1271,7 @@ select
 
 
 
-## 联合外全 查询
+### 联合外全 查询
 
 > Union | all  即 将多张表的数据一次性显示成一张表的数据 且列数一致
 
@@ -1293,7 +1293,7 @@ Union all
 select id, name from b
 ```
 
-## 条件判断后聚合 
+### 条件判断后聚合 
 
 > 以同列值为分组合为一条时 会导致后面对应多条语句
 >
@@ -1332,9 +1332,9 @@ where g.gra_id = 2
 GROUP BY t.stu_name
 ```
 
-# MySql 技巧
+## MySql 技巧
 
-## 时间字段自动添加|更新
+### 时间字段自动添加|更新
 
 详见: [MySql数据库插入一条数据时，create_time字段自动添加为当前时间](https://blog.csdn.net/qq_41942909/article/details/80749766)
 
@@ -1356,17 +1356,17 @@ GROUP BY t.stu_name
 
 
 
-# MySql 原理
+## MySql 原理
 
-## MySql 树原理
+### MySql 树原理
 
 > MySql 使用的树有: B+ 树 |  B 树 | Hash | 红黑树 | 二叉树  [InnoDB 使用 B+ 树]
 
-### 二叉查找树
+#### 二叉查找树
 
 二叉树具有以下性质：**左子树的键值小于根的键值，右子树的键值大于根的键值。**
 
-### 平衡二叉树（AVL Tree）
+#### 平衡二叉树（AVL Tree）
 
 平衡二叉树（AVL树）**是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树**。也就是说在符合二叉查找树的条件下，它还满足任何节点的两个子树的高度最大差为1。
 
@@ -1389,7 +1389,7 @@ LR===>先左旋，后右旋
 
 RL===>先右旋，后左旋
 
-### B-Tree（平衡多路查找树）
+#### B-Tree（平衡多路查找树）
 
 B-Tree结构的数据可以让系统高效的找到数据所在的磁盘块。为了描述B-Tree，首先定义一条记录为一个二元组[key, data] ，key为记录的键值，对应表中的主键值，data为一行记录中除主键外的数据。对于不同的记录，key值互不相同。
 
@@ -1397,7 +1397,7 @@ B-Tree结构的数据可以让系统高效的找到数据所在的磁盘块。�
 
 
 
-### B+Tree
+#### B+Tree
 
 B+Tree是在B-Tree基础上的一种优化，InnoDB存储引擎就是用B+Tree实现其索引结构。
 
@@ -1418,7 +1418,7 @@ B+树的特性：
 
 
 
-## 表 设计的三范式
+### 表 设计的三范式
 
 > 第一范式: 原子性
 
@@ -1439,7 +1439,7 @@ B+树的特性：
 
 
 
-## MySql 事务
+### MySql 事务
 
 事务是一系列的数据库操作，是数据库应用的基本单位。
 
@@ -1471,21 +1471,21 @@ Redo Log(重做日志)记录的是新数据的备份。在事务提交前，只�
 
 
 
-## MySql 事务隔离级别
+### MySql 事务隔离级别
 
-### 开启和关闭事务
+#### 开启和关闭事务
 
 > 默认情况下，单独的一条sql就是一个事务，所谓默认情况指的是你没有手动去开启事务
 
 ~~~mysql
-# 查看自动提交状态
+## 查看自动提交状态
 select @@autocommit;
-# 值为0： 关闭自动提交   值为1：开启自动提交
+## 值为0： 关闭自动提交   值为1：开启自动提交
 set autocommit = 0|1; 
 关闭自动提交后，从下一条sql语句开始则开启新事务，需要使用commit或rollback语句结束该事务
 ~~~
 
-### 隔离级别
+#### 隔离级别
 
 MySQL是一个服务器／客户端架构的软件，对于同一个服务器来说，可以有若干个客户端与之连接，每个客户端与服务器连接上之后，就可以称之为一个会话（Session）
 
@@ -1494,10 +1494,10 @@ MySQL是一个服务器／客户端架构的软件，对于同一个服务器来
 ```
 
 ~~~mysql
-# 查看当前数据库的隔离级别
-mysql> SELECT @@tx_isolation    # mysql默认是可重复读
-# 修改当前数据库的隔离级别
-mysql> set global transaction isolation level read uncommitted;   # 这是设置的读未提交级别
+## 查看当前数据库的隔离级别
+mysql> SELECT @@tx_isolation    ## mysql默认是可重复读
+## 修改当前数据库的隔离级别
+mysql> set global transaction isolation level read uncommitted;   ## 这是设置的读未提交级别
 
 注意：设置后要重启客户端
 ~~~
@@ -1541,13 +1541,13 @@ mysql> set global transaction isolation level read uncommitted;   # 这是设置
 
 
 
-## MySql 锁
+### MySql 锁
 
-### 加锁的目的是什么
+#### 加锁的目的是什么
 
 > 数据加锁是为了解决事务的隔离性问题，让事务之间相互不影响，每个事务进行操作的时候都必须先对数据加上一把锁，防止其他事务同时操作数据。
 
-### 锁是基于什么实现的
+#### 锁是基于什么实现的
 
 * 数据库里面的锁是基于索引实现的，在Innodb中我们的锁都是作用在索引上面的，
 
@@ -1555,7 +1555,7 @@ mysql> set global transaction isolation level read uncommitted;   # 这是设置
 * 如果没有命中索引的话，那我们锁的就是整个索引树（表锁），
 * 完全取决于你的条件是否有命中到对应的索引节点。
 
-### 锁的分类
+#### 锁的分类
 
 > 数据库里有的锁有很多种，为了方面理解，所以我根据其相关性"人为"的对锁进行了一个分类，分别如下
 
@@ -1563,9 +1563,9 @@ mysql> set global transaction isolation level read uncommitted;   # 这是设置
 * 基于锁的粒度分类：表锁、行锁、记录锁、间隙锁、临键锁。
 * 基于锁的状态分类：意向共享锁、意向排它锁
 
-### 属性锁
+#### 属性锁
 
-#### 共享锁（Share Lock）
+##### 共享锁（Share Lock）
 
 * 表级共享锁又称读锁，简称S锁，
 
@@ -1582,7 +1582,7 @@ SELECT .... LOCK IN SHARE MODE;
 
 ![image-20220530152035051](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/image-20220530152035051.png) 
 
-#### 排它锁（Exclusive Lock）
+##### 排它锁（Exclusive Lock）
 
 *  行级排它锁又称为写锁，简称X锁，
 
@@ -1599,9 +1599,9 @@ SELECT .... FOR UPDATE;
 
 
 
-### 粒度锁
+#### 粒度锁
 
-#### 表锁
+##### 表锁
 
 > 特点： 粒度大，**偏向myisam引擎**，无死锁，并发度最低
 
@@ -1610,7 +1610,7 @@ SELECT .... FOR UPDATE;
 
 
 
-#### 行锁
+##### 行锁
 
 > 特点：粒度小，加锁比表锁麻烦，不容易冲突，相比表锁支持的并发要高；
 
@@ -1626,9 +1626,9 @@ SELECT .... FOR UPDATE;
 
 
 
-### 行锁 细分
+#### 行锁 细分
 
-#### 记录锁（Record Lock）
+##### 记录锁（Record Lock）
 
 > 记录锁的范围只是表中的某一条记录，记录锁是说事务在加锁后锁住的只是表的某一条记录 
 
@@ -1640,7 +1640,7 @@ SELECT .... FOR UPDATE;
 
 
 
-#### 间隙锁（Gap Lock）
+##### 间隙锁（Gap Lock）
 
 间隙锁是在事务加锁后其锁住的是表记录的某一个区间，防止其它事务在这个区域内插入、修改、删除数据，这是为了防止出现幻读现象，当表的相邻ID之间出现空隙则会形成一个区间，即锁定的间隙为（A，B] 左开右闭
 
@@ -1648,7 +1648,7 @@ SELECT .... FOR UPDATE;
 
 
 
-#### 临键锁(Next-Key Lock)
+##### 临键锁(Next-Key Lock)
 
 它是INNODB的行锁默认算法，总结来说它就是记录锁和间隙锁的组合，**临键锁会把查询出来的记录锁住，同时也会把该范围查询内的所有间隙空间也会锁住，再之它会把相邻的下一个区间也会锁住**
 
@@ -1656,9 +1656,9 @@ SELECT .... FOR UPDATE;
 
 
 
-## MySQL 重要日志
+### MySQL 重要日志
 
-### 错误日志  log_error
+#### 错误日志  log_error
 
 > 用来记录 MySQL 服务器运行过程中的错误信息，
 
@@ -1668,8 +1668,8 @@ SELECT .... FOR UPDATE;
 
 ~~~mysql
 SHOW VARIABLES LIKE 'log_error';
-##linux默认位置##     /var/log/mysqld.log 
-##window默认位置##    C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF.err
+##linux默认位置###     /var/log/mysqld.log 
+##window默认位置###    C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF.err
 ~~~
 
 将 log_error 选项加入到 MySQL 配置文件的 [mysqld] 组中，形式如下：
@@ -1679,7 +1679,7 @@ SHOW VARIABLES LIKE 'log_error';
 log-error=dir/{filename}    ###重启 MySQL 服务后，参数开始生效，可以在指定路径下看到 filename.err 的文件
 ~~~
 
-### 通用日志 general log
+#### 通用日志 general log
 
 查询（通用）日志 ：查询日志在 MySQL 中被称为 general log（通用日志），查询日志里的内容不要被“查询日志”误导，认为里面只存储 select 语句，其实不然，查询日志里面记录了数据库执行的所有命令，不管语句是否正确，如增删改查语句都会被记录，在并发操作非常多的场景下，查询信息会非常多，那么如果都记录下来会导致 IO 非常大，影响 MySQL 性能。因此如果不是在调试环境下，是不建议开启查询日志功能的。 查询日志的开启有助于帮助我们分析哪些语句执行密集，执行密集的 select 语句对应的数据是否能够被缓存，同时也可以帮助我们分析问题，因此，可以根据自己的实际情况来决定是否开启查询日志。 查询日志模式是关闭的，可以通过以下命令开启查询日志。
 
@@ -1687,8 +1687,8 @@ log-error=dir/{filename}    ###重启 MySQL 服务后，参数开始生效，可
 
 ~~~mysql
 SHOW VARIABLES LIKE '%general%';
-##linux默认位置##     /var/lib/mysql/localhost.log                                 value值是off
-##window默认位置##    C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF.log    value值是off
+##linux默认位置###     /var/lib/mysql/localhost.log                                 value值是off
+##window默认位置###    C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF.log    value值是off
 ~~~
 
 默认通用日志是关闭的，可以开启
@@ -1698,7 +1698,7 @@ set global general_log=1        ##关闭通用日志 set global general_log=0
 ##重启mysql服务  service mysqld restart
 ~~~
 
-### 慢日志 slow log
+#### 慢日志 slow log
 
 慢日志 slow log：慢查询会导致 CPU、内存消耗过高，当数据库遇到性能瓶颈时，大部分时间都是由于慢查询导致的，慢查询导致IO阻塞，开启慢查询日志，可以让 MySQL 记录下查询超过指定时间的语句，之后运维人员通过定位分析，能够很好的优化数据库性能。默认情况下，慢查询日志是不开启的，只有手动开启了，慢查询才会被记录到慢查询日志中。
 
@@ -1706,8 +1706,8 @@ set global general_log=1        ##关闭通用日志 set global general_log=0
 
 ~~~mysql
 mysql> SHOW VARIABLES LIKE 'slow_query%';
-##linux默认位置##     /var/lib/mysql/localhost-slow.log                                value值是off
-##window默认位置##   C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF-slow.log    value值是off
+##linux默认位置###     /var/lib/mysql/localhost-slow.log                                value值是off
+##window默认位置###   C:\dev\mysql\mysql-8.0.19-winx64\data\QH-20210227YZPF-slow.log    value值是off
 
 ##查询超过多少秒才记录
 mysql> SHOW VARIABLES LIKE 'long_query_time';   ###时间以秒为单位
@@ -1728,7 +1728,7 @@ long_query_time=n
 
 ~~~mysql
 SET GLOBAL slow_query_log=ON/OFF;
-#SET GLOBAL slow_query_log_file = /var/log/slow-query.log # 慢查询日志存放目录
+#SET GLOBAL slow_query_log_file = /var/log/slow-query.log ## 慢查询日志存放目录
 SET GLOBAL long_query_time=5;  #设置5秒
 ~~~
 
@@ -1738,7 +1738,7 @@ SET GLOBAL long_query_time=5;  #设置5秒
 select sleep(10);  #查询10秒
 ~~~
 
-### 回滚日志 undo log
+#### 回滚日志 undo log
 
 > 事务原子性（Atomic），要么全部执行，要么全部不执行；事务的原子性是通过  **undolog 回滚日志**  来实现的，记录更新的相反操作 
 
@@ -1748,13 +1748,13 @@ undo log（回滚日志） ：用于存储日志被修改前的值，从而保�
 mysql> show variables like '%innodb_undo%';
 ~~~
 
-### 重做日志 redo log
+#### 重做日志 redo log
 
 > 事务的持久性（Durability），事务提交后，其结果永久保存在数据库中。通过  **redo log 日志**  来实现的
 
  redo log（重做日志） ：在事务频繁提交中，为了避免每一次提交都要往磁盘写， 造成IO性能的问题，MySQL 采用了这样一种缓存机制，先将数据写入内存中，再批量把内存中的数据统一刷回磁盘。为了避免将数据刷回磁盘过程中，因为掉电或系统故障带来的数据丢失问题，InnoDB 采用 redo log 来解决此问题。 
 
-### 二进制日志 bin log
+#### 二进制日志 bin log
 
  bin log（二进制日志） ：是一个二进制文件，主要记录所有数据库表结构变更，比如，CREATE、ALTER TABLE 等，以及表数据修改，比如，INSERT、UPDATE、DELETE 的所有操作，bin log 中记录了对 MySQL 数据库执行更改的所有操作，并且记录了语句发生时间、执行时长、操作数据等其他额外信息，但是它不记录 SELECT、SHOW 等那些不修改数据的 SQL 语句。 
 
@@ -1782,24 +1782,24 @@ service mysqld restart
 
 
 
-## MVCC实现原理
+### MVCC实现原理
 
 > MVCC查询的工作流程
 
-###  查询主键索引
+####  查询主键索引
 
 * 生成Read View读视图
 * 通过主键查找记录，根据记录里的DB_TRX_ID与Read View读视图进行可见性判断
 * 配合DB_ROLL_PTR回滚指针和undo log来找到当前事务可见的数据记录
 
-### 查询二级索引
+#### 查询二级索引
 
 * 生成Read View读视图
 * 比较读视图的up_limit_id与MAX_TRX_ID大小
 * 如果MAX_TRX_ID **小于** 本次Read View的up_limit_id，则全部可见，过滤记录中的有效记录
 * 否则，无法通过二级索引判断可见性，需要一次遍历每条记录，反查到聚簇索引记录，通过聚簇索引记录来判断可见性
 
-### MVCC与隔离级别
+#### MVCC与隔离级别
 
 MVCC 只在 **Read Commited 和 Repeatable Read** 两种隔离级别下工作。
 
@@ -1811,11 +1811,11 @@ MVCC 只在 **Read Commited 和 Repeatable Read** 两种隔离级别下工作。
 
 
 
-# MySql 补充
+## MySql 补充
 
 参考: https://blog.csdn.net/luostudent/article/details/127011118
 
-## 数据表:
+### 数据表:
 
 > 表 | 必备字段:
 
@@ -1855,7 +1855,7 @@ MVCC 只在 **Read Commited 和 Repeatable Read** 两种隔离级别下工作。
 - 数值为default 0
 - 时间为default 0000-00-00 00:00:00
 
-## SQL规范：
+### SQL规范：
 
 ```text
 访问量很大的SQL不要在数据库里做排序
@@ -1877,13 +1877,13 @@ in列表元素不能超过1000个
 
 
 
-## 避坑指南:
+### 避坑指南:
 
-### LEFT JOIN 增多数据条数
+#### LEFT JOIN 增多数据条数
 
 > 问题的产生: 左连接即使已左表为主,但是右表对应的关系存在重复数据则会产生多余的数据
 
-### ![](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/fbmd75-0.png)
+#### ![](https://apaiimages.oss-cn-guangzhou.aliyuncs.com/MD/fbmd75-0.png)
 
 > 解决方案
 
