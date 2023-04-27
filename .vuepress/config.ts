@@ -36,8 +36,8 @@ export default defineUserConfig({
       {
         text: "文档组",
         children: [
-          { text: "Web-开发", link: "/docs/Web-develop/Vue-basics" },
-          { text: "Java-开发", link: "/docs/Java-develop/Java-basics" },
+          { text: "Web-开发", link: "/docs/Web-develop/Html-Js" },
+          { text: "Java-开发", link: "/docs/Java-develop/JavaMyUtil" },
           { text: "Linux-系统", link: "/docs/Linux-develop/Linux" },
           { text: "其他", link: "/docs/Rests-docs/vue" },
           { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
@@ -50,58 +50,62 @@ export default defineUserConfig({
     series: {
       // Java-开发
       "/docs/Java-develop/": [
-        // 分栏一
         {
-          // 分栏名称
-          text: "Java 基础",
-          // 栏目组 文档
+          text: "Java 笔记",
           children: [
-            "Java-basics",
+            "JavaMyUtil", "Java-basics", "JavaJinJie02", "JavaGongNeng03", "JavaBiKeng04",
           ],
         },
         {
-          // 分栏名称
           text: "MySql 数据库",
-          // 栏目组 文档
           children: [
-              "MySql",
+            "MySql",
+          ],
+        },
+        {
+          text: "Java 框架",
+          children: [
+            "Spring", "SpringPeiZhi", "MyBatisPlus", "SpringSecurity",
+          ],
+        },
+        {
+          text: "微服务",
+          children: [
+            "SpringConfig", "Redis", "RabbitMQ",
           ],
         },
       ],
       // Web-开发
       "/docs/Web-develop/": [
         {
-          // 分栏名称
-          text: "Vue 框架",
-          // 栏目组 文档
+          text: "前端 基础",
           children: [
-            "Vue-basics",
+            "Html-Js",
           ],
         },
         {
-          // 分栏名称
+          text: "Web 框架", // 分栏名称
+          children: [ // 栏目组 文档
+            "Vue-basics","Angular",
+          ],
+        },
+        {
           text: "前端 组件",
-          // 栏目组 文档
           children: [
-            "Vue-basics",
+            "ElementUI",
           ],
         },
       ],
       // Linux-系统
       "/docs/Linux-develop/": [
-        // 分栏一
         {
-          // 分栏名称
           text: "Linux 基础",
-          // 栏目组 文档
           children: [
             "Linux",
           ],
         },
         {
-          // 分栏名称
           text: "Linux 安装",
-          // 栏目组 文档
           children: [
             "Linux",
           ],
@@ -110,11 +114,8 @@ export default defineUserConfig({
 
       // --- 其他组 设置
       "/docs/Rests-docs/": [
-        // 分栏一
         {
-          // 分栏名称
           text: "前端",
-          // 栏目组 文档
           children: [
               "Vue2","Vue",
           ],
