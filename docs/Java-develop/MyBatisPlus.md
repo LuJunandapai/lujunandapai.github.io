@@ -7,22 +7,19 @@ date: 2023/04/27
 
 # MyBatisPlus 防坑指南
 
+```java
 > 注解
-
 * @TableId(value = "id", type = "IdType.AUTO")  | 指定id生成策略会导致 在添加时手动写入id值会添加失败或者失效且可能报错
 
 > 配置
-
 * map-underscore-to-camel-case: true  
-
   驼峰配置 如果 数据库的列名没有 "_" 一点要关闭驼峰 否则报错 [name --> u_name x]
-
   开启驼峰功能 既使是手写的sql语句 也会将数据库的"_"之前的裁切掉 就算实体类没加指定注解也能映射 [u_name --> name]
 
 > API
-
 * int updateById(T t);  |  动态修改不会一次全部修改 传一个值只修改一个值
 * int delete(Wrapper<T> wrapper); | 根据条件 即所有满足的数据全部删除记录,
+```
 
 
 
@@ -208,14 +205,12 @@ public class UserInfo {
 
 ## 添加MyBatisPlus 依赖
 
-> 创建 springboot 项目  添加需支持的依赖 和 对应的配置
->
-> 特别注意:  <!--mybatis-plus 启动器-->  和   <!--分页插件-->  会产生依赖冲突 会造成异常
->
-> 解决方法:  排除分页插件的异常的依赖   可解决报错
-
 ```xml
- <!--mybatis-plus 启动器-->
+创建 springboot 项目  添加需支持的依赖 和 对应的配置
+特别注意:  <!--mybatis-plus 启动器-->  和   <!--分页插件-->  会产生依赖冲突 会造成异常
+解决方法:  排除分页插件的异常的依赖   可解决报错
+
+<!--mybatis-plus 启动器-->
 <dependency>
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -809,9 +804,9 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
 
 ### pom.xml 生成器插件配置
 
-> mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
-
 ```xml
+// mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
+    
 <plugin>
     <groupId>org.mybatis.generator</groupId>
     <artifactId>mybatis-generator-maven-plugin</artifactId>

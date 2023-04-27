@@ -2812,9 +2812,9 @@ pagehelper:
 
 ### pom.xml 生成器插件配置
 
-> mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
-
 ```xml
+// mybatis - 代码生成器 pom.xml  的 <plugins> 插件标签内
+    
 <plugin>
     <groupId>org.mybatis.generator</groupId>
     <artifactId>mybatis-generator-maven-plugin</artifactId>

@@ -453,21 +453,19 @@ System.out.println(userService4);
 
 ### **自动装配模式**
 
+```java
 * no
-
   该选项是spring框架的默认选项，表示自动装配为关闭状态OFF。我们必须在bean定义中使用<property>标签显式设置依赖项。
 
 * byName
-
   此选项启用基于bean名称的依赖项注入。在Bean中自动装配属性时，属性名称用于在配置文件中搜索匹配的Bean定义。如果找到这样的bean，则将其注入属性。如果找不到这样的bean，则会引发错误。
 
 * byType
-
   此选项支持基于bean类型的依赖项注入。在bean中自动装配属性时，属性的类类型用于在配置文件中搜索匹配的bean定义。如果找到这样的bean，就在属性中注入它。如果没有找到这样的bean，就会引发一个错误。
 
 * constructor
-
   通过构造函数自动装配与byType相似，仅适用于构造函数参数。在启用了自动装配的bean中，它将查找构造函数参数的类类型，然后对所有构造函数参数执行自动装配类型。请注意，如果容器中没有一个完全属于构造函数参数类型的bean，则会引发致命错误。
+```
 
 详细介绍: https://blog.csdn.net/weixin_44205087/article/details/123108269
 
@@ -531,26 +529,26 @@ public class Test implements TestImp {
 
 ### @Component 用于创建对象
 
+```java
 @Component 相当于：<bean id="类名的全小写" class="类全名"> 作用于类
-
 默认的id名未 类名的全小写 也可在自定义id名 @Component("id名")
+```
 
 ### @Component 衍生子注解
 
+```java
 作用及属性都是一模一样的, 他们只不过是提供了更加明确的语义化。
-
  @Controller ：一般用于表现层的注解。
-
  @Service ：一般用于业务层的注解。
-
  @Repository ：一般用于持久层的注解。
-
 细节：如果注解中有且只有一个自定义bean的ID名属性要赋值时，且名称是 value ，value 在赋值是可以不写。
+```
 
 ### 用于注入数据的注解
 
+```java
 能够直接通过注解给类赋值 , 相当于：<property name="字段名" ref="值"> 作用于属性字段上
-
+    
 #### @Autowired
 
 作用：自动按照类型注入。当使用注解注入属性时，set方法可以省略。
@@ -573,6 +571,7 @@ public class Test implements TestImp {
  JSR-250标准（基于jdk），单独使用@Resource注解，表示先按照名称注入，会到spring容器中查找userDao的名称，对应<bean id="">，id的属性值，如果找到，可以匹配。
 
 如果没有找到，则会按照类型注入，会到spring容器中查找IUserDao的类型，对应<bean class="">，class的属性值，如果找到，可以匹配，如果没有找到会抛出异常。
+```
 
 
 

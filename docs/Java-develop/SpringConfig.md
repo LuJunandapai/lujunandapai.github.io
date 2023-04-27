@@ -1707,7 +1707,9 @@ feign:
 
 ## 日志级别(了解)
 
+```java
 前面讲过，通过`logging.level.xx=debug`来设置日志级别。然而这个对Fegin客户端而言不会产生效果。因为`@FeignClient`注解修改的客户端在被代理时，都会创建一个新的Fegin.Logger实例。我们需要额外指定这个日志的级别才可以。然后根据 **logging.level.<FeignClient>** 参数配置格式来开启 Feign 客户端的 DEBUG 日志，其中 **<FeignClient>** 部分为 Feign 客户端定义接口的完整路径。默认值是**NONE**，而NONE不会记录Feign**调用过程**的任何日志的，**也就是说这个日志不是启动feign客户端的日志，而是feign调用远程接口时产生的日志**。
+```
 
 1）设置com.woniu包下的日志级别都为debug
 
