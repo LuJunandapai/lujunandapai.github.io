@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="021bf68c-9460-4e33-942e-d7d462d76533" name="变更" comment="" />
+    <list default="true" id="021bf68c-9460-4e33-942e-d7d462d76533" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +11,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="ac184c7f-3ff2-4af4-985a-a290cc1f33e4" />
   </component>
   <component name="ProjectId" id="2OxRAypqZe1pOXRGBEJ2xh6oX39" />
   <component name="ProjectViewState">
@@ -34,6 +39,9 @@
       <workItem from="1682500109003" duration="13000" />
       <workItem from="1682500142368" duration="111000" />
       <workItem from="1682512151566" duration="6000" />
+      <workItem from="1682605400538" duration="123000" />
+      <workItem from="1682605545275" duration="232000" />
+      <workItem from="1682605826806" duration="8000" />
     </task>
     <servers />
   </component>
@@ -43,11 +51,41 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="6e4e7459-3731-41b4-b333-6177d2c1548f">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
           </value>
         </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="6e4e7459-3731-41b4-b333-6177d2c1548f" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
