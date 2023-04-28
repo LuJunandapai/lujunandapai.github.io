@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-5f1ac027","path":"/docs/Apai-MyRecord/My-2023/My2310.html","title":"Apai-2023-十月","lang":"zh-CN","frontmatter":{"title":"Apai-2023-十月","date":"2023/04/26"},"headers":[],"git":{"createdTime":null,"updatedTime":null,"contributors":[]},"filePathRelative":"docs/Apai-MyRecord/My-2023/My2310.md"}');export{t as data};
