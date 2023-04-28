@@ -39,8 +39,15 @@ export default defineUserConfig({
           { text: "Web-开发", link: "/docs/Web-develop/Html-Js" },
           { text: "Java-开发", link: "/docs/Java-develop/JavaMyUtil" },
           { text: "Linux-系统", link: "/docs/Linux-develop/Linux" },
-          { text: "其他", link: "/docs/Rests-docs/vue" },
-          { text: "vuepress-theme-reco", link: "/blogs/other/guide" },
+          { text: "其他", link: "/docs/Rests-docs/JavaKaiFa" },
+          { text: "Note taking", link: "/blogs/other/guide" },
+        ],
+      },
+      {
+        text: "花圃里",
+        children: [
+          { text: "2023-花开万里", link: "/docs/Apai-MyRecord/My-2023/My2305" },
+          { text: "2024-随心而来", link: "/docs/Apai-MyRecord/My-2023/My2305" },
         ],
       },
       { text: "关于我", link: "/blogs/other/guide" },
@@ -115,21 +122,37 @@ export default defineUserConfig({
       // --- 其他组 设置
       "/docs/Rests-docs/": [
         {
-          text: "前端",
+          text: "My Apai",
           children: [
-              "Vue2","Vue",
+            "JavaKaiFa",
           ],
         },
         {
-          text: "后端",
+          text: "技术组",
           children: [
-              "java", "MySql"
+              "ShardingJDBC","Swagger",
           ],
         },
         {
-          text: "Linux",
+          text: "工具组",
           children: [
-              "Linux"
+              "MinIO",
+          ],
+        },
+      ],
+
+      // --- 我的记录 设置
+      "/docs/Apai-MyRecord/My-2023": [
+        {
+          text: "My Month",
+          children: [
+            "My2305","My2306","My2307","My2308","My2309","My2310","My2311","My2312",
+          ],
+        },
+        {
+          text: "前路漫漫 花开灿烂",
+          children: [
+            "Yi-ZhuHai","Yi-HuBei",
           ],
         },
       ],

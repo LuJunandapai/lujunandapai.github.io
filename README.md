@@ -14,17 +14,18 @@ bannerBrand: # bannerBrand 模块的配置
     - { text: 关于我, link: '/docs/guide/introduce' }
     - { text: Default Style, link: '/docs/style-default-api/introduce', type: 'plain' }
   socialLinks: # 社交地址
-    - { icon: 'LogoGithub', text: '我的 LogoGithub',link: 'https://github.com/LuJunandapai' }
-    - { icon: 'Star', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
-    - { icon: 'Locked', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
-    - { icon: 'StopSignFilled', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
-    - { icon: 'StoragePool', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
-    - { icon: 'StopOutlineFilled', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
-    - { icon: 'StopSign', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
+    - { icon: 'LogoGithub', text: 'Github', link: 'https://github.com/LuJunandapai' }
+    - { icon: 'StoragePool', text: '我的 Gitee', link: 'https://gitee.com/LuisApai' }
+    - { icon: 'Star', text: 'CSDN', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
+    - { icon: 'Locked', text: 'hutool 工具', link: 'https://hutool.cn/docs/#/' }
+    - { icon: 'StopSignFilled', text: '我的B站', link: 'https://space.bilibili.com/168090249?spm_id_from=333.1007.0.0' }
+    - { icon: 'StopOutlineFilled', text: 'element 前端组件', link: 'https://element.eleme.cn/#/zh-CN' }
+    - { icon: 'StopSign', text: 'MyBatis-Plus', link: 'https://www.baomidou.com/' }
+
 blog: # blog 模块的配置
   socialLinks: # 社交地址
     - { icon: 'StormTracker', link: 'https://github.com/LuJunandapai' }
-    - { icon: 'StressBreathEditor', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
+    - { icon: 'StressBreathEditor', link: 'https://gitee.com/LuisApai' }
     - { icon: 'StudyView', link: 'https://github.com/LuJunandapai' }
     - { icon: 'SubVolume', link: 'https://blog.csdn.net/m0_64903853?spm=1000.2115.3001.5343' }
 footer: # 底部模块的配置
