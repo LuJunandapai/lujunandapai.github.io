@@ -1158,9 +1158,9 @@ import java.io.InputStream;
 
 public class FileUtils {
     // 阿里云 oss 账号
-    private static String accountID = "LTAI5t63NME4ptetZ5xUrphw";
+    private static String accountID = "APAILTAI5t63NME4ptetZ5xUrphw";
     // 阿里云 oss 密码
-    private static String secret = "Tm5SluS5crvMoDkqgaYCeumbvHqahW";
+    private static String secret = "APAITm5SluS5crvMoDkqgaYCeumbvHqahW";
     // 阿里云 oss 桶 Bucket 名称
     private static String bucketName = "apai-yun";
 
