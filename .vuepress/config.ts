@@ -150,6 +150,12 @@ export default defineUserConfig({
           ],
         },
         {
+          text: "星星 勇敢的追吧",
+          children: [
+            "Apai-MuBiao",
+          ],
+        },
+        {
           text: "前路漫漫 花开灿烂",
           children: [
             "Yi-ZhuHai","Yi-HuBei",
