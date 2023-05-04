@@ -1,4 +1,37 @@
 ---
+title: LuJun - 阿派
+date: 2023/05/04
+---
+
+## 简介
+
+懒.....
+
+
+
+## 技术栈
+
+懒.....
+
+
+
+## 工作经历
+
+懒.....
+
+
+
+## 关于我
+
+懒.....
+
+
+
+## 其他
+
+### 主页配置
+
+```java
 home: true
 modules:
   - BannerBrand
@@ -37,4 +70,5 @@ footer: # 底部模块的配置
 isShowTitleInHome: true
 actionText: About
 actionLink: /views/other/about
----
+```
+

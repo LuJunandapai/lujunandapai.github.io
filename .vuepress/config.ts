@@ -31,8 +31,10 @@ export default defineUserConfig({
     // 顶部导航栏
     navbar: [
       { text: "Home", link: "/" },
-      { text: "分类组", link: "/categories/reco/1/" },
-      { text: "标签组", link: "/tags/tag1/1/" },
+      // 导航 特殊组(分类 标签) link: "/categories或者tags/默认的类别名称或者标签名称/1/" 不存在的类别或者标签会报404
+      { text: "分类组", link: "/categories/Start/1/" },
+      { text: "标签组", link: "/tags/Rests/1/" },
+      // 导航下拉列表
       {
         text: "文档组",
         children: [
@@ -47,10 +49,12 @@ export default defineUserConfig({
         text: "花圃里",
         children: [
           { text: "2023-花开万里", link: "/docs/Apai-MyRecord/My-2023/My2305" },
-          { text: "2024-随心而来", link: "/docs/Apai-MyRecord/My-2023/My2305" },
+          { text: "2024-随心而来", link: "/docs/Apai-MyRecord/My-2024/My2401" },
         ],
       },
-      { text: "关于我", link: "/blogs/other/guide" },
+      { text: "关于我", link: "/docs/Apai-AboutMe/Lu-aboutMe" },
+      // blogs 页面
+      // { text: "关于我", link: "/blogs/other/guide" },
     ],
 
     // 文档组 的系列栏
