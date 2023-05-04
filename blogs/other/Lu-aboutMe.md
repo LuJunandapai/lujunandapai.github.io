@@ -1,4 +1,15 @@
 ---
+title: 我的主页
+date: 2023/05/04
+tags:
+ - Rests
+categories:
+ - Start
+---
+
+## 主页配置
+
+```java
 home: true
 modules:
   - BannerBrand
@@ -37,4 +48,6 @@ footer: # 底部模块的配置
 isShowTitleInHome: true
 actionText: About
 actionLink: /views/other/about
----
+
+```
+

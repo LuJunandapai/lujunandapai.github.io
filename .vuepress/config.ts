@@ -166,6 +166,28 @@ export default defineUserConfig({
           ],
         },
       ],
+
+      // --- 关于我 设置
+      "/docs/Apai-AboutMe/": [
+        {
+          text: "关于我",
+          children: [
+            "Lu-aboutMe",
+          ],
+        },
+        {
+          text: "工作经历",
+          children: [
+            "Work-MaYun",
+          ],
+        },
+        {
+          text: "兴趣爱好",
+          children: [
+            "Hobby-SheYing.md",
+          ],
+        },
+      ],
     },
 
     // 右侧公告栏 bulletin
