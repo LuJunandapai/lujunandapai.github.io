@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-45fa21a6","path":"/blogs/biaoqian-fenlei-moban.html","title":"标题 (模板格式)","lang":"zh-CN","frontmatter":{"title":"标题 (模板格式)","date":"2016/12/15","tags":["标签"],"categories":["分类"]},"headers":[],"git":{"createdTime":null,"updatedTime":null,"contributors":[]},"filePathRelative":"blogs/标签-分类-模板.md"}');export{t as data};
