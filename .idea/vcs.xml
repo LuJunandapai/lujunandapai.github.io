@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/.vuepress/GitHub-Bolg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.vuepress/Gitee_LuDocs" vcs="Git" />
   </component>
 </project>
