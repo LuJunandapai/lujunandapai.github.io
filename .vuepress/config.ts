@@ -6,7 +6,7 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: "阿派 | Apai Blog",
   description: "Just playing around",
-  base: '/.vuepress/dist/',   // 部署的路径配置
+  base: '/docs/.vuepress/dist/',   // 部署的路径配置
   // dest: './dist',  // 设置输出目录
 
   // 文档设置
